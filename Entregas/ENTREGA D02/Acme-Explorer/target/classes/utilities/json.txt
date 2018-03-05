@@ -1,0 +1,88 @@
+{
+"Administrator":
+	[{
+	"name": "Ruben",
+    "surname": "Martinez",
+    "email": "ruben@gmail.com",
+    "phone": "+313(987)1111",
+    "address": "Parque Flores",
+    "activated":true
+    },
+    {
+    "name": "Admin 2",
+    "surname": "surname admin 2",
+    "email": "admin2@gmail.com",
+    "phone": "+313(987)1221",
+    "address": "Parque Rubio",
+    "activated":true
+    }
+    ],
+"Explorer":
+	[{
+	"name": "miguel",
+    "surname": "ternero algarin",
+    "email": "migteralg@alum.us.es",
+    "phone": "617297203",
+    "address": "Pablo iglesias",
+    "activated":true
+    },
+    {
+    "name": "explorer 2",
+    "surname": "hello won",
+    "email": "correo@yahoo.com",
+    "phone": "+313(987)1221",
+    "address": "adrrs 1",
+    "activated":true
+    }
+    ],
+"Auditor":
+	[{
+	"name": "maria",
+    "surname": "ternero ruiz",
+    "email": "migteralg@alum.us.es",
+    "phone": "617297203",
+    "address": "Pablo iglesias",
+    "activated":true
+    },
+    {
+    "name": "auditor 2",
+    "surname": "hello won",
+    "email": "correo@yahoo.com",
+    "phone": "+313(987)1221",
+    "address": "adrrs 1",
+    "activated":true
+    }
+    ],
+    
+"Story":
+	[
+	{
+	"title":"story1",
+	"text":"text Story 1",
+	"attachments":["attachment 1","attachment 2"]
+	},
+	{
+	"title":"story2",
+	"text":"text Story 2",
+	"attachments":["attachment 1","attachment 2"]
+	}
+	],
+	
+"Category":
+	[
+	{"name":"playa 1"},
+	{"name":"playa 2"},
+	{"name":"playa 3"},
+	{"name":"playa 4"}
+	],
+"Tag":
+	[
+	{"name":"TAG 1"},
+	{"name":"TAG 2"},
+	{"name":"TAG 3"},
+	{"name":"TAG 4"}
+	]
+ 
+    
+}
+
