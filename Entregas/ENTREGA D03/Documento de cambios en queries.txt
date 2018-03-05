@@ -1,0 +1,12 @@
+1) La Query C/11 es diferente debido al cambio de navegabilidad en las demas entregas.
+	D03: select count(t) from Trip t group by t.legalText
+	D07: select t.trips.size from LegalText t
+
+2) La Query B/4 es diferente, se ha cambiado el orden en la division.
+	D03: select count(r)/(select count(s) from Ranger s)*1.0 from Ranger r where r.curricula!=null
+	D07: select count(c) / (select count(s) from Ranger s)*1.0 from Curricula c
+
+3) La Query B/5 es diferente, se ha cambiado el orden en la division.
+	D03: select (select count(c) from Ranger r join r.curricula c where c.endorserRecords.size>0)*1.0/count(c) from Curricula c
+	D07: select count(c) /(select count(s) from Curricula s where s.endorserRecords is not empty)*1.0 from Curricula c
+

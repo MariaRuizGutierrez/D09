@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+"http://www.hibernate.org/dtd//hibernate-configuration-3.0.dtd">
+
+<!-- Nos hemos visto en la necesidad de crear este archivo para que al ejecutar 
+	la clase que implementa la funcionalidad de Full-Text Search nos decía que 
+	no era capaz de encontrar en fichero hibernate.cfg.xml. Lo intentamos añadiendo 
+	las lineas que nos faltaban en el persistence.xml, que podríamos decir que 
+	sería el sustituto de hibernate.cfg.xml -->
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/acme-explorer</property>
+		<property name="connection.username">acme-manager</property>
+		<property name="connection.password">ACME-M@n@ger-6874</property>
+
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<property name="hibernate.search.default.directory_provider">filesystem</property>
+		<property name="hibernate.search.default.indexBase">C:\lucene\indexes</property>
+		<property name="hibernate.search.lucene_version">LUCENE_30</property>
+
+		<mapping class="domain.Actor" />
+		<mapping class="domain.Administrator" />
+		<mapping class="domain.ApplicationFor" />
+		<mapping class="domain.Auditor" />
+		<mapping class="domain.AuditRecord" />
+		<mapping class="domain.Category" />
+		<mapping class="domain.ContactEmergency" />
+		<mapping class="domain.CreditCard" />
+		<mapping class="domain.Curricula" />
+		<mapping class="domain.DomainEntity" />
+		<mapping class="domain.EducationRecord" />
+		<mapping class="domain.EndorserRecord" />
+		<mapping class="domain.Explorer" />
+		<mapping class="domain.GPS" />
+		<mapping class="domain.LegalText" />
+		<mapping class="domain.Manager" />
+		<mapping class="domain.Message" />
+		<mapping class="domain.MessageFolder" />
+		<mapping class="domain.MiscellaneousRecord" />
+		<mapping class="domain.Note" />
+		<mapping class="domain.PersonalRecord" />
+		<mapping class="domain.ProfessionalRecord" />
+		<mapping class="domain.Ranger" />
+		<mapping class="domain.SocialIdentity" />
+		<mapping class="domain.Sponsor" />
+		<mapping class="domain.Sponsorship" />
+		<mapping class="domain.Stage" />
+		<mapping class="domain.Story" />
+		<mapping class="domain.SurvivalClass" />
+		<mapping class="domain.Tag" />
+		<mapping class="domain.Trip" />
+
+		<mapping class="security.Authority" />
+		<mapping class="security.Credentials" />
+		
+		<mapping class="security.UserAccount" />
+		
+ 
+
+	
+	
+	</session-factory>
+</hibernate-configuration>
