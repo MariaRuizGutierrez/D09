@@ -27,18 +27,7 @@
 	<security:authorize access="hasRole('ADMINISTRATOR')">
 		<spring:message code="category.edit" var="edit"></spring:message>
 		<display:column title="${edit}" sortable="true">
-		<jstl:if test="${(!(row.name=='CATEGORY') and
-			!(row.name=='Safari' and row.fatherCategory.name=='CATEGORY') and
-			!(row.name=='Ground' and row.fatherCategory.name=='Safari') and
-			!(row.name=='Savana' and row.fatherCategory.name=='Ground') and
-			!(row.name=='Mountain' and row.fatherCategory.name=='Ground') and
-			!(row.name=='Water' and row.fatherCategory.name=='Safari') and
-			!(row.name=='Lake' and row.fatherCategory.name=='Water') and
-			!(row.name=='River' and row.fatherCategory.name=='Water') and
-			!(row.name=='Climbing' and row.fatherCategory.name=='CATEGORY') and
-			!(row.name=='Mountain' and row.fatherCategory.name=='Climbing') and
-			!(row.name=='River' and row.fatherCategory.name=='Climbing')
-			)}">
+		<jstl:if test="${!(row.default_category==true)}">
 			<spring:url value="category/administrator/edit.do" var="editURL">
 			<spring:param name="categoryId" value="${row.id}"/>
 			</spring:url>

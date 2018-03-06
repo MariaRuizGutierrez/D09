@@ -18,6 +18,7 @@ public class Tag extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 	private String	name;
+	private boolean	default_tag;
 
 
 	@NotBlank
@@ -27,6 +28,14 @@ public class Tag extends DomainEntity {
 
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	public boolean isDefault_tag() {
+		return default_tag;
+	}
+
+	public void setDefault_tag(boolean default_tag) {
+		this.default_tag = default_tag;
 	}
 
 

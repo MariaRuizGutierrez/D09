@@ -24,6 +24,7 @@ public class Category extends DomainEntity {
 
 	private String	name;
 	private String	concat;
+	private boolean	default_category;
 
 
 	@NotBlank
@@ -34,6 +35,18 @@ public class Category extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
+	
+
+	public boolean isDefault_category() {
+		return default_category;
+	}
+
+	
+	public void setDefault_category(boolean default_category) {
+		this.default_category = default_category;
+	}
+	
+	
 
 
 	//-----------------------------Relationships-----------------------------

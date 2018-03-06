@@ -2466,6 +2466,7 @@
 
  	<bean id="tag1" class="domain.Tag">
 		<property name="name" value="country" />
+		<property name="default_tag" value="true"></property>
 		<property name="values">
 			<list>
 			</list>
@@ -2474,6 +2475,7 @@
 
 	<bean id="tag2" class="domain.Tag">
 		<property name="name" value="expertise" />
+		<property name="default_tag" value="true"></property>
 		<property name="values">
 			<list>
 			</list>
@@ -2482,6 +2484,7 @@
 
 	<bean id="tag3" class="domain.Tag">
 		<property name="name" value="dangerousness" />
+		<property name="default_tag" value="true"></property>
 		<property name="values">
 			<list>
 			</list>
@@ -3501,6 +3504,7 @@
 	<!--Categoria Lake -->
 	<bean id="lake" class="domain.Category">
 		<property name="name" value="Lake" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="water" />
 		</property>
@@ -3518,6 +3522,7 @@
 	<!--Categoria Savana -->
 	<bean id="savana" class="domain.Category">
 		<property name="name" value="Savana" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="ground" />
 		</property>
@@ -3534,6 +3539,7 @@
 	<!--Categoria River -->
 	<bean id="riverClimbing" class="domain.Category">
 		<property name="name" value="River" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="climbing" />
 		</property>
@@ -3550,6 +3556,7 @@
 
 	<bean id="riverWater" class="domain.Category">
 		<property name="name" value="River" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="water" />
 		</property>
@@ -3567,6 +3574,7 @@
 	<!--Categoria Mountain -->
 	<bean id="mountainClimbing" class="domain.Category">
 		<property name="name" value="Mountain" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="climbing" />
 		</property>
@@ -3581,6 +3589,7 @@
 	</bean>
 	<bean id="mountainGround" class="domain.Category">
 		<property name="name" value="Mountain" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="ground" />
 		</property>
@@ -3598,6 +3607,7 @@
 	<!--Categoria Hija de Safari-> Water -->
 	<bean id="water" class="domain.Category">
 		<property name="name" value="Water" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="safari" />
 		</property>
@@ -3616,6 +3626,7 @@
 	<!--Categoria Hija de Safari -> Ground -->
 	<bean id="ground" class="domain.Category">
 		<property name="name" value="Ground" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="safari" />
 		</property>
@@ -3637,6 +3648,7 @@
 	<!--Categoria Climbing -->
 	<bean id="climbing" class="domain.Category">
 		<property name="name" value="Climbing" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="category" />
 		</property>
@@ -3655,6 +3667,7 @@
 	<!--Categoria Safari -->
 	<bean id="safari" class="domain.Category">
 		<property name="name" value="Safari" />
+		<property name="default_category" value ="true"></property>
 		<property name="fatherCategory">
 			<ref bean="category" />
 		</property>
@@ -3675,6 +3688,7 @@
 	<!--Categoria Padre De Todas -->
 	<bean id="category" class="domain.Category">
 		<property name="name" value="CATEGORY" />
+		<property name="default_category" value ="true"></property>
 		<property name="subCategories">
 			<list>
 				<ref bean="safari" />

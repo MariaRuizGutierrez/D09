@@ -28,10 +28,7 @@
 		
 		<spring:message code="category.edit" var="edit"></spring:message>
 		<display:column title="${edit}" sortable="true">
-		<jstl:if test="${(!(row.name=='country') and
-			!(row.name=='expertise') and
-			!(row.name=='dangerousness')
-			)}">
+		<jstl:if test="${!(row.default_tag==true)}">
 		<spring:url value="tag/administrator/edit.do" var="editURL">
 		<spring:param name="tagId" value="${row.id}"/>
 		</spring:url>
