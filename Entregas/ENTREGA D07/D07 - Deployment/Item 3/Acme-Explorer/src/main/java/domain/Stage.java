@@ -10,6 +10,8 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+import org.omg.CORBA.INTERNAL;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -50,6 +52,7 @@ public class Stage extends DomainEntity {
 		this.price = price;
 	}
 
+	@Range(min=1, max=Integer.MAX_VALUE)
 	public int getNumber() {
 		return this.number;
 	}
