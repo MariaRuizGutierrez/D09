@@ -172,9 +172,9 @@ public class ApplicationForService {
 		return result;
 	}
 	public ApplicationFor enter(final ApplicationFor applicationFor) {
+		ApplicationFor result;
 		Assert.notNull(applicationFor);
 		Assert.isTrue(applicationFor.getStatus().equals("DUE"));
-		ApplicationFor result;
 
 		if (this.checkCreditCard(applicationFor.getCreditCard())) {
 			applicationFor.setStatus("ACCEPTED");
