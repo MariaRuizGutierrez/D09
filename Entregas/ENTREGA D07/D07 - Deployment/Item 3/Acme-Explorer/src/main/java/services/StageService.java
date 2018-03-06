@@ -65,8 +65,9 @@ public class StageService {
 		//Cuando vaya a salvar la stage tengo que comprobar que no exista ese numero en la bd
 		trip = stage.getTrip();
 		allStagesForTrip = stage.getTrip().getStages();
-		for (Stage s : allStagesForTrip)
-			Assert.isTrue(stage.getNumber() != s.getNumber(), "The number of this stage must be different");
+		if (stage.getId() == 0)
+			for (Stage s : allStagesForTrip)
+				Assert.isTrue(stage.getNumber() != s.getNumber(), "The number of this stage must be different");
 
 		Assert.isTrue(trip.getId() != 0);
 		trip = this.tripService.findOne(trip.getId());
