@@ -49,4 +49,11 @@ public class AbstractController {
 		result = this.configurationSystemService.findOne().getBanner();
 		return result;
 	}
+
+	@ModelAttribute(value = "d-16544-p")
+	public String getPagination() {
+		String result;
+		result = "1";
+		return result;
+	}
 }

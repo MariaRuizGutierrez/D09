@@ -136,7 +136,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="story/explorer/list.do"><spring:message code="master.page.explorer.stories" /></a></li>
-					<li><a href="trip/explorer/listTrip.do"><spring:message code="master.page.explorer.trips.stories" /></a></li>
+					<li><a href="trip/explorer/listTrip.do?d-16544-p=1"><spring:message code="master.page.explorer.trips.stories" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
