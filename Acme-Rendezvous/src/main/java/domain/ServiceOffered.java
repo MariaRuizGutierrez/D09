@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Service extends DomainEntity {
+public class ServiceOffered extends DomainEntity {
 
 	private String	name;
 	private String	description;
@@ -75,7 +75,7 @@ public class Service extends DomainEntity {
 		this.category = category;
 	}
 
-	@ManyToMany(mappedBy = "services")
+	@ManyToMany(mappedBy = "servicesOffered")
 	@Valid
 	@NotNull
 	public Collection<Rendezvouse> getRendezvouses() {

@@ -35,18 +35,18 @@ public class Request extends DomainEntity {
 
 
 	//Relationships------------------------------------------------------------
-	private Service	service;
-	private User	user;
+	private ServiceOffered	serviceOffered;
+	private User			user;
 
 
 	@Valid
 	@ManyToOne(optional = false)
-	public Service getService() {
-		return this.service;
+	public ServiceOffered getServiceOffered() {
+		return this.serviceOffered;
 	}
 
-	public void setService(final Service service) {
-		this.service = service;
+	public void setServiceOffered(final ServiceOffered serviceOffered) {
+		this.serviceOffered = serviceOffered;
 	}
 
 	@Valid

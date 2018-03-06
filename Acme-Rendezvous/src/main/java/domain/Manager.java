@@ -31,18 +31,18 @@ public class Manager extends Actor {
 
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Service>	services;
+	private Collection<ServiceOffered>	servicesOffered;
 
 
 	@Valid
 	@NotNull
 	@OneToMany
-	public Collection<Service> getServices() {
-		return this.services;
+	public Collection<ServiceOffered> getServicesOffered() {
+		return this.servicesOffered;
 	}
 
-	public void setServices(final Collection<Service> services) {
-		this.services = services;
+	public void setServicesOffered(final Collection<ServiceOffered> servicesOffered) {
+		this.servicesOffered = servicesOffered;
 	}
 
 }

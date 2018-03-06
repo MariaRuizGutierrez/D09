@@ -1,8 +1,10 @@
 #./src/main/resources/Entities.map
-#Sun Mar 04 18:32:52 GMT+01:00 2018
+#Tue Mar 06 19:28:53 GMT+01:00 2018
 question1=76
 request1=90
 administrator=54
+serviceOffered2=87
+serviceOffered1=86
 category1=88
 announcement5=70
 announcement4=69
@@ -33,10 +35,8 @@ rendezvouse5=65
 rendezvouse4=64
 answer5=85
 rendezvouse3=63
-service2=87
 answer4=84
 rendezvouse2=62
-service1=86
 answer3=83
 rendezvouse1=61
 answer2=82

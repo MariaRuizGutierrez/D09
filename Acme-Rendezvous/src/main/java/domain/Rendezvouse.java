@@ -114,7 +114,7 @@ public class Rendezvouse extends DomainEntity {
 	private Collection<User>			assistants;
 	private Collection<Rendezvouse>		similarRendezvouses;
 	private Collection<Announcement>	announcements;
-	private Collection<Service>			services;
+	private Collection<ServiceOffered>	servicesOffered;
 
 
 	@Valid
@@ -149,12 +149,12 @@ public class Rendezvouse extends DomainEntity {
 
 	@ManyToMany
 	@Valid
-	public Collection<Service> getServices() {
-		return this.services;
+	public Collection<ServiceOffered> getServicesOffered() {
+		return this.servicesOffered;
 	}
 
-	public void setServices(final Collection<Service> services) {
-		this.services = services;
+	public void setServicesOffered(final Collection<ServiceOffered> servicesOffered) {
+		this.servicesOffered = servicesOffered;
 	}
 
 }

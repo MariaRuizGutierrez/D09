@@ -230,10 +230,10 @@
 		<property name="emailAddress" value="manager1@gmail.com" />
 		<property name="userAccount" ref="userAccount7" />
 		<property name="vat" value="1234565" />
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
-				<ref bean="service1" />
-				<ref bean="service2" />
+				<ref bean="serviceOffered1" />
+				<ref bean="serviceOffered2" />
 			</list>
 		</property>
 	</bean>
@@ -268,9 +268,9 @@
 				<ref bean="announcement2"></ref>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
-				<ref bean="service1" />
+				<ref bean="serviceOffered1" />
 			</list>
 		</property>
 	</bean>
@@ -298,9 +298,9 @@
 			<list>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
-				<ref bean="service2" />
+				<ref bean="serviceOffered2" />
 			</list>
 		</property>
 	</bean>
@@ -329,7 +329,7 @@
 				<ref bean="announcement3"></ref>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
 			</list>
 		</property>
@@ -360,7 +360,7 @@
 				<ref bean="announcement4"></ref>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
 			</list>
 		</property>
@@ -391,7 +391,7 @@
 				<ref bean="announcement5"></ref>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servicesOffered">
 			<list>
 			</list>
 		</property>
@@ -587,10 +587,10 @@
 	</bean>
 
 	<!-- Services -->
-	<bean id="service1" class="domain.Service">
-		<property name="name" value="title service1" />
-		<property name="description" value="description service 1" />
-		<property name="picture" value="http://www.service1.com" />
+	<bean id="serviceOffered1" class="domain.ServiceOffered">
+		<property name="name" value="title serviceOffered1" />
+		<property name="description" value="description serviceOffered 1" />
+		<property name="picture" value="http://www.serviceOffered1.com" />
 		<property name="cancelled" value="false" />
 		<property name="category" ref="category1" />
 		<property name="rendezvouses">
@@ -600,10 +600,10 @@
 		</property>
 	</bean>
 
-	<bean id="service2" class="domain.Service">
-		<property name="name" value="title service2" />
-		<property name="description" value="description service 2" />
-		<property name="picture" value="http://www.service2.com" />
+	<bean id="serviceOffered2" class="domain.ServiceOffered">
+		<property name="name" value="title serviceOffered2" />
+		<property name="description" value="description serviceOffered 2" />
+		<property name="picture" value="http://www.serviceOffered2.com" />
 		<property name="cancelled" value="false" />
 		<property name="category" ref="category1-1" />
 		<property name="rendezvouses">
@@ -639,7 +639,7 @@
 	<bean id="request1" class="domain.Request">
 		<property name="comment" value="request user 1" />
 		<property name="creditCard" ref="creditCard1" />
-		<property name="service" ref="service1" />
+		<property name="serviceOffered" ref="serviceOffered1" />
 		<property name="user" ref="user1" />
 	</bean>
 
