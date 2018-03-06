@@ -49,11 +49,11 @@ public class MessageAdministratorController extends AbstractController {
 	// Listing methods -----------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam final int messageFolderId) {
+	public ModelAndView list(@RequestParam int messageFolderId) {
 
 		ModelAndView result;
 		Collection<Message> msgs;
-		final Integer messageFolderId1 = messageFolderId;
+		Integer messageFolderId1 = messageFolderId;
 		Actor actor;
 		Collection<MessageFolder> messageFolders;
 
@@ -74,11 +74,11 @@ public class MessageAdministratorController extends AbstractController {
 	//Display
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int messageId) {
+	public ModelAndView display(@RequestParam int messageId) {
 
 		ModelAndView result;
 		Message message;
-		final Actor actorPrincipal = this.actorService.findPrincipal();
+		Actor actorPrincipal = this.actorService.findPrincipal();
 
 		message = this.messageService.findOne(messageId);
 		result = new ModelAndView("message/display");
@@ -93,7 +93,7 @@ public class MessageAdministratorController extends AbstractController {
 	//Change Folder------------------------------------------------------------------
 
 	@RequestMapping(value = "/changefolder", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int messageId) {
+	public ModelAndView edit(@RequestParam int messageId) {
 
 		ModelAndView result;
 
@@ -102,8 +102,8 @@ public class MessageAdministratorController extends AbstractController {
 		Assert.notNull(message);
 		result = new ModelAndView("message/changeFolder");
 
-		final Actor actor = this.actorService.findPrincipal();
-		final Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
+		Actor actor = this.actorService.findPrincipal();
+		Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
 		folders.remove(message.getMessageFolder());
 		result.addObject("folders", folders);
 		result.addObject("message", null);
@@ -114,15 +114,15 @@ public class MessageAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/changefolder", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@Valid final Message m, final BindingResult binding, @RequestParam final int messageId) {
+	public ModelAndView edit(@Valid Message m, BindingResult binding, @RequestParam int messageId) {
 		ModelAndView result;
-		final MessageFolder messageFolderOldMessage = this.messageService.findOne(messageId).getMessageFolder();
+		MessageFolder messageFolderOldMessage = this.messageService.findOne(messageId).getMessageFolder();
 		if (binding.hasErrors()) {
-			final Message originalMessage = this.messageService.findOne(messageId);
+			Message originalMessage = this.messageService.findOne(messageId);
 			result = new ModelAndView("message/changeFolder");
 
-			final Actor actor = this.actorService.findPrincipal();
-			final Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
+			Actor actor = this.actorService.findPrincipal();
+			Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
 			folders.remove(originalMessage.getMessageFolder());
 			result.addObject("folders", folders);
 			result.addObject("message", null);
@@ -131,12 +131,12 @@ public class MessageAdministratorController extends AbstractController {
 			try {
 				this.messageService.save(m);
 				result = new ModelAndView("redirect:list.do?messageFolderId=" + messageFolderOldMessage.getId());
-			} catch (final Throwable oops) {
-				final Message originalMessage = this.messageService.findOne(messageId);
+			} catch (Throwable oops) {
+				Message originalMessage = this.messageService.findOne(messageId);
 				result = new ModelAndView("message/changefolder");
 
-				final Actor actor = this.actorService.findPrincipal();
-				final Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
+				Actor actor = this.actorService.findPrincipal();
+				Collection<MessageFolder> folders = this.messageFolderService.ActorFolders(actor.getId());
 				folders.remove(originalMessage.getMessageFolder());
 				result.addObject("folders", folders);
 				result.addObject("message", null);
@@ -146,7 +146,7 @@ public class MessageAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView deleteMessage(@RequestParam final int messageId) {
+	public ModelAndView deleteMessage(@RequestParam int messageId) {
 		ModelAndView result;
 		Message messageToDelete;
 		MessageFolder folderOld;
@@ -158,7 +158,7 @@ public class MessageAdministratorController extends AbstractController {
 
 			this.messageService.delete(messageToDelete);
 			result = new ModelAndView("redirect:list.do?messageFolderId=" + folderOld.getId());
-		} catch (final Throwable oops) {
+		} catch (Throwable oops) {
 			result = this.createNewModelAndView(messageToDelete, "message.commit.error");
 
 		}
@@ -175,39 +175,23 @@ public class MessageAdministratorController extends AbstractController {
 		message = this.messageService.create();
 
 		result = this.createNewModelAndView(message);
-		result.addObject("bolean", true);
 		result.addObject("requestURI", "message/administrator/send.do");
 
 		return result;
+
 	}
-
-	@RequestMapping(value = "/send-All", method = RequestMethod.GET)
-	public ModelAndView create2() {
-
-		ModelAndView result;
-
-		Message message;
-		message = this.messageService.create();
-
-		result = this.createNewModelAndView(message);
-		result.addObject("bolean", false);
-		result.addObject("requestURI", "message/administrator/send.do");
-
-		return result;
-	}
-
 	@RequestMapping(value = "/send", method = RequestMethod.POST, params = "save")
-	public ModelAndView send(@ModelAttribute("m") @Valid final Message m, final BindingResult binding) {
+	public ModelAndView send(@ModelAttribute("m") @Valid Message m, BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createNewModelAndView(m);
 		else
 			try {
-				final MessageFolder folderToReturn = m.getMessageFolder();
+				MessageFolder folderToReturn = m.getMessageFolder();
 
 				this.messageService.save(m);
 				result = new ModelAndView("redirect:list.do?messageFolderId=" + folderToReturn.getId());
-			} catch (final Throwable oops) {
+			} catch (Throwable oops) {
 
 				result = this.createNewModelAndView(m, "message.commit.error");
 
@@ -216,17 +200,17 @@ public class MessageAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/send", method = RequestMethod.POST, params = "broadcast")
-	public ModelAndView sendBroadcast(@ModelAttribute("m") @Valid final Message m, final BindingResult binding) {
+	public ModelAndView sendBroadcast(@ModelAttribute("m") @Valid Message m, BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createNewModelAndView(m);
 		else
 			try {
-				final MessageFolder folderToReturn = m.getMessageFolder();
+				MessageFolder folderToReturn = m.getMessageFolder();
 
 				this.messageService.sendNotificationBroadcast(m.getSubject(), m.getBody(), m.getPriority());
 				result = new ModelAndView("redirect:list.do?messageFolderId=" + folderToReturn.getId());
-			} catch (final Throwable oops) {
+			} catch (Throwable oops) {
 
 				result = this.createNewModelAndView(m, "message.commit.error");
 
@@ -235,7 +219,7 @@ public class MessageAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public ModelAndView reply(@RequestParam final int messageId) {
+	public ModelAndView reply(@RequestParam int messageId) {
 
 		ModelAndView result;
 
@@ -255,26 +239,26 @@ public class MessageAdministratorController extends AbstractController {
 
 	// Ancillary methods ------------------------------------------------------
 
-	protected ModelAndView createNewModelAndView(final Message m) {
+	protected ModelAndView createNewModelAndView(Message m) {
 		ModelAndView result;
 		result = this.createNewModelAndView(m, null);
 		return result;
 	}
 
-	protected ModelAndView createNewModelAndView(final Message m, final String message) {
+	protected ModelAndView createNewModelAndView(Message m, String message) {
 		ModelAndView result;
 
 		result = new ModelAndView("message/send");
 
-		final Actor actor = this.actorService.findPrincipal();
-		final Collection<Actor> actors = this.actorService.findAll();
+		Actor actor = this.actorService.findPrincipal();
+		Collection<Actor> actors = this.actorService.findAll();
 		actors.remove(actor);
 
 		result.addObject("actors", actors);
-		final String low = "LOW";
-		final String neutral = "NEUTRAL";
-		final String high = "HIGH";
-		final Collection<String> priorities = new ArrayList<String>();
+		String low = "LOW";
+		String neutral = "NEUTRAL";
+		String high = "HIGH";
+		Collection<String> priorities = new ArrayList<String>();
 		priorities.add(low);
 		priorities.add(neutral);
 		priorities.add(high);
@@ -285,18 +269,18 @@ public class MessageAdministratorController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createReplyModelAndView(final Message m) {
+	protected ModelAndView createReplyModelAndView(Message m) {
 		ModelAndView result;
 		result = this.createReplyModelAndView(m, null);
 		return result;
 	}
 
-	protected ModelAndView createReplyModelAndView(final Message m, final String message) {
+	protected ModelAndView createReplyModelAndView(Message m, String message) {
 		ModelAndView result;
-		final String low = "LOW";
-		final String neutral = "NEUTRAL";
-		final String high = "HIGH";
-		final Collection<String> priorities = new ArrayList<String>();
+		String low = "LOW";
+		String neutral = "NEUTRAL";
+		String high = "HIGH";
+		Collection<String> priorities = new ArrayList<String>();
 		priorities.add(low);
 		priorities.add(neutral);
 		priorities.add(high);
