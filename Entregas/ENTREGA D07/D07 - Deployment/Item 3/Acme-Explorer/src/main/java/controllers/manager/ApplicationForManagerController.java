@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +47,7 @@ public class ApplicationForManagerController extends AbstractController {
 
 		Collection<ApplicationFor> applicationFor;
 		Manager manager;
-		Date date = new Date();
+		final Date date = new Date();
 		manager = this.managerService.findByPrincipal();
 		applicationFor = new ArrayList<ApplicationFor>(manager.getApplicationsFor());
 
@@ -80,8 +81,11 @@ public class ApplicationForManagerController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int applicationforId) {
 		ModelAndView result;
 		ApplicationFor applicationFor;
+		Manager m;
 
+		m = this.managerService.findByPrincipal();
 		applicationFor = this.applicationForService.findOne(applicationforId);
+		Assert.isTrue(m.getApplicationsFor().contains(applicationFor));
 
 		result = this.createEditModelAndView(applicationFor);
 		result.addObject("applicationFor", applicationFor);
@@ -90,7 +94,7 @@ public class ApplicationForManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/change", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid ApplicationFor applicationFor, BindingResult binding) {
+	public ModelAndView save(@Valid final ApplicationFor applicationFor, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(applicationFor);
