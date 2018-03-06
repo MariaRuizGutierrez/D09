@@ -19,14 +19,14 @@
 			<form:hidden path="messageFolder" />
 			<form:hidden path="moment" />
 
-
-			<jstl:if test="${m.recipient == null}">
-
+			<jstl:if test="${bolean}">
+			<jstl:if test="${(m.recipient == null)}">
+				
 				<acme:select code="message.sendTo" path="recipient"
 					items="${actors}" itemLabel="userAccount.username" />
-
+				
 				<br />
-
+			</jstl:if>
 			</jstl:if>
 			<form:label path="priority">
 				<spring:message code="message.priority" />:
@@ -55,11 +55,13 @@
 			<input type="button" name="cancel"
 				value="<spring:message code="message.cancel.link" />"
 				onclick="javascript: location.replace('welcome/index.do')" />
-
+			
+			<jstl:if test="${!bolean}">
 			<security:authorize access="hasRole('ADMINISTRATOR')">
 				<input type="submit" name="broadcast"
 					value="<spring:message code="message.send.broadcast.link" />" />
 			</security:authorize>
+			</jstl:if>
 
 <br />  
 		</form:form>
