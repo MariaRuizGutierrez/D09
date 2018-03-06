@@ -95,22 +95,27 @@ public class PersonalRecordRangerController extends AbstractController {
 			try {
 				Curricula curricula;
 				curricula = this.curriculaService.findCurriculaFromRanger(this.rangerService.findByPrincipal().getId());
-				personalRecord = this.personalRecordService.save(personalRecord);
 				if (curricula == null) {
 					curricula = this.curriculaService.create();
 					curricula.setRanger(this.rangerService.findByPrincipal());
+					personalRecord = this.personalRecordService.save(personalRecord);
 					curricula.setPersonalRecord(personalRecord);
 					this.curriculaService.save(curricula);
+				} else {
+					Assert.isTrue(personalRecord.getId() != 0, "hackingGet");
+					personalRecord = this.personalRecordService.save(personalRecord);
 				}
 				result = new ModelAndView("redirect:/curricula/ranger/display.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(personalRecord, "personalRecord.commit.error");
+				if (oops.getMessage().equals("hackingGet"))
+					result = this.createEditModelAndView(personalRecord, "personalRecord.error.hackingGet");
+				else
+					result = this.createEditModelAndView(personalRecord, "personalRecord.commit.error");
 			}
 
 		return result;
 
 	}
-
 	//Deleting-----------------
 
 	//auxiliary------------------
