@@ -34,7 +34,7 @@
 						code="master.page.mensage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="messageFolder/sponsor/list.do"><spring:message code="master.page.messageFolder.list" /></a></li>
+					<li><a href="messageFolder/sponsor/list.do?d-16544-p=1"><spring:message code="master.page.messageFolder.list" /></a></li>
 					<li><a href="message/sponsor/send.do"><spring:message code="master.page.message.send" /></a></li>
 				</ul></li>
 				
@@ -42,22 +42,22 @@
 						code="master.page.sponsorship" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="sponsorship/sponsor/list.do"><spring:message code="master.page.sponsorship.sponsor.list" /></a></li>
-					<li><a href="trip/sponsor/list.do"><spring:message code="master.page.sponsor.list.trips" /></a></li>
+					<li><a href="sponsorship/sponsor/list.do?d-16544-p=1"><spring:message code="master.page.sponsorship.sponsor.list" /></a></li>
+					<li><a href="trip/sponsor/list.do?d-16544-p=1"><spring:message code="master.page.sponsor.list.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadostrips" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/list.do"><spring:message code="master.page.trips" /></a></li>
+					<li><a href="trip/list.do?d-16544-p=1"><spring:message code="master.page.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadoscategory" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -72,7 +72,7 @@
 						code="master.page.mensage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="messageFolder/auditor/list.do"><spring:message code="master.page.messageFolder.list" /></a></li>
+					<li><a href="messageFolder/auditor/list.do?d-16544-p=1"><spring:message code="master.page.messageFolder.list" /></a></li>
 					<li><a href="message/auditor/send.do"><spring:message code="master.page.message.send" /></a></li>
 				</ul></li>
 				
@@ -80,30 +80,30 @@
 						code="master.page.note" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="note/auditor/list.do"><spring:message code="master.page.note.auditor.list" /></a></li>
-					<li><a href="trip/auditor/list.do"><spring:message code="master.page.auditorNote.list.trips" /></a>
+					<li><a href="note/auditor/list.do?d-16544-p=1"><spring:message code="master.page.note.auditor.list" /></a></li>
+					<li><a href="trip/auditor/list.do?d-16544-p=1"><spring:message code="master.page.auditorNote.list.trips" /></a>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.auditRecordListandCreate" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="auditRecord/auditor/list.do"><spring:message code="master.page.auditRecord.auditor.list" /></a></li>
-					<li><a href="trip/auditor/list.do"><spring:message code="master.page.auditor.list.trips" /></a>
+					<li><a href="auditRecord/auditor/list.do?d-16544-p=1"><spring:message code="master.page.auditRecord.auditor.list" /></a></li>
+					<li><a href="trip/auditor/list.do?d-16544-p=1"><spring:message code="master.page.auditor.list.trips" /></a>
 				</ul></li>
 				
 			<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadostrips" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/list.do"><spring:message code="master.page.trips" /></a></li>
+					<li><a href="trip/list.do?d-16544-p=1"><spring:message code="master.page.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadoscategory" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -118,7 +118,7 @@
 						code="master.page.mensage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="messageFolder/explorer/list.do"><spring:message code="master.page.messageFolder.list" /></a></li>
+					<li><a href="messageFolder/explorer/list.do?d-16544-p=1"><spring:message code="master.page.messageFolder.list" /></a></li>
 					<li><a href="message/explorer/send.do"><spring:message code="master.page.message.send" /></a></li>
 				</ul></li>
 				
@@ -126,16 +126,16 @@
 						code="master.page.applicationFor" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="applicationFor/explorer/list.do"><spring:message code="master.page.explorer.list.applicationFor" /></a></li>
-					<li><a href="trip/explorer/list-not-apply.do"><spring:message code="master.page.explorer.list.not.apply.trips" /></a></li>
-					<li><a href="finder/explorer/list.do"><spring:message code="master.page.message.finder" /></a></li>
+					<li><a href="applicationFor/explorer/list.do?d-16544-p=1"><spring:message code="master.page.explorer.list.applicationFor" /></a></li>
+					<li><a href="trip/explorer/list-not-apply.do?d-16544-p=1"><spring:message code="master.page.explorer.list.not.apply.trips" /></a></li>
+					<li><a href="finder/explorer/list.do?d-16544-p=1"><spring:message code="master.page.message.finder" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.stories" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="story/explorer/list.do"><spring:message code="master.page.explorer.stories" /></a></li>
+					<li><a href="story/explorer/list.do?d-16544-p=1"><spring:message code="master.page.explorer.stories" /></a></li>
 					<li><a href="trip/explorer/listTrip.do?d-16544-p=1"><spring:message code="master.page.explorer.trips.stories" /></a></li>
 				</ul></li>
 				
@@ -143,21 +143,21 @@
 						code="master.page.emergency" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="contactsEmergency/explorer/list.do"><spring:message code="master.page.explorer.contactEmergency" /></a></li>
+					<li><a href="contactsEmergency/explorer/list.do?d-16544-p=1"><spring:message code="master.page.explorer.contactEmergency" /></a></li>
 				</ul></li>
 				
 			<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadostrips" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/list.do"><spring:message code="master.page.trips" /></a></li>
+					<li><a href="trip/list.do?d-16544-p=1"><spring:message code="master.page.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadoscategory" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -175,7 +175,7 @@
 						code="master.page.mensage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="messageFolder/administrator/list.do"><spring:message code="master.page.messageFolder.list" /></a></li>
+					<li><a href="messageFolder/administrator/list.do?d-16544-p=1"><spring:message code="master.page.messageFolder.list" /></a></li>
 					<li><a href="message/administrator/send.do"><spring:message code="master.page.message.send" /></a></li>
 				</ul></li>
 				
@@ -183,7 +183,7 @@
 						code="master.page.category" /></a>
 				<ul>
 					<li class="arrow"></li>
-					 <li><a href="category/administrator/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					 <li><a href="category/administrator/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 					<li><a href="category/administrator/create.do"><spring:message code="master.page.administrator.category.create" /></a></li>
 				</ul></li>
 				
@@ -204,7 +204,7 @@
 						code="master.page.legalText" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="legalText/administrator/list.do"><spring:message code="master.page.legaltext.list" /></a></li>
+					<li><a href="legalText/administrator/list.do?d-16544-p=1"><spring:message code="master.page.legaltext.list" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
@@ -225,7 +225,7 @@
 						code="master.page.tags" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="tag/administrator/list.do"><spring:message code="master.page.tag"/></a>
+					<li><a href="tag/administrator/list.do?d-16544-p=1"><spring:message code="master.page.tag"/></a>
 				</ul></li>
 				
 				
@@ -249,7 +249,7 @@
 						code="master.page.mensage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="messageFolder/ranger/list.do"><spring:message code="master.page.messageFolder.list" /></a></li>
+					<li><a href="messageFolder/ranger/list.do?d-16544-p=1"><spring:message code="master.page.messageFolder.list" /></a></li>
 					<li><a href="message/ranger/send.do"><spring:message code="master.page.message.send" /></a></li>
 				</ul></li>
 				
@@ -264,14 +264,14 @@
 						code="master.page.noautenticadostrips" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/list.do"><spring:message code="master.page.trips" /></a></li>
+					<li><a href="trip/list.do?d-16544-p=1"><spring:message code="master.page.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadoscategory" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -302,36 +302,36 @@
 						code="master.page.note" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="note/manager/list.do"><spring:message code="master.page.note.manager.list" /></a></li>
+					<li><a href="note/manager/list.do?d-16544-p=1"><spring:message code="master.page.note.manager.list" /></a></li>
 				</ul></li>
 				
 			<li><a class="fNiv"><spring:message
 						code="master.page.survivalClass" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="survivalClass/manager/list.do"><spring:message code="master.page.survivalClass.manager" /></a></li>
-					<li><a href="trip/manager_/list.do"><spring:message code="master.page.manager.createClass.trips" /></a></li>
+					<li><a href="survivalClass/manager/list.do?d-16544-p=1"><spring:message code="master.page.survivalClass.manager" /></a></li>
+					<li><a href="trip/manager_/list.do?d-16544-p=1"><spring:message code="master.page.manager.createClass.trips" /></a></li>
 				</ul></li> 
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.funcionality" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/manager_/list.do"><spring:message code="master.page.manager.list.trips" /></a></li>
+					<li><a href="trip/manager_/list.do?d-16544-p=1"><spring:message code="master.page.manager.list.trips" /></a></li>
 				</ul></li> 
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadostrips" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="trip/list.do"><spring:message code="master.page.trips" /></a></li>
+					<li><a href="trip/list.do?d-16544-p=1"><spring:message code="master.page.trips" /></a></li>
 				</ul></li>
 				
 				<li><a class="fNiv"><spring:message
 						code="master.page.noautenticadoscategory" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 				</ul></li>
 		</security:authorize>
 
