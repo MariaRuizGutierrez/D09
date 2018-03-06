@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- * PopulateDatabase.xml * * Copyright (C) 2017 Universidad de Sevilla 
 	* * The use of this project is hereby constrained to the conditions of the 
@@ -64,7 +64,7 @@
 		</property>
 		<property name="activated" value="True"></property>
 	</bean>
-<!-- 
+ 
 	<bean id="userAccountAdmin2" class="security.UserAccount">
 		<property name="username" value="administrator2" />
 		<property name="password" value="82954495ff7e2a735ed2192c35b2cd00" />
@@ -461,9 +461,9 @@
 
 
 
- -->
+ 
 	<!-- Messages -->
-<!-- 
+
 	<bean id="message1" class="domain.Message">
 		<property name="moment" value="2017/10/01 15:20" />
 		<property name="subject" value="subject 1" />
@@ -505,7 +505,7 @@
 		<property name="recipient" ref="auditor2" />
 	</bean>
 
- -->
+ 
 	<!-- MessageFolder -->
 	<!-- Default folder of administrator -->
 
@@ -554,7 +554,7 @@
 			</list>
 		</property>
 	</bean>
-<!-- 
+ 
 	<bean id="InBoxAdministrator2" class="domain.MessageFolder">
 		<property name="name" value="In box" />
 		<property name="modifiable" value="false" />
@@ -737,8 +737,8 @@
 	</bean>
 
 
- -->	<!-- Default folder of ranger -->
-<!-- 
+	<!-- Default folder of ranger -->
+ 
 	<bean id="InBoxRanger1" class="domain.MessageFolder">
 		<property name="name" value="In box" />
 		<property name="modifiable" value="false" />
@@ -964,8 +964,8 @@
 		</property>
 	</bean>
 
- -->	<!-- Default folder of manager -->
-<!-- 	<bean id="InBoxManager1" class="domain.MessageFolder">
+ 	<!-- Default folder of manager -->
+ 	<bean id="InBoxManager1" class="domain.MessageFolder">
 		<property name="name" value="In box" />
 		<property name="modifiable" value="false" />
 		<property name="messages">
@@ -1190,7 +1190,7 @@
 		</property>
 	</bean>
 
-	Folder of explorer
+	<!--Folder of explorer-->
 
 	<bean id="InBoxExplorer1" class="domain.MessageFolder">
 		<property name="name" value="In box" />
@@ -1461,9 +1461,9 @@
 			</list>
 		</property>
 	</bean>
- -->
+ 
 	<!-- Folder of auditor -->
-<!-- 
+ 
 	<bean id="InBoxAuditor1" class="domain.MessageFolder">
 		<property name="name" value="In box" />
 		<property name="modifiable" value="false" />
@@ -1690,9 +1690,9 @@
 			</list>
 		</property>
 	</bean>
- -->
+ 
 	<!-- Folder of sponsor -->
-<!-- 
+ 
 	<bean id="InBoxSponsor1" class="domain.MessageFolder">
 		<property name="name" value="In box" />
 		<property name="modifiable" value="false" />
@@ -1967,11 +1967,11 @@
 		</property>
 	</bean>
 
- -->
+ 
 	<!-- SocialIdentity -->
 
 
-	<!-- SocialIdentity --><!-- 
+	<!-- SocialIdentity -->
 	<bean id="socialIdentityAdmin1" class="domain.SocialIdentity">
 		<property name="nick" value="nickadmin1" />
 		<property name="name" value="identityadmin 1" />
@@ -2182,7 +2182,7 @@
 		<property name="photo" value="http://www.sample.com" />
 	</bean>
 
- -->	<!-- Administrator -->
+ 	<!-- Administrator -->
 
 	<!-- Administrator 1 -->
 	<bean id="administrator1" class="domain.Administrator">
@@ -2214,7 +2214,7 @@
 		</property>
 	</bean>
 
-	<!-- Administrator 2
+	<!-- Administrator 2-->
 	<bean id="administrator2" class="domain.Administrator">
 		<property name="name" value="Administrator2" />
 		<property name="surname" value="Administrator2 Surnames" />
@@ -2238,8 +2238,8 @@
 			</list>
 		</property>
 	</bean>
- 	-->
-	<!-- Administrator 3 
+ 	
+	<!-- Administrator 3 -->
 	<bean id="administrator3" class="domain.Administrator">
 		<property name="name" value="Administrator3" />
 		<property name="surname" value="Administrator3 Surnames" />
@@ -2263,8 +2263,8 @@
 			</list>
 		</property>
 	</bean>
--->
-	<!-- Administrator 4 
+
+	<!-- Administrator 4 -->
 	<bean id="administrator4" class="domain.Administrator">
 		<property name="name" value="Administrator4" />
 		<property name="surname" value="Administrator4 Surnames" />
@@ -2289,8 +2289,8 @@
 		</property>
 	</bean>
 
--->
-	<!-- Administrator 5 
+
+	<!-- Administrator 5 -->
 	<bean id="administrator5" class="domain.Administrator">
 		<property name="name" value="Administrator5" />
 		<property name="surname" value="Administrator5 Surnames" />
@@ -2314,11 +2314,11 @@
 			</list>
 		</property>
 	</bean>
-	-->
+	
 	<!-- Sponsors -->
 	<!--COMPROBADO SIN LISTA DE SPONSORSHIP -->
 
-	<!-- Sponsors 1 
+	<!-- Sponsors 1 -->
 	<bean class="domain.Sponsor" id="sponsor1">
 		<property name="name" value="Sponsor1" />
 		<property name="surname" value="Sponsor1 Surnames" />
@@ -2346,8 +2346,8 @@
 			</list>
 		</property>
 	</bean>
-	-->
-	<!--  Sponsors 2 
+	
+	<!--  Sponsors 2 -->
 	<bean class="domain.Sponsor" id="sponsor2">
 		<property name="name" value="Sponsor2" />
 		<property name="surname" value="Sponsor2 Surnames" />
@@ -2375,8 +2375,8 @@
 			</list>
 		</property>
 	</bean>
-	-->
-	<!-- Sponsors 3 
+	
+	<!-- Sponsors 3 -->
 	<bean class="domain.Sponsor" id="sponsor3">
 		<property name="name" value="Sponsor3" />
 		<property name="surname" value="Sponsor3 Surnames" />
@@ -2404,8 +2404,8 @@
 			</list>
 		</property>
 	</bean>
-		-->
-	<!-- Sponsors 4
+		
+	<!-- Sponsors 4 -->
 	<bean class="domain.Sponsor" id="sponsor4">
 		<property name="name" value="Sponsor4" />
 		<property name="surname" value="Sponsor4 Surnames" />
@@ -2461,7 +2461,7 @@
 			<list>
 			</list>
 		</property>
-	</bean> -->
+	</bean> 
 	<!-- TAGs -->
 
  	<bean id="tag1" class="domain.Tag">
@@ -2487,27 +2487,10 @@
 			</list>
 		</property>
 	</bean>
-<!--
-	<bean id="tag4" class="domain.Tag">
-		<property name="name" value="name 4" />
-		<property name="values">
-			<list>
-			</list>
-		</property>
-	</bean>
 
-
-	<bean id="tag5" class="domain.Tag">
-		<property name="name" value="name 5" />
-		<property name="values">
-			<list>
-			</list>
-		</property>
-	</bean>
- -->
 	<!-- STAGEs -->
 
-<!-- 
+ 
 	<bean id="stage1" class="domain.Stage">
 		<property name="title" value="title 1" />
 		<property name="description" value="description 1" />
@@ -2762,7 +2745,7 @@
 
 
 
-	GPS
+	<!-- GPS -->
 	<bean id="gps1" class="domain.GPS">
 		<property name="longitude" value="-5.98" />
 		<property name="latitude" value="37.35" />
@@ -2788,8 +2771,8 @@
 		<property name="latitude" value="43.65" />
 		<property name="name" value="Monaco" />
 	</bean>
-	attachment
-
+	
+	<!-- Attachment -->
 	<bean id="attachment1" class="domain.Attachment">
 		<property name="url" value="http://www.driver.com" />
 	</bean>
@@ -2818,8 +2801,8 @@
 		<property name="url" value="http://www.story5.com" />
 	</bean>
 
- -->	<!-- CreditCard -->
-<!-- 
+ 	<!-- CreditCard -->
+
 	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Jose Angel Dominguez Espinaco" />
 		<property name="brandName" value="La caixa" />
@@ -2874,8 +2857,8 @@
 
 
 
- -->	<!-- Ranger -->
-	<!-- <bean id="ranger1" class="domain.Ranger">
+ 	<!-- Ranger -->
+	<bean id="ranger1" class="domain.Ranger">
 		<property name="userAccount" ref="userAccountRanger1" />
 		<property name="name" value="ranger 1" />
 		<property name="surname" value="ranger1 ranger1" />
@@ -3012,9 +2995,7 @@
 	</bean>
 
 
-	Auditor
-
-
+	<!-- Auditor-->
 	<bean id="auditor1" class="domain.Auditor">
 		<property name="userAccount" ref="userAccountAuditor1" />
 		<property name="name" value="auditor 1" />
@@ -3172,8 +3153,8 @@
 			</list>
 		</property>
 	</bean>
- -->	<!-- Notes -->
-<!-- 
+	
+ 	<!-- Notes -->
 	<bean id="note1" class="domain.Note">
 		<property name="createdMoment" value="2017/10/01 15:25" />
 		<property name="remark" value="remark1" />
@@ -3221,8 +3202,8 @@
 		<property name="replyMoment" value="2017/10/02 15:25" />
 	</bean>
 
- -->	<!-- AuditRecord -->
-	<!-- <bean id="auditrecord1" class="domain.AuditRecord">
+ 	<!-- AuditRecord -->
+	<bean id="auditrecord1" class="domain.AuditRecord">
 		<property name="realisedMoment" value="2017/10/01 15:25" />
 		<property name="title" value="auditrecord1" />
 		<property name="description" value="attachments auditrecord 1" />
@@ -3287,8 +3268,8 @@
 
 
 
- -->	<!-- ContactEmergency -->
-	<!-- <bean id="contactEmergency1" class="domain.ContactEmergency">
+ 	<!-- ContactEmergency -->
+	<bean id="contactEmergency1" class="domain.ContactEmergency">
 		<property name="name" value="contact 1" />
 		<property name="email" value="contact1@gmail.com" />
 		<property name="phone" value="+55888846" />
@@ -3319,10 +3300,10 @@
 	</bean>
 
 
- -->
+ 
 	<!-- LegalText -->
 	<!--COMPROBADO -->
-<!-- 	<bean id="legalText1" class="domain.LegalText">
+ 	<bean id="legalText1" class="domain.LegalText">
 		<property name="title" value="title 1" />
 		<property name="body" value="body 1" />
 		<property name="lawsNumber" value="1"></property>
@@ -3362,7 +3343,7 @@
 			</list>
 		</property>
 	</bean>
- -->
+ 
 
 	<bean id="legalText4" class="domain.LegalText">
 		<property name="title" value="title english" />
@@ -3408,7 +3389,7 @@
 
 
 	<!-- SponsorShip 1 -->
-<!-- 	<bean id="sponsorship1" class="domain.Sponsorship">
+	 	<bean id="sponsorship1" class="domain.Sponsorship">
 		<property name="bannerURL" value="https://www.webtenerife.com/es/interes/empresas-servicios-turista/empresas-excursiones/publishingimages/empresas-excursiones-organizadas-2-sb.jpg" />
 		<property name="link" value="http://www.link-banner.com" />
 		<property name="creditCard">
@@ -3436,8 +3417,8 @@
 		</property>
 	</bean>
 
- -->	<!-- SponsorShip 2 -->
-	<!-- <bean id="sponsorship2" class="domain.Sponsorship">
+ 	<!-- SponsorShip 2 -->
+	<bean id="sponsorship2" class="domain.Sponsorship">
 		<property name="bannerURL" value="https://www.france-voyage.com/visuals/pratique/hiking-with-pleasure-21-1_w1000.jpg"/>
 		<property name="link" value="http://www.banner.com" />
 		<property name="creditCard">
@@ -3450,9 +3431,9 @@
 			<ref bean="sponsor2" />
 		</property>
 	</bean>
- -->
+
 	<!-- SponsorShip 3 -->
-	<!-- <bean id="sponsorship3" class="domain.Sponsorship">
+	<bean id="sponsorship3" class="domain.Sponsorship">
 		<property name="bannerURL" value="http://www.francetourisme.fr/images/visite_guidee_de_paris/pass_city_tour.jpg" />
 		<property name="link" value="http://www.banner.com" />
 		<property name="creditCard">
@@ -3465,9 +3446,9 @@
 			<ref bean="sponsor3" />
 		</property>
 	</bean>
- -->
+ 
 	<!-- SponsorShip 4 -->
-	<!-- <bean id="sponsorship4" class="domain.Sponsorship">
+	<bean id="sponsorship4" class="domain.Sponsorship">
 		<property name="bannerURL" value="http://www.portaldeexcursiones.com/fotos-excursiones/50845_amsterdam1.jpg" />
 		<property name="link" value="http://www.example.com" />
 		<property name="creditCard">
@@ -3510,11 +3491,8 @@
 		</property>
 	</bean>
 
- -->
+ 
 	<!-- Category -->
-
-
-
 	<!-- Category: Category Padres: Hijas: Category1: Category11,Category33,Category44 
 		CATEGORY Category2: Category11,Category33 Category3: Category11,Category22,Category33,Category44,Category55 
 		Category4: Category11 Category5: Category11,Category55 -->
@@ -3708,9 +3686,9 @@
 			</list>
 		</property>
 	</bean>
-<!-- 
+
+
 	<bean id="manager1" class="domain.Manager">
-	
 		<property name="name" value="Manager 1" />
 		<property name="surname" value="surname Manager 1" />
 		<property name="email" value="manager1@mail.com" />
@@ -3872,8 +3850,7 @@
 	</bean>
 
 
- -->	<!-- Explorer -->
-<!-- 
+ 	<!-- Explorer --> 
 	<bean id="explorer1" class="domain.Explorer">
 		<property name="name" value="Explorer 1" />
 		<property name="surname" value="surname Explorer 1" />
@@ -4104,9 +4081,9 @@
 		<property name="finder" ref="finder6" />
 	</bean>
 
- -->
+ 
 	<!-- SurvivalClass -->
-	<!-- <bean id="survivalClass1" class="domain.SurvivalClass">
+	 <bean id="survivalClass1" class="domain.SurvivalClass">
 		<property name="title" value="survivalClass 1" />
 		<property name="description" value="description survivalClass 1" />
 		<property name="organisedMoment" value="2017/10/22 10:10" />
@@ -4180,8 +4157,8 @@
 			</list>
 		</property>
 	</bean>
- -->	<!-- Story -->
-	<!-- <bean id="story1" class="domain.Story">
+ 	<!-- Story -->
+	<bean id="story1" class="domain.Story">
 		<property name="title" value="Story 1 sex" />
 		<property name="text" value="text Story 1" />
 		<property name="attachments">
@@ -4240,9 +4217,8 @@
 		<property name="explorer" ref="explorer5" />
 	</bean>
 
- -->	<!-- ApplicationFor -->
-
-	<!-- <bean id="applicationFor1" class="domain.ApplicationFor">
+ 	<!-- ApplicationFor -->
+	<bean id="applicationFor1" class="domain.ApplicationFor">
 		<property name="moment" value="2015/10/21 10:10" />
 		<property name="status" value="ACCEPTED" />
 		<property name="reasonWhy" value="" />
@@ -4359,9 +4335,8 @@
 		<property name="trip" ref="trip5" />
 	</bean>
 
- -->
+ 
 	<!-- CURRICULA -->
-<!-- 
 	<bean id="curricula1" class="domain.Curricula">
 		<property name="ticker" value="171023-ABCD" />
 		<property name="ranger" ref="ranger1"></property>
@@ -4473,9 +4448,7 @@
 
 
 
- -->
 	<!-- PERSONAL RECORD -->
-<!-- 
 	<bean id="personalRecord1" class="domain.PersonalRecord">
 		<property name="fullName" value="personalRecord 1" />
 		<property name="photo" value="https://www.example.com" />
@@ -4516,8 +4489,7 @@
 		<property name="linkedProfile" value="https://www.example.com" />
 	</bean>
 
- -->	<!-- EDUCATION RECORD -->
-<!-- 
+ 	<!-- EDUCATION RECORD --> 
 	<bean id="educationRecord1" class="domain.EducationRecord">
 		<property name="diplomaTitle" value="educationRecord 1" />
 		<property name="studyingPeriod" value="2017/2018" />
@@ -4581,8 +4553,7 @@
 		</property>
 	</bean>
 
- -->	<!-- PROFESSIONAL RECORD -->
-<!-- 
+ 	<!-- PROFESSIONAL RECORD -->
 	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
 		<property name="companyName" value="professionalRecord 1" />
 		<property name="workPeriod" value="2014/2017" />
@@ -4653,8 +4624,7 @@
 		</property>
 	</bean>
 
- -->	<!-- ENDORSER RECORD -->
-<!-- 
+ 	<!-- ENDORSER RECORD --> 
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
 		<property name="fullName" value="endorserRecord 1" />
 		<property name="email" value="endorserRecord1@gmail.com" />
@@ -4725,9 +4695,8 @@
 		</property>
 		<property name="phone" value="+05(600)1234" />
 	</bean>
- -->
-	<!-- MISCELLANEOUS RECORD -->
-<!-- 
+ 
+	<!-- MISCELLANEOUS RECORD --> 
 	<bean id="miscellaneousRecord1" class="domain.MiscellaneousRecord">
 		<property name="title" value="miscellaneousRecord 1" />
 		<property name="link" value="https://miscellaneousRecord.com" />
@@ -4784,18 +4753,18 @@
 			</list>
 		</property>
 	</bean>
- -->	
-<!-- 
+	
+ 
 	 <bean id="value1" class = "domain.Value">
 		<property name="value" value="1"></property>
 		<property name="tag" ref="tag1"></property>
 		<property name="trip" ref="trip1"></property>
 	</bean>
- -->	
+	
 	
 
 	<!-- FINDER -->
-<!-- 	
+ 	
 	<bean id="finder1" class="domain.Finder">
 		<property name="keyWord"><null/></property>
 		<property name="lowPrice" value="0.0" />
@@ -4873,6 +4842,6 @@
 			</list>
 		</property>
 	</bean>
- -->	<!-- Other domain beans come here -->
+ 	<!-- Other domain beans come here -->
 
 </beans>

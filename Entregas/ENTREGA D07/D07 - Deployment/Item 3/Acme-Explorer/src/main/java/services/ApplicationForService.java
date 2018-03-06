@@ -112,6 +112,7 @@ public class ApplicationForService {
 
 		ApplicationFor result;
 
+		Assert.notEmpty(applicationFor.getTrip().getStages());
 		if (applicationFor.getId() == 0) {
 			//Solo se cambia el moment la primera vez que se crea, si se actualiza no se cambia su moment
 			moment = new Date(System.currentTimeMillis() - 1000);
@@ -172,9 +173,9 @@ public class ApplicationForService {
 		return result;
 	}
 	public ApplicationFor enter(final ApplicationFor applicationFor) {
+		ApplicationFor result;
 		Assert.notNull(applicationFor);
 		Assert.isTrue(applicationFor.getStatus().equals("DUE"));
-		ApplicationFor result;
 
 		if (this.checkCreditCard(applicationFor.getCreditCard())) {
 			applicationFor.setStatus("ACCEPTED");

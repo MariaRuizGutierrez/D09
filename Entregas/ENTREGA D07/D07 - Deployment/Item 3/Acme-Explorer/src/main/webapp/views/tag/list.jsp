@@ -28,11 +28,15 @@
 		
 		<spring:message code="category.edit" var="edit"></spring:message>
 		<display:column title="${edit}" sortable="true">
+		<jstl:if test="${(!(row.name=='country') and
+			!(row.name=='expertise') and
+			!(row.name=='dangerousness')
+			)}">
 		<spring:url value="tag/administrator/edit.do" var="editURL">
 		<spring:param name="tagId" value="${row.id}"/>
 		</spring:url>
 		<a href="${editURL}"><spring:message code="tag.edit"/></a>
-		
+		</jstl:if>
 		</display:column>	
 		</security:authorize>		
 	

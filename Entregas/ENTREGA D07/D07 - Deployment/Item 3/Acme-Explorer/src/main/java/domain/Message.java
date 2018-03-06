@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -39,7 +40,7 @@ public class Message extends DomainEntity {
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-	@NotNull
+	@NotBlank
 	public String getSubject() {
 		return this.subject;
 	}
@@ -47,7 +48,7 @@ public class Message extends DomainEntity {
 	public void setSubject(final String subject) {
 		this.subject = subject;
 	}
-	@NotNull
+	@NotBlank
 	public String getBody() {
 		return this.body;
 	}

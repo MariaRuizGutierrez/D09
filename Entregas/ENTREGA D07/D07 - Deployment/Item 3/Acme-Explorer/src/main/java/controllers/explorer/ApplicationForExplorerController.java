@@ -123,7 +123,10 @@ public class ApplicationForExplorerController extends AbstractController {
 	public ModelAndView enter(@RequestParam final int applicationForId) {
 		ModelAndView result;
 		ApplicationFor applicationFor;
+		Explorer principal;
+		principal = this.explorerService.findByPrincipal();
 		applicationFor = this.applicationForService.findOne(applicationForId);
+		Assert.isTrue(principal.getApplicationsFor().contains(applicationFor));
 		result = this.createEnterModelAndView(applicationFor);
 		result.addObject("applicationFor", applicationFor);
 		final Trip trip = applicationFor.getTrip();
