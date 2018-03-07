@@ -41,27 +41,27 @@ public class Category extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Category				parent;
-	private Collection<Category>	childrens;
+	private Category				fatherCategory;
+	private Collection<Category>	subCategories;
 
 
 	@Valid
 	@ManyToOne(optional = true)
-	public Category getParent() {
-		return this.parent;
+	public Category getFatherCategory() {
+		return this.fatherCategory;
 	}
 
-	public void setParent(final Category parent) {
-		this.parent = parent;
+	public void setFatherCategory(final Category fatherCategory) {
+		this.fatherCategory = fatherCategory;
 	}
 
 	@Valid
-	@OneToMany(mappedBy = "parent")
-	public Collection<Category> getChildrens() {
-		return this.childrens;
+	@OneToMany(mappedBy = "fatherCategory")
+	public Collection<Category> getSubCategories() {
+		return this.subCategories;
 	}
 
-	public void setChildrens(final Collection<Category> childrens) {
-		this.childrens = childrens;
+	public void setSubCategories(final Collection<Category> subCategories) {
+		this.subCategories = subCategories;
 	}
 }
