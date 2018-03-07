@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvouse;
 
 @Repository
@@ -61,5 +62,23 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	//A/3 The average and the standard deviation of replies per comment.
 	@Query("select avg(c.replys.size), stddev(c.replys.size) from Comment c")
 	Double[] findAvgStddevOfTheNumOfRepliesPerComment();
+
+	// RENDEZVOUS 2.0 ------------------------------------------------------------------------------------------------------------------
+
+	//C/1
+
+	//C/2
+	@Query("select m from Manager m where m.servicesOffered.size> (select (select count(s.servicesOffered.size) from Manager s)/count(m) from Manager m)")
+	Collection<Manager> managerProvidesMoreServicesThanAverage();
+
+	//C/3
+
+	//B/1
+
+	//B/2
+
+	//B/3
+
+	//B/4
 
 }

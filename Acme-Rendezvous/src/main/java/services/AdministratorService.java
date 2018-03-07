@@ -19,6 +19,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvouse;
 import forms.AdministratorForm;
 
@@ -251,6 +252,12 @@ public class AdministratorService {
 			sum += (num - avg) * (num - avg);
 		standardDeviation = Math.sqrt(sum / resultQuery.size());
 		return standardDeviation;
+	}
+
+	public Collection<Manager> managerProvidesMoreServicesThanAverage() {
+		Collection<Manager> result;
+		result = this.administratorRepository.managerProvidesMoreServicesThanAverage();
+		return result;
 	}
 
 	public AdministratorForm reconstruct(final AdministratorForm administratorForm, final BindingResult bindingResult) {

@@ -25,6 +25,8 @@ public class ServiceOfferedService {
 	// Supporting services ----------------------------------------------------
 	@Autowired
 	private ManagerService				managerService;
+	@Autowired
+	private AdministratorService		administratorService;
 
 
 	// Constructors------------------------------------------------------------
@@ -65,6 +67,14 @@ public class ServiceOfferedService {
 		assert serviceOffered != null;
 		assert serviceOffered.getId() != 0;
 		this.serviceOfferedRepository.delete(serviceOffered);
+	}
+
+	//Cancel
+	public void cancel(final ServiceOffered serviceOffered) {
+		Assert.notNull(serviceOffered);
+		Assert.isTrue(serviceOffered.getId() != 0);
+		this.administratorService.checkPrincipal();
+		serviceOffered.setCancelled(true);
 	}
 
 	public Collection<ServiceOffered> findAll() {
