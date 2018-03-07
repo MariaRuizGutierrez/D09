@@ -1,0 +1,10 @@
+1-->mc,uml,java,populate y testing de lo que ya esta-->ESPI
+2-->revisar y testing de lo que ya esta, A+--> DANIEL
+3-->Rojo-->LAURA
+4-->azul-->Miguel
+5-->verde-->Joaquin
+6-->negro-->Maria
+
+Documento de costes
+Testing profundo
+Pruebas de aceptacion
