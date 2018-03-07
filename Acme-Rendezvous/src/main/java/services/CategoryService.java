@@ -42,7 +42,7 @@ public class CategoryService {
 		Assert.notNull(this.administratorService.findByPrincipal());
 		result = new Category();
 		subCategories = new ArrayList<Category>();
-		result.setChildrens(subCategories);
+		result.setSubCategories(subCategories);
 
 		return result;
 	}
@@ -57,7 +57,7 @@ public class CategoryService {
 		//Comprobamos si la category no tiene el mismo nombre y mismo padre que una ya guardada
 		categories = this.findAll();
 		for (final Category c : categories)
-			Assert.isTrue(!(c.getName().equals(category.getName()) && c.getParent().equals(category.getParent())));
+			Assert.isTrue(!(c.getName().equals(category.getName()) && c.getFatherCategory().equals(category.getFatherCategory())));
 		result = this.categoryRepository.save(category);
 
 		return result;
@@ -70,7 +70,7 @@ public class CategoryService {
 		Assert.isTrue(category.getId() != 0);
 		//Assert.isTrue(!(this.configurationSystemService.defaultCategories().contains(category)));
 		//Comprobamos que para borrar esa categoría no tenga hijos
-		Assert.isTrue(category.getChildrens().isEmpty());
+		Assert.isTrue(category.getSubCategories().isEmpty());
 
 		this.categoryRepository.delete(category);
 	}
