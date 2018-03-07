@@ -97,7 +97,7 @@ public class AnnouncementService {
 	}
 
 	//Other services-----------------------------------------------------------
-	public Collection<Announcement> findAnnouncementByRendezvousId(int rendezvouseId) {
+	public Collection<Announcement> findAnnouncementByRendezvousId(final int rendezvouseId) {
 		Collection<Announcement> result;
 		result = new ArrayList<>(this.announcementRepository.findAnnouncementByRendezvousId(rendezvouseId));
 		Assert.notNull(result);
@@ -120,6 +120,10 @@ public class AnnouncementService {
 		result = new ArrayList<>(this.announcementRepository.findAnnouncementByUserId(user.getId()));
 		Assert.notNull(result);
 		return result;
+	}
+
+	public void flush() {
+		this.announcementRepository.flush();
 	}
 
 }
