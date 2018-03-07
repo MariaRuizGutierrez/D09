@@ -707,7 +707,7 @@
 		<property name="name" value="title serviceOffered1" />
 		<property name="description" value="description serviceOffered 1" />
 		<property name="picture" value="http://www.serviceOffered1.com" />
-		<property name="cancelled" value="false" />
+		<property name="cancelled" value="true" />
 		<property name="category" ref="category1" />
 		<property name="rendezvouses">
 			<list>
@@ -750,7 +750,7 @@
 		<property name="name" value="title serviceOffered4" />
 		<property name="description" value="description serviceOffered 4" />
 		<property name="picture" value="http://www.serviceOffered4.com" />
-		<property name="cancelled" value="false" />
+		<property name="cancelled" value="true" />
 		<property name="category" ref="category1-1-1" />
 		<property name="rendezvouses">
 			<list>
@@ -766,7 +766,7 @@
 		<property name="name" value="title serviceOffered5" />
 		<property name="description" value="description serviceOffered 5" />
 		<property name="picture" value="http://www.serviceOffered2.com" />
-		<property name="cancelled" value="false" />
+		<property name="cancelled" value="true" />
 		<property name="category" ref="category1-1-2" />
 		<property name="rendezvouses">
 			<list>
@@ -778,8 +778,8 @@
 	<bean id="category1" class="domain.Category">
 		<property name="name" value="category 1" />
 		<property name="description" value="description category 1" />
-		<!-- <property name="parent" ref="category1" /> -->
-		<property name="childrens">
+		<!-- <property name="fatherCategory" ref="category1" /> -->
+		<property name="subCategories">
 			<list>
 				<ref bean="category1-1" />
 			</list>
@@ -789,8 +789,8 @@
 	<bean id="category1-1" class="domain.Category">
 		<property name="name" value="category 1-1" />
 		<property name="description" value="description category 1-1" />
-		<property name="parent" ref="category1" />
-		<property name="childrens">
+		<property name="fatherCategory" ref="category1" />
+		<property name="subCategories">
 			<list>
 				<ref bean="category1-1-1" />
 			</list>
@@ -800,8 +800,8 @@
 	<bean id="category1-1-1" class="domain.Category">
 		<property name="name" value="category 1-1-1" />
 		<property name="description" value="description category 1-1-1" />
-		<property name="parent" ref="category1-1" />
-		<property name="childrens">
+		<property name="fatherCategory" ref="category1-1" />
+		<property name="subCategories">
 			<list>
 			</list>
 		</property>
@@ -810,8 +810,8 @@
 	<bean id="category1-1-2" class="domain.Category">
 		<property name="name" value="category 1-1-2" />
 		<property name="description" value="description category 1-1-2" />
-		<property name="parent" ref="category1-1" />
-		<property name="childrens">
+		<property name="fatherCategory" ref="category1-1" />
+		<property name="subCategories">
 			<list>
 			</list>
 		</property>
@@ -820,8 +820,8 @@
 	<bean id="category1-2" class="domain.Category">
 		<property name="name" value="category 1-2" />
 		<property name="description" value="description category 1-2" />
-		<property name="parent" ref="category1" />
-		<property name="childrens">
+		<property name="fatherCategory" ref="category1" />
+		<property name="subCategories">
 			<list>
 			</list>
 		</property>
@@ -887,7 +887,7 @@
 	<bean id="request9" class="domain.Request">
 		<property name="comment" value="request 1 user 3" />
 		<property name="creditCard" ref="creditCard2" />
-		<property name="serviceOffered" ref="serviceOffered3" />
+		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user3" />
 	</bean>
 	
