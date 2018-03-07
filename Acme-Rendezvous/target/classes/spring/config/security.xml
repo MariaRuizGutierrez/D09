@@ -56,6 +56,7 @@
 		<security:intercept-url pattern="/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/administrator/**" access="hasRole('ADMINISTRATOR')"/>      
 		<security:intercept-url pattern="/comment/user/**" access="hasRole('USER')"/>
+		<security:intercept-url pattern="/serviceoffered/user/**" access="hasRole('USER')"/>
 		
 		<security:intercept-url pattern="/welcome/legal.do" access="permitAll"/>
 		

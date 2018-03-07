@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ServiceOfferedRepository;
+import domain.Manager;
+import domain.Rendezvouse;
 import domain.ServiceOffered;
 
 @Service
@@ -20,8 +22,10 @@ public class ServiceOfferedService {
 	@Autowired
 	private ServiceOfferedRepository	serviceOfferedRepository;
 
-
 	// Supporting services ----------------------------------------------------
+	@Autowired
+	private ManagerService				managerService;
+
 
 	// Constructors------------------------------------------------------------
 	public ServiceOfferedService() {
@@ -31,10 +35,37 @@ public class ServiceOfferedService {
 	// Simple CRUD methods-----------------------------------------------------
 
 	//Create
+	public ServiceOffered create() {
+		ServiceOffered result;
+		Collection<Rendezvouse> rendezvous;
 
+		rendezvous = new ArrayList<Rendezvouse>();
+		result = new ServiceOffered();
+		result.setRendezvouses(rendezvous);
+		result.setCancelled(false);
+
+		return result;
+	}
 	//Save
+	public ServiceOffered save(final ServiceOffered serviceoffered) {
+		Assert.notNull(serviceoffered);
+		ServiceOffered result;
+		Manager principal;
+		principal = this.managerService.findByPrincipal();
+		result = new ServiceOffered();
+		result = this.serviceOfferedRepository.save(serviceoffered);
+		principal.getServicesOffered().add(result);
+		Assert.notNull(result);
+		return result;
+	}
 
 	//Delete
+	public void delete(final ServiceOffered serviceOffered) {
+		//TODO realizar
+		assert serviceOffered != null;
+		assert serviceOffered.getId() != 0;
+		this.serviceOfferedRepository.delete(serviceOffered);
+	}
 
 	public Collection<ServiceOffered> findAll() {
 		Collection<ServiceOffered> result;
@@ -47,6 +78,13 @@ public class ServiceOfferedService {
 		ServiceOffered result;
 		Assert.isTrue(serviceOfferedId != 0);
 		result = this.serviceOfferedRepository.findOne(serviceOfferedId);
+		return result;
+	}
+	//Other method
+
+	public Collection<ServiceOffered> AllServiceNotCancelled() {
+		Collection<ServiceOffered> result;
+		result = this.serviceOfferedRepository.AllServiceNotCancelled();
 		return result;
 	}
 }

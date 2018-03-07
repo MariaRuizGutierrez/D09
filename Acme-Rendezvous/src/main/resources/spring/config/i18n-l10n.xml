@@ -31,6 +31,7 @@
 		<value>/views/announcement/messages</value>
 		<value>/views/answer/messages</value>
 		<value>/views/comment/messages</value>
+		<value>/views/serviceOffered/messages</value>
 		
 	</util:list>
 
