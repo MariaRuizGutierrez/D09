@@ -20,11 +20,14 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="serviceoffered" requestURI="${requestURI }" id="row">
 
-
+<acme:column code="serviceoffered.name" property="name"/>
+<acme:column code="serviceoffered.description" property="description"/>
+<acme:column code="serviceoffered.picture" property="picture"/>
 </display:table>
 
 
