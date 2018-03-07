@@ -32,14 +32,26 @@
 								code="master.page.administrator.edit" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message
 								code="master.page.statistics" /></a>
-				</ul></li>
+				</ul>
+			</li>
+				
 			<li><a class="fNiv"><spring:message
 						code="master.page.accounts" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="administrator/create.do"><spring:message
 								code="master.page.administratorProfile.administrator.create" /></a></li>
-				</ul></li>
+				</ul>
+			</li>
+			
+			<li><a class="fNiv"><spring:message
+						code="master.page.category" /></a>
+				<ul>
+					<li class="arrow"></li>
+					 <li><a href="category/administrator/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/administrator/create.do"><spring:message code="master.page.administrator.category.create" /></a></li>
+				</ul>
+			</li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.announcements" /></a>
@@ -47,7 +59,8 @@
 					<li class="arrow"></li>
 					<li><a href="announcement/administrator/list.do"><spring:message
 								code="master.page.announcement.administrator.list" /></a></li>
-				</ul></li>
+				</ul>
+			</li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.rendezvous" /></a>
