@@ -31,17 +31,38 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 
 	@Test
-	public void testCreateAndSave() {
+	public void driver() {
+		final Object testingData[][] = {
+			{
+				"user1", "rendezvouse1", null
+			}, {
+				"user5", "rendezvouse1", IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.template((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void template(final String username, final int announcementId, final Class<?> expected) {
 		final Rendezvouse rendezvouseForAnnouncement;
 		Announcement announcement;
+		Class<?> caught;
 
-		super.authenticate("user1");
-		rendezvouseForAnnouncement = this.rendezvouseService.findOne(super.getEntityId("rendezvouse1"));
-		announcement = this.announcementService.create(rendezvouseForAnnouncement);
-		announcement.setTitle("title test");
-		announcement.setDescription("description test");
-		announcement = this.announcementService.save(announcement);
-		this.announcementService.flush();
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouseForAnnouncement = this.rendezvouseService.findOne(announcementId);
+			announcement = this.announcementService.create(rendezvouseForAnnouncement);
+			announcement.setTitle("title test");
+			announcement.setDescription("description test");
+			announcement = this.announcementService.save(announcement);
+			this.unauthenticate();
+			this.announcementService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
 
 	}
 }
