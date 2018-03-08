@@ -19,8 +19,11 @@ public class ConfigurationSystemService {
 	@Autowired
 	private ConfigurationSystemRepository	configurationSystemRepository;
 
-
 	// Supporting services ----------------------------------------------------
+
+	@Autowired
+	private AdministratorService			administratorService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -40,14 +43,13 @@ public class ConfigurationSystemService {
 		return result;
 	}
 
-	public ConfigurationSystem findOne() {
-		ConfigurationSystem res;
+	public ConfigurationSystem findOne(int configurationSystemId) {
+		ConfigurationSystem result;
 
-		res = this.findAll().iterator().next();
-		Assert.notNull(res);
+		result = this.configurationSystemRepository.findOne(configurationSystemId);
+		Assert.notNull(result);
 
-		return res;
-
+		return result;
 	}
 
 	public ConfigurationSystem save(final ConfigurationSystem configurationSystem) {
