@@ -45,6 +45,14 @@
 					<li><a href="administrator/create.do"><spring:message
 								code="master.page.administratorProfile.administrator.create" /></a></li>
 				</ul></li>
+				
+			<li><a class="fNiv"><spring:message
+						code="master.page.services" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="serviceOffered/administrator/list.do"><spring:message
+								code="master.page.servicceOffered.administrator.list" /></a></li>
+				</ul></li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.category" /></a>
