@@ -20,6 +20,8 @@ import domain.Rendezvouse;
 @Transactional
 public class AnnouncementServiceTest extends AbstractTest {
 
+	// Supporting services ----------------------------------------------------
+
 	@Autowired
 	AnnouncementService	announcementService;
 

@@ -201,6 +201,11 @@ public class RendezvouseService {
 
 	}
 
+	public void flush() {
+		this.rendezvousRepository.flush();
+
+	}
+
 	// Other business methods -------------------------------------------------
 
 	public Collection<Rendezvouse> findRendezvousesCreatedByUser() {
@@ -365,4 +370,5 @@ public class RendezvouseService {
 		this.validator.validate(result, bindingResult);
 		return result;
 	}
+
 }
