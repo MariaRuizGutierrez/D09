@@ -207,19 +207,19 @@
 	<a href="?language=en">en</a> | <a href="?language=es">es</a>
 </div>
 <br>
-<big><B><jstl:out value="${Name}"></jstl:out></B></big>
+<font size="6" color = "green" face="Georgia"><B><jstl:out value="${Name}"></jstl:out></B></font>
 
 <spring:message code="master.page.announcements" var="announcementLanguage" />
 <jstl:choose>
 	<jstl:when test="${announcementLanguage == 'Announcements'}">
 		<br>
 		<br>
-		<jstl:out value="${EnglishWelcomeMessage}"></jstl:out>
+		<i><jstl:out value="${EnglishWelcomeMessage}"></jstl:out></i>
 	</jstl:when>
 	
 	<jstl:when test="${announcementLanguage == 'Anuncios'}">
 		<br>
 		<br>
-		<jstl:out value="${SpanishWelcomeMessage}"></jstl:out>
+		<i><jstl:out value="${SpanishWelcomeMessage}"></jstl:out></i>
 	</jstl:when>
 </jstl:choose>

@@ -831,12 +831,14 @@
 	<bean id="request1" class="domain.Request">
 		<property name="comment" value="request 1 user 1" />
 		<property name="creditCard" ref="creditCard1" />
+		<property name="requestMoment" value="2018/03/02 20:00" /> 
 		<property name="serviceOffered" ref="serviceOffered1" />
 		<property name="user" ref="user1" />
 	</bean>
 
 	<bean id="request2" class="domain.Request">
 		<property name="comment" value="request 2 user 1" />
+		<property name="requestMoment" value="2017/03/02 20:00" /> 
 		<property name="creditCard" ref="creditCard1" />
 		<property name="serviceOffered" ref="serviceOffered2" />
 		<property name="user" ref="user1" />
@@ -844,6 +846,7 @@
 
 	<bean id="request3" class="domain.Request">
 		<property name="comment" value="request 3 user 1" />
+		<property name="requestMoment" value="2018/01/02 20:00" /> 
 		<property name="creditCard" ref="creditCard1" />
 		<property name="serviceOffered" ref="serviceOffered3" />
 		<property name="user" ref="user1" />
@@ -851,6 +854,7 @@
 
 	<bean id="request4" class="domain.Request">
 		<property name="comment" value="request 4 user 1" />
+		<property name="requestMoment" value="2018/02/22 20:00" /> 
 		<property name="creditCard" ref="creditCard1" />
 		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user1" />
@@ -858,6 +862,7 @@
 	
 	<bean id="request5" class="domain.Request">
 		<property name="comment" value="request 1 user 2" />
+		<property name="requestMoment" value="2018/01/23 20:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="serviceOffered" ref="serviceOffered2" />
 		<property name="user" ref="user2" />
@@ -865,6 +870,7 @@
 	
 	<bean id="request6" class="domain.Request">
 		<property name="comment" value="request 2 user 2" />
+		<property name="requestMoment" value="2018/01/11 20:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="serviceOffered" ref="serviceOffered3" />
 		<property name="user" ref="user2" />
@@ -872,6 +878,7 @@
 	
 	<bean id="request7" class="domain.Request">
 		<property name="comment" value="request 3 user 2" />
+		<property name="requestMoment" value="2018/02/15 20:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="serviceOffered" ref="serviceOffered3" />
 		<property name="user" ref="user2" />
@@ -879,6 +886,7 @@
 	
 	<bean id="request8" class="domain.Request">
 		<property name="comment" value="request 4 user 2" />
+		<property name="requestMoment" value="2017/03/22 20:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user2" />
@@ -886,6 +894,7 @@
 	
 	<bean id="request9" class="domain.Request">
 		<property name="comment" value="request 1 user 3" />
+		<property name="requestMoment" value="2018/02/05 20:00" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user3" />
@@ -893,6 +902,7 @@
 	
 	<bean id="request10" class="domain.Request">
 		<property name="comment" value="request 2 user 3" />
+		<property name="requestMoment" value="2018/03/02 16:00" />
 		<property name="creditCard" ref="creditCard3" />
 		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user3" />
@@ -900,6 +910,7 @@
 	
 	<bean id="request11" class="domain.Request">
 		<property name="comment" value="request 5 user 1" />
+		<property name="requestMoment" value="2016/11/09 21:00" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="serviceOffered" ref="serviceOffered4" />
 		<property name="user" ref="user1" />
