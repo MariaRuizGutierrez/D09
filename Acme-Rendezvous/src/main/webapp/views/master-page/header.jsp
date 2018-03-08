@@ -189,8 +189,20 @@
 						code="master.page.login" /></a></li>
 			<li><a class="fNiv" href="user/list.do?d-16544-p=1"><spring:message
 						code="master.page.user.list" /></a></li>
-			<li><a class="fNiv" href="user/create.do"><spring:message
+			
+						<li><a class="fNiv"><spring:message
+						code="master.page.register" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="user/create.do"><spring:message
 						code="master.page.user.register" /></a></li>
+					<li><a href="manager/create.do"><spring:message
+						code="master.page.manager.register" /></a></li>
+
+				</ul></li>
+						
+			
+			
 			<li><a class="fNiv"
 				href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
 						code="master.page.rendezvouss.list" /></a></li>
