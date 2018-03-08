@@ -1,4 +1,4 @@
--<%--
+<%--
  * edit.jsp
  *
  * Copyright (C) 2017 Universidad de Sevilla
@@ -25,16 +25,16 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-	<acme:textbox code="configurationSystem.name" path="name"/>
+	<B><acme:textbox code="configurationSystem.name" path="name"/></B>
 	<br />
 	
-	<acme:textbox code="configurationSystem.banner" path="banner" />
+	<B><acme:textbox code="configurationSystem.banner" path="banner" /></B>
 	<br />
 		
-	<acme:textbox code="configurationSystem.englishWelcomeMessage" path="englishWelcomeMessage" />
+	<B><acme:textarea code="configurationSystem.englishWelcomeMessage" path="englishWelcomeMessage" /></B>
 	<br />
 	
-	<acme:textbox code="configurationSystem.spanishWelcomeMessage" path="spanishWelcomeMessage" />
+	<B><acme:textarea code="configurationSystem.spanishWelcomeMessage" path="spanishWelcomeMessage" /></B>
 	<br />
 			
 	
