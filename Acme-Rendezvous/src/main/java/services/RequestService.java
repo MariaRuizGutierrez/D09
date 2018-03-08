@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RequestRepository;
+import domain.CreditCard;
 import domain.Rendezvouse;
 import domain.Request;
 import domain.ServiceOffered;
@@ -89,5 +90,15 @@ public class RequestService {
 		Assert.isTrue(this.requestRepository.exists(request.getId()));
 		this.requestRepository.delete(request);
 	}
+	//Other business methods-----------------------------------------------------
 
+	Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {
+		User user;
+		Collection<CreditCard> cards;
+
+		user = this.userService.findByPrincipal();
+		cards = this.requestRepository.findAllCreditCardsInDescendOrderByUser(user.getId());
+
+		return cards;
+	}
 }
