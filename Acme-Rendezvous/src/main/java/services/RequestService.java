@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RequestRepository;
+import domain.Rendezvouse;
 import domain.Request;
 import domain.ServiceOffered;
 import domain.User;
@@ -27,6 +28,8 @@ public class RequestService {
 
 	@Autowired
 	private UserService				userService;
+	@Autowired
+	private RendezvouseService		rendezvouseService;
 
 
 	public RequestService() {
@@ -34,7 +37,7 @@ public class RequestService {
 
 	}
 
-	public Request create() {
+	public Request create(Integer rendezvousId) {
 		Request result;
 		User userPrincipal;
 		Collection<ServiceOffered> services;
@@ -43,7 +46,7 @@ public class RequestService {
 		moment = new Date();
 		result = new Request();
 		services = new ArrayList<ServiceOffered>();
-
+		result.setRendezvousid(rendezvousId);
 		userPrincipal = this.userService.findByPrincipal();
 		Assert.notNull(userPrincipal);
 		result.setUser(userPrincipal);
@@ -65,10 +68,14 @@ public class RequestService {
 	}
 	public Request save(final Request request) {
 		Assert.notNull(request);
+		Rendezvouse rendezvous;
 		Request result;
 		result = new Request();
 		Date moment;
+
+		rendezvous = this.rendezvouseService.findOne(request.getRendezvousid());
 		moment = new Date(System.currentTimeMillis() - 1000);
+		rendezvous.getServicesOffered().add(request.getServiceOffered());
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
 		return result;

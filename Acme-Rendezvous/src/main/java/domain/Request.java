@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.beans.Transient;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -22,7 +23,17 @@ public class Request extends DomainEntity {
 	private String		comment;
 	private CreditCard	creditCard;
 	private Date		requestMoment;
+	private Integer		rendezvousid;
 
+
+	@Transient
+	public Integer getRendezvousid() {
+		return this.rendezvousid;
+	}
+
+	public void setRendezvousid(Integer rendezvousid) {
+		this.rendezvousid = rendezvousid;
+	}
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)

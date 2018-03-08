@@ -50,7 +50,7 @@ public class RequestUserController extends AbstractController {
 		ModelAndView result;
 		Request request;
 
-		request = this.requestService.create();
+		request = this.requestService.create(rendezvouseId);
 		result = this.createEditModelAndView(request);
 
 		return result;
@@ -66,7 +66,7 @@ public class RequestUserController extends AbstractController {
 		else
 			try {
 				this.requestService.save(request);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/rendezvous/user/list.do?d-16544-p=1");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(request, "request.commit.error");
 			}
@@ -96,4 +96,5 @@ public class RequestUserController extends AbstractController {
 		return result;
 
 	}
+
 }
