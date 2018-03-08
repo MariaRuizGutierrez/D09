@@ -2,8 +2,10 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +84,7 @@ public class RequestService {
 		moment = new Date(System.currentTimeMillis() - 1000);
 		request.setRequestMoment(moment);
 		rendezvous.getServicesOffered().add(request.getServiceOffered());
-
+		Assert.isTrue(this.checkCreditCard(request.getCreditCard()));
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
 		return result;
@@ -104,5 +106,23 @@ public class RequestService {
 		cards = this.requestRepository.findAllCreditCardsInDescendOrderByUser(user.getId());
 
 		return cards;
+	}
+
+	public boolean checkCreditCard(final CreditCard creditCard) {
+		boolean res;
+		Calendar calendar;
+		int actualYear;
+
+		res = false;
+		calendar = new GregorianCalendar();
+		actualYear = calendar.get(Calendar.YEAR);
+		actualYear = actualYear % 100;
+
+		if (Integer.parseInt(creditCard.getExpirationYear()) > actualYear)
+			res = true;
+		else if (Integer.parseInt(creditCard.getExpirationYear()) == actualYear && Integer.parseInt(creditCard.getExpirationMonth()) >= calendar.get(Calendar.MONTH))
+			res = true;
+
+		return res;
 	}
 }

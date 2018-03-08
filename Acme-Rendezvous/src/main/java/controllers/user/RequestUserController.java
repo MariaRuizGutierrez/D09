@@ -46,7 +46,7 @@ public class RequestUserController extends AbstractController {
 	//Creation---------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int rendezvouseId) {
+	public ModelAndView create(@RequestParam int rendezvouseId) {
 		ModelAndView result;
 		Request request;
 

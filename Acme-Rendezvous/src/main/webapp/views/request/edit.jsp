@@ -32,13 +32,9 @@
 	
 	
 	<fieldset>
+	<acme:textbox code="request.creditCard.holderName" path="creditCard.holderName"/>
+	<br />
 	
-	<form:label path="creditCard.holderName">
-		<spring:message code="request.creditCard.holderName" />:
-	</form:label>
-	<form:input path="creditCard.holderName" />
-	<form:errors cssClass="error" path="creditCard.holderName" />
-	<br/>
 	
 	<form:label path="creditCard.brandName">
 		<spring:message code="request.creditCard.brandName" />:
