@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Manager;
+import domain.ServiceOffered;
 import forms.ManagerForm;
 
 @Service
@@ -38,26 +40,26 @@ public class ManagerService {
 	
 	// Simple CRUD methods ----------------------------------------------------
 	
-//	public Manager create(){
-//		
-//		Manager result;
-//		UserAccount userAccount;
-//		Authority authority;
-//		Collection<Service> services;
-//		
-//		result = new Manager();
-//		userAccount = new UserAccount();
-//		authority = new Authority();
-//		services = new ArrayList<>();
-//		
-//		authority.setAuthority(Authority.MANAGER);
-//		userAccount.addAuthority(authority);
-//		result.setUserAccount(userAccount);
-//		result.setServices(services);
-//		
-//		return result;
-//		
-//	}
+	public Manager create(){
+		
+		Manager result;
+		UserAccount userAccount;
+		Authority authority;
+		Collection<ServiceOffered> servicesOffered;
+		
+		result = new Manager();
+		userAccount = new UserAccount();
+		authority = new Authority();
+		servicesOffered = new ArrayList<>();
+		
+		authority.setAuthority(Authority.MANAGER);
+		userAccount.addAuthority(authority);
+		result.setUserAccount(userAccount);
+		result.setServicesOffered(servicesOffered);
+		
+		return result;
+		
+	}
 	
 	public Collection<Manager> findAll(){
 		
