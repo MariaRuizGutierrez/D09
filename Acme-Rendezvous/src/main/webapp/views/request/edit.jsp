@@ -77,7 +77,7 @@
 	
 	</fieldset>
 	
-	
+	<br>
 	<acme:textbox code="request.comment" path="comment"/>
 	<br />
 	<acme:selectone items="${serviceOffered}" itemLabel="name" code="rendezvous.serviceOffered" path="serviceOffered"/>
