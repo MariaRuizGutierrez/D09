@@ -23,10 +23,10 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <script type="text/javascript">
-	function confirmDelete(announcementId) {
+	function confirmDelete(serviceOfferedId) {
 		confirm=confirm('<spring:message code="serviceOffered.confirm.delete"/>');
 		if (confirm)
-		  window.location.href ="serviceoffered/administrator/delete.do?servicceOfferedId=" + serviceOfferedId;
+		  window.location.href ="serviceoffered/administrator/cancel.do?serviceOfferedId=" + serviceOfferedId;
 		  else
 			  window.location.href ="serviceoffered/administrator/list.do";
 	}

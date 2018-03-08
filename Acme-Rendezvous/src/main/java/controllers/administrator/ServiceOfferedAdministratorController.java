@@ -39,7 +39,7 @@ public class ServiceOfferedAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public ModelAndView delete(final int serviceOfferedId) {
 		ModelAndView result;
 		final ServiceOffered serviceOffered;
@@ -47,7 +47,7 @@ public class ServiceOfferedAdministratorController extends AbstractController {
 		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
 		Assert.notNull(serviceOffered);
 		try {
-			this.serviceOfferedService.delete(serviceOffered);
+			this.serviceOfferedService.cancel(serviceOffered);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			result = this.listWithMessage("announcement.commit.error");
