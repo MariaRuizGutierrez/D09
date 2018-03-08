@@ -215,8 +215,10 @@ public class RendezvousesUserController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "deletevirtual")
-	public ModelAndView deletevirtual(@ModelAttribute final Rendezvouse rendezvouse, final BindingResult bindingResult) {
+	public ModelAndView deletevirtual(@ModelAttribute Rendezvouse rendezvouse, final BindingResult bindingResult) {
 		ModelAndView result;
+
+		rendezvouse = this.rendezvouseService.reconstruct(rendezvouse, bindingResult);
 
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(rendezvouse);
