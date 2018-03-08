@@ -65,6 +65,9 @@
 		
 		<bean class="converters.ManagerToStringConverter" /> 
 		<bean class="converters.StringToManagerConverter" />
+		
+		<bean class ="converters.StringToCreditCardConverter"/>
+		<bean class="converters.CreditCardToStringConverter" />
 		 
 	</util:list>
 	
