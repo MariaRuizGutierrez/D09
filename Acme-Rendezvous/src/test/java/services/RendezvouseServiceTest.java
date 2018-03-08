@@ -48,16 +48,16 @@ public class RendezvouseServiceTest extends AbstractTest {
 				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, null
 			}, {
 				//Se crea un Rendezvouse incorrectamente con Gps con OutOfRangeLatitudeMax
-				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, NullPointerException.class
+				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea un Rendezvouse incorrectamente con Gps con OutOfRangeLatitudeMin
-				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, NullPointerException.class
+				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea un Rendezvouse incorrectamente con Gps con OutOfRangeLongitudeMax
-				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, NullPointerException.class
+				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea un Rendezvouse incorrectamente con Gps con OutOfRangeLongitudeMin
-				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, NullPointerException.class
+				"user1", "name test", "description", "2019/03/03", "http://www.test.com", iterator.next(), true, false, false, javax.validation.ConstraintViolationException.class
 			}
 		};
 
@@ -85,7 +85,6 @@ public class RendezvouseServiceTest extends AbstractTest {
 			rendezvouse.setDraftMode(draftMode);
 			rendezvouse.setDeleted(deleted);
 			rendezvouse.setForAdult(forAdult);
-			rendezvouse = this.rendezvouseService.reconstruct(rendezvouse, null);
 			rendezvouse = this.rendezvouseService.save(rendezvouse);
 			this.rendezvouseService.flush();
 		} catch (final Throwable oops) {
