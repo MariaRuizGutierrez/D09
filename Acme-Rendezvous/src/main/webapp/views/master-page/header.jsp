@@ -10,15 +10,19 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div>
-
-	<img src="images/rendezvous2.jpg" alt="Acme-Rendezvous Co., Inc." />
+	<img src="${bannerURL}" alt="Acme-Explorer Co., Inc." />
 </div>
+
+
 
 <div>
 	<ul id="jMenu">
@@ -32,26 +36,25 @@
 								code="master.page.administrator.edit" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message
 								code="master.page.statistics" /></a>
-				</ul>
-			</li>
-				
+				</ul></li>
+
 			<li><a class="fNiv"><spring:message
 						code="master.page.accounts" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="administrator/create.do"><spring:message
 								code="master.page.administratorProfile.administrator.create" /></a></li>
-				</ul>
-			</li>
-			
+				</ul></li>
+
 			<li><a class="fNiv"><spring:message
 						code="master.page.category" /></a>
 				<ul>
 					<li class="arrow"></li>
-					 <li><a href="category/administrator/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
-					<li><a href="category/administrator/create.do"><spring:message code="master.page.administrator.category.create" /></a></li>
-				</ul>
-			</li>
+					<li><a href="category/administrator/list.do?d-16544-p=1"><spring:message
+								code="master.page.administrator.categories" /></a></li>
+					<li><a href="category/administrator/create.do"><spring:message
+								code="master.page.administrator.category.create" /></a></li>
+				</ul></li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.announcements" /></a>
@@ -59,8 +62,7 @@
 					<li class="arrow"></li>
 					<li><a href="announcement/administrator/list.do?d-16544-p=1"><spring:message
 								code="master.page.announcement.administrator.list" /></a></li>
-				</ul>
-			</li>
+				</ul></li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.rendezvous" /></a>
@@ -80,11 +82,12 @@
 
 				</ul></li>
 
-				<li><a class="fNiv"><spring:message
+			<li><a class="fNiv"><spring:message
 						code="master.page.configurarionSystem" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="configurationSystem/administrator/edit.do"><spring:message code="master.page.configurationSystem.edit" /></a>
+					<li><a href="configurationSystem/administrator/edit.do"><spring:message
+								code="master.page.configurationSystem.edit" /></a>
 				</ul></li>
 
 
@@ -105,7 +108,7 @@
 								code="master.page.question.list" /></a></li>
 
 				</ul></li>
-				<li><a class="fNiv"><spring:message
+			<li><a class="fNiv"><spring:message
 						code="master.page.serviceoffered" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -157,19 +160,20 @@
 
 				</ul></li>
 		</security:authorize>
-		
-		
+
+
 		<security:authorize access="hasRole('MANAGER')">
-		
+
 			<li><a class="fNiv"><spring:message
 						code="master.page.serviceoffered" /></a>
 				<ul>
-			<li class="arrow"></li>
-			<li><a href="serviceoffered/manager/list.do?d-16544-p=1"><spring:message
+					<li class="arrow"></li>
+					<li><a href="serviceoffered/manager/list.do?d-16544-p=1"><spring:message
 								code="master.page.serviceoffered.list" /></a></li>
 
 				</ul></li>
 		</security:authorize>
+
 
 
 		<security:authorize access="isAnonymous()">
@@ -179,7 +183,8 @@
 						code="master.page.user.list" /></a></li>
 			<li><a class="fNiv" href="user/create.do"><spring:message
 						code="master.page.user.register" /></a></li>
-			<li><a class="fNiv" href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
+			<li><a class="fNiv"
+				href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
 						code="master.page.rendezvouss.list" /></a></li>
 		</security:authorize>
 
@@ -201,4 +206,20 @@
 <div>
 	<a href="?language=en">en</a> | <a href="?language=es">es</a>
 </div>
+<br>
+<big><B><jstl:out value="${Name}"></jstl:out></B></big>
 
+<spring:message code="master.page.announcements" var="announcementLanguage" />
+<jstl:choose>
+	<jstl:when test="${announcementLanguage == 'Announcements'}">
+		<br>
+		<br>
+		<jstl:out value="${EnglishWelcomeMessage}"></jstl:out>
+	</jstl:when>
+	
+	<jstl:when test="${announcementLanguage == 'Anuncios'}">
+		<br>
+		<br>
+		<jstl:out value="${SpanishWelcomeMessage}"></jstl:out>
+	</jstl:when>
+</jstl:choose>

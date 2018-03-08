@@ -12,7 +12,7 @@
 
 	<!-- ConfigurationSystem -->
 	<bean id="configurationSystem" class="domain.ConfigurationSystem">
-		<property name="name" value="Adventure meetups" />
+		<property name="name" value="ADVENTURE MEETUPS" />
 		<property name="banner" value="https://tinyurl.com/adventure-meetup" />
 		<property name="englishWelcomeMessage"
 			value="Your place to organise your adventure meetups!" />

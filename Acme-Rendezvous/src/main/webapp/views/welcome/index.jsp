@@ -18,4 +18,4 @@
 
 
 
-<p><spring:message code="welcome.greeting.current.time" /></p> 
+<%-- <p><spring:message code="welcome.greeting.current.time" /></p>  --%>

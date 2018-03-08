@@ -11,16 +11,24 @@
 package controllers;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ConfigurationSystemService;
+
 @Controller
 public class AbstractController {
 
 	// Panic handler ----------------------------------------------------------
+	// Services --------------------------------------------------------------
+
+	@Autowired
+	private ConfigurationSystemService	configurationSystemService;
+
 
 	@ExceptionHandler(Throwable.class)
 	public ModelAndView panic(final Throwable oops) {
@@ -40,6 +48,34 @@ public class AbstractController {
 
 		result = "1";
 
+		return result;
+	}
+
+	@ModelAttribute(value = "bannerURL")
+	public String getBannerURL() {
+		String result;
+		result = this.configurationSystemService.findOne().getBanner();
+		return result;
+	}
+
+	@ModelAttribute(value = "EnglishWelcomeMessage")
+	public String getEnglishWelcomeMessage() {
+		String result;
+		result = this.configurationSystemService.findOne().getEnglishWelcomeMessage();
+		return result;
+	}
+
+	@ModelAttribute(value = "SpanishWelcomeMessage")
+	public String getSpanishWelcomeMessage() {
+		String result;
+		result = this.configurationSystemService.findOne().getSpanishWelcomeMessage();
+		return result;
+	}
+
+	@ModelAttribute(value = "Name")
+	public String getName() {
+		String result;
+		result = this.configurationSystemService.findOne().getName();
 		return result;
 	}
 
