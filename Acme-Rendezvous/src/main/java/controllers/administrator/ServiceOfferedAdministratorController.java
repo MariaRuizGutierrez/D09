@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ServiceOfferedService;
@@ -14,13 +15,58 @@ import controllers.AbstractController;
 import domain.ServiceOffered;
 
 @Controller
-@RequestMapping("/serviceOffered/administrator")
+@RequestMapping("/serviceoffered/administrator")
 public class ServiceOfferedAdministratorController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
 
+
+	//Listing -----------------------------------------------------------------
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+
+		ModelAndView result;
+		Collection<ServiceOffered> serviceoffered;
+
+		serviceoffered = this.serviceOfferedService.findAll();
+
+		result = new ModelAndView("serviceoffered/list");
+		result.addObject("serviceoffered", serviceoffered);
+		result.addObject("requestURI", "serviceoffered/administrator/list.do");
+
+		return result;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(final int serviceOfferedId) {
+		ModelAndView result;
+		final ServiceOffered serviceOffered;
+
+		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
+		Assert.notNull(serviceOffered);
+		try {
+			this.serviceOfferedService.delete(serviceOffered);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			result = this.listWithMessage("announcement.commit.error");
+		}
+
+		return result;
+	}
+
+	protected ModelAndView listWithMessage(final String message) {
+		final ModelAndView result;
+		Collection<ServiceOffered> servicesOffered;
+		servicesOffered = this.serviceOfferedService.findAll();
+		result = new ModelAndView("serviceoffered/list");
+		result.addObject("servicesOffered", servicesOffered);
+		result.addObject("requestURI", "/serviceoffered/administrator/list.do");
+		result.addObject("message", message);
+		return result;
+
+	}
 
 	protected ModelAndView createEditModelAndView(final ServiceOffered serviceOffered) {
 

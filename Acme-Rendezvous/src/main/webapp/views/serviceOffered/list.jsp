@@ -22,12 +22,32 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<script type="text/javascript">
+	function confirmDelete(announcementId) {
+		confirm=confirm('<spring:message code="serviceOffered.confirm.delete"/>');
+		if (confirm)
+		  window.location.href ="serviceoffered/administrator/delete.do?servicceOfferedId=" + serviceOfferedId;
+		  else
+			  window.location.href ="serviceoffered/administrator/list.do";
+	}
+</script>
+
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="serviceoffered" requestURI="${requestURI }" id="row">
 
 <acme:column code="serviceoffered.name" property="name"/>
 <acme:column code="serviceoffered.description" property="description"/>
 <acme:column code="serviceoffered.picture" property="picture"/>
+
+<!-- Boton de delete para el administrador ya que puede borrar los anuncios que quiera pero no editarlos -->
+	<security:authorize access="hasRole('ADMINISTRATOR')">
+	<spring:message code="serviceOffered.delete" var="deleteHeader" />
+		<display:column title="${deleteHeader}" sortable="true">
+			<input type="button" name="delete"
+				value="<spring:message code="serviceOffered.delete" />"
+				onclick="confirmDelete(${row.id});" />
+		</display:column>
+	</security:authorize>
 </display:table>
 
 

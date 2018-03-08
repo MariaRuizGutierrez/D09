@@ -50,7 +50,7 @@
 						code="master.page.services" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="serviceOffered/administrator/list.do"><spring:message
+					<li><a href="serviceoffered/administrator/list.do"><spring:message
 								code="master.page.servicceOffered.administrator.list" /></a></li>
 				</ul></li>
 
