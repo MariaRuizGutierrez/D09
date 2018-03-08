@@ -32,7 +32,6 @@
 		<value>/views/answer/messages</value>
 		<value>/views/comment/messages</value>
 		<value>/views/serviceOffered/messages</value>
-		<value>/views/category/messages</value>
 		
 	</util:list>
 
