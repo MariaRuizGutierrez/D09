@@ -56,6 +56,9 @@
 		
 		<bean class="converters.CategoryToStringConverter" /> 
 		<bean class="converters.StringToCategoryConverter" />
+		
+		<bean class="converters.ConfigurationSystemToStringConverter" /> 
+		<bean class="converters.StringToConfigurationSystemConverter" /> 
 		 
 	</util:list>
 	
