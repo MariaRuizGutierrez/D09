@@ -19,11 +19,8 @@ public class ConfigurationSystemService {
 	@Autowired
 	private ConfigurationSystemRepository	configurationSystemRepository;
 
+
 	// Supporting services ----------------------------------------------------
-
-	@Autowired
-	private AdministratorService			administratorService;
-
 
 	// Constructors -----------------------------------------------------------
 
