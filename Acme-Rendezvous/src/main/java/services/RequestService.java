@@ -50,6 +50,7 @@ public class RequestService {
 		userPrincipal = this.userService.findByPrincipal();
 		Assert.notNull(userPrincipal);
 		result.setUser(userPrincipal);
+		result.setRequestMoment(moment);
 
 		return result;
 	}
@@ -75,6 +76,7 @@ public class RequestService {
 
 		rendezvous = this.rendezvouseService.findOne(request.getRendezvousid());
 		moment = new Date(System.currentTimeMillis() - 1000);
+		request.setRequestMoment(moment);
 		rendezvous.getServicesOffered().add(request.getServiceOffered());
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
