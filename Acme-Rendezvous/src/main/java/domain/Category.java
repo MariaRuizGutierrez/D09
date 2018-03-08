@@ -71,9 +71,13 @@ public class Category extends DomainEntity {
 
 	@Transient
 	public String getConcat() {
-		if (this.getFatherCategory() != null)
-			this.concat = this.getFatherCategory().getName() + "-" + this.getName();
-		else
+		Category cat;
+		if (this.getFatherCategory() != null) {
+			cat = this.getFatherCategory();
+			this.concat = this.getFatherCategory().getName() + " || " + this.getName();
+			if (cat.getFatherCategory() != null)
+				this.concat = cat.getFatherCategory().getName() + " || " + this.getFatherCategory().getName() + " || " + this.getName();
+		} else
 			this.concat = this.getName();
 		return this.concat;
 	}
