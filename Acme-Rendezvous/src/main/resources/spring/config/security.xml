@@ -61,6 +61,7 @@
 		<security:intercept-url pattern="/serviceoffered/manager/**" access="hasRole('MANAGER')"/>
 		<security:intercept-url pattern="/configurationSystem/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/welcome/legal.do" access="permitAll"/>
+		<security:intercept-url pattern="/request/user/**" access="hasRole('USER')"/>
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

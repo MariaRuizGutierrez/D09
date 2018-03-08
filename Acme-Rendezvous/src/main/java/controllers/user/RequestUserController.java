@@ -9,13 +9,16 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.RendezvouseService;
 import services.RequestService;
+import services.ServiceOfferedService;
 import services.UserService;
 import controllers.AbstractController;
-import domain.Rendezvouse;
+import domain.Request;
+import domain.ServiceOffered;
 
 @Controller
 @RequestMapping("/request/user")
@@ -24,13 +27,16 @@ public class RequestUserController extends AbstractController {
 	//service---------------------------------------------------------------------------
 
 	@Autowired
-	private RequestService		requestService;
+	private RequestService			requestService;
 
 	@Autowired
-	private RendezvouseService	rendezvouseService;
+	private RendezvouseService		rendezvouseService;
 
 	@Autowired
-	private UserService			userService;
+	private UserService				userService;
+
+	@Autowired
+	private ServiceOfferedService	serviceOfferedService;
 
 
 	public RequestUserController() {
@@ -39,31 +45,30 @@ public class RequestUserController extends AbstractController {
 
 	//Creation---------------------------------------------------------------
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView create(@RequestParam final int rendezvouseId) {
 		ModelAndView result;
-		Rendezvouse rendezvouse;
+		Request request;
 
-		rendezvouse = this.rendezvouseService.create();
-		result = this.createEditModelAndView(rendezvouse);
+		request = this.requestService.create();
+		result = this.createEditModelAndView(request);
 
 		return result;
 	}
 
 	//Edition--------------------------------------------------------------------------------
-
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(Rendezvouse rendezvous, final BindingResult bindingResult) {
+	public ModelAndView save(Request request, final BindingResult bindingResult) {
 		ModelAndView result;
 
 		if (bindingResult.hasErrors())
-			result = this.createEditModelAndView(rendezvous);
+			result = this.createEditModelAndView(request);
 		else
 			try {
-				this.rendezvouseService.save(rendezvous);
+				this.requestService.save(request);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(rendezvous, "rendezvouse.commit.error");
+				result = this.createEditModelAndView(request, "request.commit.error");
 			}
 
 		return result;
@@ -71,24 +76,23 @@ public class RequestUserController extends AbstractController {
 
 	//ancially methods---------------------------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final Rendezvouse rendezvouse) {
-		Assert.notNull(rendezvouse);
+	protected ModelAndView createEditModelAndView(final Request request) {
+		Assert.notNull(request);
 		ModelAndView result;
-		result = this.createEditModelAndView(rendezvouse, null);
+		result = this.createEditModelAndView(request, null);
 		return result;
 
 	}
 
-	protected ModelAndView createEditModelAndView(final Rendezvouse rendezvouse, final String message) {
-		Assert.notNull(rendezvouse);
-		Collection<Rendezvouse> similarRendezvouses;
+	protected ModelAndView createEditModelAndView(final Request request, final String message) {
+		Assert.notNull(request);
 		ModelAndView result;
-		result = new ModelAndView("rendezvous/edit");
-		similarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
-
-		result.addObject("rendezvouse", rendezvouse);
-		result.addObject("similarRendezvouses", similarRendezvouses);
+		Collection<ServiceOffered> serviceOffered;
+		serviceOffered = this.serviceOfferedService.AllServiceNotCancelled();
+		result = new ModelAndView("request/edit");
+		result.addObject("request", request);
 		result.addObject("message", message);
+		//		result.addObject("serviceOffered", serviceOffered);
 		return result;
 
 	}

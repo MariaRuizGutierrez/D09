@@ -34,6 +34,8 @@
 		<value>/views/serviceOffered/messages</value>
 		<value>/views/category/messages</value>
 		<value>/views/configurationSystem/messages</value>
+		<value>/views/request/messages</value>
+		
 		
 	</util:list>
 
