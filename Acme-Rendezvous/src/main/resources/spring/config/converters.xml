@@ -51,6 +51,8 @@
 		<bean class="converters.UserAccountToStringConverter" /> 
 		<bean class="converters.StringToUserAccountConverter" />
 		 
+		<bean class="converters.ConfigurationSystemToStringConverter" /> 
+		<bean class="converters.StringToConfigurationSystemConverter" />
 	</util:list>
 	
 </beans>

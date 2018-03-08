@@ -32,6 +32,7 @@
 		<value>/views/answer/messages</value>
 		<value>/views/comment/messages</value>
 		<value>/views/serviceOffered/messages</value>
+		<value>/views/configurationSystem/messages</value>
 		
 	</util:list>
 
