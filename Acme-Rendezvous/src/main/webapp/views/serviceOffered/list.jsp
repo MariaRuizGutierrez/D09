@@ -39,14 +39,40 @@
 <acme:column code="serviceoffered.description" property="description"/>
 <acme:column code="serviceoffered.picture" property="picture"/>
 
+<security:authorize access="hasRole('ADMINISTRATOR')">
+<spring:message code="serviceOffered.cancelled" var="draftMode" />
+<display:column title="${draftMode}">
+	<jstl:if test="${row.cancelled==true}">
+	<div
+  style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+  			
+		  <img src="images/no.png"width= "35" height="35">
+		  </div>
+		  </jstl:if>
+	<jstl:if test="${row.cancelled==false}">
+	<div
+  style="position: relative; width: 30px; height: 30px; margin-left: 48px; margin-bottom: 6px;">
+  			
+		  <img src="images/yes.png"width= "37" height="37">
+		  </div>
+		  </jstl:if>
+		
+</display:column>
+
 <!-- Boton de delete para el administrador ya que puede borrar los anuncios que quiera pero no editarlos -->
-	<security:authorize access="hasRole('ADMINISTRATOR')">
+	
 	<spring:message code="serviceOffered.delete" var="deleteHeader" />
 		<display:column title="${deleteHeader}" sortable="true">
+		<jstl:if test="${row.cancelled==false}">
+		<div 
+		style="margin-top:8px; ">
 			<input type="button" name="delete"
 				value="<spring:message code="serviceOffered.delete" />"
 				onclick="confirmDelete(${row.id});" />
+				</div>
+		</jstl:if>
 		</display:column>
+		
 	</security:authorize>
 </display:table>
 
