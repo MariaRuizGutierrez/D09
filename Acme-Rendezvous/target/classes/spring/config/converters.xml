@@ -50,6 +50,12 @@
 		
 		<bean class="converters.UserAccountToStringConverter" /> 
 		<bean class="converters.StringToUserAccountConverter" />
+		
+		<bean class="converters.ServiceOfferedToStringConverter" /> 
+		<bean class="converters.StringToServiceOfferedConverter" />
+		
+		<bean class="converters.CategoryToStringConverter" /> 
+		<bean class="converters.StringToCategoryConverter" />
 		 
 	</util:list>
 	
