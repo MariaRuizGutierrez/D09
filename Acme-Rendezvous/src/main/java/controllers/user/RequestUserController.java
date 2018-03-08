@@ -92,7 +92,7 @@ public class RequestUserController extends AbstractController {
 		result = new ModelAndView("request/edit");
 		result.addObject("request", request);
 		result.addObject("message", message);
-		//		result.addObject("serviceOffered", serviceOffered);
+		result.addObject("serviceOffered", serviceOffered);
 		return result;
 
 	}

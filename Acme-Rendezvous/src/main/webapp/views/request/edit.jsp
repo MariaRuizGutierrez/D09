@@ -33,8 +33,8 @@
 	
 	<acme:textbox code="request.comment" path="comment"/>
 	<br />
-<%-- 	<acme:select items="${serviceOffered}" itemLabel="serviceOffered" code="rendezvous.serviceOffered" path="serviceOffered"/>
-	<br /> --%>
+	<acme:selectone items="${serviceOffered}" itemLabel="name" code="rendezvous.serviceOffered" path="serviceOffered"/>
+	<br /> 
 	
 	
 
