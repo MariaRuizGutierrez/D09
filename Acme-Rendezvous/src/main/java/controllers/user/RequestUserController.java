@@ -9,7 +9,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.RendezvouseService;
@@ -17,7 +16,6 @@ import services.RequestService;
 import services.UserService;
 import controllers.AbstractController;
 import domain.Rendezvouse;
-import domain.User;
 
 @Controller
 @RequestMapping("/request/user")
@@ -51,28 +49,13 @@ public class RequestUserController extends AbstractController {
 
 		return result;
 	}
-	//Edition--------------------------------------------------------------------------------
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int rendezvouseId) {
-		ModelAndView result;
-		Rendezvouse rendezvouse;
-		User user;
 
-		user = this.userService.findByPrincipal();
-		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
-		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvouse), "Cannot commit this operation, because it's illegal");
-		Assert.isTrue(rendezvouse.isDraftMode() == true, "Cannot commit this operation, because it's illegal");
-		Assert.isTrue(rendezvouse.isDeleted() == false, "Cannot commit this operation, because the rendezvous is deleted");
-		Assert.notNull(rendezvouse);
-		result = this.createEditModelAndView(rendezvouse);
-		return result;
-	}
+	//Edition--------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(Rendezvouse rendezvous, final BindingResult bindingResult) {
 		ModelAndView result;
 
-		rendezvous = this.rendezvouseService.reconstruct(rendezvous, bindingResult);
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(rendezvous);
 		else

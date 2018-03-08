@@ -59,6 +59,9 @@
 		
 		<bean class="converters.ConfigurationSystemToStringConverter" /> 
 		<bean class="converters.StringToConfigurationSystemConverter" /> 
+		
+		<bean class="converters.RequestToStringConverter" /> 
+		<bean class="converters.StringToRequestConverter" />
 		 
 	</util:list>
 	
