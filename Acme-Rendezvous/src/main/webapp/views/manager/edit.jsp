@@ -24,6 +24,7 @@
 <form:form action="manager/edit.do" modelAttribute="managerForm">
 
 	<form:hidden path="manager.id" />
+	<form:hidden path="manager.servicesOffered"/>
 	
 	
 	<jstl:choose>
@@ -49,7 +50,7 @@
 	<br />
 	<acme:textbox code="manager.surname" path="manager.surname"/>
 	<br />
-	<acme:textbox code="manager.birthDate" path="manager.birthDate" placeHolder="yyyy/MM/dd"/>
+	<acme:textbox code="manager.vat" path="manager.vat"/>
 	<br />
 	<acme:textbox code="manager.postalAddress" path="manager.postalAddress"/>
 	<br />
@@ -59,6 +60,7 @@
 	<br />
 	
 	<acme:submit name="save" code="manager.save"/>
+	
 	<acme:cancel url="welcome/index.do" code="manager.cancel"/>
 	<br />
 	<br/>
