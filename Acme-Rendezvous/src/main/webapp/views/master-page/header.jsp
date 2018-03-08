@@ -80,7 +80,12 @@
 
 				</ul></li>
 
-
+				<li><a class="fNiv"><spring:message
+						code="master.page.configurarionSystem" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="configurationSystem/administrator/edit.do"><spring:message code="master.page.configurationSystem.edit" /></a>
+				</ul></li>
 
 
 		</security:authorize>
