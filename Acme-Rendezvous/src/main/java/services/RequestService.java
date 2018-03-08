@@ -43,6 +43,7 @@ public class RequestService {
 		User userPrincipal;
 		Collection<ServiceOffered> services;
 		Date moment;
+		Collection<CreditCard> cards;
 
 		moment = new Date();
 		result = new Request();
@@ -52,6 +53,8 @@ public class RequestService {
 		Assert.notNull(userPrincipal);
 		result.setUser(userPrincipal);
 		result.setRequestMoment(moment);
+		cards = this.findAllCreditCardsInDescendOrderByUser(userPrincipal.getId());
+		result.setCreditCard(cards.iterator().next());
 
 		return result;
 	}
@@ -79,6 +82,7 @@ public class RequestService {
 		moment = new Date(System.currentTimeMillis() - 1000);
 		request.setRequestMoment(moment);
 		rendezvous.getServicesOffered().add(request.getServiceOffered());
+
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
 		return result;
