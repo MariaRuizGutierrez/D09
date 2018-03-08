@@ -48,7 +48,7 @@
 						code="master.page.category" /></a>
 				<ul>
 					<li class="arrow"></li>
-					 <li><a href="category/administrator/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					 <li><a href="category/administrator/list.do?d-16544-p=1"><spring:message code="master.page.administrator.categories" /></a></li>
 					<li><a href="category/administrator/create.do"><spring:message code="master.page.administrator.category.create" /></a></li>
 				</ul>
 			</li>
@@ -57,7 +57,7 @@
 						code="master.page.announcements" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="announcement/administrator/list.do"><spring:message
+					<li><a href="announcement/administrator/list.do?d-16544-p=1"><spring:message
 								code="master.page.announcement.administrator.list" /></a></li>
 				</ul>
 			</li>
@@ -66,7 +66,7 @@
 						code="master.page.rendezvous" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="rendezvous/administrator/list.do"><spring:message
+					<li><a href="rendezvous/administrator/list.do?d-16544-p=1"><spring:message
 								code="master.page.administrator.rendezvous" /></a></li>
 
 				</ul></li>
@@ -75,7 +75,7 @@
 						code="master.page.comment" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="comment/administrator/list.do"><spring:message
+					<li><a href="comment/administrator/list.do?d-16544-p=1"><spring:message
 								code="master.page.administrator.comments" /></a></li>
 
 				</ul></li>
@@ -96,7 +96,7 @@
 						code="master.page.question" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="question/user/list.do"><spring:message
+					<li><a href="question/user/list.do?d-16544-p=1"><spring:message
 								code="master.page.question.list" /></a></li>
 
 				</ul></li>
@@ -104,7 +104,7 @@
 						code="master.page.serviceoffered" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="serviceoffered/user/list.do"><spring:message
+					<li><a href="serviceoffered/user/list.do?d-16544-p=1"><spring:message
 								code="master.page.serviceoffered.list" /></a></li>
 
 				</ul></li>
@@ -113,11 +113,11 @@
 						code="master.page.answer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="answer/user/list.do"><spring:message
+					<li><a href="answer/user/list.do?d-16544-p=1"><spring:message
 								code="master.page.answer.list" /></a></li>
 
 				</ul></li>
-			<li><a class="fNiv" href="user/list.do"><spring:message
+			<li><a class="fNiv" href="user/list.do?d-16544-p=1"><spring:message
 						code="master.page.user.list" /></a></li>
 
 			<%-- <li><a class="fNiv"><spring:message code="master.page.ren" /></a>
@@ -132,13 +132,13 @@
 						code="master.page.rendezvous" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="rendezvous/user/list.do"><spring:message
+					<li><a href="rendezvous/user/list.do?d-16544-p=1"><spring:message
 								code="master.page.mi.rendezvous" /></a></li>
-					<li><a href="rendezvous/user/listasis.do"><spring:message
+					<li><a href="rendezvous/user/listasis.do?d-16544-p=1"><spring:message
 								code="master.page.mi.rendezvous.asis" /></a></li>
-					<li><a href="rendezvous/user/listnotasis.do"><spring:message
+					<li><a href="rendezvous/user/listnotasis.do?d-16544-p=1"><spring:message
 								code="master.page.mi.rendezvous.notasis" /></a></li>
-					<li><a href="rendezvous/user/list-deleted.do"><spring:message
+					<li><a href="rendezvous/user/list-deleted.do?d-16544-p=1"><spring:message
 								code="deleted.ones" /></a></li>
 
 				</ul></li>
@@ -147,7 +147,7 @@
 						code="master.page.announcementsUser" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="announcement/user/listAll.do"><spring:message
+					<li><a href="announcement/user/listAll.do?d-16544-p=1"><spring:message
 								code="master.page.mi.announcementUser" /></a></li>
 
 				</ul></li>
@@ -157,11 +157,11 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a></li>
-			<li><a class="fNiv" href="user/list.do"><spring:message
+			<li><a class="fNiv" href="user/list.do?d-16544-p=1"><spring:message
 						code="master.page.user.list" /></a></li>
 			<li><a class="fNiv" href="user/create.do"><spring:message
 						code="master.page.user.register" /></a></li>
-			<li><a class="fNiv" href="rendezvous/list-unregister.do"><spring:message
+			<li><a class="fNiv" href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
 						code="master.page.rendezvouss.list" /></a></li>
 		</security:authorize>
 
