@@ -152,6 +152,19 @@
 
 				</ul></li>
 		</security:authorize>
+		
+		
+		<security:authorize access="hasRole('MANAGER')">
+		
+			<li><a class="fNiv"><spring:message
+						code="master.page.serviceoffered" /></a>
+				<ul>
+			<li class="arrow"></li>
+			<li><a href="serviceoffered/manager/list.do?d-16544-p=1"><spring:message
+								code="master.page.serviceoffered.list" /></a></li>
+
+				</ul></li>
+		</security:authorize>
 
 
 		<security:authorize access="isAnonymous()">
