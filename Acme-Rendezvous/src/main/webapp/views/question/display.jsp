@@ -18,6 +18,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 
 <display:table name="Question" class="displaytag"
@@ -36,12 +38,12 @@
 	<security:authorize access="hasRole('USER')">
 	<spring:message code="question.answer.create" var="Answer" />
 	<display:column title="${Answer}" sortable="true">
-	
+	<jstl:if test="${fn:contains(row.rendezvouse.assistants, row.user)}">
 		<spring:url value="answer/user/create.do" var="editURL">
 			<spring:param name="questionId" value="${row.id}" />
 		</spring:url>
 		<a href="${editURL}"><spring:message code="question.answer.create.reply" /></a>
-	
+	</jstl:if>
 	</display:column> 
 	</security:authorize>
 	
