@@ -97,4 +97,12 @@ public class ServiceOfferedService {
 		result = this.serviceOfferedRepository.AllServiceNotCancelled();
 		return result;
 	}
+
+	public Collection<ServiceOffered> AllServiceNotCancelledAveibleForRendezvouse(int id) {
+		Collection<ServiceOffered> result;
+		result = this.serviceOfferedRepository.AllServiceNotCancelledAveibleForRendezvouse(id);
+
+		return result;
+	}
+
 }

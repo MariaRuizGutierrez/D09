@@ -88,7 +88,7 @@ public class RequestUserController extends AbstractController {
 		Assert.notNull(request);
 		ModelAndView result;
 		Collection<ServiceOffered> serviceOffered;
-		serviceOffered = this.serviceOfferedService.AllServiceNotCancelled();
+		serviceOffered = this.serviceOfferedService.AllServiceNotCancelledAveibleForRendezvouse(request.getRendezvousid());
 		result = new ModelAndView("request/edit");
 		result.addObject("request", request);
 		result.addObject("message", message);
