@@ -245,6 +245,18 @@
 			<a href="${editSimilarURL}"><spring:message
 					code="rendezvouse.unlink" /></a>
 		</display:column>
+		
+		
+		
+		<spring:message code="rendezvouse.service.request" var="service" />
+		<display:column title="${service}" sortable="true">
+			<spring:url value="request/user/edit.do"
+				var="request">
+				<spring:param name="rendezvouseId" value="${row.id}" />
+			</spring:url>
+						<a href="${request}"><spring:message
+					code="rendezvouse.request" /></a>
+		</display:column>
 	</security:authorize>
 	
 	
