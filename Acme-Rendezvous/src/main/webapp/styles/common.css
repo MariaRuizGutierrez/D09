@@ -8,6 +8,12 @@
  * 
  */
 
+.p1{
+	background-color:#38D989;
+}
+.p2{
+	background-color:#F77368;
+}
 .error {
 	color: red;
 	font-weight: bolder;

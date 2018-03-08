@@ -34,35 +34,47 @@
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="serviceoffered" requestURI="${requestURI }" id="row">
+	
+	
+	<%!String estilo;%>
+	<jstl:choose>
+			<jstl:when test="${row.cancelled==false}">
+				<%=estilo = "p1"%>
 
-<acme:column code="serviceoffered.name" property="name"/>
+			</jstl:when>
+
+			<jstl:when test="${row.cancelled==true}">
+
+				<%=estilo = "p2"%>
+			</jstl:when>
+		</jstl:choose>
+		
+	<spring:message code="serviceoffered.name" var="titleHeader1" />
+	<display:column property="name" title="${titleHeader1}" sortable="true" class="<%= estilo %>"/>
+	
+	<spring:message code="serviceoffered.description" var="titleHeader2" />
+	<display:column property="description" title="${titleHeader2}" sortable="true" class="<%= estilo %>"/>
+	
+	<spring:message code="serviceoffered.picture" var="titleHeader3" />
+	<display:column property="picture" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	
+	
+
+<%-- <acme:column code="serviceoffered.name" property="name" />
 <acme:column code="serviceoffered.description" property="description"/>
-<acme:column code="serviceoffered.picture" property="picture"/>
+<acme:column code="serviceoffered.picture" property="picture"/> --%>
 
 <security:authorize access="hasRole('ADMINISTRATOR')">
 <spring:message code="serviceOffered.cancelled" var="draftMode" />
-<display:column title="${draftMode}">
-	<jstl:if test="${row.cancelled==true}">
-	<div
-  style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
-  			
-		  <img src="images/no.png"width= "35" height="35">
-		  </div>
-		  </jstl:if>
-	<jstl:if test="${row.cancelled==false}">
-	<div
-  style="position: relative; width: 30px; height: 30px; margin-left: 48px; margin-bottom: 6px;">
-  			
-		  <img src="images/yes.png"width= "37" height="37">
-		  </div>
-		  </jstl:if>
+<display:column title="${draftMode}" class="<%= estilo %>">
+	
 		
 </display:column>
 
 <!-- Boton de delete para el administrador ya que puede borrar los anuncios que quiera pero no editarlos -->
 	
 	<spring:message code="serviceOffered.delete" var="deleteHeader" />
-		<display:column title="${deleteHeader}" sortable="true">
+		<display:column title="${deleteHeader}" sortable="true" class="<%= estilo %>">
 		<jstl:if test="${row.cancelled==false}">
 		<div 
 		style="margin-top:8px; ">
