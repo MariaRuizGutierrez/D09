@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,6 +20,7 @@ public class Category extends DomainEntity {
 	// Attributes -------------------------------------------------------------
 	private String	name;
 	private String	description;
+	private String	concat;
 
 
 	@NotBlank
@@ -64,4 +66,20 @@ public class Category extends DomainEntity {
 	public void setSubCategories(final Collection<Category> subCategories) {
 		this.subCategories = subCategories;
 	}
+
+	//Derivated
+
+	@Transient
+	public String getConcat() {
+		if (this.getFatherCategory() != null)
+			this.concat = this.getFatherCategory().getName() + "-" + this.getName();
+		else
+			this.concat = this.getName();
+		return this.concat;
+	}
+
+	public void setConcat(final String concat) {
+		this.concat = concat;
+	}
+
 }

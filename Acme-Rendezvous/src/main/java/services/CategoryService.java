@@ -56,8 +56,9 @@ public class CategoryService {
 
 		//Comprobamos si la category no tiene el mismo nombre y mismo padre que una ya guardada
 		categories = this.findAll();
-		for (final Category c : categories)
-			Assert.isTrue(!(c.getName().equals(category.getName()) && c.getFatherCategory().equals(category.getFatherCategory())));
+		if (category.getId() == 0)
+			for (final Category c : categories)
+				Assert.isTrue(!(c.getName().equals(category.getName()) && c.getFatherCategory().equals(category.getFatherCategory())));
 		result = this.categoryRepository.save(category);
 
 		return result;
