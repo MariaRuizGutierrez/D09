@@ -51,10 +51,10 @@ public class AnnouncementServiceTest extends AbstractTest {
 				"user1", "rendezvouse1", "", "description test", javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea un Announcement con el description en null
-				"user5", "rendezvouse1", "title test", null, IllegalArgumentException.class
+				"user1", "rendezvouse1", "title test", null, javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea un Announcement con el description en blanco
-				"user5", "rendezvouse1", "title test", "", IllegalArgumentException.class
+				"user1", "rendezvouse1", "title test", "", javax.validation.ConstraintViolationException.class
 			}
 		};
 
