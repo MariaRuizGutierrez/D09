@@ -32,54 +32,27 @@
 	
 	
 	<fieldset>
-	<acme:textbox code="request.creditCard.holderName" path="creditCard.holderName"/>
-	<br />
-	
-	
-	<form:label path="creditCard.brandName">
-		<spring:message code="request.creditCard.brandName" />:
-	</form:label>
-	<form:input path="creditCard.brandName" />
-	<form:errors cssClass="error" path="creditCard.brandName" />
-	<br/>
-	
-	<form:label path="creditCard.number">
-		<spring:message code="request.creditCard.number" />:
-	</form:label>
-	<form:input path="creditCard.number" placeholder="XXXXXXXXXXXXXXXX"/>
-	<form:errors cssClass="error" path="creditCard.number" />
-	<br/>
-	
-	<form:label path="creditCard.expirationMonth">
-		<spring:message code="request.creditCard.expirationMonth" />:
-	</form:label>
-	<form:input path="creditCard.expirationMonth" placeholder="XX"/>
-	<form:errors cssClass="error" path="creditCard.expirationMonth" />
-	<br/>
-	
-	<form:label path="creditCard.expirationYear">
-		<spring:message code="request.creditCard.expirationYear" />:
-	</form:label>
-	<form:input path="creditCard.expirationYear" placeholder="XX"/>
-	<form:errors cssClass="error" path="creditCard.expirationYear" />
-	<br/>
-	
-	<form:label path="creditCard.cvv">
-		<spring:message code="request.creditCard.cvv" />:
-	</form:label>
-	<form:input path="creditCard.cvv"/>
-	<form:errors cssClass="error" path="creditCard.cvv" />
-	<br/>
-	
+	<B><acme:textbox code="request.creditCard.holderName" path="creditCard.holderName"/></B>
+	<br>
+	<B><acme:textbox code="request.creditCard.brandName" path="creditCard.brandName"/></B>
+	<br>
+	<B><acme:textbox code="request.creditCard.number" path="creditCard.number" placeHolder="yyyy/MM/dd"/></B>
+	<br>
+	<B><acme:textbox code="request.creditCard.expirationMonth" path="creditCard.expirationMonth" placeHolder="XX"/></B>
+	<br>
+	<B><acme:textbox code="request.creditCard.expirationYear" path="creditCard.expirationYear" placeHolder="XX"/></B>
+	<br>
+	<B><acme:textbox code="request.creditCard.cvv" path="creditCard.cvv"/></B>
 	</fieldset>
 	
 	<br>
-	<acme:textbox code="request.comment" path="comment"/>
+	<B><acme:textbox code="request.comment" path="comment"/></B>
 	<br />
-	<acme:selectone items="${serviceOffered}" itemLabel="name" code="rendezvous.serviceOffered" path="serviceOffered"/>
+	
+	<B><acme:selectone items="${serviceOffered}" itemLabel="name" code="rendezvous.serviceOffered" path="serviceOffered"/></B>
 	<br /> 
 	
-	
+<!-- 	BOTONES  -->
 	<input type="submit" name="save" value="<spring:message code="request.save" />" />&nbsp; 
 	
 	<jstl:if test="${request.id != 0}">
