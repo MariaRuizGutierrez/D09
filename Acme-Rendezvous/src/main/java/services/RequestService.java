@@ -125,4 +125,14 @@ public class RequestService {
 
 		return res;
 	}
+
+	public Collection<Request> findAllRequestByUser(int userId) {
+		Collection<Request> result;
+		User user;
+
+		user = this.userService.findByPrincipal();
+		result = this.requestRepository.findAllRequestByUser(user.getId());
+
+		return result;
+	}
 }
