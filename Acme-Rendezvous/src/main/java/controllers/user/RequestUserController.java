@@ -17,8 +17,10 @@ import services.RequestService;
 import services.ServiceOfferedService;
 import services.UserService;
 import controllers.AbstractController;
+import domain.Rendezvouse;
 import domain.Request;
 import domain.ServiceOffered;
+import domain.User;
 
 @Controller
 @RequestMapping("/request/user")
@@ -49,7 +51,12 @@ public class RequestUserController extends AbstractController {
 	public ModelAndView create(@RequestParam int rendezvouseId) {
 		ModelAndView result;
 		Request request;
+		User user;
+		Rendezvouse rendezvous;
 
+		user = this.userService.findByPrincipal();
+		rendezvous = this.rendezvouseService.findOne(rendezvouseId);
+		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");
 		request = this.requestService.create(rendezvouseId);
 		result = this.createEditModelAndView(request);
 
