@@ -88,4 +88,12 @@
 	</security:authorize>
 </display:table>
 
+<security:authorize access="hasRole('MANAGER')">
+	<div>
+		<a href="serviceoffered/manager/create.do"> <spring:message
+				code="serviceOffered.create" />
+		</a>
+	</div>
+</security:authorize>
+
 

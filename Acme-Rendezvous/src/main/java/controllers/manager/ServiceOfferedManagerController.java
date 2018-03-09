@@ -3,16 +3,25 @@ package controllers.manager;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CategoryService;
+import services.ManagerService;
 import services.RendezvouseService;
 import services.ServiceOfferedService;
 import services.UserService;
 import controllers.AbstractController;
+import domain.Announcement;
+import domain.Category;
 import domain.ServiceOffered;
 
 @Controller
@@ -29,6 +38,12 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	@Autowired
 	private UserService				userService;
+	
+	@Autowired
+	private ManagerService			managerService;
+	
+	@Autowired
+	private CategoryService			categoryService;
 
 
 	//constructor-------------------------------------------------------------------------
@@ -49,6 +64,80 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	}
 
+	// Create -----------------------------------------------------------------
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		ModelAndView result;
+		ServiceOffered serviceOffered;
+		this.managerService.checkPrincipal();
+
+		serviceOffered = this.serviceOfferedService.create();
+
+		result = this.createEditModelAndView(serviceOffered);
+		return result;
+	}
+	
+	//Edition--------------------------------------------------------------------------------
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int serviceOfferedId) {
+		ModelAndView result;
+		ServiceOffered serviceOffered;
+
+		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
+
+		Assert.notNull(serviceOffered);
+		result = this.createEditModelAndView(serviceOffered);
+		return result;
+	}
+	
+	
+	// Save -----------------------------------------------------------------
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid ServiceOffered serviceOffered, BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(serviceOffered);
+		else
+			try {
+				this.serviceOfferedService.save(serviceOffered);
+				result = new ModelAndView("redirect:list.do");
+			} catch (Throwable oops) {
+				result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
+			}
+		return result;
+	}
+	
+	//Auxiliary-----------------------
+
+	protected ModelAndView createEditModelAndView(ServiceOffered serviceOffered) {
+
+		Assert.notNull(serviceOffered);
+		ModelAndView result;
+		result = this.createEditModelAndView(serviceOffered, null);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(ServiceOffered serviceOffered, String messageCode) {
+		assert serviceOffered != null;
+
+		ModelAndView result;
+		Collection<Category> categories;
+			
+		categories = this.categoryService.findAll();
+
+		result = new ModelAndView("serviceOffered/edit");
+		result.addObject("serviceOffered", serviceOffered);
+		result.addObject("categories", categories);
+		result.addObject("message", messageCode);
+
+		return result;
+
+	}
+	
+
+	
+	
 	//ancially methods---------------------------------------------------------------------------
 
 	//	protected ModelAndView createEditModelAndView(final Rendezvouse rendezvouse) {
