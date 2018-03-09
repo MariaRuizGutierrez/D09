@@ -74,13 +74,13 @@ public class AnnouncementServiceTest extends AbstractTest {
 			announcement.setTitle(title);
 			announcement.setDescription(description);
 			announcement = this.announcementService.save(announcement);
-			this.unauthenticate();
 			this.announcementService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
 
 		this.checkExceptions(expected, caught);
+		this.unauthenticate();
 
 	}
 
