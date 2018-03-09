@@ -52,7 +52,7 @@
 	<security:authorize access="hasRole('MANAGER')">
 		<spring:message code="serviceOffered.edit" var="Edit" />
 
-		<display:column title="${Edit}" sortable="true">
+		<display:column title="${Edit}" sortable="true" class="<%= estilo %>">
 			
 			<spring:url value="serviceoffered/manager/edit.do" var="editURL">
 				<spring:param name="serviceOfferedId" value="${row.id}" />
