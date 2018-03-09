@@ -4,6 +4,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -34,17 +35,28 @@ public class CommentServiceTest extends AbstractTest {
 	RendezvouseService	rendezvouseService;
 
 
-	// Test CreateAndSave ----------------------------------------------------------------------------------
-
+	// Requisito funcional: Comment on the rendezvouses that he or she has RSVPd.
 	@SuppressWarnings("unchecked")
 	@Test
-	public void driverCreateAndSave() {
-		List<Comment> comments = new ArrayList<Comment>();
+	public void driverCreateAndSaveComment() {
+		final Collection<Comment> listComment = this.createAllCommentForTesting();
+		final Iterator<Comment> iterator = listComment.iterator();
+
 		final Object testingData[][] = {
 			{
-				//Se crea un Comment correctamente
-				null, "text 1", "https://cloud.educaplay.com/recursos/110/3542066/imagen_1_1519849279.jpg", comments, null, "rendezvouse1", "user1", null
+				//El usuario "user1" va a crear un comment para una rendezvous a la que va a asistir
+				null, "text test", "https://test.com", null, null, "rendezvouse1", "user1", null
+			}, {
+				//El usuario "user1" va a crear un comment para una rendezvos que no va a asistir
+				null, "text test", "https://test.com", null, null, "rendezvouse2", "user1", IllegalArgumentException.class
+			}, {
+				//El usuario "user1" va a responder a un comentario escrito en una cita que va a asistir.
+				null, "text test", "https://test.com", null, iterator.next(), "rendezvouse1", "user1", null
+			}, {
+				//El usuario "user3" va a responder a un comentario escrito en una cita que no va a asistir.
+				null, "text test", "https://test.com", null, iterator.next(), "rendezvouse2", "user1", IllegalArgumentException.class
 			}
+
 		};
 		for (int i = 0; i < testingData.length; i++)
 			this.templateCreateAndSave((Date) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (List<Comment>) testingData[i][3], (Comment) testingData[i][4], super.getEntityId((String) testingData[i][5]),
@@ -53,8 +65,6 @@ public class CommentServiceTest extends AbstractTest {
 	private void templateCreateAndSave(final Date writtenMoment, final String text, final String picture, final List<Comment> replys, final Comment commentTo, final int rendezvouseId, final String username, final Class<?> expected) {
 		final Rendezvouse rendezvouseOfComment;
 		Comment comment;
-		Comment result;
-		;
 		Class<?> caught;
 
 		caught = null;
@@ -65,10 +75,9 @@ public class CommentServiceTest extends AbstractTest {
 			comment.setWrittenMoment(writtenMoment);
 			comment.setText(text);
 			comment.setPicture(picture);
-			comment.setReplys(replys);
 			comment.setCommentTo(commentTo);
 			comment.setRendezvouse(rendezvouseOfComment);
-			result = this.commentService.save(comment);
+			comment = this.commentService.save(comment);
 			this.unauthenticate();
 			this.commentService.flush();
 		} catch (final Throwable oops) {
@@ -79,18 +88,21 @@ public class CommentServiceTest extends AbstractTest {
 
 	}
 
-	//Other Methods additionals---------------------------------------------------------------------------------------
-
 	private Collection<Comment> createAllCommentForTesting() {
 		final Collection<Comment> result;
-
-		final Comment commentOfThisUser;
+		final Comment commentOk;
+		final Comment commentOtherRendezvous;
 
 		result = new ArrayList<Comment>();
-		commentOfThisUser = this.commentService.findOne(super.getEntityId("comment1"));
-		result.add(commentOfThisUser);
+		commentOk = this.commentService.findOne(this.getEntityId("comment1"));
+		commentOtherRendezvous = this.commentService.findOne(this.getEntityId("comment2"));
+
+		result.add(commentOk);
+		result.add(commentOtherRendezvous);
+
 		return result;
 	}
+
 	//	// Test Edit ----------------------------------------------------------------------------------
 	//
 	//	@Test
