@@ -55,8 +55,12 @@
 	<spring:message code="serviceoffered.description" var="titleHeader2" />
 	<display:column property="description" title="${titleHeader2}" sortable="true" class="<%= estilo %>"/>
 	
-	<spring:message code="serviceoffered.picture" var="titleHeader3" />
-	<display:column property="picture" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	<spring:message code="serviceoffered.picture" var="titleHeader" />
+	<display:column title="${titleHeader}" class="<%= estilo %>">
+		<a href="${row.picture}"><spring:message
+				code="serviceoffered.picture" /></a>
+	</display:column>
+
 	
 	<spring:message code="serviceoffered.category" var="titleHeader3" />
 	<display:column property="category.name" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
