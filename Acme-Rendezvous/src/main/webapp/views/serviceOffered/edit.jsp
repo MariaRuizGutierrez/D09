@@ -21,7 +21,7 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="serviceOffered/manager/create.do" modelAttribute="serviceOffered">
+<form:form action="serviceoffered/manager/edit.do" modelAttribute="serviceOffered">
 
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
@@ -33,7 +33,7 @@
 	<acme:textarea code="serviceoffered.description" path="description"/>
 	<br />
 	
-	<acme:textbox code="serviceoffered.picture" path="picture"/>
+	<acme:textbox code="serviceoffered.picture" path="picture" placeHolder="http:\\"/>
 	<br />
 	
 	<acme:select items="${categories}" itemLabel="name" code="serviceoffered.category" path="category"/>

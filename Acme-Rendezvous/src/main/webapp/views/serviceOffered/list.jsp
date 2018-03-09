@@ -49,6 +49,19 @@
 			</jstl:when>
 		</jstl:choose>
 		
+	<security:authorize access="hasRole('MANAGER')">
+		<spring:message code="serviceOffered.edit" var="Edit" />
+
+		<display:column title="${Edit}" sortable="true">
+			
+			<spring:url value="serviceoffered/manager/edit.do" var="editURL">
+				<spring:param name="serviceOfferedId" value="${row.id}" />
+			</spring:url>
+			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
+			
+		</display:column>
+	</security:authorize>
+		
 	<spring:message code="serviceoffered.name" var="titleHeader1" />
 	<display:column property="name" title="${titleHeader1}" sortable="true" class="<%= estilo %>"/>
 	
