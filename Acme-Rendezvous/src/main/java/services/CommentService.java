@@ -176,4 +176,8 @@ public class CommentService {
 		this.validator.validate(result, binding);
 		return result;
 	}
+
+	public void flush() {
+		this.commentRepository.flush();
+	}
 }
