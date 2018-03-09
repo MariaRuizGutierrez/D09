@@ -84,7 +84,7 @@ public class RequestService {
 		moment = new Date(System.currentTimeMillis() - 1000);
 		request.setRequestMoment(moment);
 		rendezvous.getServicesOffered().add(request.getServiceOffered());
-		Assert.isTrue(this.checkCreditCard(request.getCreditCard()));
+		Assert.isTrue(this.checkCreditCard(request.getCreditCard()), "Invalid credit card");
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
 		return result;

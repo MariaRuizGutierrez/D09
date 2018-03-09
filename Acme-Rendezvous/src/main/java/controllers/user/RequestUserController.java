@@ -77,6 +77,9 @@ public class RequestUserController extends AbstractController {
 			} catch (final Throwable oops) {
 				if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
 					result = this.createEditModelAndView(request, "request.services");
+				else if (oops.getMessage().equals("Invalid credit card"))
+					result = this.createEditModelAndView(request, "request.invalid.card");
+
 				else
 					result = this.createEditModelAndView(request, "request.commit.error");
 			}
