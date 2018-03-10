@@ -33,6 +33,7 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 			{
 				//Se edita el configurationSystem por un admin
 				"admin", "name1", "https://tinyurl.com/adventure-meetup", "hello", "hola", null
+
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -47,8 +48,8 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 			super.authenticate(username);
 			configurationSystem = this.configurationSystemService.findOne();
 			configurationSystem.setEnglishWelcomeMessage("whatsuppppp");
-			configurationSystem.setSpanishWelcomeMessage("hola");
-			configurationSystem.setName("maria");
+			configurationSystem.setSpanishWelcomeMessage("Hola amigos!");
+			configurationSystem.setName("Adventure times");
 			configurationSystem.setBanner("https://tinyurl.com/adventure-meetup");
 			configurationSystem = this.configurationSystemService.save(configurationSystem);
 			this.unauthenticate();
