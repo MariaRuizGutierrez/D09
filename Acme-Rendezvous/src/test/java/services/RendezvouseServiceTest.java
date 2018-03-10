@@ -80,6 +80,9 @@ public class RendezvouseServiceTest extends AbstractTest {
 			}, {
 				//Se crea un Rendezvouse incorrectamente con picture con url malamente
 				"user1", "name test", "description", "2019/03/03", "estoNoEsUnaURL", gpsOk, true, false, false, javax.validation.ConstraintViolationException.class
+			}, {
+				//Un user menor de edad crea un Rendezvouse para mayores de edad
+				"user5", "name test", "description", "2019/03/03", "http://www.test.com", gpsOk, true, false, true, IllegalArgumentException.class
 			}
 		};
 
