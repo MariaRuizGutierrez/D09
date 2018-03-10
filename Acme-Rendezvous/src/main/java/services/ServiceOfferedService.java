@@ -98,9 +98,16 @@ public class ServiceOfferedService {
 		return result;
 	}
 
-	public Collection<ServiceOffered> AllServiceNotCancelledAveibleForRendezvouse(int id) {
+	public Collection<ServiceOffered> AllServiceNotCancelledAveibleForRendezvouse(final int id) {
 		Collection<ServiceOffered> result;
 		result = this.serviceOfferedRepository.AllServiceNotCancelledAveibleForRendezvouse(id);
+
+		return result;
+	}
+
+	public Collection<ServiceOffered> ServiceByCategoryName(final String name) {
+		Collection<ServiceOffered> result;
+		result = this.serviceOfferedRepository.ServiceByCategoryName(name);
 
 		return result;
 	}

@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.CategoryRepository;
 import domain.Category;
+import domain.ServiceOffered;
 
 @Service
 @Transactional
@@ -25,6 +26,8 @@ public class CategoryService {
 	private ConfigurationSystemService	configurationSystemService;
 	@Autowired
 	private AdministratorService		administratorService;
+	@Autowired
+	private ServiceOfferedService		serviceOfferedService;
 
 
 	// Constructors------------------------------------------------------------
@@ -77,11 +80,21 @@ public class CategoryService {
 	public void delete(final Category category) {
 		this.administratorService.checkPrincipal();
 		Assert.notNull(category);
+		Collection<ServiceOffered> services;
+		Collection<ServiceOffered> services1;
 
-		Assert.isTrue(category.getId() != 0);
-		//Assert.isTrue(!(this.configurationSystemService.defaultCategories().contains(category)));
-		//Comprobamos que para borrar esa categoría no tenga hijos
-		Assert.isTrue(category.getSubCategories().isEmpty());
+		services1 = this.serviceOfferedService.ServiceByCategoryName(category.getName());
+		if (services1.size() != 0)
+			for (final ServiceOffered s1 : services1)
+				s1.setCategory(null);
+
+		if (category.getSubCategories().size() != 0)
+			for (final Category c : category.getSubCategories()) {
+				services = this.serviceOfferedService.ServiceByCategoryName(c.getName());
+				for (final ServiceOffered s : services)
+					s.setCategory(null);
+				this.delete(c);
+			}
 
 		this.categoryRepository.delete(category);
 	}
