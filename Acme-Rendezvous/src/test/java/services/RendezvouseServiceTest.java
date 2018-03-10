@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -29,6 +31,9 @@ public class RendezvouseServiceTest extends AbstractTest {
 	// Supporting services ----------------------------------------------------
 	@Autowired
 	RendezvouseService	rendezvouseService;
+
+	@PersistenceContext
+	EntityManager		entityManager;
 
 
 	// Test CreateAndSave ----------------------------------------------------------------------------------
@@ -108,6 +113,8 @@ public class RendezvouseServiceTest extends AbstractTest {
 			this.rendezvouseService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
 		}
 
 		this.checkExceptions(expected, caught);

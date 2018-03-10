@@ -83,7 +83,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 			this.announcementService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
-			//Se borra la cache para que no intente guardar siempre el primero objeto que ha fallado en el test
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
 			this.entityManager.clear();
 
 		}
