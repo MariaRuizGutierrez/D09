@@ -60,4 +60,8 @@ public class ConfigurationSystemService {
 		return result;
 	}
 
+	public void flush() {
+		this.configurationSystemRepository.flush();
+	}
+
 }
