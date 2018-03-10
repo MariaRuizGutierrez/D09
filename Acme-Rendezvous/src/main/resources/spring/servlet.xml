@@ -73,6 +73,13 @@
 		<property name="cookieMaxAge" value="100000" />
 	</bean>
 
+	<bean id="localeResolver2"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="creditcard" />
+		<property name="cookieName" value="creditcard" />
+		<property name="cookieMaxAge" value="100000" />
+	</bean>
+	
 	<bean id="localeChangeInterceptor"
 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="language" />

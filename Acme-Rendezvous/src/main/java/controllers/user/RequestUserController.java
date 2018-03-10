@@ -3,10 +3,14 @@ package controllers.user;
 
 import java.util.Collection;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +21,7 @@ import services.RequestService;
 import services.ServiceOfferedService;
 import services.UserService;
 import controllers.AbstractController;
+import domain.CreditCard;
 import domain.Rendezvouse;
 import domain.Request;
 import domain.ServiceOffered;
@@ -48,12 +53,23 @@ public class RequestUserController extends AbstractController {
 	//Creation---------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam int rendezvouseId) {
+	public ModelAndView create(@CookieValue(value = "creditcard", defaultValue = "") String creditcard, HttpServletResponse response, @RequestParam int rendezvouseId) {
 		ModelAndView result;
 		Request request;
 		User user;
-		Rendezvouse rendezvous;
+		String pasamosaString;
+		Collection<CreditCard> cards;
+		CreditCard creditCard;
+		User userPrincipal;
+		userPrincipal = this.userService.findByPrincipal();
+		Cookie newCookie;
+		cards = this.requestService.findAllCreditCardsInDescendOrderByUser(userPrincipal.getId());
+		creditCard = cards.iterator().next();
+		pasamosaString = String.valueOf(creditCard.getCvv() + creditCard.getBrandName() + creditCard.getExpirationMonth() + creditCard.getExpirationYear() + creditCard.getHolderName() + creditCard.getNumber());
+		newCookie = new Cookie("creditcard", pasamosaString);
+		response.addCookie(newCookie);
 
+		Rendezvouse rendezvous;
 		user = this.userService.findByPrincipal();
 		rendezvous = this.rendezvouseService.findOne(rendezvouseId);
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");

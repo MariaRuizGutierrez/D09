@@ -110,7 +110,7 @@ public class RequestService {
 	}
 	//Other business methods-----------------------------------------------------
 
-	Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {
+	public Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {
 		User user;
 		Collection<CreditCard> cards;
 
