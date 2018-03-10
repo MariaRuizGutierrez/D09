@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
 import domain.CreditCard;
@@ -23,23 +25,33 @@ import domain.User;
 @Transactional
 public class RequestService {
 
+	// Managed repository -----------------------------------------------------
 	@Autowired
 	private RequestRepository		requestRepository;
+
+	// Supporting services ----------------------------------------------------
 
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
 
 	@Autowired
 	private UserService				userService;
+
 	@Autowired
 	private RendezvouseService		rendezvouseService;
 
+	//Importar la que pertenece a Spring
+	@Autowired
+	private Validator				validator;
 
+
+	//Constructor------------------------------------------------------------
 	public RequestService() {
 		super();
 
 	}
 
+	// Simple CRUD Methods----------------------------------------------------------
 	public Request create(Integer rendezvousId) {
 		Request result;
 		User userPrincipal;
@@ -135,4 +147,33 @@ public class RequestService {
 
 		return result;
 	}
+
+	public Request reconstruct(final Request request, final BindingResult binding) {
+		Request result;
+		Request requestBD;
+		User userPrincipal;
+		if (request.getId() == 0) {
+
+			Date moment;
+
+			result = request;
+			moment = new Date(System.currentTimeMillis() - 1000);
+
+			userPrincipal = this.userService.findByPrincipal();
+			result.setUser(userPrincipal);
+
+			result.setRequestMoment(moment);
+		} else {
+			requestBD = this.requestRepository.findOne(request.getId());
+			request.setId(requestBD.getId());
+			request.setVersion(requestBD.getVersion());
+			request.setUser(requestBD.getUser());
+
+			request.setRequestMoment(requestBD.getRequestMoment());
+			result = request;
+		}
+		this.validator.validate(result, binding);
+		return result;
+	}
+
 }
