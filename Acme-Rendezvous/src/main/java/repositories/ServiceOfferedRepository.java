@@ -17,7 +17,7 @@ public interface ServiceOfferedRepository extends JpaRepository<ServiceOffered, 
 	Collection<ServiceOffered> AllServiceNotCancelled();
 
 	@Query("select s from ServiceOffered s where s.category.name=?1")
-	Collection<ServiceOffered> ServiceByCategoryName(String name);
+	Collection<ServiceOffered> ServiceByCategoryName(int categoryId);
 
 	//Servicios disponibles que no tenga una cita
 	@Query("select s from ServiceOffered s where ?1 not member of s.rendezvouses and s.cancelled=false")
