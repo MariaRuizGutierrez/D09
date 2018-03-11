@@ -95,76 +95,76 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	// Test Edit ----------------------------------------------------------------------------------
 
-	//	@Test
-	//	public void driverEdit() {
-	//		final Object testingData[][] = {
-	//			{
-	//				//Se edita el announcement1 por el user que la ha creado
-	//				"user1", "announcement1", null
-	//			}, {
-	//				//Se edita el announcement1 por el user que NO la ha creado (Hacking get)
-	//				"user5", "announcement1", IllegalArgumentException.class
-	//			}
-	//		};
-	//		for (int i = 0; i < testingData.length; i++)
-	//			this.templateEdit((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
-	//	}
-	//	private void templateEdit(final String username, final int announcementId, final Class<?> expected) {
-	//		Announcement announcement;
-	//		Class<?> caught;
-	//
-	//		caught = null;
-	//		try {
-	//			super.authenticate(username);
-	//			announcement = this.announcementService.findOne(announcementId);
-	//			announcement.setTitle("Editing test title");
-	//			announcement = this.announcementService.save(announcement);
-	//			this.unauthenticate();
-	//			this.announcementService.flush();
-	//		} catch (final Throwable oops) {
-	//			caught = oops.getClass();
-	//		}
-	//
-	//		this.checkExceptions(expected, caught);
-	//
-	//	}
-	//
-	//	// Test Delete ----------------------------------------------------------------------------------
-	//
-	//	@Test
-	//	public void driverDelete() {
-	//		final Object testingData[][] = {
-	//			{
-	//				//Se elimina el announcement1 por el user que la ha creado (ningun user puede eliminar un announcement)
-	//				"user1", "announcement1", IllegalArgumentException.class
-	//			}, {
-	//				//Se elimina el announcement1 por el user que NO la ha creado(Hacking get) (ningun user puede eliminar un announcement)
-	//				"user5", "announcement1", IllegalArgumentException.class
-	//			}, {
-	//				//Se elimina el announcement1 por un admin cualquiera (Cualquier admin puede eliminar cualquier announcement)
-	//				"admin", "announcement1", null
-	//			}
-	//		};
-	//		for (int i = 0; i < testingData.length; i++)
-	//			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
-	//	}
-	//	private void templateDelete(final String username, final int announcementId, final Class<?> expected) {
-	//		Announcement announcement;
-	//		Class<?> caught;
-	//
-	//		caught = null;
-	//		try {
-	//			super.authenticate(username);
-	//			announcement = this.announcementService.findOne(announcementId);
-	//			this.announcementService.delete(announcement);
-	//			this.unauthenticate();
-	//			this.announcementService.flush();
-	//		} catch (final Throwable oops) {
-	//			caught = oops.getClass();
-	//		}
-	//
-	//		this.checkExceptions(expected, caught);
-	//
-	//	}
+	@Test
+	public void driverEdit() {
+		final Object testingData[][] = {
+			{
+				//Se edita el announcement1 por el user que la ha creado
+				"user1", "announcement1", null
+			}, {
+				//Se edita el announcement1 por el user que NO la ha creado (Hacking get)
+				"user5", "announcement1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateEdit((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateEdit(final String username, final int announcementId, final Class<?> expected) {
+		Announcement announcement;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			announcement = this.announcementService.findOne(announcementId);
+			announcement.setTitle("Editing test title");
+			announcement = this.announcementService.save(announcement);
+			this.unauthenticate();
+			this.announcementService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
+	// Test Delete ----------------------------------------------------------------------------------
+
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el announcement1 por el user que la ha creado (ningun user puede eliminar un announcement)
+				"user1", "announcement1", IllegalArgumentException.class
+			}, {
+				//Se elimina el announcement1 por el user que NO la ha creado(Hacking get) (ningun user puede eliminar un announcement)
+				"user5", "announcement1", IllegalArgumentException.class
+			}, {
+				//Se elimina el announcement1 por un admin cualquiera (Cualquier admin puede eliminar cualquier announcement)
+				"admin", "announcement1", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDelete(final String username, final int announcementId, final Class<?> expected) {
+		Announcement announcement;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			announcement = this.announcementService.findOne(announcementId);
+			this.announcementService.delete(announcement);
+			this.unauthenticate();
+			this.announcementService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
 
 }

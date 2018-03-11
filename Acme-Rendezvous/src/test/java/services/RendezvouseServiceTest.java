@@ -16,10 +16,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.GPS;
 import domain.Rendezvouse;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -31,6 +33,9 @@ public class RendezvouseServiceTest extends AbstractTest {
 	// Supporting services ----------------------------------------------------
 	@Autowired
 	RendezvouseService	rendezvouseService;
+
+	@Autowired
+	UserService			userService;
 
 	@PersistenceContext
 	EntityManager		entityManager;
@@ -123,6 +128,290 @@ public class RendezvouseServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 		super.unauthenticate();
+	}
+
+	// Test Edit ----------------------------------------------------------------------------------
+
+	@Test
+	public void driverEdit() {
+		final Object testingData[][] = {
+			{
+				//Se edita el rendezvouse1 por el user que la ha creado
+				"user1", "rendezvouse1", null
+			}
+		// Se contempla la opcion de que solo se puede editar una rendezvouse en modo no final en el controlador
+		//Se contempla la opcion de que solo se puede editar un rendezvouse que ha creado el usuario de ese rendezvouse en el controlador
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateEdit((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateEdit(final String username, final int rendezvouseId, final Class<?> expected) {
+		Rendezvouse rendezvouse;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			rendezvouse.setName("Editing test name");
+			rendezvouse = this.rendezvouseService.save(rendezvouse);
+			this.unauthenticate();
+			this.rendezvouseService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
+	// Test Delete Virtual----------------------------------------------------------------------------------
+
+	@Test
+	public void driverDeleteVirtual() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el rendezvouse1 por el user que la ha creado pero con draftMode en true
+				"user1", "rendezvouse1", null
+			}, {
+				//Se elimina el rendezvouse1 por el user que la ha creado pero con draftMode en false
+				"user2", "rendezvouse2", IllegalArgumentException.class
+			}, {
+				//Se elimina el rendezvouse1 por el user que NO la ha creado(Hacking get)
+				"user5", "rendezvouse1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDeleteVirtual((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDeleteVirtual(final String username, final int rendezvouseId, final Class<?> expected) {
+		Rendezvouse rendezvouse;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			this.rendezvouseService.deletevirtual(rendezvouse);
+			this.unauthenticate();
+			this.rendezvouseService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
+	// Test Delete ----------------------------------------------------------------------------------
+
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el rendezvouse1 por el user que la ha creado (Solo puede eliminarlas el admin)
+				"user1", "rendezvouse1", IllegalArgumentException.class
+			}, {
+				//Se elimina el rendezvouse1 por el admin
+				"admin", "rendezvouse1", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDelete(final String username, final int rendezvouseId, final Class<?> expected) {
+		Rendezvouse rendezvouse;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			this.rendezvouseService.delete(rendezvouse);
+			this.unauthenticate();
+			this.rendezvouseService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
+	// Test Assist ----------------------------------------------------------------------------------
+
+	@Test
+	public void driverAssist() {
+		final Object testingData[][] = {
+			{
+				//El user 1 asiste al rendezvouse1 (ya asistia de antes asi que no tendria que duplicarse su presencia en la lista de asistentes del rendezvouse
+				"user1", "rendezvouse1", null
+			}, {
+				//El user 2 asiste al rendezvouse1
+				"user2", "rendezvouse1", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAssist((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateAssist(final String username, final int rendezvouseId, final Class<?> expected) {
+		final Rendezvouse rendezvouse;
+		User userPrincipal;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			this.rendezvouseService.assist(rendezvouseId);
+			this.rendezvouseService.flush();
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			userPrincipal = this.userService.findByPrincipal();
+			Assert.isTrue(rendezvouse.getAssistants().contains(userPrincipal));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		this.unauthenticate();
+
+	}
+
+	// Test Not-Assist ----------------------------------------------------------------------------------
+
+	@Test
+	public void driverNotAssist() {
+		final Object testingData[][] = {
+			{
+				//El user 5 no asiste al rendezvouse1
+				"user5", "rendezvouse1", null
+			}, {
+				//El user 2 no asiste al rendezvouse1
+				"user2", "rendezvouse1", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateNotAssist((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateNotAssist(final String username, final int rendezvouseId, final Class<?> expected) {
+		Rendezvouse rendezvouse;
+		User userPrincipal;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			this.rendezvouseService.unassist(rendezvouseId);
+			this.rendezvouseService.flush();
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			userPrincipal = this.userService.findByPrincipal();
+			Assert.isTrue(!rendezvouse.getAssistants().contains(userPrincipal));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		this.unauthenticate();
+
+	}
+
+	// Test LinkSimilar ----------------------------------------------------------------------------------
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void driverLinkSimilar() {
+		Collection<Rendezvouse> similarRendezvousesForTesting;
+
+		similarRendezvousesForTesting = new ArrayList<Rendezvouse>();
+		similarRendezvousesForTesting.addAll(this.rendezvouseService.findOne(super.getEntityId("rendezvouse2")).getSimilarRendezvouses());
+		final Object testingData[][] = {
+			{
+				//El user1 que ha creado la Rendezvouse 1 cambia las similar rendezvouses
+				"user1", "rendezvouse1", similarRendezvousesForTesting, null
+			}, {
+				//El user2 que NO ha creado la Rendezvouse 1 cambia las similar rendezvouses
+				"user2", "rendezvouse1", similarRendezvousesForTesting, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateLinkSimilar((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Collection<Rendezvouse>) testingData[i][2], (Class<?>) testingData[i][3]);
+	}
+	private void templateLinkSimilar(final String username, final int rendezvouseId, final Collection<Rendezvouse> similarRendezvousesForTesting, final Class<?> expected) {
+		final Rendezvouse rendezvouse;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			rendezvouse.setSimilarRendezvouses(similarRendezvousesForTesting);
+			this.rendezvouseService.linkSimilar(rendezvouse);
+			this.rendezvouseService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		this.unauthenticate();
+
+	}
+
+	// Test UnLinkSimilar ----------------------------------------------------------------------------------
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void driverUnLinkSimilar() {
+		Collection<Rendezvouse> similarRendezvousesForTesting;
+
+		similarRendezvousesForTesting = new ArrayList<Rendezvouse>();
+		similarRendezvousesForTesting.addAll(this.rendezvouseService.findOne(super.getEntityId("rendezvouse2")).getSimilarRendezvouses());
+		final Object testingData[][] = {
+			{
+				//El user1 que ha creado la Rendezvouse 1 cambia las similar rendezvouses
+				"user1", "rendezvouse1", similarRendezvousesForTesting, null
+			}, {
+				//El user2 que NO ha creado la Rendezvouse 1 cambia las similar rendezvouses
+				"user2", "rendezvouse1", similarRendezvousesForTesting, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateUnLinkSimilar((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Collection<Rendezvouse>) testingData[i][2], (Class<?>) testingData[i][3]);
+	}
+	private void templateUnLinkSimilar(final String username, final int rendezvouseId, final Collection<Rendezvouse> similarRendezvousesForTesting, final Class<?> expected) {
+		final Rendezvouse rendezvouse;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			rendezvouse.setSimilarRendezvouses(similarRendezvousesForTesting);
+			this.rendezvouseService.unlinkSimilar(rendezvouse);
+			this.rendezvouseService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		this.unauthenticate();
+
 	}
 
 	//Other Methods additionals---------------------------------------------------------------------------------------

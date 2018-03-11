@@ -110,6 +110,7 @@ public class RendezvouseService {
 		result = this.rendezvousRepository.save(rendezvouse);
 		if (rendezvouse.getId() == 0)
 			user.getRendezvousesCreated().add(result);
+
 		return result;
 	}
 
@@ -244,8 +245,13 @@ public class RendezvouseService {
 	}
 
 	public Rendezvouse deletevirtual(final Rendezvouse rendezvouse) {
+		final User userPrincipal;
 		Rendezvouse result;
+
 		Assert.notNull(rendezvouse);
+		//Solo se puede eliminar virtualmente las rendezvouses que el usuario logueado ha creado
+		userPrincipal = this.userService.findByPrincipal();
+		Assert.isTrue(userPrincipal.getRendezvousesCreated().contains(rendezvouse));
 		final boolean aux = true;
 		Assert.isTrue(rendezvouse.isDraftMode() == true);
 		rendezvouse.setDeleted(aux);
@@ -298,7 +304,8 @@ public class RendezvouseService {
 		rendezvous = this.rendezvousRepository.findOne(rendezvousId);
 		usuario = this.userService.findByPrincipal();
 		Assert.isTrue(this.calculateYearsOld(usuario.getBirthDate()) > 17);
-		rendezvous.getAssistants().add(usuario);
+		if (!rendezvous.getAssistants().contains(usuario))
+			rendezvous.getAssistants().add(usuario);
 		this.rendezvousRepository.save(rendezvous);
 
 	}
