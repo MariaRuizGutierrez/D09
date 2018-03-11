@@ -80,23 +80,23 @@ public class CategoryService {
 	public void delete(final Category category) {
 		this.administratorService.checkPrincipal();
 		Assert.notNull(category);
+		Collection<Category> subCategoriesEmpty;
+		subCategoriesEmpty = new ArrayList<Category>();
+
 		Collection<ServiceOffered> services;
-		Collection<ServiceOffered> services1;
+		services = this.serviceOfferedService.ServiceByCategoryName(category.getId());
 
-		services1 = this.serviceOfferedService.ServiceByCategoryName(category.getName());
-		if (services1.size() != 0)
-			for (final ServiceOffered s1 : services1)
-				s1.setCategory(null);
+		for (ServiceOffered s1 : services)
+			s1.setCategory(null);
 
-		if (category.getSubCategories().size() != 0)
-			for (final Category c : category.getSubCategories()) {
-				services = this.serviceOfferedService.ServiceByCategoryName(c.getName());
-				for (final ServiceOffered s : services)
-					s.setCategory(null);
+		if (category.getFatherCategory() != null)
+			category.getFatherCategory().setSubCategories(subCategoriesEmpty);
+
+		if (category.getSubCategories().size() > 0)
+			for (Category c : category.getSubCategories())
 				this.delete(c);
-			}
-
-		this.categoryRepository.delete(category);
+		if (category.getSubCategories().size() == 0)
+			this.categoryRepository.delete(category);
 	}
 
 	public Collection<Category> findAll() {

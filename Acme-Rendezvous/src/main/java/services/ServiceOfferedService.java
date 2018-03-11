@@ -105,9 +105,9 @@ public class ServiceOfferedService {
 		return result;
 	}
 
-	public Collection<ServiceOffered> ServiceByCategoryName(final String name) {
+	public Collection<ServiceOffered> ServiceByCategoryName(final int id) {
 		Collection<ServiceOffered> result;
-		result = this.serviceOfferedRepository.ServiceByCategoryName(name);
+		result = this.serviceOfferedRepository.ServiceByCategoryName(id);
 
 		return result;
 	}
