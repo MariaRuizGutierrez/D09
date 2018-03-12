@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.Announcement;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 import domain.User;
 
 @Repository
@@ -59,4 +60,6 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false")
 	Collection<Rendezvouse> findAllRendezvousesNotDeletedExceptRendezvousId(int rendezvousId);
 
+	@Query("select r.servicesOffered from Rendezvouse r where r.id=?1")
+	Collection<ServiceOffered> findAllServicesByRendezvous(int rendezvousId);
 }

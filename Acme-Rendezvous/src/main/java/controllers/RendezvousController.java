@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AnnouncementService;
 import services.RendezvouseService;
 import services.UserService;
+import domain.Announcement;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 import domain.User;
 
 @Controller
@@ -26,6 +29,9 @@ public class RendezvousController extends AbstractController {
 
 	@Autowired
 	private UserService			userService;
+
+	@Autowired
+	private AnnouncementService	announcementService;
 
 
 	//Constructor--------------------------------------------------------
@@ -123,12 +129,20 @@ public class RendezvousController extends AbstractController {
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int rendezvousId) {
 		ModelAndView result;
-		Rendezvouse ren = new Rendezvouse();
 
+		Collection<Announcement> announcements;
+		Collection<ServiceOffered> services;
+		Rendezvouse ren;
+
+		services = this.rendezvouseService.findAllServicesByRendezvous(rendezvousId);
+		ren = new Rendezvouse();
+		announcements = this.announcementService.findAnnouncementByRendezvousId(rendezvousId);
 		ren = this.rendezvouseService.findOne(rendezvousId);
 
 		result = new ModelAndView("rendezvous/display");
 		result.addObject("rendezvous", ren);
+		result.addObject("announcements", announcements);
+		result.addObject("services", services);
 		result.addObject("requestURI", "rendezvous/user/display.do");
 
 		return result;

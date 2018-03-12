@@ -18,6 +18,7 @@ import domain.Announcement;
 import domain.Comment;
 import domain.Question;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 import domain.User;
 
 @Service
@@ -346,6 +347,14 @@ public class RendezvouseService {
 
 	}
 
+	public Collection<ServiceOffered> findAllServicesByRendezvous(int rendezvousId) {
+
+		Collection<ServiceOffered> ren;
+
+		ren = this.rendezvousRepository.findAllServicesByRendezvous(rendezvousId);
+
+		return ren;
+	}
 	public Collection<Rendezvouse> findAllRendezvousesNotDeletedExceptRendezvousId(final int rendezvousId) {
 		Collection<Rendezvouse> result;
 		result = this.rendezvousRepository.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvousId);

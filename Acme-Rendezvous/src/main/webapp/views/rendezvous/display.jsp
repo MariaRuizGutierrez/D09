@@ -88,4 +88,67 @@
 			</jstl:forEach>
 	</display:column>
 	<p>
+	
+	
 </display:table>
+
+
+<h2><spring:message code="rendezvous.announcement" /></h2>	
+	<display:table name="announcements" id="row" class="displaytag">
+		<spring:message code="rendezvous.announcements.madeMoment" var="madeMomentHeader"/>
+		<spring:message code="announcement.format.madeMoment" var="pattern"></spring:message>
+		<display:column property="madeMoment" title="${madeMomentHeader}" sortable="false" format="${pattern}" >
+			<jstl:out value="${row.madeMoment}"></jstl:out>
+		</display:column>
+		<spring:message code="rendezvous.announcements.description" var="titleHeader2" />
+		<display:column property="description" title="${titleHeader2}" sortable="false" >
+			<jstl:out value="${row.description}"></jstl:out>
+		</display:column>
+	</display:table>
+	
+<h2><spring:message code="rendezvouse.service.request" /></h2>	
+
+
+		
+	<display:table name="services" id="row" class="displaytag">
+	
+	<%!String estilo;%>
+	<jstl:choose>
+			<jstl:when test="${row.cancelled==false}">
+				<%=estilo = "p1"%>
+
+			</jstl:when>
+
+			<jstl:when test="${row.cancelled==true}">
+
+				<%=estilo = "p2"%>
+			</jstl:when>
+		</jstl:choose>
+		
+		<spring:message code="rendezvous.service.name" var="nameHeader"/>
+		
+		<spring:message code="announcement.format.madeMoment" var="pattern" ></spring:message>
+		<display:column property="name" title="${nameHeader}" sortable="false" format="${pattern}" class="<%= estilo %>">
+			<jstl:out value="${row.name}"></jstl:out>
+		</display:column>
+		<spring:message code="rendezvous.announcements.description" var="titleHeader2" />
+		<display:column property="description" title="${titleHeader2}" sortable="false" class="<%= estilo %>">
+			<jstl:out value="${row.description}"></jstl:out>
+		</display:column>
+		<spring:message code="serviceoffered.picture" var="titleHeader" />
+	<display:column title="${titleHeader}" class="<%= estilo %>">
+		<a href="${row.picture}"><spring:message
+				code="serviceoffered.picture" /></a>
+	</display:column>
+	
+	<spring:message code="cancelled" var="Delete" />
+		<display:column title="${Delete}" class="<%= estilo %>">
+		<jstl:if test="${row.cancelled==true}">
+			<FONT COLOR="yellow">
+			<spring:message code="cancelled.cancelled"/>
+			</FONT><br>
+		</jstl:if>
+		</display:column>
+		
+	</display:table>
+
