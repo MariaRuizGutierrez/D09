@@ -283,8 +283,8 @@ public class AdministratorService {
 		return resultQuery2;
 	}
 
-	//	B1
-	public Double findAvgMNumOfCategoriesPerRendezvous() {
+	//	B1	      
+	public Double findAvgNumOfCategoriesPerRendezvous() {
 		Double result;
 		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
 		return result;
@@ -305,13 +305,13 @@ public class AdministratorService {
 	}
 
 	//	B4
-	public Collection<Rendezvouse> findTop10Services() {
+	public Collection<Rendezvouse> findTop5Services() {
 		Collection<Rendezvouse> result;
 		final Page<Rendezvouse> resPage;
 		final Pageable pageable;
 
 		pageable = new PageRequest(0, 3);
-		resPage = this.administratorRepository.findTop10Services(pageable);
+		resPage = this.administratorRepository.findTop5Services(pageable);
 		result = resPage.getContent();
 		return result;
 	}

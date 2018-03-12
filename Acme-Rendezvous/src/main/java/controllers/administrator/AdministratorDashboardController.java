@@ -11,7 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import controllers.AbstractController;
+import domain.Manager;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 
 @Controller
 @RequestMapping(value = "/administrator")
@@ -41,6 +43,14 @@ public class AdministratorDashboardController extends AbstractController {
 		Double findAvgStddevOfTheNumOfQuestionsPerRendezvous[];
 		Double findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous[];
 		Double findAvgStddevOfTheNumOfRepliesPerComment[];
+		// 2.0
+		Collection<ServiceOffered> bestSellingServices;//
+		Collection<Manager> managerProvidesMoreServicesThanAverage;//
+		Collection<Manager> managersWhohaveMoreServicesCancelled;//
+		Double findAvgNumOfCategoriesPerRendezvous;
+		Double findAvgNumOfServicesPerCategories;
+		Double findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse[];
+		Collection<Rendezvouse> findTop5Services;
 
 		findAvgStddevOfTheNumOfRendezvouseCreatedPerUser = this.administratorService.findAvgStddevOfTheNumOfRendezvouseCreatedPerUser();
 		findRatioUsersWithRendezvousesAndNotRendezvouses = this.administratorService.findRatioUsersWithRendezvousesAndNotRendezvouses();
@@ -52,7 +62,15 @@ public class AdministratorDashboardController extends AbstractController {
 		findRendezvousesWithAreLinked = this.administratorService.findRendezvousesWithAreLinked();
 		findAvgStddevOfTheNumOfQuestionsPerRendezvous = this.administratorService.findAvgStddevOfTheNumOfQuestionsPerRendezvous();
 		findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous = this.administratorService.findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous();
+		// 2.0
 		findAvgStddevOfTheNumOfRepliesPerComment = this.administratorService.findAvgStddevOfTheNumOfRepliesPerComment();
+		bestSellingServices = this.administratorService.bestSellingServices();
+		managerProvidesMoreServicesThanAverage = this.administratorService.managerProvidesMoreServicesThanAverage();
+		managersWhohaveMoreServicesCancelled = this.administratorService.managersWhohaveMoreServicesCancelled();
+		findAvgNumOfCategoriesPerRendezvous = this.administratorService.findAvgNumOfCategoriesPerRendezvous();
+		findAvgNumOfServicesPerCategories = this.administratorService.findAvgNumOfServicesPerCategories();
+		findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse = this.administratorService.findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
+		findTop5Services = this.administratorService.findTop5Services();
 
 		result.addObject("findAvgStddevOfTheNumOfRendezvouseCreatedPerUser", findAvgStddevOfTheNumOfRendezvouseCreatedPerUser);
 		result.addObject("findRatioUsersWithRendezvousesAndNotRendezvouses", findRatioUsersWithRendezvousesAndNotRendezvouses);
@@ -65,6 +83,14 @@ public class AdministratorDashboardController extends AbstractController {
 		result.addObject("findAvgStddevOfTheNumOfQuestionsPerRendezvous", findAvgStddevOfTheNumOfQuestionsPerRendezvous);
 		result.addObject("findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous", findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous);
 		result.addObject("findAvgStddevOfTheNumOfRepliesPerComment", findAvgStddevOfTheNumOfRepliesPerComment);
+		// 2.0
+		result.addObject("bestSellingServices", bestSellingServices);
+		result.addObject("managerProvidesMoreServicesThanAverage", managerProvidesMoreServicesThanAverage);
+		result.addObject("managersWhohaveMoreServicesCancelled", managersWhohaveMoreServicesCancelled);
+		result.addObject("findAvgNumOfCategoriesPerRendezvous", findAvgNumOfCategoriesPerRendezvous);
+		result.addObject("findAvgNumOfServicesPerCategories", findAvgNumOfServicesPerCategories);
+		result.addObject("findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse", findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse);
+		result.addObject("findTop5Services", findTop5Services);
 
 		return result;
 

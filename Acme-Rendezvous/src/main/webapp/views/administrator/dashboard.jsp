@@ -199,3 +199,112 @@
 		</jstl:forEach>
 	</tr>
 </table>
+
+
+<!-- *************** -->
+<!-- RENDEZVOUSE 2.0 -->
+<!-- *************** -->
+
+
+
+<caption class="caption">
+	<spring:message  code="dashboard.bestSellingServices" />
+</caption>
+<display:table name="bestSellingServices" id="row"
+	class="displaytag">
+	<spring:message code="rendezvouse.name" var="nameHeader" />
+	<display:column title="${nameHeader}">
+		<spring:url value="serviceoffered/administrator/display.do" var="idURL">
+			<spring:param name="serviceofferedId" value="${row.id }" />
+		</spring:url>
+		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
+	</display:column>
+</display:table>
+
+
+<caption class="caption">
+	<spring:message  code="dashboard.managerProvidesMoreServicesThanAverage" />
+</caption>
+<display:table name="managerProvidesMoreServicesThanAverage" id="row"
+	class="displaytag">
+	<spring:message code="rendezvouse.name" var="nameHeader" />
+	<display:column title="${nameHeader}">
+		<spring:url value="rendezvous/display.do" var="idURL">
+			<spring:param name="rendezvousId" value="${row.id }" />
+		</spring:url>
+		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
+	</display:column>
+</display:table>
+
+<caption class="caption">
+	<spring:message  code="dashboard.managersWhohaveMoreServicesCancelled" />
+</caption>
+<display:table name="managersWhohaveMoreServicesCancelled" id="row"
+	class="displaytag">
+	<spring:message code="rendezvouse.name" var="nameHeader" />
+	<display:column title="${nameHeader}">
+		<spring:url value="rendezvous/display.do" var="idURL">
+			<spring:param name="rendezvousId" value="${row.id }" />
+		</spring:url>
+		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
+	</display:column>
+</display:table>
+
+
+<table>
+	<caption class="caption">
+		<spring:message
+			code="dashboard.findAvgNumOfCategoriesPerRendezvous" />
+	</caption>
+
+	<tr>
+		<td><jstl:out
+				value="${ findAvgNumOfCategoriesPerRendezvous}"></jstl:out></td>
+	</tr>
+</table>
+
+<table>
+	<caption class="caption">
+		<spring:message
+			code="dashboard.findAvgNumOfServicesPerCategories" />
+	</caption>
+
+	<tr>
+		<td><jstl:out
+				value="${ findAvgNumOfServicesPerCategories}"></jstl:out></td>
+	</tr>
+</table>
+
+<table>
+	<caption class="caption">
+		<spring:message
+			code="dashboard.findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse" />
+	</caption>
+
+	<tr>
+		<th><spring:message code="dashboard.AVG" /></th>
+		<th><spring:message code="dashboard.MIN" /></th>
+		<th><spring:message code="dashboard.MAX" /></th>
+		<th><spring:message code="dashboard.STDDEV" /></th>
+	</tr>
+	<tr>
+		<jstl:forEach var="medidas"
+			items="${findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse }">
+			<td><jstl:out value="${ medidas}"></jstl:out></td>
+		</jstl:forEach>
+	</tr>
+</table>
+
+<caption class="caption">
+	<spring:message  code="dashboard.findTop5Services" />
+</caption>
+<display:table name="findTop5Services" id="row"
+	class="displaytag">
+	<spring:message code="rendezvouse.name" var="nameHeader" />
+	<display:column title="${nameHeader}">
+		<spring:url value="serviceoffered/administrator/display.do" var="idURL">
+			<spring:param name="serviceofferedId" value="${row.id }" />
+		</spring:url>
+		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
+	</display:column>
+</display:table>
