@@ -3,6 +3,7 @@ package controllers.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -46,6 +47,7 @@ public class AnnouncementUserController extends AbstractController {
 		this.userService.checkPrincipal();
 
 		rendezvous = this.rendezvouseService.findOne(rendezvousId);
+
 		announcement = this.announcementService.create(rendezvous);
 
 		result = this.createEditModelAndView(announcement);
@@ -81,6 +83,7 @@ public class AnnouncementUserController extends AbstractController {
 			result = this.createEditModelAndView(announcement);
 		else
 			try {
+
 				this.announcementService.save(announcement);
 				result = new ModelAndView("redirect:list.do?rendezvousId=" + announcement.getRendezvouse().getId());
 			} catch (Throwable oops) {
@@ -145,6 +148,10 @@ public class AnnouncementUserController extends AbstractController {
 
 		Assert.notNull(announcement);
 		ModelAndView result;
+		Date now;
+
+		now = new Date();
+		Assert.isTrue(!announcement.getRendezvouse().getOrganisedMoment().before(now), " Cannot commit this operation");
 		result = this.createEditModelAndView(announcement, null);
 		return result;
 	}

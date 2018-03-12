@@ -19,6 +19,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<jsp:useBean id="util" class="utilities.Methodutilities" scope="page" />
 
 <script type="text/javascript">
 	function confirmDelete(rendezvousId) {
@@ -115,11 +116,13 @@
 		<spring:message code="rendezvous.createAnnouncement"
 			var="createAnnouncement" />
 		<display:column title="${createAnnouncement}" sortable="true">
+		<jstl:if test="${util.organisedMoment(row.organisedMoment)==true}">
 			<spring:url value="announcement/user/create.do" var="editURL">
 				<spring:param name="rendezvousId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message
 					code="rendezvous.createAnnouncement1" /></a>
+		</jstl:if>
 		</display:column>
 	</security:authorize>
 
