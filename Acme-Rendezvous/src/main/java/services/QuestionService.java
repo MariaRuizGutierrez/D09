@@ -71,6 +71,11 @@ public class QuestionService {
 
 	public Question save(final Question question) {
 		Assert.notNull(question);
+		User userConnected;
+
+		userConnected = this.userService.findByPrincipal();
+
+		Assert.isTrue(userConnected.getRendezvousesCreated().contains(question.getRendezvouse()));
 		Question result;
 		result = this.questionRepository.save(question);
 		return result;
@@ -128,6 +133,10 @@ public class QuestionService {
 		}
 		this.validator.validate(result, bindingResult);
 		return result;
+	}
+
+	public void flush() {
+		this.questionRepository.flush();
 	}
 
 }
