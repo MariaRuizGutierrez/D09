@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import repositories.ServiceOfferedRepository;
 import domain.Manager;
 import domain.Rendezvouse;
+import domain.Request;
 import domain.ServiceOffered;
 
 @Service
@@ -27,6 +28,9 @@ public class ServiceOfferedService {
 	private ManagerService				managerService;
 	@Autowired
 	private AdministratorService		administratorService;
+	
+	@Autowired
+	private RequestService				requestService;
 
 
 	// Constructors------------------------------------------------------------
@@ -62,11 +66,36 @@ public class ServiceOfferedService {
 	}
 
 	//Delete
-	public void delete(final ServiceOffered serviceOffered) {
-		//TODO realizar
-		assert serviceOffered != null;
-		assert serviceOffered.getId() != 0;
+	public void delete(ServiceOffered serviceOffered){
+		
+		Assert.notNull(serviceOffered);
+		Assert.isTrue(serviceOffered.getId() != 0);
+		
+		Manager manager;
+		Collection<Request> requests;
+		Collection<Rendezvouse> rendezvouses;
+	
+		
+		manager = this.managerService.findManagerByServiceOffered(serviceOffered.getId());
+		requests = this.requestService.findServiceOfferedOfServiceOfferedId(serviceOffered.getId());
+		rendezvouses = serviceOffered.getRendezvouses();
+		
+		
+		manager.getServicesOffered().remove(serviceOffered);
+		
+		for(Request r: requests){
+			this.requestService.delete(r);
+		
+		}
+		
+		for(Rendezvouse re: rendezvouses){
+			re.getServicesOffered().remove(serviceOffered);
+			
+		}
+
 		this.serviceOfferedRepository.delete(serviceOffered);
+	
+		
 	}
 
 	//Cancel
@@ -111,5 +140,6 @@ public class ServiceOfferedService {
 
 		return result;
 	}
+
 
 }

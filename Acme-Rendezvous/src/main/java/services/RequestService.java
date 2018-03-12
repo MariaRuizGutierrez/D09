@@ -106,6 +106,16 @@ public class RequestService {
 		Assert.isTrue(this.requestRepository.exists(request.getId()));
 		this.requestRepository.delete(request);
 	}
+	
+	public Collection<Request> findServiceOfferedOfServiceOfferedId(int serviceOfferedId){
+		
+		Collection<Request> result;
+		
+		result = this.requestRepository.findServiceOfferedOfServiceOfferedId(serviceOfferedId);
+		
+		return result;
+	}
+	
 	//Other business methods-----------------------------------------------------
 
 	public Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {

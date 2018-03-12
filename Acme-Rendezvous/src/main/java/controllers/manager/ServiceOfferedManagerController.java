@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,11 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
 import services.ManagerService;
-import services.RendezvouseService;
 import services.ServiceOfferedService;
-import services.UserService;
 import controllers.AbstractController;
-import domain.Announcement;
 import domain.Category;
 import domain.ServiceOffered;
 
@@ -32,12 +30,6 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
-
-	@Autowired
-	private RendezvouseService		rendezvouseService;
-
-	@Autowired
-	private UserService				userService;
 	
 	@Autowired
 	private ManagerService			managerService;
@@ -105,6 +97,21 @@ public class ServiceOfferedManagerController extends AbstractController {
 			} catch (Throwable oops) {
 				result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 			}
+		return result;
+	}
+	
+	//Delete---------------------------------------------------------------------
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@ModelAttribute final ServiceOffered serviceOffered, final BindingResult bindingResult) {
+		ModelAndView result;
+
+		try {
+			this.serviceOfferedService.delete(serviceOffered);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
+		}
+
 		return result;
 	}
 	

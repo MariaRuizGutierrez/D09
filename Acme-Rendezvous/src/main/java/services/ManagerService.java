@@ -142,6 +142,18 @@ public class ManagerService {
 		Assert.isTrue(authorities.contains(auth));
 	}
 	
+	
+	public Manager findManagerByServiceOffered(int serviceOfferedId){
+		
+		Manager result;
+		
+		result = this.managerRepository.findManagerByServiceOffered(serviceOfferedId);
+		
+		return result;
+		
+	}
+	
+	
 	public ManagerForm reconstruct(ManagerForm managerForm, BindingResult binding){
 		
 		ManagerForm result = null;
