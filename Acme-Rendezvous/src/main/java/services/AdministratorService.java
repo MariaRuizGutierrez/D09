@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -290,6 +291,19 @@ public class AdministratorService {
 		resPage = this.administratorRepository.findTop10Services(pageable);
 		result = resPage.getContent();
 		return result;
+	}
+
+	//  C3
+	public Collection<Manager> managersWhohaveMoreServicesCancelled() {
+		Collection<Manager> resultQuery2;
+		Collection<Long> resultQuery1;
+		Long maxNumber;
+
+		resultQuery1 = this.administratorRepository.managersWhohaveMoreServicesCancelled1();
+		maxNumber = Collections.max(resultQuery1);
+		resultQuery2 = this.administratorRepository.managersWhohaveMoreServicesCancelled2(maxNumber);
+
+		return resultQuery2;
 	}
 
 	public AdministratorForm reconstruct(final AdministratorForm administratorForm, final BindingResult bindingResult) {

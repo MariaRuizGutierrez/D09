@@ -72,6 +72,11 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Collection<Manager> managerProvidesMoreServicesThanAverage();
 
 	//C/3
+	@Query("select (select count(s) from ServiceOffered s where s.cancelled=true and s member of m.servicesOffered) from Manager m")
+	Collection<Long> managersWhohaveMoreServicesCancelled1();
+
+	@Query("select m from Manager m where (select count(s) from ServiceOffered s where s.cancelled=true and s member of m.servicesOffered)=?1")
+	Collection<Manager> managersWhohaveMoreServicesCancelled2(Long maxNumber);
 
 	//B/1	The average number of categories per rendezvous.
 	@Query("select avg(r.servicesOffered.size) from Rendezvouse r")
