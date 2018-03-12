@@ -107,10 +107,11 @@
 	</display:table>
 	
 	
-	<jstl:if test="${row.servicesOffered.size()>0}">
-<h2><spring:message code="rendezvouse.service.request" /></h2>	
-	<display:table name="services" id="row" class="displaytag">
 	
+<h2><spring:message code="rendezvouse.service.request" /></h2>
+
+	<display:table name="services" id="row" class="displaytag">
+	<jstl:if test="${row.servicesOffered.size()>0}">	
 	<%!String estilo;%>
 	<jstl:choose>
 			<jstl:when test="${row.cancelled==false}">
@@ -148,6 +149,6 @@
 			</FONT><br>
 		</jstl:if>
 		</display:column>
-		
+	</jstl:if>	
 	</display:table>
-</jstl:if>
+
