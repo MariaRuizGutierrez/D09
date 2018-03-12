@@ -784,6 +784,11 @@
 				<ref bean="category1-1" />
 			</list>
 		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered1" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="category1-1" class="domain.Category">
@@ -793,6 +798,12 @@
 		<property name="subCategories">
 			<list>
 				<ref bean="category1-1-1" />
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered2" />
+				<ref bean="serviceOffered3" />
 			</list>
 		</property>
 	</bean>
@@ -805,6 +816,11 @@
 			<list>
 			</list>
 		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered4" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="category1-1-2" class="domain.Category">
@@ -815,6 +831,11 @@
 			<list>
 			</list>
 		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered5" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="category1-2" class="domain.Category">
@@ -822,6 +843,10 @@
 		<property name="description" value="description category 1-2" />
 		<property name="fatherCategory" ref="category1" />
 		<property name="subCategories">
+			<list>
+			</list>
+		</property>
+		<property name="servicesOffered">
 			<list>
 			</list>
 		</property>

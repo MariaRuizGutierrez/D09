@@ -73,12 +73,19 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//C/3
 
-	//B/1
+	//B/1	The average number of categories per rendezvous.
+	@Query("select avg(r.servicesOffered.size) from Rendezvouse r")
+	Double findAvgNumOfCategoriesPerRendezvous();
 
-	//B/2
+	//B/2	The average ratio of services in each category.
+	@Query("select avg(c.servicesOffered.size) from Category c")
+	Double findAvgNumOfServicesPerCategories();
 
-	//B/3
+	//B/3	The average, the minimum, the maximum, 
+	//		and the standard deviation of services requested per rendezvous.
+	//@Query("select avg(r.requests.size) ,min(r.requests.size),max(r.requests.size), stddev(r.requests.size) from Rendezvouse r")
+	//Double[] findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
 
-	//B/4
+	//B/4	The top-selling services.
 
 }

@@ -43,8 +43,9 @@ public class Category extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Category				fatherCategory;
-	private Collection<Category>	subCategories;
+	private Category					fatherCategory;
+	private Collection<Category>		subCategories;
+	private Collection<ServiceOffered>	servicesOffered;
 
 
 	@Valid
@@ -65,6 +66,16 @@ public class Category extends DomainEntity {
 
 	public void setSubCategories(final Collection<Category> subCategories) {
 		this.subCategories = subCategories;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "category")
+	public Collection<ServiceOffered> getServicesOffered() {
+		return this.servicesOffered;
+	}
+
+	public void setServicesOffered(final Collection<ServiceOffered> servicesOffered) {
+		this.servicesOffered = servicesOffered;
 	}
 
 	//Derivated

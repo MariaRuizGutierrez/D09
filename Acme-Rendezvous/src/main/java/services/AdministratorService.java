@@ -260,6 +260,11 @@ public class AdministratorService {
 		return result;
 	}
 
+	public Double findAvgMNumOfCategoriesPerRendezvous() {
+		Double result;
+		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
+		return result;
+	}
 	public AdministratorForm reconstruct(final AdministratorForm administratorForm, final BindingResult bindingResult) {
 		final AdministratorForm result;
 		final Administrator adminBD;
