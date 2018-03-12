@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -18,7 +17,6 @@ import repositories.RequestRepository;
 import domain.CreditCard;
 import domain.Rendezvouse;
 import domain.Request;
-import domain.ServiceOffered;
 import domain.User;
 
 @Service
@@ -27,22 +25,19 @@ public class RequestService {
 
 	// Managed repository -----------------------------------------------------
 	@Autowired
-	private RequestRepository		requestRepository;
+	private RequestRepository	requestRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private ServiceOfferedService	serviceOfferedService;
+	private UserService			userService;
 
 	@Autowired
-	private UserService				userService;
-
-	@Autowired
-	private RendezvouseService		rendezvouseService;
+	private RendezvouseService	rendezvouseService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
-	private Validator				validator;
+	private Validator			validator;
 
 
 	//Constructor------------------------------------------------------------
@@ -55,20 +50,20 @@ public class RequestService {
 	public Request create(Integer rendezvousId) {
 		Request result;
 		User userPrincipal;
-		Collection<ServiceOffered> services;
 		Date moment;
 		Collection<CreditCard> cards;
 
 		moment = new Date();
 		result = new Request();
-		services = new ArrayList<ServiceOffered>();
+
 		result.setRendezvousid(rendezvousId);
 		userPrincipal = this.userService.findByPrincipal();
 		Assert.notNull(userPrincipal);
 		result.setUser(userPrincipal);
 		result.setRequestMoment(moment);
 		cards = this.findAllCreditCardsInDescendOrderByUser(userPrincipal.getId());
-		result.setCreditCard(cards.iterator().next());
+		if (cards.size() > 0)
+			result.setCreditCard(cards.iterator().next());
 
 		return result;
 	}

@@ -64,8 +64,14 @@ public class RequestUserController extends AbstractController {
 		userPrincipal = this.userService.findByPrincipal();
 		Cookie newCookie;
 		cards = this.requestService.findAllCreditCardsInDescendOrderByUser(userPrincipal.getId());
-		creditCard = cards.iterator().next();
-		pasamosaString = String.valueOf(creditCard.getCvv() + creditCard.getBrandName() + creditCard.getExpirationMonth() + creditCard.getExpirationYear() + creditCard.getHolderName() + creditCard.getNumber());
+
+		if (cards.size() > 0) {
+
+			creditCard = cards.iterator().next();
+			pasamosaString = String.valueOf(creditCard.getCvv() + creditCard.getBrandName() + creditCard.getExpirationMonth() + creditCard.getExpirationYear() + creditCard.getHolderName() + creditCard.getNumber());
+		} else
+			pasamosaString = "";
+
 		newCookie = new Cookie("creditcard", pasamosaString);
 		response.addCookie(newCookie);
 
@@ -78,7 +84,6 @@ public class RequestUserController extends AbstractController {
 
 		return result;
 	}
-
 	//Edition--------------------------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(Request request, final BindingResult bindingResult) {
