@@ -48,10 +48,15 @@ public class ServiceOfferedManagerController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView result;
+		Manager manager; 
+		
+		manager = this.managerService.findByPrincipal();
 		Collection<ServiceOffered> serviceoffered;
 		serviceoffered = this.serviceOfferedService.AllServiceNotCancelled();
+		
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", serviceoffered);
+		result.addObject("managerPrincipal", manager);
 		result.addObject("requestURI", "serviceoffered/manager/list.do");
 		return result;
 
@@ -64,20 +69,15 @@ public class ServiceOfferedManagerController extends AbstractController {
 		ModelAndView result;
 		Collection<ServiceOffered> servicesOffered;
 		Manager manager; 
-		Manager managerService = null;
+		
 		
 		manager = this.managerService.findByPrincipal();
 		servicesOffered = manager.getServicesOffered();
-		
-		for(ServiceOffered s: servicesOffered){
-			managerService = this.managerService.findManagerByServiceOffered(s.getId());
-		}
 		
 		
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", servicesOffered);
 		result.addObject("managerPrincipal", manager);
-		result.addObject("manager", managerService);
 		result.addObject("requestURI", "serviceoffered/manager/listAll.do");
 		return result;
 
@@ -109,6 +109,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		manager = this.managerService.findManagerByServiceOffered(serviceOfferedId);
 		
 		Assert.isTrue(manager.equals(managerPrincipal));
+		Assert.isTrue(serviceOffered.getRendezvouses().isEmpty());
 		Assert.notNull(serviceOffered);
 		result = this.createEditModelAndView(serviceOffered);
 		return result;

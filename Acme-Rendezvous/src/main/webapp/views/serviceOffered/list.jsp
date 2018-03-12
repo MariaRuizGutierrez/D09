@@ -20,6 +20,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
@@ -54,12 +55,15 @@
 		<spring:message code="serviceOffered.edit" var="Edit" />
 		
 		<display:column title="${Edit}" sortable="true" class="<%= estilo %>">
+		
 		<jstl:if test="${fn:contains(managerPrincipal.servicesOffered, row)}">
-			
+		<jstl:if test="${row.rendezvouses.size()==0}">
 			<spring:url value="serviceoffered/manager/edit.do" var="editURL">
 				<spring:param name="serviceOfferedId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
+		
+		</jstl:if>
 		</jstl:if>
 		</display:column>
 	</security:authorize>

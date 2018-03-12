@@ -60,7 +60,9 @@ public class ServiceOfferedService {
 		principal = this.managerService.findByPrincipal();
 		result = new ServiceOffered();
 		result = this.serviceOfferedRepository.save(serviceoffered);
-		principal.getServicesOffered().add(result);
+		
+		if(serviceoffered.getId()==0)
+			principal.getServicesOffered().add(result);
 		Assert.notNull(result);
 		return result;
 	}
