@@ -2,6 +2,7 @@
 package controllers.user;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -123,7 +124,13 @@ public class RequestUserController extends AbstractController {
 		Assert.notNull(request);
 		ModelAndView result;
 		Collection<ServiceOffered> serviceOffered;
+		Rendezvouse ren;
+		Date now;
+
+		now = new Date();
+		ren = this.rendezvouseService.findOne(request.getRendezvousid());
 		serviceOffered = this.serviceOfferedService.AllServiceNotCancelledAveibleForRendezvouse(request.getRendezvousid());
+		Assert.isTrue(!ren.getOrganisedMoment().before(now), "Cannot commit this operation");
 		result = new ModelAndView("request/edit");
 		result.addObject("request", request);
 		result.addObject("message", message);

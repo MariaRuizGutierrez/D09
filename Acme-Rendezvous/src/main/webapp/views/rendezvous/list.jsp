@@ -7,7 +7,6 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
-
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -259,7 +258,7 @@
 		<spring:message code="rendezvouse.service.request" var="service" />
 		
 		<display:column title="${service}" sortable="true">
-		<jstl:if test="${row.draftMode==false}">
+		<jstl:if test="${row.draftMode==false and util.organisedMoment(row.organisedMoment)==true}">
 			<spring:url value="request/user/edit.do"
 				var="request">
 				<spring:param name="rendezvouseId" value="${row.id}" />
