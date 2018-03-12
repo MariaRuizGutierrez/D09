@@ -3,7 +3,6 @@ package forms;
 import javax.validation.Valid;
 
 import domain.Manager;
-import domain.User;
 
 
 public class ManagerForm {
