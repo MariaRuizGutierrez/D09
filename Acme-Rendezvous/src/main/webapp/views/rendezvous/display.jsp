@@ -91,27 +91,13 @@
 	
 	
 </display:table>
-
-
-<h2><spring:message code="rendezvous.announcement" /></h2>	
-	<display:table name="announcements" id="row" class="displaytag">
-		<spring:message code="rendezvous.announcements.madeMoment" var="madeMomentHeader"/>
-		<spring:message code="announcement.format.madeMoment" var="pattern"></spring:message>
-		<display:column property="madeMoment" title="${madeMomentHeader}" sortable="false" format="${pattern}" >
-			<jstl:out value="${row.madeMoment}"></jstl:out>
-		</display:column>
-		<spring:message code="rendezvous.announcements.description" var="titleHeader2" />
-		<display:column property="description" title="${titleHeader2}" sortable="false" >
-			<jstl:out value="${row.description}"></jstl:out>
-		</display:column>
-	</display:table>
-	
-	
-	
 <h2><spring:message code="rendezvouse.service.request" /></h2>
-
+<jstl:if test="${row.servicesOffered.size()==0}">
+	<spring:message code="nothing.found.to.display" />
+	</jstl:if>
+<jstl:if test="${row.servicesOffered.size()>0}">
 	<display:table name="services" id="row" class="displaytag">
-	<jstl:if test="${row.servicesOffered.size()>0}">	
+	 
 	<%!String estilo;%>
 	<jstl:choose>
 			<jstl:when test="${row.cancelled==false}">
@@ -149,6 +135,26 @@
 			</FONT><br>
 		</jstl:if>
 		</display:column>
-	</jstl:if>	
+		</display:table>
+	</jstl:if>
+	
+
+<h2><spring:message code="rendezvous.announcement" /></h2>	
+	<display:table name="announcements" id="row" class="displaytag">
+		<spring:message code="rendezvous.announcements.madeMoment" var="madeMomentHeader"/>
+		<spring:message code="announcement.format.madeMoment" var="pattern"></spring:message>
+		<display:column property="madeMoment" title="${madeMomentHeader}" sortable="false" format="${pattern}" >
+			<jstl:out value="${row.madeMoment}"></jstl:out>
+		</display:column>
+		<spring:message code="rendezvous.announcements.description" var="titleHeader2" />
+		<display:column property="description" title="${titleHeader2}" sortable="false" >
+			<jstl:out value="${row.description}"></jstl:out>
+		</display:column>
 	</display:table>
+	
+
+	 
+	
+
+	
 
