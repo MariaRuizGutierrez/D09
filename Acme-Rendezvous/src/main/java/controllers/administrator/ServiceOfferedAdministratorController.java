@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ServiceOfferedService;
@@ -56,6 +57,17 @@ public class ServiceOfferedAdministratorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int serviceOfferedId) {
+		ModelAndView result;
+		ServiceOffered serviceOffered;
+
+		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
+		result = new ModelAndView("serviceoffered/display");
+		result.addObject("serviceOffered", serviceOffered);
+
+		return result;
+	}
 	protected ModelAndView listWithMessage(final String message) {
 		final ModelAndView result;
 		Collection<ServiceOffered> servicesOffered;

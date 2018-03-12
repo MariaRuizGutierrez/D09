@@ -215,7 +215,7 @@
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
 		<spring:url value="serviceoffered/administrator/display.do" var="idURL">
-			<spring:param name="serviceofferedId" value="${row.id }" />
+			<spring:param name="serviceOfferedId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
 	</display:column>

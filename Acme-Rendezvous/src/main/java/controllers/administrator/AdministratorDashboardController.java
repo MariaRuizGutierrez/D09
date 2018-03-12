@@ -44,9 +44,9 @@ public class AdministratorDashboardController extends AbstractController {
 		Double findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous[];
 		Double findAvgStddevOfTheNumOfRepliesPerComment[];
 		// 2.0
-		Collection<ServiceOffered> bestSellingServices;//
-		Collection<Manager> managerProvidesMoreServicesThanAverage;//
-		Collection<Manager> managersWhohaveMoreServicesCancelled;//
+		Collection<ServiceOffered> bestSellingServices;
+		Collection<Manager> managerProvidesMoreServicesThanAverage;
+		Collection<Manager> managersWhohaveMoreServicesCancelled;
 		Double findAvgNumOfCategoriesPerRendezvous;
 		Double findAvgNumOfServicesPerCategories;
 		Double findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse[];
