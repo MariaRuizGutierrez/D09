@@ -124,6 +124,21 @@ public class RendezvousController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/category/list", method = RequestMethod.GET)
+	public ModelAndView listCategory(@RequestParam final int categoryId) {
+
+		ModelAndView result;
+		Collection<Rendezvouse> rendezvouses;
+
+		rendezvouses = this.rendezvouseService.findRendezvousByCategory(categoryId);
+
+		result = new ModelAndView("rendezvous/list");
+		result.addObject("rendezvous", rendezvouses);
+		result.addObject("requestURI", "rendezvous/list.do");
+
+		return result;
+	}
+
 	// Display ----------------------------------------------------------------
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)

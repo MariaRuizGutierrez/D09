@@ -83,11 +83,14 @@ public class RequestService {
 	public Request save(final Request request) {
 		Assert.notNull(request);
 		Rendezvouse rendezvous;
+		User user;
 		Request result;
 		result = new Request();
 		Date moment;
-
+		user = this.userService.findByPrincipal();
 		rendezvous = this.rendezvouseService.findOne(request.getRendezvousid());
+		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");
+
 		moment = new Date(System.currentTimeMillis() - 1000);
 		request.setRequestMoment(moment);
 		rendezvous.getServicesOffered().add(request.getServiceOffered());

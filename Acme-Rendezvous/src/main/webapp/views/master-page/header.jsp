@@ -97,8 +97,8 @@
 					<li><a href="configurationSystem/administrator/edit.do"><spring:message
 								code="master.page.configurationSystem.edit" /></a>
 				</ul></li>
-
-
+				
+			
 		</security:authorize>
 
 		<security:authorize access="hasRole('USER')">
@@ -206,6 +206,15 @@
 			<li><a class="fNiv"
 				href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
 						code="master.page.rendezvouss.list" /></a></li>
+						
+							<li><a class="fNiv"><spring:message
+						code="category.list.rendezvous" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="category/list.do"><spring:message
+								code="category.list.rendezvous" /></a>
+				</ul></li>
+						
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">

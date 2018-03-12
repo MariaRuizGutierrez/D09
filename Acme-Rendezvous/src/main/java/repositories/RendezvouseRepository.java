@@ -62,4 +62,8 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 
 	@Query("select r.servicesOffered from Rendezvouse r where r.id=?1")
 	Collection<ServiceOffered> findAllServicesByRendezvous(int rendezvousId);
+
+	//rendezvous que su servicios tiene la categoria pasada
+	@Query("select r from Rendezvouse r join r.servicesOffered s join s.category c where c.id=?1")
+	Collection<Rendezvouse> findRendezvousByCategory(int categoryId);
 }

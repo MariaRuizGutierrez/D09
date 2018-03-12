@@ -392,4 +392,10 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findRendezvousByCategory(int categoryId) {
+		Collection<Rendezvouse> res;
+		res = this.rendezvousRepository.findRendezvousByCategory(categoryId);
+		return res;
+	}
+
 }
