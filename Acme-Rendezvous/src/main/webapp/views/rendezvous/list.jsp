@@ -69,6 +69,7 @@
 	<display:column property="organisedMoment" title="${titleHeader}"
 		sortable="true" format="${pattern}" />
 
+	
 	<spring:message code="rendezvouse.picture" var="titleHeader" />
 	<display:column title="${titleHeader}">
 		<a href="${row.picture}"><spring:message
@@ -249,14 +250,18 @@
 		
 		
 		<spring:message code="rendezvouse.service.request" var="service" />
+		
 		<display:column title="${service}" sortable="true">
+		<jstl:if test="${row.draftMode==false}">
 			<spring:url value="request/user/edit.do"
 				var="request">
 				<spring:param name="rendezvouseId" value="${row.id}" />
 			</spring:url>
 						<a href="${request}"><spring:message
 					code="rendezvouse.request" /></a>
+						</jstl:if>
 		</display:column>
+	
 	</security:authorize>
 	
 	
