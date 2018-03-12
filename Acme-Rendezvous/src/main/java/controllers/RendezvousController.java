@@ -134,7 +134,7 @@ public class RendezvousController extends AbstractController {
 
 		result = new ModelAndView("rendezvous/list");
 		result.addObject("rendezvous", rendezvouses);
-		result.addObject("requestURI", "rendezvous/list.do");
+		result.addObject("requestURI", "rendezvous/category/list.do");
 
 		return result;
 	}
