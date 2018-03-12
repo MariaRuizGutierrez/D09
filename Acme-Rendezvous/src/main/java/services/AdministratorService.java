@@ -265,6 +265,33 @@ public class AdministratorService {
 		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
 		return result;
 	}
+
+	//B2
+	public Double findAvgNumOfServicesPerCategories() {
+		Double result;
+		result = this.administratorRepository.findAvgNumOfServicesPerCategories();
+		return result;
+	}
+
+	// B3
+	public Double[] findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse() {
+		Double[] result;
+		result = this.administratorRepository.findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
+		return result;
+	}
+
+	//	B4
+	public Collection<Rendezvouse> findTop10Services() {
+		Collection<Rendezvouse> result;
+		final Page<Rendezvouse> resPage;
+		final Pageable pageable;
+
+		pageable = new PageRequest(0, 3);
+		resPage = this.administratorRepository.findTop10Services(pageable);
+		result = resPage.getContent();
+		return result;
+	}
+
 	public AdministratorForm reconstruct(final AdministratorForm administratorForm, final BindingResult bindingResult) {
 		final AdministratorForm result;
 		final Administrator adminBD;

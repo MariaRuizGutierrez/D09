@@ -83,9 +83,10 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//B/3	The average, the minimum, the maximum, 
 	//		and the standard deviation of services requested per rendezvous.
-	//@Query("select avg(r.requests.size) ,min(r.requests.size),max(r.requests.size), stddev(r.requests.size) from Rendezvouse r")
-	//Double[] findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
+	@Query("select avg(r.servicesOffered.size) ,min(r.servicesOffered.size),max(r.servicesOffered.size), stddev(r.servicesOffered.size) from Rendezvouse r")
+	Double[] findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
 
 	//B/4	The top-selling services.
-
+	@Query("select s from ServiceOffered s where s.rendezvouses.size!=0 order by s.rendezvouses.size desc")
+	Page<Rendezvouse> findTop10Services(Pageable pageable);
 }
