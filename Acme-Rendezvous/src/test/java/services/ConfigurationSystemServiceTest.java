@@ -33,7 +33,9 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 			{
 				//Se edita el configurationSystem por un admin
 				"admin", "name1", "https://tinyurl.com/adventure-meetup", "hello", "hola", null
-
+			}, {
+				//Se crea un Announcement para un User que no le pertenece ese Rendezvous (Hacking get)
+				"admin", "", "https://tinyurl.com/adventure-meetup", "hola", "hola", javax.validation.ConstraintViolationException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -47,10 +49,10 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 		try {
 			super.authenticate(username);
 			configurationSystem = this.configurationSystemService.findOne();
-			configurationSystem.setEnglishWelcomeMessage("whatsuppppp");
-			configurationSystem.setSpanishWelcomeMessage("Hola amigos!");
-			configurationSystem.setName("Adventure times");
-			configurationSystem.setBanner("https://tinyurl.com/adventure-meetup");
+			configurationSystem.setEnglishWelcomeMessage(englishWelcomeMessage);
+			configurationSystem.setSpanishWelcomeMessage(spanishWelcomeMessage);
+			configurationSystem.setName(name);
+			configurationSystem.setBanner(banner);
 			configurationSystem = this.configurationSystemService.save(configurationSystem);
 			this.unauthenticate();
 			this.configurationSystemService.flush();
