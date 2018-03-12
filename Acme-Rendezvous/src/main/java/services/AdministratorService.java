@@ -22,6 +22,7 @@ import security.UserAccount;
 import domain.Administrator;
 import domain.Manager;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 import forms.AdministratorForm;
 
 @Service
@@ -255,19 +256,41 @@ public class AdministratorService {
 		return standardDeviation;
 	}
 
+	//	C1
+	public Collection<ServiceOffered> bestSellingServices() {
+		Collection<ServiceOffered> result;
+		result = this.administratorRepository.bestSellingServices();
+		return result;
+	}
+
+	//	C2
 	public Collection<Manager> managerProvidesMoreServicesThanAverage() {
 		Collection<Manager> result;
 		result = this.administratorRepository.managerProvidesMoreServicesThanAverage();
 		return result;
 	}
 
+	//  C3
+	public Collection<Manager> managersWhohaveMoreServicesCancelled() {
+		Collection<Manager> resultQuery2;
+		Collection<Long> resultQuery1;
+		Long maxNumber;
+
+		resultQuery1 = this.administratorRepository.managersWhohaveMoreServicesCancelled1();
+		maxNumber = Collections.max(resultQuery1);
+		resultQuery2 = this.administratorRepository.managersWhohaveMoreServicesCancelled2(maxNumber);
+
+		return resultQuery2;
+	}
+
+	//	B1
 	public Double findAvgMNumOfCategoriesPerRendezvous() {
 		Double result;
 		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
 		return result;
 	}
 
-	//B2
+	//	B2
 	public Double findAvgNumOfServicesPerCategories() {
 		Double result;
 		result = this.administratorRepository.findAvgNumOfServicesPerCategories();
@@ -291,19 +314,6 @@ public class AdministratorService {
 		resPage = this.administratorRepository.findTop10Services(pageable);
 		result = resPage.getContent();
 		return result;
-	}
-
-	//  C3
-	public Collection<Manager> managersWhohaveMoreServicesCancelled() {
-		Collection<Manager> resultQuery2;
-		Collection<Long> resultQuery1;
-		Long maxNumber;
-
-		resultQuery1 = this.administratorRepository.managersWhohaveMoreServicesCancelled1();
-		maxNumber = Collections.max(resultQuery1);
-		resultQuery2 = this.administratorRepository.managersWhohaveMoreServicesCancelled2(maxNumber);
-
-		return resultQuery2;
 	}
 
 	public AdministratorForm reconstruct(final AdministratorForm administratorForm, final BindingResult bindingResult) {

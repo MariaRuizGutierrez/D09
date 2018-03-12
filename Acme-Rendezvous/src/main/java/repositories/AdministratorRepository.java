@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import domain.Administrator;
 import domain.Manager;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer> {
@@ -66,6 +67,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	// RENDEZVOUS 2.0 ------------------------------------------------------------------------------------------------------------------
 
 	//C/1
+	@Query("select s from ServiceOffered s where s.rendezvouses.size=(select max(s.rendezvouses.size) from ServiceOffered s)")
+	Collection<ServiceOffered> bestSellingServices();
 
 	//C/2
 	@Query("select m from Manager m where m.servicesOffered.size> (select (select count(s.servicesOffered.size) from Manager s)/count(m) from Manager m)")
