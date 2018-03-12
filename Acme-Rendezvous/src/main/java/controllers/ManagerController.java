@@ -1,3 +1,4 @@
+
 package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,113 +8,129 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ManagerService;
 import domain.Manager;
 import forms.ManagerForm;
 
-
 @Controller
 @RequestMapping("/manager")
-public class ManagerController extends AbstractController{
-	
+public class ManagerController extends AbstractController {
+
 	// Services---------------------------------------------------------
 
-		@Autowired
-		private ManagerService	managerService;
+	@Autowired
+	private ManagerService	managerService;
 
 
-		//Constructor--------------------------------------------------------
+	//Constructor--------------------------------------------------------
 
-		public ManagerController() {
-			super();
-		}
-		
-		//Create----------------------
-		@RequestMapping(value = "/create", method = RequestMethod.GET)
-		public ModelAndView createManager() {
-			ModelAndView result;
-			Manager manager;
+	public ManagerController() {
+		super();
+	}
 
-			manager = this.managerService.create();
+	//Create----------------------
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView createManager() {
+		ModelAndView result;
+		Manager manager;
 
-			ManagerForm cf;
-			cf = new ManagerForm(manager);
+		manager = this.managerService.create();
 
-			result = new ModelAndView("manager/edit");
-			result.addObject("managerForm", cf);
+		ManagerForm cf;
+		cf = new ManagerForm(manager);
 
-			return result;
-		}
-		
-		//Edition------------------------------------------------------------
+		result = new ModelAndView("manager/edit");
+		result.addObject("managerForm", cf);
 
-		@RequestMapping(value = "/edit", method = RequestMethod.GET)
-		public ModelAndView edit() {
-			ModelAndView result;
-			Manager manager;
+		return result;
+	}
 
-			manager = this.managerService.findByPrincipal();
-			ManagerForm managerForm;
-			managerForm = new ManagerForm(manager);
-			result = new ModelAndView("manager/edit");
-			result.addObject("managerForm", managerForm);
+	//Displaying----------------------
 
-			return result;
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int managerId) {
 
-		}
-		
-		
-		@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-		public ModelAndView saveManager(@ModelAttribute("managerForm") ManagerForm managerForm, final BindingResult binding) {
-			ModelAndView result;
+		ModelAndView result;
+		final Manager manager;
 
-			managerForm = this.managerService.reconstruct(managerForm, binding);
+		manager = this.managerService.findOne(managerId);
 
-			if (binding.hasErrors())
-				result = this.createEditModelAndView(managerForm);
-			else
-				try {
-					if ((managerForm.getManager().getId() == 0)) {
-						Assert.isTrue(managerForm.getManager().getUserAccount().getPassword().equals(managerForm.getPasswordCheck()), "password does not match");
-						Assert.isTrue(managerForm.getConditions(), "the conditions must be accepted");
-					}
-					this.managerService.save(managerForm.getManager());
-					result = new ModelAndView("redirect:/welcome/index.do");
-				} catch (final Throwable oops) {
-					if (oops.getMessage().equals("password does not match"))
-						result = this.createEditModelAndView(managerForm, "manager.password.match");
-					else if (oops.getMessage().equals("the conditions must be accepted"))
-						result = this.createEditModelAndView(managerForm, "actor.conditions.accept");
-					else if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
-						result = this.createEditModelAndView(managerForm, "manager.commit.error.duplicateProfile");
-					else
-						result = this.createEditModelAndView(managerForm, "manager.commit.error");
+		result = new ModelAndView("manager/display");
+		result.addObject("manager", manager);
+		result.addObject("requestURI", "manager/display.do");
+
+		return result;
+	}
+
+	//Edition------------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		Manager manager;
+
+		manager = this.managerService.findByPrincipal();
+		ManagerForm managerForm;
+		managerForm = new ManagerForm(manager);
+		result = new ModelAndView("manager/edit");
+		result.addObject("managerForm", managerForm);
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveManager(@ModelAttribute("managerForm") ManagerForm managerForm, final BindingResult binding) {
+		ModelAndView result;
+
+		managerForm = this.managerService.reconstruct(managerForm, binding);
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(managerForm);
+		else
+			try {
+				if ((managerForm.getManager().getId() == 0)) {
+					Assert.isTrue(managerForm.getManager().getUserAccount().getPassword().equals(managerForm.getPasswordCheck()), "password does not match");
+					Assert.isTrue(managerForm.getConditions(), "the conditions must be accepted");
 				}
+				this.managerService.save(managerForm.getManager());
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (final Throwable oops) {
+				if (oops.getMessage().equals("password does not match"))
+					result = this.createEditModelAndView(managerForm, "manager.password.match");
+				else if (oops.getMessage().equals("the conditions must be accepted"))
+					result = this.createEditModelAndView(managerForm, "actor.conditions.accept");
+				else if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
+					result = this.createEditModelAndView(managerForm, "manager.commit.error.duplicateProfile");
+				else
+					result = this.createEditModelAndView(managerForm, "manager.commit.error");
+			}
 
-			return result;
-		}
-		// Ancillary methods ------------------------------------------------------
+		return result;
+	}
+	// Ancillary methods ------------------------------------------------------
 
-		protected ModelAndView createEditModelAndView(final ManagerForm managerForm) {
+	protected ModelAndView createEditModelAndView(final ManagerForm managerForm) {
 
-			ModelAndView result;
-			result = this.createEditModelAndView(managerForm, null);
-			return result;
-		}
+		ModelAndView result;
+		result = this.createEditModelAndView(managerForm, null);
+		return result;
+	}
 
-		protected ModelAndView createEditModelAndView(final ManagerForm managerForm, final String message) {
+	protected ModelAndView createEditModelAndView(final ManagerForm managerForm, final String message) {
 
-			ModelAndView result;
+		ModelAndView result;
 
-			result = new ModelAndView("manager/edit");
-			result.addObject("manager", managerForm);
-			result.addObject("message", message);
-			result.addObject("RequestURI", "manager/edit.do");
+		result = new ModelAndView("manager/edit");
+		result.addObject("manager", managerForm);
+		result.addObject("message", message);
+		result.addObject("RequestURI", "manager/edit.do");
 
-			return result;
+		return result;
 
-		}
+	}
 
 }

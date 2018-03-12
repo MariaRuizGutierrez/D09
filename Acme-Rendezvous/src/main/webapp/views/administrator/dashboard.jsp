@@ -229,8 +229,8 @@
 	class="displaytag">
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="rendezvous/display.do" var="idURL">
-			<spring:param name="rendezvousId" value="${row.id }" />
+		<spring:url value="manager/display.do" var="idURL">
+			<spring:param name="managerId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
 	</display:column>
@@ -243,8 +243,8 @@
 	class="displaytag">
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="rendezvous/display.do" var="idURL">
-			<spring:param name="rendezvousId" value="${row.id }" />
+		<spring:url value="manager/display.do" var="idURL">
+			<spring:param name="managerId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
 	</display:column>
@@ -303,7 +303,7 @@
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
 		<spring:url value="serviceoffered/administrator/display.do" var="idURL">
-			<spring:param name="serviceofferedId" value="${row.id }" />
+			<spring:param name="serviceOfferedId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
 	</display:column>
