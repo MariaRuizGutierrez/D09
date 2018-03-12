@@ -20,6 +20,7 @@ import services.ManagerService;
 import services.ServiceOfferedService;
 import controllers.AbstractController;
 import domain.Category;
+import domain.Manager;
 import domain.ServiceOffered;
 
 @Controller
@@ -52,6 +53,26 @@ public class ServiceOfferedManagerController extends AbstractController {
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", serviceoffered);
 		result.addObject("requestURI", "serviceoffered/manager/list.do");
+		return result;
+
+	}
+	
+	//Listing all ------------------------------------------------------------
+	
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+		ModelAndView result;
+		Collection<ServiceOffered> servicesOffered;
+		Manager manager; 
+		
+		manager = this.managerService.findByPrincipal();
+		servicesOffered = manager.getServicesOffered();
+		
+		
+		
+		result = new ModelAndView("serviceoffered/list");
+		result.addObject("serviceoffered", servicesOffered);
+		result.addObject("requestURI", "serviceoffered/manager/listAll.do");
 		return result;
 
 	}
