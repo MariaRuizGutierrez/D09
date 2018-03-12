@@ -34,8 +34,17 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 				//Se edita el configurationSystem por un admin
 				"admin", "name1", "https://tinyurl.com/adventure-meetup", "hello", "hola", null
 			}, {
-				//Se crea un Announcement para un User que no le pertenece ese Rendezvous (Hacking get)
-				"admin", "", "https://tinyurl.com/adventure-meetup", "hola", "hola", javax.validation.ConstraintViolationException.class
+				//Se crea el configurationSystem con un nombre vacío
+				"admin", "", "https://tinyurl.com/adventure-meetup", "hello", "hola", javax.validation.ConstraintViolationException.class
+			}, {
+				//Se crea el configurationSystem con un banner que no está en forma URL
+				"admin", "name1", "hola", "hello", "hola", javax.validation.ConstraintViolationException.class
+			}, {
+				//Se crea el configuration para un usuario que no le pertenece editar el configurationSystem (Hacking get)
+				"user1", "name1", "https://tinyurl.com/adventure-meetup", "hello", "hola", javax.validation.ConstraintViolationException.class
+			}, {
+				//Se crea el configuration con los dos mensajes vacíos
+				"user1", "name1", "https://tinyurl.com/adventure-meetup", "", "", javax.validation.ConstraintViolationException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
