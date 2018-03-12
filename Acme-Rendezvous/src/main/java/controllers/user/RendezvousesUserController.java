@@ -2,6 +2,7 @@
 package controllers.user;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -239,11 +240,14 @@ public class RendezvousesUserController extends AbstractController {
 		ModelAndView result;
 		Rendezvouse rendezvouse;
 		User user;
+		Date now;
 
+		now = new Date();
 		user = this.userService.findByPrincipal();
 		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvouse), "Cannot commit this operation, because it's illegal");
 		Assert.notNull(rendezvouse);
+		Assert.isTrue(!rendezvouse.getOrganisedMoment().before(now), "Cannot commit this operation because it's illegal");
 		result = this.createEditSimilarModelAndView(rendezvouse);
 		return result;
 	}
@@ -253,11 +257,14 @@ public class RendezvousesUserController extends AbstractController {
 		ModelAndView result;
 		Rendezvouse rendezvouse;
 		User user;
+		Date now;
 
+		now = new Date();
 		user = this.userService.findByPrincipal();
 		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvouse), "Cannot commit this operation, because it's illegal");
 		Assert.notNull(rendezvouse);
+		Assert.isTrue(!rendezvouse.getOrganisedMoment().before(now), "Cannot commit this operation because it's illegal");
 		result = this.createEditNotSimilarModelAndView(rendezvouse);
 		return result;
 	}

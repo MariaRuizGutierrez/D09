@@ -232,22 +232,26 @@
 	<security:authorize access="hasRole('USER')">
 		<spring:message code="rendezvouse.linkSimilar" var="linkSimilar" />
 		<display:column title="${linkSimilar}" sortable="true">
+		<jstl:if test="${util.organisedMoment(row.organisedMoment)==true}">
 			<spring:url value="rendezvous/user/editNotSimilar.do"
 				var="editSimilarURL">
 				<spring:param name="rendezvouseId" value="${row.id}" />
 			</spring:url>
 			<a href="${editSimilarURL}"><spring:message
 					code="rendezvouse.link" /></a>
+		</jstl:if>
 		</display:column>
 		
 		<spring:message code="rendezvouse.unlinkSimilar" var="unlinkSimilar" />
 		<display:column title="${unlinkSimilar}" sortable="true">
+		<jstl:if test="${util.organisedMoment(row.organisedMoment)==true}">
 			<spring:url value="rendezvous/user/editSimilar.do"
 				var="editSimilarURL">
 				<spring:param name="rendezvouseId" value="${row.id}" />
 			</spring:url>
 			<a href="${editSimilarURL}"><spring:message
 					code="rendezvouse.unlink" /></a>
+		</jstl:if>
 		</display:column>
 		
 		
