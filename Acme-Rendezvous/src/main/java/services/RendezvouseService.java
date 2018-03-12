@@ -105,7 +105,7 @@ public class RendezvouseService {
 
 		Assert.isTrue(rendezvouse.getOrganisedMoment().after(now), "future");
 		if (rendezvouse.isForAdult() == true)
-			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 18, "jaja");
+			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 17, "jaja");
 
 		result = this.rendezvousRepository.save(rendezvouse);
 		if (rendezvouse.getId() == 0)
@@ -303,7 +303,10 @@ public class RendezvouseService {
 		Rendezvouse rendezvous;
 		rendezvous = this.rendezvousRepository.findOne(rendezvousId);
 		usuario = this.userService.findByPrincipal();
-		Assert.isTrue(this.calculateYearsOld(usuario.getBirthDate()) > 17);
+
+		if (rendezvous.isForAdult() == true)
+			Assert.isTrue(this.calculateYearsOld(usuario.getBirthDate()) > 17);
+
 		if (!rendezvous.getAssistants().contains(usuario))
 			rendezvous.getAssistants().add(usuario);
 		this.rendezvousRepository.save(rendezvous);
