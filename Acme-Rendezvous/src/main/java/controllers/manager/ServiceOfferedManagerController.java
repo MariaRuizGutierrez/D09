@@ -64,14 +64,20 @@ public class ServiceOfferedManagerController extends AbstractController {
 		ModelAndView result;
 		Collection<ServiceOffered> servicesOffered;
 		Manager manager; 
+		Manager managerService = null;
 		
 		manager = this.managerService.findByPrincipal();
 		servicesOffered = manager.getServicesOffered();
 		
+		for(ServiceOffered s: servicesOffered){
+			managerService = this.managerService.findManagerByServiceOffered(s.getId());
+		}
 		
 		
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", servicesOffered);
+		result.addObject("managerPrincipal", manager);
+		result.addObject("manager", managerService);
 		result.addObject("requestURI", "serviceoffered/manager/listAll.do");
 		return result;
 
@@ -95,9 +101,14 @@ public class ServiceOfferedManagerController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int serviceOfferedId) {
 		ModelAndView result;
 		ServiceOffered serviceOffered;
+		Manager managerPrincipal;
+		Manager manager;
 
 		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
-
+		managerPrincipal = this.managerService.findByPrincipal();
+		manager = this.managerService.findManagerByServiceOffered(serviceOfferedId);
+		
+		Assert.isTrue(manager.equals(managerPrincipal));
 		Assert.notNull(serviceOffered);
 		result = this.createEditModelAndView(serviceOffered);
 		return result;

@@ -19,6 +19,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
@@ -51,14 +52,15 @@
 		
 	<security:authorize access="hasRole('MANAGER')">
 		<spring:message code="serviceOffered.edit" var="Edit" />
-
+		
 		<display:column title="${Edit}" sortable="true" class="<%= estilo %>">
+		<jstl:if test="${fn:contains(managerPrincipal.servicesOffered, row)}">
 			
 			<spring:url value="serviceoffered/manager/edit.do" var="editURL">
 				<spring:param name="serviceOfferedId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
-			
+		</jstl:if>
 		</display:column>
 	</security:authorize>
 		
