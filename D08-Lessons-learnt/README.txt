@@ -1,4 +1,4 @@
-Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proyecto Acme Rendezvous.
+﻿Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proyecto Acme Rendezvous.
 
 1. Una vez que una pregunta tiene una respuesta ésta ya no se puede editar, ya que no tendría sentido poder modificarla si un usuario ya ha contestado a ella. 
 
@@ -10,4 +10,6 @@ Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proye
 
 5. Los términos y condiciones de uso las sacamos de internet ya que no somos expertos en este ámbito, lo único que añadimos por nuestra cuenta fue las cookies que usa el sistema.
 
-Estas decisiones se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, nos ha dado el visto bueno.
+6. El requisito número 18, lo hemos interpretado como que solo los user's que van a asistir a la rendezvous podrán contestar las respuestas a las preguntas de esa rendezvous cuando ellos vean oportuno responderlas(no responder obligatoriamente).
+
+Las decisiones de la 1 a la 5 se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, nos ha dado el visto bueno.
