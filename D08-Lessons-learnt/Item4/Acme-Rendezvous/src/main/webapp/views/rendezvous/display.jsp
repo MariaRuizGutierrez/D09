@@ -29,7 +29,11 @@
 
 
 
-
+	<jstl:if test="${row.picture==''}">
+	<spring:message code="nothing.found.to.display" />
+	</jstl:if> 
+	
+	<jstl:if test="${!(row.picture=='') }">
 	<spring:message code="rendezvouse.picture" var="titleHeader" />
 	<display:column title="${titleHeader}">
 
@@ -39,6 +43,7 @@
 			<img src="${row.picture}" width="500" height="300">
 		</div>
 	</display:column>
+	</jstl:if>
 	<display:column>
 		<B><spring:message code="rendezvouse.name" />:</B>
 		<jstl:out value="${row.name}"></jstl:out>
