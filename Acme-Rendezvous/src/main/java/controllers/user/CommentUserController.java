@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,8 +82,11 @@ public class CommentUserController extends AbstractController {
 		ModelAndView result;
 		Comment comment;
 		Rendezvouse rendezvouse;
+		User userConnected;
 
+		userConnected = this.userService.findByPrincipal();
 		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+		Assert.isTrue(rendezvouse.getAssistants().contains(userConnected));
 		comment = this.commentService.create();
 		comment.setRendezvouse(rendezvouse);
 
