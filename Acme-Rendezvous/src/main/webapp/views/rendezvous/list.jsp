@@ -87,8 +87,10 @@
 	
 	<spring:message code="rendezvouse.picture" var="titleHeader"/>
 	<display:column title="${titleHeader}" class="<%= estilo %>">
+	<jstl:if test="${!(row.picture=='')}">
 		<a href="${row.picture}"><spring:message
 				code="rendezvouse.picture" /></a>
+	</jstl:if>
 	</display:column>
 	<!-- ENLACES -->
 	<security:authorize access="isAnonymous()">
