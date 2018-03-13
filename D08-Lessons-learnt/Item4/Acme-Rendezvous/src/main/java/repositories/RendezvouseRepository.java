@@ -59,4 +59,8 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false")
 	Collection<Rendezvouse> findAllRendezvousesNotDeletedExceptRendezvousId(int rendezvousId);
 
+	//Lista de rendezvous a las que va a asistir un usuario
+	@Query("select r from User u join u.rendezvousesAssisted r where u.id=?1 and r.deleted=false")
+	Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId);
+
 }

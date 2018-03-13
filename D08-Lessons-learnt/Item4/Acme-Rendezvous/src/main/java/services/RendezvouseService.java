@@ -338,6 +338,15 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId) {
+		Collection<Rendezvouse> result;
+
+		result = this.rendezvousRepository.ListOfRendezvousAssistantUserId(userId);
+
+		return result;
+
+	}
+
 	public Rendezvouse reconstruct(final Rendezvouse rendezvous, final BindingResult bindingResult) {
 		Rendezvouse result;
 		Rendezvouse rendezvousBD;

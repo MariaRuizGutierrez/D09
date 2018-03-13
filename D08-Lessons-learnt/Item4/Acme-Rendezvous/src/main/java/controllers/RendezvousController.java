@@ -52,6 +52,22 @@ public class RendezvousController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/listAssistant", method = RequestMethod.GET)
+	public ModelAndView listAssistant(@RequestParam int userId) {
+
+		ModelAndView result;
+		Collection<Rendezvouse> rens;
+
+		rens = this.rendezvouseService.ListOfRendezvousAssistantUserId(userId);
+
+		result = new ModelAndView("rendezvous/list");
+		result.addObject("rendezvous", rens);
+		result.addObject("requestURI", "rendezvous/list.do");
+
+		return result;
+
+	}
+
 	@RequestMapping(value = "/listSimilar", method = RequestMethod.GET)
 	public ModelAndView listSimilar(@RequestParam int rendezvousId) {
 
