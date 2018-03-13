@@ -105,7 +105,7 @@ public class RendezvouseService {
 
 		Assert.isTrue(rendezvouse.getOrganisedMoment().after(now), "future");
 		if (rendezvouse.isForAdult() == true)
-			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 18, "jaja");
+			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 17, "jaja");
 
 		result = this.rendezvousRepository.save(rendezvouse);
 		if (rendezvouse.getId() == 0)
@@ -292,7 +292,8 @@ public class RendezvouseService {
 		Rendezvouse rendezvous;
 		rendezvous = this.rendezvousRepository.findOne(rendezvousId);
 		usuario = this.userService.findByPrincipal();
-		Assert.isTrue(this.calculateYearsOld(usuario.getBirthDate()) > 17);
+		if (rendezvous.isForAdult() == true)
+			Assert.isTrue(this.calculateYearsOld(usuario.getBirthDate()) > 17);
 		rendezvous.getAssistants().add(usuario);
 		this.rendezvousRepository.save(rendezvous);
 
@@ -360,10 +361,9 @@ public class RendezvouseService {
 			rendezvous.setVersion(rendezvousBD.getVersion());
 			rendezvous.setAssistants(rendezvousBD.getAssistants());
 			rendezvous.setAnnouncements(rendezvousBD.getAnnouncements());
-			if(rendezvous.getSimilarRendezvouses() == null){
+			if (rendezvous.getSimilarRendezvouses() == null)
 				rendezvous.setSimilarRendezvouses(new ArrayList<Rendezvouse>());
-			}
-			
+
 			result = rendezvous;
 		}
 		this.validator.validate(result, bindingResult);
