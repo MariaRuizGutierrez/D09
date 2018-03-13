@@ -66,4 +66,8 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	//rendezvous que su servicios tiene la categoria pasada
 	@Query("select r from Rendezvouse r join r.servicesOffered s join s.category c where c.id=?1 group by r")
 	Collection<Rendezvouse> findRendezvousByCategory(int categoryId);
+
+	// Rendezvouses a las que se le pueden hacer preguntas, que no estén borradas ni pasadas
+	@Query("select r from User u join u.rendezvousesCreated r where u.id=?1 and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP")
+	Collection<Rendezvouse> findAllRendezvousesForQuestions(int userId);
 }

@@ -266,6 +266,16 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findAllRendezvousesForQuestions() {
+		Collection<Rendezvouse> result;
+		User user;
+
+		user = this.userService.findByPrincipal();
+		result = this.rendezvousRepository.findAllRendezvousesForQuestions(user.getId());
+
+		return result;
+	}
+
 	public Collection<Rendezvouse> findAllMinusAdult() {
 		Collection<Rendezvouse> result;
 		result = this.rendezvousRepository.findAllMinusAdult();
