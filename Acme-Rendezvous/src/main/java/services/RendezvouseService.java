@@ -407,5 +407,15 @@ public class RendezvouseService {
 		res = this.rendezvousRepository.findRendezvousByCategory(categoryId);
 		return res;
 	}
+	
+	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId){
+		
+		Collection<Rendezvouse> result;
+		
+		result = this.rendezvousRepository.ListOfRendezvousAssistantUserId(userId);
+		
+		return result;
+		
+	}
 
 }
