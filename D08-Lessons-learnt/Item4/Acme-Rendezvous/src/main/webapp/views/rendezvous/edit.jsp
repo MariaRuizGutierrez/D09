@@ -57,9 +57,17 @@
 
 	<acme:submit name="save" code="rendezvous.save"/>
 		
+	
+	
+
 	<jstl:if test="${rendezvouse.id !=0 }">
-			<acme:submit name="deletevirtual" code="rendezvous.delete"/>
+			
+			<acme:submit_with_on_click name="deletevirtual" code="rendezvous.delete" code2="rendezvous.confirm.delete"/>
+			
+			
+			
 	</jstl:if>
+	
 
 	<acme:cancel url="rendezvous/user/list.do" code="rendezvous.cancel"/>
 	<br />
