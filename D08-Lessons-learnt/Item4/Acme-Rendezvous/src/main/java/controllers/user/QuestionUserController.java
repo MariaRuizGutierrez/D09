@@ -95,29 +95,40 @@ public class QuestionUserController extends AbstractController {
 		Question question;
 		Collection<Answer> answers;
 		User user;
+		Boolean aux;
 
 		answers = this.answerService.findAllAnswerByQuestionId(questionId);
 		user = this.userService.findByPrincipal();
 		question = this.questionService.findOne(questionId);
 		Assert.notNull(question);
+		aux = false;
 
 		try {
+
+			aux = false;
+			if (!this.questionService.findAllQuestionsByUser().contains(question)) {
+				aux = true;
+				Assert.isTrue(this.questionService.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
+			}
+
 			Assert.isTrue(answers.size() == 0, "Cannot commit this operation because this question already contains an answer");
-			Assert.isTrue(this.questionService.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
 
 			result = this.createEditModelAndView(question);
 			result.addObject("requestURI", "question/user/edit.do");
 			result.addObject("user", user);
 			result.addObject("answer", answers);
+			result.addObject("aux", aux);
 			return result;
 
 		} catch (final Throwable oops) {
 			result = this.list();
-			result.addObject("message", "error.edit.question");
+			if (aux == true)
+				result.addObject("message", "error.cannot");
+			else
+				result.addObject("message", "error.edit.question");
 		}
 		return result;
 	}
-
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(Question question, final BindingResult bindingResult) {
 		ModelAndView result;
