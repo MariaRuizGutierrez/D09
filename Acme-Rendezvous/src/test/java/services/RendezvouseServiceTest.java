@@ -283,7 +283,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 			}, {
 				//El user 2 lista las rendezvouses para asistir y no aparece la rendezvous 1 porque ya asiste a ella
 				"user2", "rendezvouse1", IllegalArgumentException.class
-			}, {}
+			}
 		};
 		for (int i = 0; i < testingData.length; i++)
 			this.templateListAssist((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
@@ -321,7 +321,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 			}, {
 				//El user 2 lista las rendezvouses para cancelar la asistencia y no aparece la rendezvous 3 porque no asiste a ella
 				"user2", "rendezvouse3", IllegalArgumentException.class
-			}, {}
+			}
 		};
 		for (int i = 0; i < testingData.length; i++)
 			this.templateListNotAssist((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
