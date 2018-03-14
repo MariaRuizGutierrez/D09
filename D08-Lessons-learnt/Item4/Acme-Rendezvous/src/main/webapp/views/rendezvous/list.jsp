@@ -179,7 +179,14 @@
 		</display:column>
 </security:authorize>
 		<!-- Boton de delete para el administrador ya que puede borrar las Rendezvous que quiera pero no editarlas -->
-
+	<security:authorize access="hasRole('ADMINISTRATOR')">
+	<spring:message code="rendezvous.delete" var="deleteHeader" />
+		<display:column title="${deleteHeader}" sortable="true" class="<%= estilo %>">
+			<input type="button" name="delete"
+				value="<spring:message code="rendezvous.delete" />"
+				onclick="confirmDelete(${row.id});" />
+		</display:column>
+	</security:authorize>
 
 
 	<security:authorize access="isAnonymous()">

@@ -338,7 +338,7 @@ public class RendezvouseService {
 		return result;
 	}
 
-	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId) {
+	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(final int userId) {
 		Collection<Rendezvouse> result;
 
 		result = this.rendezvousRepository.ListOfRendezvousAssistantUserId(userId);
@@ -372,7 +372,6 @@ public class RendezvouseService {
 			rendezvous.setAnnouncements(rendezvousBD.getAnnouncements());
 			if (rendezvous.getSimilarRendezvouses() == null)
 				rendezvous.setSimilarRendezvouses(new ArrayList<Rendezvouse>());
-
 			result = rendezvous;
 		}
 		this.validator.validate(result, bindingResult);
