@@ -410,4 +410,4 @@ UNLOCK TABLES;
 
 -- Dump completed on 2018-03-14 13:50:56
 
-commit
+commit;
