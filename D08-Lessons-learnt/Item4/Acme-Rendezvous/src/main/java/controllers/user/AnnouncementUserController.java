@@ -21,6 +21,7 @@ import services.UserService;
 import controllers.AbstractController;
 import domain.Announcement;
 import domain.Rendezvouse;
+import domain.User;
 
 @Controller
 @RequestMapping("/announcement/user")
@@ -43,10 +44,18 @@ public class AnnouncementUserController extends AbstractController {
 		ModelAndView result;
 		Rendezvouse rendezvous;
 		Announcement announcement;
+		User user;
+		Collection<Rendezvouse> rendezvousesOfUserConnected;
+		
 		this.userService.checkPrincipal();
+		user = this.userService.findByPrincipal();
 
 		rendezvous = this.rendezvouseService.findOne(rendezvousId);
 		announcement = this.announcementService.create(rendezvous);
+		
+		//Un usuario solo podrá crear anuncios para sus rendezvouses
+		rendezvousesOfUserConnected = new ArrayList<>(user.getRendezvousesCreated());
+		Assert.isTrue(rendezvousesOfUserConnected.contains(announcement.getRendezvouse()));
 
 		result = this.createEditModelAndView(announcement);
 		return result;
