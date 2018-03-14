@@ -47,8 +47,16 @@ public class CommentUserController extends AbstractController {
 	public ModelAndView list(@RequestParam final int rendezvouseId) {
 		final ModelAndView result;
 		Collection<Comment> comments;
+		Rendezvouse rendezvouse;
+		User userConnected;
+		Collection<User> Assistans;
 
+		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+		userConnected = this.userService.findByPrincipal();
 		comments = this.commentService.commentsOfThisRendezvouseWithCommentNull(rendezvouseId);
+		Assistans = this.rendezvouseService.findAllAssistantsByRendezvous(rendezvouse.getId());
+
+		Assert.isTrue(Assistans.contains(userConnected));
 		result = new ModelAndView("comment/list");
 
 		result.addObject("comments", comments);
@@ -83,10 +91,13 @@ public class CommentUserController extends AbstractController {
 		Comment comment;
 		Rendezvouse rendezvouse;
 		User userConnected;
+		Collection<User> Assistans;
 
 		userConnected = this.userService.findByPrincipal();
 		rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
-		Assert.isTrue(rendezvouse.getAssistants().contains(userConnected));
+		Assistans = this.rendezvouseService.findAllAssistantsByRendezvous(rendezvouse.getId());
+
+		Assert.isTrue(Assistans.contains(userConnected));
 		comment = this.commentService.create();
 		comment.setRendezvouse(rendezvouse);
 
@@ -98,12 +109,21 @@ public class CommentUserController extends AbstractController {
 	@RequestMapping(value = "/createReply", method = RequestMethod.GET)
 	public ModelAndView createReply(@RequestParam final int commentId) {
 		ModelAndView result;
+		Rendezvouse rendezvouse;
 		Comment comment;
 		Comment resultComment;
+		Collection<User> Assistans;
+		User userConnected;
 
+		userConnected = this.userService.findByPrincipal();
 		comment = this.commentService.findOne(commentId);
+		rendezvouse = comment.getRendezvouse();
+		Assistans = this.rendezvouseService.findAllAssistantsByRendezvous(rendezvouse.getId());
+
+		Assert.isTrue(Assistans.contains(userConnected));
+
 		resultComment = this.commentService.create();
-		resultComment.setRendezvouse(comment.getRendezvouse());
+		resultComment.setRendezvouse(rendezvouse);
 		resultComment.setCommentTo(comment);
 
 		result = this.createEditModelAndView(resultComment);

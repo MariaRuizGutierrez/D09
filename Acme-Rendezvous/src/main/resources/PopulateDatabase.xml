@@ -352,11 +352,11 @@
 	<bean id="rendezvouse1" class="domain.Rendezvouse">
 		<property name="name" value="rendezvouse1" />
 		<property name="description" value="description 1" />
-		<property name="organisedMoment" value="2018/03/21" />
+		<property name="organisedMoment" value="2018/09/21" />
 		<property name="picture"
 			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
 		<property name="gps" ref="gps1" />
-		<property name="draftMode" value="1" />
+		<property name="draftMode" value="0" />
 		<property name="deleted" value="0" />
 		<property name="forAdult" value="0" />
 		<property name="assistants">
