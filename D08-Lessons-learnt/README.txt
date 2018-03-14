@@ -12,4 +12,6 @@
 
 6. El requisito número 18, lo hemos interpretado como que solo los user's que van a asistir a la rendezvous podrán contestar las respuestas a las preguntas de esa rendezvous cuando ellos vean oportuno responderlas(no responder obligatoriamente).
 
+7. Las preguntas de las rendezvous solo las podra crear el creador de la rendezvous.
+
 Las decisiones de la 1 a la 5 se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, nos ha dado el visto bueno.
