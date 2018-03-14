@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -10,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Announcement;
@@ -130,7 +133,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 	}
 
 	// Test Delete ----------------------------------------------------------------------------------
-
+	// Se comprueba que solo el Admin es el unico que puede eliminar un Announcement
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -167,4 +170,38 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	}
 
+	// Test findAnnouncementByUserIdForRendezvousesAssits
+	// Se comprueba el list que devuelve todos los announcements de las rendezvouses a la que un user ha asistido en orden descendiente cronologicamente
+	@Test
+	public void driverFindAnnouncementByUserIdForRendezvousesAssits() {
+		final Object testingData[][] = {
+			{
+				//El user 1 comprueba si asiste al announcement2 que aparece la primera en la lista al ser ordenada cronologicamente en orden descendiente
+				"user1", "announcement2", null
+			}, {
+				//El user 1 comprueba si asiste announcement1 pero no aparece la primera en la lista al ser ordenada cronologicamente en orden descendiente
+				"user1", "announcement1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateFindAnnouncementByUserIdForRendezvousesAssits((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateFindAnnouncementByUserIdForRendezvousesAssits(final String username, final int announcementId, final Class<?> expected) {
+		final Collection<Announcement> listAnnouncements;
+		Announcement announcement;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			listAnnouncements = this.announcementService.findAnnouncementByUserIdForRendezvousesAssits();
+			announcement = this.announcementService.findOne(announcementId);
+			Assert.isTrue(listAnnouncements.iterator().next().equals(announcement));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+		super.unauthenticate();
+	}
 }

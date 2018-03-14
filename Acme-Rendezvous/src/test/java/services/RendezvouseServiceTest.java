@@ -151,6 +151,9 @@ public class RendezvouseServiceTest extends AbstractTest {
 			}, {
 				//Un user menor de edad crea un Rendezvouse para mayores de edad
 				"user5", "name test", "description", "2019/03/03", "http://www.test.com", gpsOk, true, false, true, "rendezvouse5", IllegalArgumentException.class
+			}, {
+				//Se crea un Rendezvouse incorrectamente porque lo intenta crear un admin
+				"admin", "name test", "description", "2019/03/03", "http://www.test.com", gpsOk, true, false, false, "rendezvouse1", IllegalArgumentException.class
 			}
 		// Se contempla la opcion de que solo se puede editar una rendezvouse en modo no final en el controlador
 		//Se contempla la opcion de que solo se puede editar un rendezvouse que ha creado el usuario de ese rendezvouse en el controlador

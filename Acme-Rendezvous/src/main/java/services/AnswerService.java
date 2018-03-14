@@ -74,7 +74,11 @@ public class AnswerService {
 
 		user = this.userService.findByPrincipal();
 
+		Assert.isTrue(user.getRendezvousesAssisted().contains(answer.getQuestion().getRendezvouse()));
+		Assert.isTrue(answer.getUser().equals(user));
+
 		result = this.answerRepository.save(answer);
+
 		answer.setUser(user);
 		Assert.notNull(answer);
 		return result;
@@ -86,7 +90,6 @@ public class AnswerService {
 		Assert.isTrue(this.answerRepository.exists(answer.getId()));
 		this.answerRepository.delete(answer);
 	}
-
 	// Other business methods -------------------------------------------------
 
 	public Collection<Answer> findAllAnswerByQuestionId(final int questionId) {
@@ -124,6 +127,11 @@ public class AnswerService {
 		}
 		this.validator.validate(result, bindingResult);
 		return result;
+	}
+
+	public void flush() {
+		this.answerRepository.flush();
+
 	}
 
 }
