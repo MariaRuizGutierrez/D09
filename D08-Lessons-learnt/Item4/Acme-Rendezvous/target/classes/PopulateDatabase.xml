@@ -341,28 +341,28 @@
 	<bean id="announcement1" class="domain.Announcement">
 		<property name="title" value="announcement1" />
 		<property name="description" value="description 1" />
-		<property name="madeMoment" value="2017/07/21 11:00" />
+		<property name="madeMoment" value="2017/07/21 11:00:03" />
 		<property name="rendezvouse" ref="rendezvouse1" />
 	</bean>
 
 	<bean id="announcement2" class="domain.Announcement">
 		<property name="title" value="announcement2" />
 		<property name="description" value="description 2" />
-		<property name="madeMoment" value="2018/01/21 12:00" />
+		<property name="madeMoment" value="2017/07/21 11:00:01" />
 		<property name="rendezvouse" ref="rendezvouse1" />
 	</bean>
 
 	<bean id="announcement3" class="domain.Announcement">
 		<property name="title" value="announcement3" />
 		<property name="description" value="description 3" />
-		<property name="madeMoment" value="2017/07/21 12:00" />
+		<property name="madeMoment" value="2017/07/21 11:00:34" />
 		<property name="rendezvouse" ref="rendezvouse3" />
 	</bean>
 
 	<bean id="announcement4" class="domain.Announcement">
 		<property name="title" value="announcement4" />
 		<property name="description" value="description 4" />
-		<property name="madeMoment" value="2017/07/21 11:00" />
+		<property name="madeMoment" value="2017/07/21 11:00:20" />
 		<property name="rendezvouse" ref="rendezvouse4" />
 	</bean>
 

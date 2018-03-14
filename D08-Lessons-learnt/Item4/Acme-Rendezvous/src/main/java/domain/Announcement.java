@@ -34,7 +34,7 @@ public class Announcement extends DomainEntity {
 	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	public Date getMadeMoment() {
 		return this.madeMoment;
 	}
