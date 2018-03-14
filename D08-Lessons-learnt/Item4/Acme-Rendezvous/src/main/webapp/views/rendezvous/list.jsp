@@ -249,12 +249,14 @@
 		
 		<spring:message code="rendezvouse.unlinkSimilar" var="unlinkSimilar" />
 		<display:column title="${unlinkSimilar}" sortable="true" class="<%= estilo %>">
+		<jstl:if test="${row.similarRendezvouses.size()!=0}">
 			<spring:url value="rendezvous/user/editSimilar.do"
 				var="editSimilarURL">
 				<spring:param name="rendezvouseId" value="${row.id}" />
 			</spring:url>
 			<a href="${editSimilarURL}"><spring:message
 					code="rendezvouse.unlink" /></a>
+					</jstl:if>
 		</display:column>
 	</security:authorize>
 	
