@@ -140,7 +140,7 @@
 						code="master.page.user.list" /></a></li>
 			<li><a class="fNiv" href="user/create.do"><spring:message
 						code="master.page.user.register" /></a></li>
-			<li><a class="fNiv" href="rendezvous/list-unregister.do"><spring:message
+			<li><a class="fNiv" href="rendezvous/list-unregister.do?d-16544-p=1"><spring:message
 						code="master.page.rendezvouss.list" /></a></li>
 		</security:authorize>
 
