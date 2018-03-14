@@ -80,18 +80,21 @@
 		</display:column>
 
 
-		<jstl:if test="${ not empty row.replys}">
+		
 			<spring:message code="rendezvouse.comments" var="Comment" />
 			<display:column title="${Comment}" sortable="true">
+			<jstl:if test="${ not empty row.replys}">
 				<spring:url value="comment/user/listReplys.do" var="listReplysURL">
 					<spring:param name="commentId" value="${row.id}" />
 				</spring:url>
 				<a href="${listReplysURL}"><spring:message
 						code="comment.comments" /></a>
+						
+			</jstl:if>
 			</display:column>
 
 
-		</jstl:if>
+		
 	</security:authorize>
 
 
