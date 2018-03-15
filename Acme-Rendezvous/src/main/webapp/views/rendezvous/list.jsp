@@ -145,10 +145,12 @@
 
 	<spring:message code="rendezvouse.question" var="Question" />
 	<display:column title="${Question}" sortable="true" class="<%= estilo %>">
+	<%-- <jstl:if test="${util.organisedMoment(row.organisedMoment)==true}"> --%>
 		<spring:url value="question/list.do" var="editURL">
 			<spring:param name="rendezvouseId" value="${row.id}" />
 		</spring:url>
 		<a href="${editURL}"><spring:message code="rendezvouse.question" /></a>
+	<%-- </jstl:if> --%>
 	</display:column>
 
 
@@ -267,13 +269,15 @@
 		<spring:message code="rendezvouse.service.request" var="service" />
 		
 		<display:column title="${service}" sortable="true" class="<%= estilo %>">
-		<jstl:if test="${row.draftMode==false and util.organisedMoment(row.organisedMoment)==true}">
+		<jstl:if test="${row.draftMode==true and util.organisedMoment(row.organisedMoment)==true}">
+		
 			<spring:url value="request/user/edit.do"
 				var="request">
 				<spring:param name="rendezvouseId" value="${row.id}" />
 			</spring:url>
 						<a href="${request}"><spring:message
 					code="rendezvouse.request" /></a>
+						
 						</jstl:if>
 		</display:column>
 	
