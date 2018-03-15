@@ -26,7 +26,7 @@
 
 <script type="text/javascript">
 	function confirmDelete(serviceOfferedId) {
-		confirm=confirm('<spring:message code="serviceOffered.confirm.delete"/>');
+		confirm=confirm('<spring:message code="serviceOffered.confirm.cancel"/>');
 		if (confirm)
 		  window.location.href ="serviceoffered/administrator/cancel.do?serviceOfferedId=" + serviceOfferedId;
 		  else

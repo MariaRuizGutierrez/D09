@@ -44,13 +44,15 @@
 
 	<acme:submit name="save" code="serviceoffered.save"/>
 		
-	<jstl:if test="${serviceOffered.id !=0 }">
-		<acme:submit name="delete" code="serviceoffered.delete"/>
-	</jstl:if>
+	
+<jstl:if test="${serviceOffered.id !=0 }">
+			<acme:submit_with_on_click name="delete" code="rendezvous.delete" code2="serviceOffered.confirm.delete"/>
+</jstl:if>
 
 	<acme:cancel url="serviceoffered/manager/list.do?d-16544-p=1" code="serviceoffered.cancel"/>
 	<br />
 	
+
 
 
 
