@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,6 +22,7 @@ public class Manager extends Actor {
 
 
 	@NotBlank
+	@Pattern(regexp = "^[\\w-]+$")
 	public String getVat() {
 		return this.vat;
 	}
