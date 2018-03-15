@@ -76,8 +76,10 @@
 	
 	<spring:message code="serviceoffered.picture" var="titleHeader" />
 	<display:column title="${titleHeader}" class="<%= estilo %>">
+	<jstl:if test="${!(row.picture=='')}">
 		<a href="${row.picture}"><spring:message
 				code="serviceoffered.picture" /></a>
+	</jstl:if>
 	</display:column>
 
 	
