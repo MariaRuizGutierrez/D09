@@ -73,7 +73,7 @@ public class UserService {
 
 	}
 
-	public User findOne(int userId) {
+	public User findOne(final int userId) {
 
 		Assert.isTrue(userId != 0);
 		User result;
@@ -83,7 +83,7 @@ public class UserService {
 
 	}
 
-	public User save(User user) {
+	public User save(final User user) {
 
 		Assert.notNull(user);
 
@@ -91,12 +91,11 @@ public class UserService {
 		Md5PasswordEncoder encoder;
 		String passwordHash;
 
-		if(user.getId()==0){
+		if (user.getId() == 0) {
 			encoder = new Md5PasswordEncoder();
 			passwordHash = encoder.encodePassword(user.getUserAccount().getPassword(), null);
 			user.getUserAccount().setPassword(passwordHash);
 		}
-		
 
 		result = this.userRepository.save(user);
 
@@ -143,49 +142,62 @@ public class UserService {
 		Assert.isTrue(authorities.contains(auth));
 	}
 
-	public User findUserByRendezvousId(int rendezvousId) {
+	public boolean checkPrincipalBoolean() {
+		final UserAccount userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+
+		final Collection<Authority> authorities = userAccount.getAuthorities();
+		Assert.notNull(authorities);
+
+		final Authority auth = new Authority();
+		auth.setAuthority(Authority.USER);
+
+		return (authorities.contains(auth));
+	}
+
+	public User findUserByRendezvousId(final int rendezvousId) {
 		User user;
 		user = this.userRepository.findUserByRendezvousId(rendezvousId);
 		return user;
 	}
-	
+
+
 	@Autowired
-	private Validator validator;
-	
-	public UserForm reconstruct(UserForm userForm, BindingResult binding){
-		
+	private Validator	validator;
+
+
+	public UserForm reconstruct(final UserForm userForm, final BindingResult binding) {
+
 		UserForm result = null;
 		User user;
 		user = userForm.getUser();
-		
-		if(user.getId() == 0){
+
+		if (user.getId() == 0) {
 			UserAccount userAccount;
 			Authority authority;
-			
+
 			userAccount = userForm.getUser().getUserAccount();
 			authority = new Authority();
 			authority.setAuthority(Authority.USER);
 			userAccount.addAuthority(authority);
 			userForm.getUser().setUserAccount(userAccount);
 			result = userForm;
-			
-		}else{
-			
+
+		} else {
+
 			user = this.userRepository.findOne(userForm.getUser().getId());
 			userForm.getUser().setId(user.getId());
 			userForm.getUser().setVersion(user.getVersion());
 			userForm.getUser().setUserAccount(user.getUserAccount());
-			
+
 			result = userForm;
-			
-			
+
 		}
-		
 
 		this.validator.validate(result, binding);
 
 		return result;
-		
+
 	}
 
 }

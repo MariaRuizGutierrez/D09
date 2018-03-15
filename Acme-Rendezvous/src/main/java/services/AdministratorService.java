@@ -113,6 +113,19 @@ public class AdministratorService {
 		Assert.isTrue(authorities.contains(auth));
 	}
 
+	public boolean checkPrincipalBoolean() {
+		final UserAccount userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+
+		final Collection<Authority> authorities = userAccount.getAuthorities();
+		Assert.notNull(authorities);
+
+		final Authority auth = new Authority();
+		auth.setAuthority(Authority.ADMINISTRATOR);
+
+		return (authorities.contains(auth));
+	}
+
 	public Double[] findAvgStddevOfTheNumOfRendezvouseCreatedPerUser() {
 		Double[] result;
 		result = this.administratorRepository.findAvgStddevOfTheNumOfRendezvouseCreatedPerUser();
@@ -340,4 +353,5 @@ public class AdministratorService {
 		this.validator.validate(result, bindingResult);
 		return result;
 	}
+
 }

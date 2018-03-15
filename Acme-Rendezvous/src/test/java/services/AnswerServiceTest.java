@@ -120,11 +120,13 @@ public class AnswerServiceTest extends AbstractTest {
 
 	//		// Test Delete ----------------------------------------------------------------------------------
 	// Se comprueba que se eliminen las answer
-	// TODO : Falta un Test negativo en el delete
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
 			{
+				//Se elimina el answer1 por el manager que la ha creado
+				"manager1", "answer1", IllegalArgumentException.class
+			}, {
 				//Se elimina el answer2 por el admin (debe dejar borrarse porque al borrar una Rendezvous se llama a este metodo para borrar todas las Answers
 				//de esta Rendezvous
 				"admin", "answer2", null

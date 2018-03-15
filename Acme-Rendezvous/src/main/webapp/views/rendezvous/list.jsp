@@ -106,7 +106,7 @@
 
 	<security:authorize access="hasRole('ADMINISTRATOR')">
 		<spring:message code="rendezvous.announcement" var="announcements" />
-		<display:column title="${announcements}" sortable="true">
+		<display:column title="${announcements}" sortable="true" class="<%= estilo %>">
 			<spring:url value="announcement/list.do" var="announcementURL">
 				<spring:param name="rendezvousId" value="${row.id }" />
 			</spring:url>

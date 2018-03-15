@@ -23,15 +23,18 @@ public class AnswerService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private AnswerRepository	answerRepository;
+	private AnswerRepository		answerRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private UserService			userService;
+	private UserService				userService;
+
+	@Autowired
+	private AdministratorService	administratorService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
-	private Validator			validator;
+	private Validator				validator;
 
 
 	// Constructors -----------------------------------------------------------
@@ -88,6 +91,8 @@ public class AnswerService {
 		assert answer != null;
 		assert answer.getId() != 0;
 		Assert.isTrue(this.answerRepository.exists(answer.getId()));
+		// Se comprueba que el que intente eliminar una answer sea el user o el admin (que lo llama al eliminar una Rendezvous)
+		Assert.isTrue(this.userService.checkPrincipalBoolean() || this.administratorService.checkPrincipalBoolean());
 		this.answerRepository.delete(answer);
 	}
 	// Other business methods -------------------------------------------------
