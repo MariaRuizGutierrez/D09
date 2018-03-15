@@ -19,7 +19,7 @@
 <h1> <strong> POLITICA DE COOKIES </strong> </h1>
 
 <p>
-	Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle el idioma seleccionado previamente por usted. Si continua navegando, consideramos que acepta su uso.
+	Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle el idioma seleccionado previamente por usted, además de la última tarjeta insertada para requerir un servicio. Si continua navegando, consideramos que acepta su uso.
 </p>
 
 <h1><strong>CONDICIONES GENERALES DE USO DEL SITIO WEB DE ACME-RENDEZVOUS</strong></h1>

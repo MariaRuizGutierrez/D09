@@ -19,7 +19,7 @@
 <h1> <strong> COOKIES POLICY </strong> </h1>
 
 <p> 
-	We use our own and third-party cookies to improve our services and show you the language previously selected by you. If you go on surfing, we will consider you accepting its use.
+	We use our own and third-party cookies to improve our services and show you the language previously selected by you, besides the last credit card you insert to request a service. If you go on surfing, we will consider you accepting its use.
 </p>
 
 <h1> <strong> GENERAL CONDITIONS OF USE OF THE ACME-RENDEZVOUS WEB SITE </strong> </h1>
