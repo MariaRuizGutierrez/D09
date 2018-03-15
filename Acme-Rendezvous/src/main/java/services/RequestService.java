@@ -17,6 +17,7 @@ import repositories.RequestRepository;
 import domain.CreditCard;
 import domain.Rendezvouse;
 import domain.Request;
+import domain.ServiceOffered;
 import domain.User;
 
 @Service
@@ -84,11 +85,16 @@ public class RequestService {
 		Assert.notNull(request);
 		Rendezvouse rendezvous;
 		User user;
+		ServiceOffered serviceOffered;
 		Request result;
+		
+		
 		result = new Request();
 		Date moment;
 		user = this.userService.findByPrincipal();
 		rendezvous = this.rendezvouseService.findOne(request.getRendezvousid());
+		serviceOffered = request.getServiceOffered();
+		Assert.isTrue(serviceOffered.getCategory()!=null);
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");
 
 		moment = new Date(System.currentTimeMillis() - 1000);
