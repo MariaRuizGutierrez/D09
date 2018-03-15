@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -10,10 +12,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Answer;
 import domain.Question;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -118,7 +122,7 @@ public class AnswerServiceTest extends AbstractTest {
 
 	}
 
-	//		// Test Delete ----------------------------------------------------------------------------------
+	// Test Delete ----------------------------------------------------------------------------------
 	// Se comprueba que se eliminen las answer
 	@Test
 	public void driverDelete() {
@@ -157,4 +161,42 @@ public class AnswerServiceTest extends AbstractTest {
 
 	}
 
+	// Test findAllAnswerByQuestionId(questionId) ------------------------------------------------------
+	// Caso de uso 20.1
+	@Test
+	public void driverlistFindAllAnswerByQuestionId() {
+		final Object testingData[][] = {
+			{
+				// Se comprueba que el metodo devuelve la answer1 del user1 para la question1
+				"user1", "answer1", "question1", null
+			}, {
+				// Se comprueba que el metodo no devuelve la answer4 del user4 para la question1 porque la answer4 es de la question4 
+				"user4", "answer4", "question1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templatelistFindAllAnswerByQuestionId((super.getEntityId((String) testingData[i][0])), (super.getEntityId((String) testingData[i][1])), (super.getEntityId((String) testingData[i][2])), (Class<?>) testingData[i][3]);
+	}
+	private void templatelistFindAllAnswerByQuestionId(final int userId, final int answerId, final int questionId, final Class<?> expected) {
+		Collection<Answer> answersForQuestionId;
+		final User user;
+		Answer answer;
+		Class<?> caught;
+
+		caught = null;
+		try {
+
+			user = this.userService.findOne(userId);
+			answer = this.answerService.findOne(answerId);
+			answersForQuestionId = this.answerService.findAllAnswerByQuestionId(questionId);
+
+			Assert.isTrue(answersForQuestionId.contains(answer));
+			Assert.isTrue(answer.getUser().equals(user));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
 }
