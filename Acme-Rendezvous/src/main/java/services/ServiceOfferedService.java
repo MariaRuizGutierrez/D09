@@ -28,7 +28,7 @@ public class ServiceOfferedService {
 	private ManagerService				managerService;
 	@Autowired
 	private AdministratorService		administratorService;
-	
+
 	@Autowired
 	private RequestService				requestService;
 
@@ -60,44 +60,38 @@ public class ServiceOfferedService {
 		principal = this.managerService.findByPrincipal();
 		result = new ServiceOffered();
 		result = this.serviceOfferedRepository.save(serviceoffered);
-		
-		if(serviceoffered.getId()==0)
+
+		if (serviceoffered.getId() == 0)
 			principal.getServicesOffered().add(result);
 		Assert.notNull(result);
 		return result;
 	}
 
 	//Delete
-	public void delete(ServiceOffered serviceOffered){
-		
+	public void delete(ServiceOffered serviceOffered) {
+
 		Assert.notNull(serviceOffered);
 		Assert.isTrue(serviceOffered.getId() != 0);
-		
+
 		Manager manager;
 		Collection<Request> requests;
 		Collection<Rendezvouse> rendezvouses;
-	
-		
+
 		manager = this.managerService.findManagerByServiceOffered(serviceOffered.getId());
 		requests = this.requestService.findServiceOfferedOfServiceOfferedId(serviceOffered.getId());
 		rendezvouses = serviceOffered.getRendezvouses();
-		
-		
-		manager.getServicesOffered().remove(serviceOffered);
-		
-		for(Request r: requests){
-			this.requestService.delete(r);
-		
-		}
-		
-		for(Rendezvouse re: rendezvouses){
-			re.getServicesOffered().remove(serviceOffered);
-			
-		}
 
+		manager.getServicesOffered().remove(serviceOffered);
+
+		for (Request r : requests)
+			this.requestService.delete(r);
+
+		for (Rendezvouse re : rendezvouses)
+			re.getServicesOffered().remove(serviceOffered);
+
+		Assert.isTrue(serviceOffered.getRendezvouses().isEmpty());
 		this.serviceOfferedRepository.delete(serviceOffered);
-	
-		
+
 	}
 
 	//Cancel
@@ -121,6 +115,11 @@ public class ServiceOfferedService {
 		result = this.serviceOfferedRepository.findOne(serviceOfferedId);
 		return result;
 	}
+
+	public void flush() {
+		this.serviceOfferedRepository.flush();
+
+	}
 	//Other method
 
 	public Collection<ServiceOffered> AllServiceNotCancelled() {
@@ -142,6 +141,5 @@ public class ServiceOfferedService {
 
 		return result;
 	}
-
 
 }
