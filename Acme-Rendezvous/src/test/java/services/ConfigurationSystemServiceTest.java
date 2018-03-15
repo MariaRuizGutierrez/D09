@@ -1,6 +1,8 @@
 
 package services;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -24,6 +26,9 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 	@Autowired
 	ConfigurationSystemService	configurationSystemService;
 
+	@PersistenceContext
+	EntityManager				entityManager;
+
 
 	// Test Edit ----------------------------------------------------------------------------------
 
@@ -40,11 +45,8 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 				//Se crea el configurationSystem con un banner que no está en forma URL
 				"admin", "name1", "hola", "hello", "hola", javax.validation.ConstraintViolationException.class
 			}, {
-				//Se crea el configuration para un usuario que no le pertenece editar el configurationSystem (Hacking get)
-				"user1", "name1", "https://tinyurl.com/adventure-meetup", "hello", "hola", javax.validation.ConstraintViolationException.class
-			}, {
-				//Se crea el configuration con los dos mensajes vacíos
-				"user1", "name1", "https://tinyurl.com/adventure-meetup", "", "", javax.validation.ConstraintViolationException.class
+				//Se crea el configurationSystem con los dos mensajes vacíos
+				"admin", "name1", "https://tinyurl.com/adventure-meetup", "", "", javax.validation.ConstraintViolationException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -67,6 +69,8 @@ public class ConfigurationSystemServiceTest extends AbstractTest {
 			this.configurationSystemService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
 		}
 
 		this.checkExceptions(expected, caught);
