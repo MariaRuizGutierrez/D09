@@ -171,6 +171,17 @@
 
 
 		<security:authorize access="hasRole('MANAGER')">
+		
+			<li><a class="fNiv"><spring:message 
+						code="master.page.manager" /></a>
+						
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="manager/edit.do"><spring:message
+						code="master.page.manager.edit" /></a></li>
+				
+				</ul>
+			</li>
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.serviceoffered" /></a>
