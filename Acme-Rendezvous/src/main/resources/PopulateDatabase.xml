@@ -766,7 +766,7 @@
 		<property name="name" value="title serviceOffered5" />
 		<property name="description" value="description serviceOffered 5" />
 		<property name="picture" value="http://www.serviceOffered2.com" />
-		<property name="cancelled" value="true" />
+		<property name="cancelled" value="false" />
 		<property name="category" ref="category1-1-2" />
 		<property name="rendezvouses">
 			<list>
