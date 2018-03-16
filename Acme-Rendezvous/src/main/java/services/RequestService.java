@@ -189,5 +189,9 @@ public class RequestService {
 		this.validator.validate(result, binding);
 		return result;
 	}
+	
+	public void flush() {
+		this.requestRepository.flush();
+	}
 
 }
