@@ -149,15 +149,15 @@
 		<display:column property="name" title="${questionHeader}" sortable="false"  >
 			<jstl:out value="${row.name}"></jstl:out>
 		</display:column>
+		<spring:message code="question.answer" var="Answer" />
+	<display:column title="${Answer}" sortable="true">
+		<spring:url value="answer/list.do" var="editURL">
+			<spring:param name="questionId" value="${row.id}" />
+		</spring:url>
+		<a href="${editURL}"><spring:message code="question.answer" /></a>
+	</display:column> 
 </display:table>
 
-<h2><spring:message code="rendezvous.answers" /></h2>	
-	<display:table name="answers" id="row" class="displaytag">
-		<spring:message code="question" var="questionHeader"/>
-		<display:column property="name" title="${questionHeader}" sortable="false"  >
-			<jstl:out value="${row.question.name}"></jstl:out>
-		</display:column>
-</display:table>
 
 <h2><spring:message code="rendezvous.announcement" /></h2>	
 	<display:table name="announcements" id="row" class="displaytag">
