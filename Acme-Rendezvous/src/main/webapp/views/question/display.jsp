@@ -20,6 +20,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<jsp:useBean id="util" class="utilities.Methodutilities" scope="page" />
 
 
 <display:table name="Question" class="displaytag"
@@ -38,7 +39,7 @@
 	<security:authorize access="hasRole('USER')">
 	<spring:message code="question.answer.create" var="Answer" />
 	<display:column title="${Answer}" sortable="true">
-	<jstl:if test="${fn:contains(row.rendezvouse.assistants, row.user)}">
+	<jstl:if test="${fn:contains(row.rendezvouse.assistants, row.user) and util.organisedMoment(row.rendezvouse.organisedMoment)==true}">
 		<spring:url value="answer/user/create.do" var="editURL">
 			<spring:param name="questionId" value="${row.id}" />
 		</spring:url>

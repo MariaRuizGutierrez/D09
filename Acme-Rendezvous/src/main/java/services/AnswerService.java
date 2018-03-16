@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -74,11 +75,14 @@ public class AnswerService {
 		Assert.notNull(answer);
 		Answer result;
 		User user;
+		Date now;
 
+		now = new Date();
 		user = this.userService.findByPrincipal();
 
 		Assert.isTrue(user.getRendezvousesAssisted().contains(answer.getQuestion().getRendezvouse()));
 		Assert.isTrue(answer.getUser().equals(user));
+		Assert.isTrue(answer.getQuestion().getRendezvouse().getOrganisedMoment().after(now));
 		result = this.answerRepository.save(answer);
 
 		answer.setUser(user);
