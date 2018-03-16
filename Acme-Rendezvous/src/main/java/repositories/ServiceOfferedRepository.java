@@ -23,4 +23,8 @@ public interface ServiceOfferedRepository extends JpaRepository<ServiceOffered, 
 	@Query("select s from ServiceOffered s where ?1 not member of s.rendezvouses and s.cancelled=false and s.category!=null")
 	Collection<ServiceOffered> AllServiceNotCancelledAveibleForRendezvouse(int id);
 
+	//Todos los servicios creados por un manager
+	@Query("select s from Manager m join m.servicesOffered s where m.id=?1")
+	Collection<ServiceOffered> findAllServicesByManager(int managerId);
+
 }

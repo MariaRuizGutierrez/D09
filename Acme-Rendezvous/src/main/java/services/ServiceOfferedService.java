@@ -142,4 +142,15 @@ public class ServiceOfferedService {
 		return result;
 	}
 
+	public Collection<ServiceOffered> findAllServicesByManager(int managerId) {
+		Manager manager;
+		Collection<ServiceOffered> services;
+
+		manager = this.managerService.findByPrincipal();
+		services = this.serviceOfferedRepository.findAllServicesByManager(manager.getId());
+
+		return services;
+
+	}
+
 }
