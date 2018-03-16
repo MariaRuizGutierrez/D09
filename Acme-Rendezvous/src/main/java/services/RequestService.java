@@ -17,7 +17,6 @@ import repositories.RequestRepository;
 import domain.CreditCard;
 import domain.Rendezvouse;
 import domain.Request;
-import domain.ServiceOffered;
 import domain.User;
 
 @Service
@@ -85,16 +84,14 @@ public class RequestService {
 		Assert.notNull(request);
 		Rendezvouse rendezvous;
 		User user;
-		ServiceOffered serviceOffered;
+
 		Request result;
-		
-		
-		result = new Request();
 		Date moment;
+
+		result = new Request();
 		user = this.userService.findByPrincipal();
 		rendezvous = this.rendezvouseService.findOne(request.getRendezvousid());
-		serviceOffered = request.getServiceOffered();
-		Assert.isTrue(serviceOffered.getCategory()!=null);
+
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");
 
 		moment = new Date(System.currentTimeMillis() - 1000);
@@ -112,16 +109,16 @@ public class RequestService {
 		Assert.isTrue(this.requestRepository.exists(request.getId()));
 		this.requestRepository.delete(request);
 	}
-	
-	public Collection<Request> findServiceOfferedOfServiceOfferedId(int serviceOfferedId){
-		
+
+	public Collection<Request> findServiceOfferedOfServiceOfferedId(int serviceOfferedId) {
+
 		Collection<Request> result;
-		
+
 		result = this.requestRepository.findServiceOfferedOfServiceOfferedId(serviceOfferedId);
-		
+
 		return result;
 	}
-	
+
 	//Other business methods-----------------------------------------------------
 
 	public Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {
@@ -189,7 +186,7 @@ public class RequestService {
 		this.validator.validate(result, binding);
 		return result;
 	}
-	
+
 	public void flush() {
 		this.requestRepository.flush();
 	}
