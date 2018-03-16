@@ -59,6 +59,7 @@ public class ServiceOfferedService {
 		Manager principal;
 		principal = this.managerService.findByPrincipal();
 		result = new ServiceOffered();
+		Assert.isTrue(serviceoffered.getRendezvouses().isEmpty());
 		result = this.serviceOfferedRepository.save(serviceoffered);
 
 		if (serviceoffered.getId() == 0)
@@ -142,7 +143,7 @@ public class ServiceOfferedService {
 		return result;
 	}
 
-	public Collection<ServiceOffered> findAllServicesByManager(int managerId) {
+	public Collection<ServiceOffered> findAllServicesByManager() {
 		Manager manager;
 		Collection<ServiceOffered> services;
 
