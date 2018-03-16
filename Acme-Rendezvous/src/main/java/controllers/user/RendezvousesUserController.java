@@ -40,6 +40,7 @@ public class RendezvousesUserController extends AbstractController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
+		this.userService.checkPrincipal();
 		final ModelAndView result;
 		Collection<Rendezvouse> rendezvous;
 		rendezvous = this.rendezvouseService.findRendezvousesCreatedByUser();
@@ -140,9 +141,12 @@ public class RendezvousesUserController extends AbstractController {
 	public ModelAndView display(@RequestParam final int rendezvousId) {
 		ModelAndView result;
 		Rendezvouse ren = new Rendezvouse();
+		User userConnected;
 
+		userConnected = this.userService.findByPrincipal();
 		ren = this.rendezvouseService.findOne(rendezvousId);
-
+		if (ren.isForAdult() == true)
+			Assert.isTrue(this.rendezvouseService.calculateYearsOld(userConnected.getBirthDate()) > 18);
 		result = new ModelAndView("rendezvous/display");
 		result.addObject("rendezvous", ren);
 		result.addObject("requestURI", "rendezvous/user/display.do");

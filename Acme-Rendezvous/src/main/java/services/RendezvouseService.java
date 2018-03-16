@@ -329,6 +329,7 @@ public class RendezvouseService {
 		Rendezvouse rendezvous;
 		rendezvous = this.rendezvousRepository.findOne(rendezvousId);
 		usuario = this.userService.findByPrincipal();
+		Assert.isTrue(rendezvous.getAssistants().contains(usuario));
 		rendezvous.getAssistants().remove(usuario);
 		this.rendezvousRepository.save(rendezvous);
 
@@ -407,15 +408,15 @@ public class RendezvouseService {
 		res = this.rendezvousRepository.findRendezvousByCategory(categoryId);
 		return res;
 	}
-	
-	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId){
-		
+
+	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId) {
+
 		Collection<Rendezvouse> result;
-		
+
 		result = this.rendezvousRepository.ListOfRendezvousAssistantUserId(userId);
-		
+
 		return result;
-		
+
 	}
 
 }
