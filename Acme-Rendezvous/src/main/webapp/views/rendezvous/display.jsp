@@ -143,6 +143,21 @@
 		</display:table>
 	</jstl:if>
 	
+	<h2><spring:message code="rendezvous.questions" /></h2>	
+	<display:table name="questions" id="row" class="displaytag">
+		<spring:message code="question" var="questionHeader"/>
+		<display:column property="name" title="${questionHeader}" sortable="false"  >
+			<jstl:out value="${row.name}"></jstl:out>
+		</display:column>
+</display:table>
+
+<h2><spring:message code="rendezvous.answers" /></h2>	
+	<display:table name="answers" id="row" class="displaytag">
+		<spring:message code="question" var="questionHeader"/>
+		<display:column property="name" title="${questionHeader}" sortable="false"  >
+			<jstl:out value="${row.question.name}"></jstl:out>
+		</display:column>
+</display:table>
 
 <h2><spring:message code="rendezvous.announcement" /></h2>	
 	<display:table name="announcements" id="row" class="displaytag">
@@ -155,6 +170,8 @@
 		<display:column property="description" title="${titleHeader2}" sortable="false" >
 			<jstl:out value="${row.description}"></jstl:out>
 		</display:column>
+		
+		
 	</display:table>
 	
 

@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AnnouncementService;
+import services.QuestionService;
 import services.RendezvouseService;
 import services.UserService;
 import domain.Announcement;
+import domain.Question;
 import domain.Rendezvouse;
 import domain.ServiceOffered;
 import domain.User;
@@ -32,6 +34,9 @@ public class RendezvousController extends AbstractController {
 
 	@Autowired
 	private AnnouncementService	announcementService;
+
+	@Autowired
+	private QuestionService		questionService;
 
 
 	//Constructor--------------------------------------------------------
@@ -57,7 +62,7 @@ public class RendezvousController extends AbstractController {
 		return result;
 
 	}
-	
+
 	@RequestMapping(value = "/listAssistant", method = RequestMethod.GET)
 	public ModelAndView listAssistant(@RequestParam int userId) {
 
@@ -163,17 +168,23 @@ public class RendezvousController extends AbstractController {
 
 		Collection<Announcement> announcements;
 		Collection<ServiceOffered> services;
+		Collection<Question> questions;
+
 		Rendezvouse ren;
 
 		services = this.rendezvouseService.findAllServicesByRendezvous(rendezvousId);
 		ren = new Rendezvouse();
+
 		announcements = this.announcementService.findAnnouncementByRendezvousId(rendezvousId);
+		questions = this.questionService.findAllQuestionsByRendezvous(rendezvousId);
 		ren = this.rendezvouseService.findOne(rendezvousId);
 
 		result = new ModelAndView("rendezvous/display");
 		result.addObject("rendezvous", ren);
 		result.addObject("announcements", announcements);
 		result.addObject("services", services);
+		result.addObject("questions", questions);
+
 		result.addObject("requestURI", "rendezvous/user/display.do");
 
 		return result;
