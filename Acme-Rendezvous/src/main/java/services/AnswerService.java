@@ -79,7 +79,7 @@ public class AnswerService {
 
 		Assert.isTrue(user.getRendezvousesAssisted().contains(answer.getQuestion().getRendezvouse()));
 		Assert.isTrue(answer.getUser().equals(user));
-
+		Assert.isTrue(user.getRendezvousesAssisted().contains(user));
 		result = this.answerRepository.save(answer);
 
 		answer.setUser(user);
