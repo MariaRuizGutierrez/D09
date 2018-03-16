@@ -84,14 +84,14 @@ public class CategoryService {
 		Collection<ServiceOffered> services;
 		services = this.serviceOfferedService.ServiceByCategoryName(category.getId());
 
-		for (ServiceOffered s1 : services)
+		for (final ServiceOffered s1 : services)
 			s1.setCategory(null);
 
 		if (category.getFatherCategory() != null)
 			category.getFatherCategory().setSubCategories(subCategoriesEmpty);
 
 		if (category.getSubCategories().size() > 0)
-			for (Category c : category.getSubCategories())
+			for (final Category c : category.getSubCategories())
 				this.delete(c);
 		if (category.getSubCategories().size() == 0)
 			this.categoryRepository.delete(category);
@@ -110,5 +110,9 @@ public class CategoryService {
 		result = this.categoryRepository.findOne(categoryId);
 		Assert.notNull(result);
 		return result;
+	}
+
+	public void flush() {
+		this.categoryRepository.flush();
 	}
 }
