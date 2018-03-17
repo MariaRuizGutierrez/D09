@@ -58,11 +58,13 @@
 		
 		<jstl:if test="${fn:contains(managerPrincipal.servicesOffered, row)}">
 		<jstl:if test="${row.rendezvouses.size()==0}">
+		<jstl:if test="${row.cancelled==false}">
 			<spring:url value="serviceoffered/manager/edit.do" var="editURL">
 				<spring:param name="serviceOfferedId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
 		
+		</jstl:if>
 		</jstl:if>
 		</jstl:if>
 		</display:column>

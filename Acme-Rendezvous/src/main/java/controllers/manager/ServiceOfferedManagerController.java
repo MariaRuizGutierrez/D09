@@ -110,6 +110,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		
 		Assert.isTrue(manager.equals(managerPrincipal));
 		Assert.isTrue(serviceOffered.getRendezvouses().isEmpty());
+		Assert.isTrue(!serviceOffered.isCancelled());
 		Assert.notNull(serviceOffered);
 		result = this.createEditModelAndView(serviceOffered);
 		return result;
@@ -126,7 +127,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		else
 			try {
 				this.serviceOfferedService.save(serviceOffered);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:listAll.do");
 			} catch (Throwable oops) {
 				result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 			}
