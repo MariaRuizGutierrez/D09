@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AnnouncementService;
+import services.QuestionService;
 import services.RendezvouseService;
 import services.UserService;
 import controllers.AbstractController;
+import domain.Announcement;
+import domain.Question;
 import domain.Rendezvouse;
+import domain.ServiceOffered;
 import domain.User;
 
 @Controller
@@ -30,6 +35,12 @@ public class RendezvousesUserController extends AbstractController {
 
 	@Autowired
 	private UserService			userService;
+
+	@Autowired
+	private AnnouncementService	announcementService;
+
+	@Autowired
+	private QuestionService		questionService;
 
 
 	//constructor-------------------------------------------------------------------------
@@ -142,13 +153,22 @@ public class RendezvousesUserController extends AbstractController {
 		ModelAndView result;
 		Rendezvouse ren = new Rendezvouse();
 		User userConnected;
+		Collection<Announcement> announcements;
+		Collection<ServiceOffered> services;
+		Collection<Question> questions;
 
 		userConnected = this.userService.findByPrincipal();
 		ren = this.rendezvouseService.findOne(rendezvousId);
+		questions = this.questionService.findAllQuestionsByRendezvous(rendezvousId);
+		services = this.rendezvouseService.findAllServicesByRendezvous(rendezvousId);
+		announcements = this.announcementService.findAnnouncementByRendezvousId(rendezvousId);
 		if (ren.isForAdult() == true)
 			Assert.isTrue(this.rendezvouseService.calculateYearsOld(userConnected.getBirthDate()) > 18);
 		result = new ModelAndView("rendezvous/display");
 		result.addObject("rendezvous", ren);
+		result.addObject("announcements", announcements);
+		result.addObject("services", services);
+		result.addObject("questions", questions);
 		result.addObject("requestURI", "rendezvous/user/display.do");
 
 		return result;
