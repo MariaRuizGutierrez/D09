@@ -80,7 +80,7 @@ public class RequestUserController extends AbstractController {
 		user = this.userService.findByPrincipal();
 		rendezvous = this.rendezvouseService.findOne(rendezvouseId);
 		Assert.isTrue(user.getRendezvousesCreated().contains(rendezvous), "Cannot commit this operation, because that service doens't belong to one of your rendezvouses");
-		Assert.isTrue(rendezvous.isDraftMode() == false, "Cannot commit this operation");
+		Assert.isTrue(rendezvous.isDraftMode() == true, "Cannot commit this operation because this rendezvous is not available");
 		request = this.requestService.create(rendezvouseId);
 		result = this.createEditModelAndView(request);
 

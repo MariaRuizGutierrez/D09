@@ -267,7 +267,7 @@
 		<spring:message code="rendezvouse.service.request" var="service" />
 		
 		<display:column title="${service}" sortable="true" class="<%= estilo %>">
-		<jstl:if test="${row.draftMode==false and util.organisedMoment(row.organisedMoment)==true}">
+		<jstl:if test="${row.draftMode==true and util.organisedMoment(row.organisedMoment)==true}">
 			<spring:url value="request/user/edit.do"
 				var="request">
 				<spring:param name="rendezvouseId" value="${row.id}" />
