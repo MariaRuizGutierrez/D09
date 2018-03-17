@@ -86,7 +86,8 @@ public class CategoryService {
 		Assert.isTrue(category.getServicesOffered().size() == 0);
 
 		if (category.getSubCategories().size() > 0)
-			this.delete(category);
+			for (Category c : category.getSubCategories())
+				this.delete(c);
 		this.categoryRepository.delete(category);
 	}
 
