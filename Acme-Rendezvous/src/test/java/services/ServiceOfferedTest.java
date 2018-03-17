@@ -134,11 +134,12 @@ public class ServiceOfferedTest extends AbstractTest {
 	public void driverCancel() {
 		final Object testingData[][] = {
 			{
-				//Se elimina el serviceOffered1 por el manager que la ha creado.
+				//Se cancela el serviceOffered1
 				"admin", "serviceOffered1", null
 			}, {
-				//Se elimina el serviceOffered1 por el admin (el cual no elimina, cancela)
+				//Se cancela el serviceOffered1 por el admin (el cual no elimina, cancela)
 				"manager1", "serviceOffered1", IllegalArgumentException.class
+
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -183,7 +184,9 @@ public class ServiceOfferedTest extends AbstractTest {
 			}, {
 				//Editando un servicio que no es tuyo
 				"manager4", "", "description", "http://www.test.com", "serviceOffered5", javax.validation.ConstraintViolationException.class
-
+			}, {
+				//Editando un servicio que está cancelado
+				"manager1", "", "description", "http://www.test.com", "serviceOffered1", IllegalArgumentException.class
 			}
 
 		// Se contempla la opcion de que solo se puede editar una rendezvouse en modo no final en el controlador
