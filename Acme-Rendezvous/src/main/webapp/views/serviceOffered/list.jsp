@@ -92,10 +92,6 @@
 
 <security:authorize access="hasRole('ADMINISTRATOR')">
 <spring:message code="serviceOffered.cancelled" var="draftMode" />
-<display:column title="${draftMode}" class="<%= estilo %>">
-	
-		
-</display:column>
 
 <!-- Boton de delete para el administrador ya que puede borrar los anuncios que quiera pero no editarlos -->
 	
