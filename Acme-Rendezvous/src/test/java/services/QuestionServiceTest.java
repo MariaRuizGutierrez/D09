@@ -37,7 +37,7 @@ public class QuestionServiceTest extends AbstractTest {
 				//El usuario "user1" va a crear una pregunta para una cita que el ha creado.
 				"question test", "user1", "rendezvouse1", null
 			}, {
-				//TODO: Implementar regla que no permita crear question en una rendezvouse que no es mia.
+
 				//El usuario "user1" va a crear una pregunta para una cita que el no ha creado.
 				"question test", "user1", "rendezvouse3", IllegalArgumentException.class
 			}
@@ -75,13 +75,13 @@ public class QuestionServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//Esta restriccion está contemplada en el controlador.
+
 				//El usuario "user1" va a intentar eliminar una pregunta que contiene respuestas.
-				"question1", "user1", null
+				"question1", "user1", IllegalArgumentException.class
 			}, {
-				//Esta restriccion esta resuelta en el controlador de usuario. Solo se permite borrar si es el dueño de la cita.
+
 				//El administrador "admin" va a intentar borrar la cita 2.
-				"question2", "admin", null
+				"question2", "admin", IllegalArgumentException.class
 			}, {
 				//El usuario "user2" va a eliminar la pregunta 2 que no tiene respuestas.
 				"question3", "user2", null
@@ -116,9 +116,9 @@ public class QuestionServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//Contemplado en el controlador por eso deja actualizar
+
 				//El usuario "user1" va a intentar actualizar el nombre de la pregunta 1.
-				"question1", "user1", "nombre modificado", null
+				"question1", "user1", "nombre modificado", IllegalArgumentException.class
 			}, {
 				//El usuario "user2" va a actualizar el nombre de la pregunta 2.
 				"question2", "user2", "nombre modificado", null

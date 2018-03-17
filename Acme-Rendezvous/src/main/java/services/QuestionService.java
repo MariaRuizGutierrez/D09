@@ -72,16 +72,21 @@ public class QuestionService {
 	public Question save(final Question question) {
 		Assert.notNull(question);
 		User userConnected;
+		Collection<Answer> answers;
 
 		userConnected = this.userService.findByPrincipal();
+		answers = this.answerService.findAllAnswerByQuestionId(question.getId());
 
 		Assert.isTrue(userConnected.getRendezvousesCreated().contains(question.getRendezvouse()));
+		Assert.isTrue(answers.size() == 0, "Cannot commit this operation because this question already contains an answer");
+
 		Question result;
 		result = this.questionRepository.save(question);
 		return result;
 	}
 
 	public void delete(final Question question) {
+
 		assert question != null;
 		assert question.getId() != 0;
 		Assert.isTrue(this.questionRepository.exists(question.getId()));
@@ -91,9 +96,8 @@ public class QuestionService {
 		questionId = question.getId();
 		answers = this.answerService.findAllAnswerByQuestionId(questionId);
 
-		for (final Answer s : answers)
-			this.answerService.delete(s);
-
+		Assert.isTrue(answers.size() == 0, "Cannot commit this operation because this question already contains an answer");
+		Assert.isTrue(this.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
 		this.questionRepository.delete(question);
 	}
 
