@@ -39,11 +39,15 @@ public class CategoryService {
 	public Category create() {
 		Category result;
 		Collection<Category> subCategories;
+		Collection<ServiceOffered> servicesOffered;
 
 		Assert.notNull(this.administratorService.findByPrincipal());
+
 		result = new Category();
 		subCategories = new ArrayList<Category>();
+		servicesOffered = new ArrayList<ServiceOffered>();
 		result.setSubCategories(subCategories);
+		result.setServicesOffered(servicesOffered);
 
 		return result;
 	}
@@ -78,23 +82,12 @@ public class CategoryService {
 	public void delete(final Category category) {
 		this.administratorService.checkPrincipal();
 		Assert.notNull(category);
-		Collection<Category> subCategoriesEmpty;
-		subCategoriesEmpty = new ArrayList<Category>();
 
-		Collection<ServiceOffered> services;
-		services = this.serviceOfferedService.ServiceByCategoryName(category.getId());
-
-		for (final ServiceOffered s1 : services)
-			s1.setCategory(null);
-
-		if (category.getFatherCategory() != null)
-			category.getFatherCategory().setSubCategories(subCategoriesEmpty);
+		Assert.isTrue(category.getServicesOffered().size() == 0);
 
 		if (category.getSubCategories().size() > 0)
-			for (final Category c : category.getSubCategories())
-				this.delete(c);
-		if (category.getSubCategories().size() == 0)
-			this.categoryRepository.delete(category);
+			this.delete(category);
+		this.categoryRepository.delete(category);
 	}
 
 	public Collection<Category> findAll() {

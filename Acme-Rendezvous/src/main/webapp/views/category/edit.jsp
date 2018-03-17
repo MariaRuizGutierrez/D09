@@ -28,6 +28,7 @@
 	<form:hidden path="version" />
 	<form:hidden path="subCategories"/>
 	<form:hidden path="concat"/>
+	<form:hidden path="servicesOffered"/>
 
 	<form:label path="name">
 		<spring:message code="category.name" />:

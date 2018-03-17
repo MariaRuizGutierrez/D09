@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -70,6 +71,7 @@ public class Category extends DomainEntity {
 
 	@Valid
 	@OneToMany(mappedBy = "category")
+	@NotNull
 	public Collection<ServiceOffered> getServicesOffered() {
 		return this.servicesOffered;
 	}
