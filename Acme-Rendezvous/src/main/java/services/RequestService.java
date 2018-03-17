@@ -47,7 +47,7 @@ public class RequestService {
 	}
 
 	// Simple CRUD Methods----------------------------------------------------------
-	public Request create(Integer rendezvousId) {
+	public Request create(final Integer rendezvousId) {
 		Request result;
 		User userPrincipal;
 		Date moment;
@@ -110,7 +110,7 @@ public class RequestService {
 		this.requestRepository.delete(request);
 	}
 
-	public Collection<Request> findServiceOfferedOfServiceOfferedId(int serviceOfferedId) {
+	public Collection<Request> findServiceOfferedOfServiceOfferedId(final int serviceOfferedId) {
 
 		Collection<Request> result;
 
@@ -121,7 +121,7 @@ public class RequestService {
 
 	//Other business methods-----------------------------------------------------
 
-	public Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(int userId) {
+	public Collection<CreditCard> findAllCreditCardsInDescendOrderByUser(final int userId) {
 		User user;
 		Collection<CreditCard> cards;
 
@@ -140,16 +140,15 @@ public class RequestService {
 		calendar = new GregorianCalendar();
 		actualYear = calendar.get(Calendar.YEAR);
 		actualYear = actualYear % 100;
-
-		if (Integer.parseInt(creditCard.getExpirationYear()) > actualYear)
-			res = true;
-		else if (Integer.parseInt(creditCard.getExpirationYear()) == actualYear && Integer.parseInt(creditCard.getExpirationMonth()) >= calendar.get(Calendar.MONTH))
-			res = true;
-
+		if (creditCard.getExpirationYear() != null)
+			if (Integer.parseInt(creditCard.getExpirationYear()) > actualYear)
+				res = true;
+			else if (Integer.parseInt(creditCard.getExpirationYear()) == actualYear && Integer.parseInt(creditCard.getExpirationMonth()) >= calendar.get(Calendar.MONTH))
+				res = true;
 		return res;
 	}
 
-	public Collection<Request> findAllRequestByUser(int userId) {
+	public Collection<Request> findAllRequestByUser(final int userId) {
 		Collection<Request> result;
 		User user;
 
