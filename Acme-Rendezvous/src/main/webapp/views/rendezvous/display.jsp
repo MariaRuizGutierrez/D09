@@ -101,16 +101,16 @@
 	<spring:message code="nothing.found.to.display" />
 	</jstl:if>
 <jstl:if test="${row.servicesOffered.size()>0}">
-	<display:table name="services" id="row" class="displaytag">
+	<display:table name="services" id="row1" class="displaytag">
 	 
 	<%!String estilo;%>
 	<jstl:choose>
-			<jstl:when test="${row.cancelled==false}">
+			<jstl:when test="${row1.cancelled==false}">
 				<%=estilo = "p1"%>
 
 			</jstl:when>
 
-			<jstl:when test="${row.cancelled==true}">
+			<jstl:when test="${row1.cancelled==true}">
 
 				<%=estilo = "p2"%>
 			</jstl:when>
@@ -134,7 +134,7 @@
 	
 	<spring:message code="cancelled" var="Delete" />
 		<display:column title="${Delete}" class="<%= estilo %>">
-		<jstl:if test="${row.cancelled==true}">
+		<jstl:if test="${row1.cancelled==true}">
 			<FONT COLOR="yellow">
 			<spring:message code="cancelled.cancelled"/>
 			</FONT><br>

@@ -60,8 +60,19 @@
 				<a href="${editURL}"><spring:message code="rendezvous.edit" /></a>
 			</jstl:if>
 		</display:column>
-	</security:authorize>
+	
 
+	<spring:message code="rendezvous.display" var="Display" />
+	<display:column title="${Display}" sortable="true" class="<%= estilo %>">
+		<spring:url value="rendezvous/user/display.do" var="editURL">
+			<spring:param name="rendezvousId" value="${row.id}" />
+		</spring:url>
+		<a href="${editURL}"><spring:message code="rendezvous.display" /></a>
+
+	</display:column>
+	</security:authorize>
+	
+	<security:authorize access="isAnonymous()">
 	<spring:message code="rendezvous.display" var="Display" />
 	<display:column title="${Display}" sortable="true" class="<%= estilo %>">
 		<spring:url value="rendezvous/display.do" var="editURL">
@@ -70,6 +81,7 @@
 		<a href="${editURL}"><spring:message code="rendezvous.display" /></a>
 
 	</display:column>
+	</security:authorize>
 
 	<!-- ATRIBUTOS -->
 	<spring:message code="rendezvouse.name" var="titleHeader" />
