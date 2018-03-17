@@ -70,9 +70,10 @@ public class CategoryService {
 					Assert.isTrue(!(c.getName().equals(category.getName()) && c.getFatherCategory().equals(category.getFatherCategory())));
 		} else if (category.getId() == 0)
 			for (final Category c : categories)
-				if (c.getFatherCategory() == null)
-					Assert.isTrue(!c.getName().equals(category.getName()));
-				else
+				if (c.getFatherCategory() == null) {
+					if (category.getFatherCategory() == null)
+						Assert.isTrue(!c.getName().equals(category.getName()));
+				} else
 					Assert.isTrue(!(c.getName().equals(category.getName()) && c.getFatherCategory().equals(category.getFatherCategory())));
 		result = this.categoryRepository.save(category);
 
@@ -86,7 +87,7 @@ public class CategoryService {
 		Assert.isTrue(category.getServicesOffered().size() == 0);
 
 		if (category.getSubCategories().size() > 0)
-			for (Category c : category.getSubCategories())
+			for (final Category c : category.getSubCategories())
 				this.delete(c);
 		this.categoryRepository.delete(category);
 	}
