@@ -3,6 +3,7 @@ package services;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -52,8 +53,12 @@ public class RequestServiceTest extends AbstractTest {
 	@Test
 	public void driverCreateAndSave() {
 		final Collection<CreditCard> listCreditCards = this.createAllCreditCardsForTesting();
+		//final Collection<Date> listDates = this.createAllDatedForTesting();
+
 		final Iterator<CreditCard> iterator = listCreditCards.iterator();
+		//Iterator<Date> iterator2=listDates.iterator();
 		final CreditCard creditCardOk = iterator.next();
+		//Date date1=iterator2.next();
 		final Object testingData[][] = {
 			{
 				//Se crea una Request correctamente
@@ -80,19 +85,17 @@ public class RequestServiceTest extends AbstractTest {
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateCreateAndSave(super.getEntityId((String) testingData[i][0]), (CreditCard) testingData[i][1], //CredtitCard
-				super.getEntityId((String) testingData[i][2]), //serviceOffered
-				(String) testingData[i][2], //comment
-				(String) testingData[i][3], //requestMomment
-				super.getEntityId((String) testingData[i][4]), (Class<?>) testingData[i][5]);
+			this.templateCreateAndSave(super.getEntityId((String) testingData[i][0]), (CreditCard) testingData[i][1], super.getEntityId((String) testingData[i][2]), (String) testingData[i][3], (String) testingData[i][4],
+				super.getEntityId((String) testingData[i][5]), (Class<?>) testingData[i][6]);
 	}
 
 	private void templateCreateAndSave(final int usernameId, final CreditCard creditcard, final int serviceOfferedId, final String comment, final String requestMoment, final int rendezvouseId, final Class<?> expected) {
 		final Rendezvouse rendezvouseForRequest;
 		Request request;
 		Date requestMomentDate;
-		final ServiceOffered serviceOffered;
+		ServiceOffered serviceOffered;
 		User user;
+		final Date requestMoment2;
 		Class<?> caught;
 
 		caught = null;
@@ -129,6 +132,27 @@ public class RequestServiceTest extends AbstractTest {
 	}
 
 	//	//Other Methods additionals---------------------------------------------------------------------------------------
+
+	//Date since;
+
+	//calendar = Calendar.getInstance();
+	//calendar.add(Calendar.DAY_OF_MONTH, -31);
+	//since = calendar.getTime();
+
+	private Collection<Date> createAllDatedForTesting() {
+		Date date1;
+		Collection<Date> result;
+
+		result = new ArrayList<>();
+
+		Calendar calendar1;
+		calendar1 = Calendar.getInstance();
+		calendar1.add(Calendar.DAY_OF_MONTH, -31);
+		date1 = calendar1.getTime();
+		result.add(date1);
+
+		return result;
+	}
 
 	private Collection<CreditCard> createAllCreditCardsForTesting() {
 		final Collection<CreditCard> result;
