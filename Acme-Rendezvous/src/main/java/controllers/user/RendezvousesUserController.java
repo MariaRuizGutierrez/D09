@@ -65,6 +65,7 @@ public class RendezvousesUserController extends AbstractController {
 	@RequestMapping(value = "/listnotasis", method = RequestMethod.GET)
 	public ModelAndView listasis() {
 		final ModelAndView result;
+		this.userService.checkPrincipal();
 		Collection<Rendezvouse> rendezvous;
 		User principal;
 		principal = this.userService.findByPrincipal();
@@ -79,6 +80,7 @@ public class RendezvousesUserController extends AbstractController {
 
 	@RequestMapping(value = "/listasis", method = RequestMethod.GET)
 	public ModelAndView listnotasis() {
+		this.userService.checkPrincipal();
 		final ModelAndView result;
 		Collection<Rendezvouse> rendezvous;
 		User principal;

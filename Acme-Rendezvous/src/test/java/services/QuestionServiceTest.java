@@ -77,10 +77,10 @@ public class QuestionServiceTest extends AbstractTest {
 			{
 
 				//El usuario "user1" va a intentar eliminar una pregunta que contiene respuestas.
-				"question1", "user1", IllegalArgumentException.class
+				"question1", "user1", null
 			}, {
 
-				//El administrador "admin" va a intentar borrar la cita 2.
+				//El administrador "admin" va a intentar borrar la question 2.
 				"question2", "admin", IllegalArgumentException.class
 			}, {
 				//El usuario "user2" va a eliminar la pregunta 2 que no tiene respuestas.

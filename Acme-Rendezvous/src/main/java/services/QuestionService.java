@@ -32,7 +32,6 @@ public class QuestionService {
 	@Autowired
 	private AnswerService		answerService;
 
-	//Importar la que pertenece a Spring
 	@Autowired
 	private Validator			validator;
 
@@ -90,15 +89,20 @@ public class QuestionService {
 		assert question != null;
 		assert question.getId() != 0;
 		Assert.isTrue(this.questionRepository.exists(question.getId()));
+
+		Assert.isTrue(this.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
+
 		Collection<Answer> answers;
 		int questionId;
 
 		questionId = question.getId();
 		answers = this.answerService.findAllAnswerByQuestionId(questionId);
 
-		Assert.isTrue(answers.size() == 0, "Cannot commit this operation because this question already contains an answer");
-		Assert.isTrue(this.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
+		for (final Answer s : answers)
+			this.answerService.delete(s);
+
 		this.questionRepository.delete(question);
+
 	}
 
 	// Other business methods -------------------------------------------------
