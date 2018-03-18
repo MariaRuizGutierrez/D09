@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -22,99 +23,98 @@ import forms.ManagerForm;
 @Service
 @Transactional
 public class ManagerService {
-	
+
 	// Managed repository -----------------------------------------------------
 	@Autowired
 	private ManagerRepository	managerRepository;
-	
+
 	// Supporting services ----------------------------------------------------
-	
+
 	@Autowired
-	private Validator validator;
+	private Validator			validator;
+
 
 	// Constructors -----------------------------------------------------------
-	
-	public ManagerService(){
+
+	public ManagerService() {
 		super();
 	}
-	
+
 	// Simple CRUD methods ----------------------------------------------------
-	
-	public Manager create(){
-		
+
+	public Manager create() {
+
 		Manager result;
 		UserAccount userAccount;
 		Authority authority;
 		Collection<ServiceOffered> servicesOffered;
-		
+
 		result = new Manager();
 		userAccount = new UserAccount();
 		authority = new Authority();
 		servicesOffered = new ArrayList<>();
-		
+
 		authority.setAuthority(Authority.MANAGER);
 		userAccount.addAuthority(authority);
 		result.setUserAccount(userAccount);
 		result.setServicesOffered(servicesOffered);
-		
+
 		return result;
-		
+
 	}
-	
-	public Collection<Manager> findAll(){
-		
+
+	public Collection<Manager> findAll() {
+
 		Collection<Manager> result;
-		
+
 		result = this.managerRepository.findAll();
-		
+
 		return result;
-		
+
 	}
-	
-	public Manager findOne(int managerId){
-		
+
+	public Manager findOne(final int managerId) {
+
 		Manager result;
-		
+
 		result = this.managerRepository.findOne(managerId);
-		
+
 		return result;
 	}
-	
-	public Manager save(Manager manager){
-		
+
+	public Manager save(final Manager manager) {
+
 		Assert.notNull(manager);
-		
+
 		Manager result;
 		Md5PasswordEncoder encoder;
 		String passwordHash;
-		
-		if(manager.getId()==0){
+
+		if (manager.getId() == 0) {
 			encoder = new Md5PasswordEncoder();
 			passwordHash = encoder.encodePassword(manager.getUserAccount().getPassword(), null);
 			manager.getUserAccount().setPassword(passwordHash);
 		}
-		
 
 		result = this.managerRepository.save(manager);
 
 		Assert.notNull(result);
 
 		return result;
-		
-	}
-	
-	public void delete(Manager manager){
-		
-		Assert.notNull(manager);
-		Assert.isTrue(manager.getId() != 0);
-		
-		this.managerRepository.delete(manager);
-		
+
 	}
 
-	
+	public void delete(final Manager manager) {
+
+		Assert.notNull(manager);
+		Assert.isTrue(manager.getId() != 0);
+
+		this.managerRepository.delete(manager);
+
+	}
+
 	// Other business methods----------------------------------
-	
+
 	public Manager findByPrincipal() {
 
 		Manager result;
@@ -127,7 +127,7 @@ public class ManagerService {
 
 		return result;
 	}
-	
+
 	public void checkPrincipal() {
 
 		final UserAccount userAccount = LoginService.getPrincipal();
@@ -141,53 +141,53 @@ public class ManagerService {
 
 		Assert.isTrue(authorities.contains(auth));
 	}
-	
-	
-	public Manager findManagerByServiceOffered(int serviceOfferedId){
-		
+
+	public Manager findManagerByServiceOffered(final int serviceOfferedId) {
+
 		Manager result;
-		
+
 		result = this.managerRepository.findManagerByServiceOffered(serviceOfferedId);
-		
+
 		return result;
-		
+
 	}
-	
-	
-	public ManagerForm reconstruct(ManagerForm managerForm, BindingResult binding){
-		
+
+	public ManagerForm reconstruct(final ManagerForm managerForm, final BindingResult binding) {
+
 		ManagerForm result = null;
 		Manager manager;
 		manager = managerForm.getManager();
-		
-		if(manager.getId() == 0){
+
+		if (manager.getId() == 0) {
 			UserAccount userAccount;
 			Authority authority;
-			
+
 			userAccount = managerForm.getManager().getUserAccount();
 			authority = new Authority();
 			authority.setAuthority(Authority.MANAGER);
 			userAccount.addAuthority(authority);
 			managerForm.getManager().setUserAccount(userAccount);
 			result = managerForm;
-			
-		}else{
-			
+
+		} else {
+
 			manager = this.managerRepository.findOne(managerForm.getManager().getId());
 			managerForm.getManager().setId(manager.getId());
 			managerForm.getManager().setVersion(manager.getVersion());
 			managerForm.getManager().setUserAccount(manager.getUserAccount());
-			
+
 			result = managerForm;
-			
-			
+
 		}
-		
 
 		this.validator.validate(result, binding);
 
 		return result;
-		
+
+	}
+
+	public void flush() {
+		this.managerRepository.flush();
 	}
 
 }
