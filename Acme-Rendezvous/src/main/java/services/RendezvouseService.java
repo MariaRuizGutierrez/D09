@@ -61,9 +61,11 @@ public class RendezvouseService {
 		Collection<User> assistants;
 		Collection<Rendezvouse> similarRendezvouses;
 		Collection<Announcement> announcements;
+		Collection<ServiceOffered> services;
 
 		announcements = new ArrayList<Announcement>();
 		similarRendezvouses = new ArrayList<Rendezvouse>();
+		services = new ArrayList<ServiceOffered>();
 		assistants = new ArrayList<User>();
 		result = new Rendezvouse();
 
@@ -71,6 +73,7 @@ public class RendezvouseService {
 		result.setAnnouncements(announcements);
 		result.setSimilarRendezvouses(similarRendezvouses);
 		result.setDeleted(false);
+		result.setServicesOffered(services);
 
 		return result;
 	}
@@ -379,14 +382,17 @@ public class RendezvouseService {
 			Collection<User> assistants;
 			Collection<Rendezvouse> similarRendezvouses;
 			Collection<Announcement> announcements;
+			Collection<ServiceOffered> serviceOffereds;
 
 			announcements = new ArrayList<Announcement>();
 			similarRendezvouses = new ArrayList<Rendezvouse>();
 			assistants = new ArrayList<User>();
+			serviceOffereds = new ArrayList<ServiceOffered>();
 
 			rendezvous.setAssistants(assistants);
 			rendezvous.setAnnouncements(announcements);
 			rendezvous.setSimilarRendezvouses(similarRendezvouses);
+			rendezvous.setServicesOffered(serviceOffereds);
 			rendezvous.setDeleted(false);
 			result = rendezvous;
 		} else {
@@ -395,6 +401,7 @@ public class RendezvouseService {
 			rendezvous.setVersion(rendezvousBD.getVersion());
 			rendezvous.setAssistants(rendezvousBD.getAssistants());
 			rendezvous.setAnnouncements(rendezvousBD.getAnnouncements());
+			rendezvous.setServicesOffered(rendezvousBD.getServicesOffered());
 			if (rendezvous.getSimilarRendezvouses() == null)
 				rendezvous.setSimilarRendezvouses(new ArrayList<Rendezvouse>());
 			result = rendezvous;
