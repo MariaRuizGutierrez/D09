@@ -153,5 +153,14 @@ public class ServiceOfferedService {
 		return services;
 
 	}
+	
+	public Collection<ServiceOffered> ServiceByCategoryId(int categoryId){
+		
+		Collection<ServiceOffered> result;
+		
+		result = this.serviceOfferedRepository.ServiceByCategoryId(categoryId);
+		
+		return result;
+	}
 
 }

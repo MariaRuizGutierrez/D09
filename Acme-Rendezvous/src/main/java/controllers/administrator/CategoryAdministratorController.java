@@ -2,7 +2,6 @@
 package controllers.administrator;
 
 import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,20 +56,49 @@ public class CategoryAdministratorController extends AbstractController {
 
 	}
 
+//	//Edit --------------------------------------------------------------------
+//	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+//	public ModelAndView edit(@RequestParam final int categoryId) {
+//
+//		ModelAndView result;
+//		Category category;
+//		//Collection<Category> defaultCategories;
+//		
+//
+//		//defaultCategories = this.configurationSystemService.defaultCategories();
+//		category = this.categoryService.findOne(categoryId);
+//		//Assert.isTrue(!defaultCategories.contains(category));
+//		Assert.notNull(category);
+//		
+//		if(this.serviceOfferedService.ServiceByCategoryId(categoryId).size()!=0){
+//			Assert.isTrue(this.serviceOfferedService.ServiceByCategoryId(categoryId).size()==0);
+//			result = this.createEditModelAndView(category, "category.belong.service");
+//		}else{
+//			result = this.createEditModelAndView(category);
+//		}
+//
+//		
+//
+//		return result;
+//
+//	}
+	
+	
+	
 	//Edit --------------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int categoryId) {
 
 		ModelAndView result;
 		Category category;
-		//Collection<Category> defaultCategories;
-
-		//defaultCategories = this.configurationSystemService.defaultCategories();
-		category = this.categoryService.findOne(categoryId);
-		//Assert.isTrue(!defaultCategories.contains(category));
-		Assert.notNull(category);
-
-		result = this.createEditModelAndView(category);
+	
+		try {
+			category = this.categoryService.findOneToEdit(categoryId);
+			result = this.createEditModelAndView(category);
+			
+		} catch (final Throwable oops) {
+			result = this.createListWithMessage("category.belong.service");
+		}
 
 		return result;
 
@@ -135,5 +163,20 @@ public class CategoryAdministratorController extends AbstractController {
 
 		return result;
 
+	}
+	
+	protected ModelAndView createListWithMessage(String messageCode){
+		ModelAndView result;
+		Collection<Category> categories;
+
+		categories = this.categoryService.findAll();
+
+		result = new ModelAndView("category/list");
+		result.addObject("categories", categories);
+		result.addObject("message", messageCode);
+		result.addObject("requestURI", "category/administrator/list.do");
+
+		return result;
+		
 	}
 }

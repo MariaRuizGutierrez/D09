@@ -106,6 +106,14 @@ public class CategoryService {
 		Assert.notNull(result);
 		return result;
 	}
+	
+	public Category findOneToEdit(final int categoryId) {
+		Category result;
+		result = this.categoryRepository.findOne(categoryId);
+		Assert.notNull(result);
+		Assert.isTrue(this.serviceOfferedService.ServiceByCategoryId(categoryId).size()==0);
+		return result;
+	}
 
 	public void flush() {
 		this.categoryRepository.flush();
