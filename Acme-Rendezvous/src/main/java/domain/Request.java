@@ -7,7 +7,9 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -17,6 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+	@Index(columnList = "serviceOffered_id,user_id")
+})
 public class Request extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
@@ -31,7 +36,7 @@ public class Request extends DomainEntity {
 		return this.rendezvousid;
 	}
 
-	public void setRendezvousid(Integer rendezvousid) {
+	public void setRendezvousid(final Integer rendezvousid) {
 		this.rendezvousid = rendezvousid;
 	}
 
@@ -42,7 +47,7 @@ public class Request extends DomainEntity {
 		return this.requestMoment;
 	}
 
-	public void setRequestMoment(Date requestMoment) {
+	public void setRequestMoment(final Date requestMoment) {
 		this.requestMoment = requestMoment;
 	}
 
@@ -59,7 +64,7 @@ public class Request extends DomainEntity {
 		return this.creditCard;
 	}
 
-	public void setCreditCard(CreditCard creditCard) {
+	public void setCreditCard(final CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
 
