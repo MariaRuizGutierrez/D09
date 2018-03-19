@@ -323,7 +323,7 @@ public class AdministratorService {
 		final Page<Rendezvouse> resPage;
 		final Pageable pageable;
 
-		pageable = new PageRequest(0, 3);
+		pageable = new PageRequest(0, 4);
 		resPage = this.administratorRepository.findTop5Services(pageable);
 		result = resPage.getContent();
 		return result;
@@ -354,8 +354,7 @@ public class AdministratorService {
 		return result;
 	}
 
-	
-	public void flush(){
+	public void flush() {
 		this.administratorRepository.flush();
 	}
 }
