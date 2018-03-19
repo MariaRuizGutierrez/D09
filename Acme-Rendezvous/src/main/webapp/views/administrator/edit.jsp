@@ -38,22 +38,22 @@
 
 		<jstl:if test="${administratorForm.administrator.id == 0}">
 			<acme:textbox code="administrator.username"
-				path="administrator.userAccount.username" />
+				path="administrator.userAccount.username" /><br />
 			<acme:password code="administrator.password"
-				path="administrator.userAccount.password" />
+				path="administrator.userAccount.password" /><br />
 			<acme:password code="administrator.password" path="passwordCheck" />
 			<br />
 		</jstl:if>
 
-		<acme:textbox code="administrator.name" path="administrator.name" />
+		<acme:textbox code="administrator.name" path="administrator.name" /><br />
 		<acme:textbox code="administrator.surname"
-			path="administrator.surname" />
+			path="administrator.surname" /><br />
 		<acme:textbox code="administrator.emailAddress"
-			path="administrator.emailAddress" />
+			path="administrator.emailAddress" /><br />
 		<acme:textbox code="administrator.postalAddress"
-			path="administrator.postalAddress" />
+			path="administrator.postalAddress" /><br />
 		<acme:textbox code="administrator.phoneNumber"
-			path="administrator.phoneNumber" />
+			path="administrator.phoneNumber" /><br />
 
 		<jstl:if test="${administratorForm.administrator.id == 0}">
 			<form:label path="conditions">
@@ -62,9 +62,9 @@
 						code="actor.legal.moreinfo" /></a>
 			</form:label>
 			<form:checkbox id="conditions" path="conditions" />
-			<form:errors cssClass="error" path="conditions" />
+			<form:errors cssClass="error" path="conditions" /><br />
 		</jstl:if>
-
+<br />
 
 		<input type="submit" name="save"
 			value="<spring:message code="administrator.save" />" />&nbsp; 
