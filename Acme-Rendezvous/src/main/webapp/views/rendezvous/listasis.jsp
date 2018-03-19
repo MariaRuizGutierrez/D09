@@ -149,7 +149,7 @@
 <display:column>
 		
 
-			<spring:url value="rendezvous/user/notassist.do" var="editURL">
+			<spring:url value="rendezvous/user/notassist.do?d-16544-p=1" var="editURL">
 				<spring:param name="rendezvousId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message
