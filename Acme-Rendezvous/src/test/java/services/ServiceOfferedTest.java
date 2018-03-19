@@ -101,6 +101,10 @@ public class ServiceOfferedTest extends AbstractTest {
 			}, {
 				//Se elimina el serviceOffered1 por el admin (el cual no elimina, cancela)
 				"admin", "serviceOffered1", IllegalArgumentException.class
+			}, {
+
+				//Se elimina el serviceOffered1 por el admin (el cual no elimina, cancela)
+				"manager4", "serviceOffered5", null
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
