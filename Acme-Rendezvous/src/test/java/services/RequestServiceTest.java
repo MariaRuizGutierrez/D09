@@ -102,6 +102,12 @@ public class RequestServiceTest extends AbstractTest {
 			}, {
 				//Un user crea una request con una creditCard no válida ||CVV fuera del rango
 				"user1", iterator.next(), "serviceOffered5", "comentario test1", "2018/03/11 19:40", "rendezvouse1", javax.validation.ConstraintViolationException.class
+			}, {
+				//Un user crea una request sin comment para demostrar que es opcional
+				"user1", creditCardOk, "serviceOffered5", null, "2018/03/11 19:40", "rendezvouse1", null
+			}, {
+				//Un user crea una request para una rendezvous que no le pertenece
+				"user1", creditCardOk, "serviceOffered5", "comentario test1", "2018/03/11 19:40", "rendezvouse5", IllegalArgumentException.class
 			}
 
 		};
