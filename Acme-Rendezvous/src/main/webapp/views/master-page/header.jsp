@@ -60,8 +60,6 @@
 					<li class="arrow"></li>
 					<li><a href="category/administrator/list.do?d-16544-p=1"><spring:message
 								code="master.page.administrator.categories" /></a></li>
-					<li><a href="category/administrator/create.do"><spring:message
-								code="master.page.administrator.category.create" /></a></li>
 				</ul></li>
 
 			<li><a class="fNiv"><spring:message
