@@ -164,7 +164,7 @@
 	<jstl:if test="${!assist && row.deleted==false}">
 		<display:column>
 		
-			<spring:url value="rendezvous/user/assist.do" var="editURL">
+			<spring:url value="rendezvous/user/assist.do?d-16544-p=1" var="editURL">
 				<spring:param name="rendezvousId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message
