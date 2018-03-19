@@ -50,7 +50,6 @@ public class CategoryController extends AbstractController {
 
 		result = new ModelAndView("category/listForRendezvous");
 		result.addObject("categories", categories);
-		result.addObject("requestURI", "category/list.do");
 
 		return result;
 
