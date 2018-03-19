@@ -11,8 +11,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Access(AccessType.PROPERTY)
 public class Manager extends Actor {
@@ -21,7 +19,6 @@ public class Manager extends Actor {
 	private String	vat;
 
 
-	@NotBlank
 	@Pattern(regexp = "^[\\w-]+$")
 	public String getVat() {
 		return this.vat;
