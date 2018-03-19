@@ -29,4 +29,4 @@
     <br/>
 </div>
 <div align="center">
-<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Sample Co., Inc.</b></div>
+<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme Rendezvous Co., Inc.</b></div>
