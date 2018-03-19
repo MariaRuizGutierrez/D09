@@ -174,7 +174,7 @@ public class CategoryAdministratorController extends AbstractController {
 		result = new ModelAndView("category/list");
 		result.addObject("categories", categories);
 		result.addObject("message", messageCode);
-		result.addObject("requestURI", "category/administrator/list.do");
+		result.addObject("requestURI", "category/administrator/list.do?d-16544-p=1");
 
 		return result;
 		
