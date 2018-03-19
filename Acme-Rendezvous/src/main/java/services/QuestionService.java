@@ -90,8 +90,6 @@ public class QuestionService {
 		assert question.getId() != 0;
 		Assert.isTrue(this.questionRepository.exists(question.getId()));
 
-		Assert.isTrue(this.findAllQuestionsByUser().contains(question), "Cannot commit this operation because that is not your question");
-
 		Collection<Answer> answers;
 		int questionId;
 
