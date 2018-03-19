@@ -224,7 +224,7 @@
 						code="category.list.rendezvous" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="category/listcat.do"><spring:message
+					<li><a href="category/listcat.do?d-16544-p=1"><spring:message
 								code="category.list.rendezvous" /></a>
 				</ul></li>
 						
