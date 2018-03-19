@@ -20,7 +20,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="categories" requestURI="${requestURI}" id="row">
+	name="categories" requestURI="category/listcat" id="row">
 	
 	<!-- Action links -->
 

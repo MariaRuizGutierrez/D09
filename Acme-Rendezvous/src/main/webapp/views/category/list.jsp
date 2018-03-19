@@ -55,16 +55,15 @@
 		</jstl:forEach>	
 	</display:column>
 	
-	<%-- <spring:message code="category.trips" var="nameHeader" />
-	
-		<display:column  title="${nameHeader}" sortable="true" >
-		<spring:url value="trip/category/list.do" var="tripListURL">
+<%-- 	<spring:message code="category.rendezvous" var="nameHeader" />
+			<display:column  title="${nameHeader}" sortable="true" >
+		<spring:url value="rendezvous/category/list.do" var="tripListURL">
 		 <spring:param name="categoryId" value="${row.id}"/>
 		 </spring:url>
-		 <a href="${tripListURL}"><spring:message code="category.trips"/></a>
-		 </display:column> --%>
+		 <a href="${tripListURL}"><spring:message code="category.rendezvous"/></a>
+		 </display:column>
 		
-
+ --%>
 	
 	
 

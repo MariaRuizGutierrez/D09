@@ -39,4 +39,20 @@ public class CategoryController extends AbstractController {
 		return result;
 
 	}
+
+	@RequestMapping(value = "/listcat", method = RequestMethod.GET)
+	public ModelAndView listBycat() {
+
+		ModelAndView result;
+		Collection<Category> categories;
+
+		categories = this.categoryService.findAll();
+
+		result = new ModelAndView("category/listForRendezvous");
+		result.addObject("categories", categories);
+		result.addObject("requestURI", "category/list.do");
+
+		return result;
+
+	}
 }
