@@ -61,7 +61,7 @@
 	
 	<p>
 		<spring:message code="user.rendezvouse.name"></spring:message>:
-		<spring:url value="rendezvous//listAssistant.do" var="renURL">
+		<spring:url value="rendezvous/listAssistant.do?d-16544-p=1" var="renURL">
 		<spring:param name="userId" value="${row.id}"/>
 		</spring:url>
 		<a href="${renURL}"><spring:message code="user.rendezvouse"/></a>
