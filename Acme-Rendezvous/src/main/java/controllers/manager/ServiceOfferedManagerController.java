@@ -141,7 +141,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 		try {
 			this.serviceOfferedService.delete(serviceOffered);
-			result = new ModelAndView("redirect:list.do");
+			result = new ModelAndView("redirect:listAll.do");
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 		}
