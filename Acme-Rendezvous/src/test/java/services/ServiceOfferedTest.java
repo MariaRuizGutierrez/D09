@@ -37,11 +37,11 @@ public class ServiceOfferedTest extends AbstractTest {
 
 
 	//TEST CREATE--------------------------------------------------------------
-
+	// Caso de uso 5.2
 	@Test
 	public void driverCreate() {
 
-		Object testingData[][] = {
+		final Object testingData[][] = {
 			{
 				//Se crea un Servicio correctamente
 				"manager1", "name test", "description", "http://www.test.com", null
@@ -62,7 +62,7 @@ public class ServiceOfferedTest extends AbstractTest {
 			this.templateCreate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (Class<?>) testingData[i][4]);
 	}
 
-	private void templateCreate(String username, String name, String description, String picture, final Class<?> expected) {
+	private void templateCreate(final String username, final String name, final String description, final String picture, final Class<?> expected) {
 
 		ServiceOffered serviceOffered;
 		Class<?> caught;
@@ -90,7 +90,7 @@ public class ServiceOfferedTest extends AbstractTest {
 	}
 
 	//TEST DELETE-----------------------------------------------------------
-
+	//Caso de uso 5.2
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -107,7 +107,7 @@ public class ServiceOfferedTest extends AbstractTest {
 			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
 	}
 
-	private void templateDelete(String username, final int serviceOfferedId, final Class<?> expected) {
+	private void templateDelete(final String username, final int serviceOfferedId, final Class<?> expected) {
 		ServiceOffered serviceOffered;
 		Class<?> caught;
 
@@ -129,7 +129,7 @@ public class ServiceOfferedTest extends AbstractTest {
 	}
 
 	//TEST CANCEL-----------------------------------------------------------
-
+	//Caso de uso 6.1
 	@Test
 	public void driverCancel() {
 		final Object testingData[][] = {
@@ -146,7 +146,7 @@ public class ServiceOfferedTest extends AbstractTest {
 			this.templateCancel((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
 	}
 
-	private void templateCancel(String username, final int serviceOfferedId, final Class<?> expected) {
+	private void templateCancel(final String username, final int serviceOfferedId, final Class<?> expected) {
 		ServiceOffered serviceOffered;
 		Class<?> caught;
 
@@ -169,6 +169,7 @@ public class ServiceOfferedTest extends AbstractTest {
 
 	// Test listEdit ----------------------------------------------------------------------------------
 	// Se listan todos los servicios creados por el manager logueado y de ellos se coge la pasada por parametro para cambiarles los valores
+	//Caso de uso 5.2
 	@Test
 	public void driverListEdit() {
 		final Object testingData[][] = {
@@ -196,7 +197,7 @@ public class ServiceOfferedTest extends AbstractTest {
 		for (int i = 0; i < testingData.length; i++)
 			this.templateListEdit((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], super.getEntityId((String) testingData[i][4]), (Class<?>) testingData[i][5]);
 	}
-	private void templateListEdit(String username, String name, String description, String picture, int serviceOfferedId, final Class<?> expected) {
+	private void templateListEdit(final String username, final String name, final String description, final String picture, final int serviceOfferedId, final Class<?> expected) {
 		ServiceOffered serviceOffered;
 		List<ServiceOffered> services;
 		Class<?> caught;
