@@ -71,7 +71,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Collection<ServiceOffered> bestSellingServices();
 
 	//C/2
-	@Query("select m from Manager m where m.servicesOffered.size> (select (select count(s.servicesOffered.size) from Manager s)/count(m) from Manager m)")
+	@Query("select m from Manager m where m.servicesOffered.size>(select avg(m.servicesOffered.size) from Manager m)")
 	Collection<Manager> managerProvidesMoreServicesThanAverage();
 
 	//C/3
