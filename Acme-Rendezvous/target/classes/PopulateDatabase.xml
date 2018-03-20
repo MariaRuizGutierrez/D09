@@ -362,6 +362,7 @@
 		<property name="assistants">
 			<list>
 				<ref bean="user1"></ref>
+				<ref bean="user2"></ref>
 				<ref bean="user4"></ref>
 				<ref bean="user5"></ref>
 			</list>
