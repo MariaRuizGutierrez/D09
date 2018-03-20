@@ -75,13 +75,13 @@ public class QuestionServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-
+				//Esto da positivo porque esta restringido en el controlador y no puede hacerse en el servicio
 				//El usuario "user1" va a intentar eliminar una pregunta que contiene respuestas.
 				"question1", "user1", null
 			}, {
 
-				//El administrador "admin" va a intentar borrar la question 2.
-				"question2", "admin", null
+				//El administrador "admin" va a intentar borrar una question que no existe
+				"question2", "none", IllegalArgumentException.class
 			}, {
 				//El usuario "user2" va a eliminar la pregunta 2 que no tiene respuestas.
 				"question3", "user2", null
