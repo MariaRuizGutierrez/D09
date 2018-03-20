@@ -36,7 +36,7 @@
 	<br>
 	<B><acme:textbox code="request.creditCard.brandName" path="creditCard.brandName"/></B>
 	<br>
-	<B><acme:textbox code="request.creditCard.number" path="creditCard.number" placeHolder="yyyy/MM/dd"/></B>
+	<B><acme:textbox code="request.creditCard.number" path="creditCard.number" placeHolder="Ej. XXXXXXXXXXXXXXX"/></B>
 	<br>
 	<B><acme:textbox code="request.creditCard.expirationMonth" path="creditCard.expirationMonth" placeHolder="XX"/></B>
 	<br>
