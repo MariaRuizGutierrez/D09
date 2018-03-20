@@ -2,6 +2,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -103,7 +104,7 @@ public class ServiceOfferedTest extends AbstractTest {
 				"admin", "serviceOffered1", IllegalArgumentException.class
 			}, {
 
-				//Se elimina el serviceOffered1 por el admin (el cual no elimina, cancela)
+				//Se elimina correctamente
 				"manager4", "serviceOffered5", null
 			}
 		};
@@ -161,6 +162,7 @@ public class ServiceOfferedTest extends AbstractTest {
 			this.serviceOfferedService.cancel(serviceOffered);
 			this.unauthenticate();
 			this.serviceOfferedService.flush();
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -228,5 +230,43 @@ public class ServiceOfferedTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 		super.unauthenticate();
+	}
+
+	// Test List
+	// Se comprueba el list de todas los servicios available
+	// Caso de uso 4.2
+	@Test
+	public void driverServicesAvailable() {
+		final Object testingData[][] = {
+			{
+				// Se comprueba que el servicio 2 aparece en la lista y que la lista tiene tamaño 3
+				"serviceOffered2", 3, null
+			}, {
+				// Se comprueba que el servicio 1 no aparece en la lista
+				"serviceOffered1", 3, IllegalArgumentException.class
+			}, {
+				// Se comprueba que el servicio 2 aparece en la lista pero que la lista no tiene tamaño 5
+				"serviceOffered2", 5, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateServicesAvailable(super.getEntityId((String) testingData[i][0]), (int) testingData[i][1], (Class<?>) testingData[i][2]);
+	}
+	private void templateServicesAvailable(final int serviceOfferedId, final int size, final Class<?> expected) {
+		final Collection<ServiceOffered> services;
+		ServiceOffered serviceOffered;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			services = this.serviceOfferedService.AllServiceNotCancelled();
+			serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
+			Assert.isTrue(services.contains(serviceOffered));
+			Assert.isTrue(services.size() == size);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
 	}
 }
