@@ -85,7 +85,10 @@ public class RendezvousesUserController extends AbstractController {
 		Collection<Rendezvouse> rendezvous;
 		User principal;
 		principal = this.userService.findByPrincipal();
-		rendezvous = this.rendezvouseService.assistantToRendezvouse(principal);
+		if (this.rendezvouseService.calculateYearsOld(principal.getBirthDate()) < 18)
+			rendezvous = this.rendezvouseService.assistantToRendezvouseNot18(principal);
+		else
+			rendezvous = this.rendezvouseService.assistantToRendezvouse(principal);
 		result = new ModelAndView("rendezvous/listasis");
 		result.addObject("rendezvous", rendezvous);
 		result.addObject("assist", false);

@@ -41,9 +41,13 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select r from Rendezvouse r where ?1 member of assistants and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP and r.draftMode=false")
 	Collection<Rendezvouse> CancelMyassistantToRendezvouse(int usuarioId);
 
-	//rendezvouses a las que puede asistir un usuario
-	@Query("select r from Rendezvouse r where ?1 not member of assistants and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP and r.draftMode=false and r.forAdult=false")
+	//rendezvouses a las que puede asistir un usuario mayor de edad
+	@Query("select r from Rendezvouse r where ?1 not member of assistants and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP and r.draftMode=false")
 	Collection<Rendezvouse> assistantToRendezvouse(int usuarioId);
+
+	//rendezvouses a las que puede asistir un usuario menor de edad
+	@Query("select r from Rendezvouse r where ?1 not member of assistants and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP and r.draftMode=false and r.forAdult=false")
+	Collection<Rendezvouse> assistantToRendezvouseNot18(int usuarioId);
 
 	//Todas las rendezvous que estan borradas
 	@Query("select a from User u join u.rendezvousesCreated a where a.deleted=true and u.id=?1")
@@ -70,7 +74,7 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	// Rendezvouses a las que se le pueden hacer preguntas, que no estén borradas ni pasadas
 	@Query("select r from User u join u.rendezvousesCreated r where u.id=?1 and r.deleted=false and r.organisedMoment>CURRENT_TIMESTAMP")
 	Collection<Rendezvouse> findAllRendezvousesForQuestions(int userId);
-	
+
 	//Lista de rendezvous a las que va a asistir un usuario
 	@Query("select r from User u join u.rendezvousesAssisted r where u.id=?1 and r.deleted=false")
 	Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId);

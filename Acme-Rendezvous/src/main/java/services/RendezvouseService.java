@@ -304,6 +304,12 @@ public class RendezvouseService {
 		return resul;
 	}
 
+	public Collection<Rendezvouse> assistantToRendezvouseNot18(final User user) {
+		Collection<Rendezvouse> resul;
+		resul = this.rendezvousRepository.assistantToRendezvouseNot18(user.getId());
+		return resul;
+	}
+
 	public Collection<Rendezvouse> AllRendezvousesDeleted(final int userId) {
 		Collection<Rendezvouse> res;
 		User user;
@@ -361,7 +367,7 @@ public class RendezvouseService {
 
 	}
 
-	public Collection<ServiceOffered> findAllServicesByRendezvous(int rendezvousId) {
+	public Collection<ServiceOffered> findAllServicesByRendezvous(final int rendezvousId) {
 
 		Collection<ServiceOffered> ren;
 
@@ -410,13 +416,13 @@ public class RendezvouseService {
 		return result;
 	}
 
-	public Collection<Rendezvouse> findRendezvousByCategory(int categoryId) {
+	public Collection<Rendezvouse> findRendezvousByCategory(final int categoryId) {
 		Collection<Rendezvouse> res;
 		res = this.rendezvousRepository.findRendezvousByCategory(categoryId);
 		return res;
 	}
 
-	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId) {
+	public Collection<Rendezvouse> ListOfRendezvousAssistantUserId(final int userId) {
 
 		Collection<Rendezvouse> result;
 
