@@ -206,4 +206,41 @@ public class AnnouncementServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 		super.unauthenticate();
 	}
+
+	// Test findAnnouncementByRendezvousId -------------------------------
+	//Caso de uso 15.1
+	@Test
+	public void driverFindAnnouncementByRendezvousId() {
+		final Object testingData[][] = {
+			{
+				//Se comprueba si el Rendezvouse1 tiene el announcement2 y si la lista de announcements que tiene el rendezvouse1 es de 2
+				"announcement2", "rendezvouse1", 2, null
+			}, {
+				//Se comprueba si el Rendezvouse1 tiene el announcement5 (que no lo tiene) y si la lista de announcements que tiene el rendezvouse1 es de 2
+				"announcement5", "rendezvouse1", 2, IllegalArgumentException.class
+			}, {
+				//Se comprueba si el Rendezvouse1 tiene el announcement2 y si la lista de announcements que tiene el rendezvouse1 es de 1 (que no lo es)
+				"announcement2", "rendezvouse1", 1, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateFindAnnouncementByRendezvousId(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), (int) testingData[i][2], (Class<?>) testingData[i][3]);
+	}
+	private void templateFindAnnouncementByRendezvousId(final int announcementId, final int rendezvouseId, final int size, final Class<?> expected) {
+		final Collection<Announcement> listAnnouncements;
+		Announcement announcement;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			listAnnouncements = this.announcementService.findAnnouncementByRendezvousId(rendezvouseId);
+			announcement = this.announcementService.findOne(announcementId);
+			Assert.isTrue(listAnnouncements.contains(announcement));
+			Assert.isTrue(listAnnouncements.size() == size);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
 }
