@@ -98,6 +98,14 @@
 	
 	<spring:message code="serviceoffered.category" var="titleHeader3" />
 	<display:column property="category.name" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	
+	
+	
+	<spring:message code="serviceoffered.cancelled" var="titleHeader3" />
+	<spring:message code="serviceoffered.cancelled.message" var="messageCancelled"></spring:message>
+	<jstl:if test="${row.cancelled ==true}"> 
+	<display:column value="${messageCancelled}" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	</jstl:if>
 
 <%-- <acme:column code="serviceoffered.name" property="name" />
 <acme:column code="serviceoffered.description" property="description"/>
