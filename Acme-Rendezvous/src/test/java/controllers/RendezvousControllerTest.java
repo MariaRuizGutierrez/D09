@@ -30,12 +30,6 @@ public class RendezvousControllerTest extends AbstractTest {
 
 	private MockMvc					mockMvc;
 
-	//	@Autowired
-	//	private CommentService			commentService;
-	//
-	//	@Autowired
-	//	private RendezvouseService		rendezvouseService;
-
 	@Autowired
 	private WebApplicationContext	ctx;
 
@@ -94,8 +88,10 @@ public class RendezvousControllerTest extends AbstractTest {
 
 	@Test(expected = AssertionError.class)
 	public void getListAssistRendezvousNegative1() throws Exception {
-		//Se va a acceder al listado de las citas que un usuario va a asistir sin estar logeado
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/rendezvous/user/listasis")).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.view().name("rendezvous/list"));
+		//El administrador va a intentar acceder al listado de las citas que va a asistir cuando el admin no puede asistir a ninguna
+		this.authenticate("admin");
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/rendezvous/user/listasis")).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.view().name("rendezvous/listasis"));
+		this.unauthenticate();
 	}
 
 	@Test
@@ -106,15 +102,6 @@ public class RendezvousControllerTest extends AbstractTest {
 		this.mockMvc.perform(MockMvcRequestBuilders.get("/rendezvous/user/notassist" + "?rendezvousId=" + id)).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.view().name("rendezvous/listasis"));
 		this.unauthenticate();
 	}
-
-	//	@Test(expected = AssertionError.class)
-	//	public void UnAssistRendezvousNegative1() throws Exception {
-	//		//El usuario va a intentar dejar de asistir a una cita no iba a asistir
-	//		this.authenticate("user1");
-	//		int id = this.getEntityId("rendezvouse3");
-	//		this.mockMvc.perform(MockMvcRequestBuilders.get("/rendezvous/user/notassist" + "?rendezvousId=" + id)).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.view().name("rendezvous/listasis"));
-	//		this.unauthenticate();
-	//	}
 
 	@Test
 	public void AssistRendezvousPositive1() throws Exception {
