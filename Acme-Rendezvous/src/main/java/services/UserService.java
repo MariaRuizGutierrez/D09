@@ -200,4 +200,8 @@ public class UserService {
 
 	}
 
+	public void flush() {
+		this.userRepository.flush();
+	}
+
 }

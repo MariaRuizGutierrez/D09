@@ -1,6 +1,9 @@
 
 package services;
 
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -11,8 +14,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
+import security.UserAccount;
 import utilities.AbstractTest;
+import domain.ServiceOffered;
 import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,12 +30,14 @@ public class UserServiceTest extends AbstractTest {
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private UserService		userService;
+	private UserService				userService;
 	@Autowired
-	private QuestionService	questionService;
+	private QuestionService			questionService;
+	@Autowired
+	private ServiceOfferedService	serviceOfferedService;
 
 	@PersistenceContext
-	EntityManager			entityManager;
+	EntityManager					entityManager;
 
 
 	@Test
@@ -57,6 +65,54 @@ public class UserServiceTest extends AbstractTest {
 			super.authenticate(username);
 			this.unauthenticate();
 			this.questionService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	//Test Create-------------------------------------------------
+	// Caso de uso 4.1
+	@Test
+	public void driverCreateAndSave() {
+
+		final Object testingData[][] = {
+			{
+				//Crear user correctamente
+				"usertest1", "passwordtest1", "miguel", "ternero", "6676886", "Email@email.com", "1996/02/24", null
+
+			}, {
+				//Crear user sin fecha correcta
+				"usertest2", "passwordtest2", "miguel", "ternero", "6676886", "Email@email.com", "", java.text.ParseException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateCreateAndSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6],
+				(Class<?>) testingData[i][7]);
+	}
+	private void templateCreateAndSave(final String username, final String password, final String name, final String surname, final String phone, final String mail, final String birt, final Class<?> expected) {
+		Class<?> caught;
+		User user;
+		UserAccount userAccount;
+
+		caught = null;
+		try {
+			user = this.userService.create();
+			user.setName(name);
+			user.setSurname(surname);
+			user.setBirthDate((new SimpleDateFormat("yyyy/MM/dd")).parse(birt));
+			user.setPhoneNumber(phone);
+			user.setEmailAddress(mail);
+			userAccount = user.getUserAccount();
+			userAccount.setUsername(username);
+			userAccount.setPassword(password);
+			user.setUserAccount(userAccount);
+			user = this.userService.save(user);
+			this.userService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -124,4 +180,43 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
+	//caso uso 4.2
+	@Test
+	public void driverListServiceAvaible() {
+
+		final Object testingData[][] = {
+			{
+				//lista de servicios disponibles
+				"user1", "serviceOffered2", null
+
+			}, {
+				//el servicio no esta disponible
+				"user1", "serviceOffered1", IllegalArgumentException.class
+			}
+
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListServiceAvaible((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateListServiceAvaible(final String username, int Idserviceoffered, final Class<?> expected) {
+		Class<?> caught;
+		Collection<ServiceOffered> services;
+		caught = null;
+		try {
+			super.authenticate(username);
+			services = this.serviceOfferedService.AllServiceNotCancelled();
+			Assert.isTrue(services.contains(this.serviceOfferedService.findOne(Idserviceoffered)));
+			this.unauthenticate();
+			this.questionService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
 }
