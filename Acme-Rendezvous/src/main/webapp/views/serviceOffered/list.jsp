@@ -101,11 +101,7 @@
 	
 	
 	
-	<spring:message code="serviceoffered.cancelled" var="titleHeader3" />
-	<spring:message code="serviceoffered.cancelled.message" var="messageCancelled"></spring:message>
-	<jstl:if test="${row.cancelled ==true}"> 
-	<display:column value="${messageCancelled}" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
-	</jstl:if>
+
 
 <%-- <acme:column code="serviceoffered.name" property="name" />
 <acme:column code="serviceoffered.description" property="description"/>
@@ -129,6 +125,12 @@
 		</display:column>
 		
 	</security:authorize>
+	
+	<spring:message code="serviceoffered.cancelled" var="titleHeader3" />
+	<spring:message code="serviceoffered.cancelled.message" var="messageCancelled"></spring:message>
+	<jstl:if test="${row.cancelled ==true}"> 
+	<display:column value="${messageCancelled}" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	</jstl:if>
 </display:table>
 
 <security:authorize access="hasRole('MANAGER')">
