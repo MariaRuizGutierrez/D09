@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.RendezvouseService;
 import services.ServiceOfferedService;
-import services.UserService;
 import controllers.AbstractController;
 import domain.ServiceOffered;
 
@@ -23,12 +21,6 @@ public class ServiceOfferedUserController extends AbstractController {
 
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
-
-	@Autowired
-	private RendezvouseService		rendezvouseService;
-
-	@Autowired
-	private UserService				userService;
 
 
 	//constructor-------------------------------------------------------------------------
