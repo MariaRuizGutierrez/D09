@@ -26,9 +26,13 @@ public interface ServiceOfferedRepository extends JpaRepository<ServiceOffered, 
 	//Todos los servicios creados por un manager
 	@Query("select s from Manager m join m.servicesOffered s where m.id=?1")
 	Collection<ServiceOffered> findAllServicesByManager(int managerId);
-	
+
 	//Los servicios que pertenecen a la categoria pasada por parametro
 	@Query("select s from ServiceOffered s where s.category.id=?1")
 	Collection<ServiceOffered> ServiceByCategoryId(int categoryId);
+
+	//Servicios disponibles dado una rendezvous en concreto
+	@Query("select s from ServiceOffered s join s.rendezvouses r where r.id=?1 and s.cancelled = false")
+	Collection<ServiceOffered> findAllServicesAvailableByRendezvous(int rendezvousId);
 
 }

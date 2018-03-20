@@ -153,14 +153,23 @@ public class ServiceOfferedService {
 		return services;
 
 	}
-	
-	public Collection<ServiceOffered> ServiceByCategoryId(int categoryId){
-		
+
+	public Collection<ServiceOffered> ServiceByCategoryId(int categoryId) {
+
 		Collection<ServiceOffered> result;
-		
+
 		result = this.serviceOfferedRepository.ServiceByCategoryId(categoryId);
-		
+
 		return result;
+	}
+
+	public Collection<ServiceOffered> findAllServicesAvailableByRendezvous(int rendezvousId) {
+		Collection<ServiceOffered> services;
+
+		services = this.serviceOfferedRepository.findAllServicesAvailableByRendezvous(rendezvousId);
+
+		return services;
+
 	}
 
 }

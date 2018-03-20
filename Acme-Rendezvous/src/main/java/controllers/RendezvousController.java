@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AnnouncementService;
 import services.QuestionService;
 import services.RendezvouseService;
+import services.ServiceOfferedService;
 import services.UserService;
 import domain.Announcement;
 import domain.Question;
@@ -28,16 +29,19 @@ public class RendezvousController extends AbstractController {
 	// Services---------------------------------------------------------
 
 	@Autowired
-	private RendezvouseService	rendezvouseService;
+	private RendezvouseService		rendezvouseService;
 
 	@Autowired
-	private UserService			userService;
+	private UserService				userService;
 
 	@Autowired
-	private AnnouncementService	announcementService;
+	private AnnouncementService		announcementService;
 
 	@Autowired
-	private QuestionService		questionService;
+	private QuestionService			questionService;
+
+	@Autowired
+	private ServiceOfferedService	serviceOfferedService;
 
 
 	//Constructor--------------------------------------------------------
@@ -173,8 +177,7 @@ public class RendezvousController extends AbstractController {
 
 		Rendezvouse ren;
 
-		services = this.rendezvouseService.findAllServicesByRendezvous(rendezvousId);
-		ren = new Rendezvouse();
+		services = this.serviceOfferedService.findAllServicesAvailableByRendezvous(rendezvousId);
 
 		announcements = this.announcementService.findAnnouncementByRendezvousId(rendezvousId);
 		questions = this.questionService.findAllQuestionsByRendezvous(rendezvousId);
