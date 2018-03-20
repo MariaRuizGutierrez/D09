@@ -46,7 +46,8 @@
 		<security:intercept-url pattern="/announcement/user/**" access="hasRole('USER')"/> 
 		<security:intercept-url pattern="/announcement/administrator/**" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMINISTRATOR')"/>
-		<security:intercept-url pattern="/serviceoffered/administrator/**" access="hasRole('ADMINISTRATOR')"/>       
+		<security:intercept-url pattern="/serviceoffered/administrator/**" access="hasRole('ADMINISTRATOR')"/> 
+		<security:intercept-url pattern="/serviceOffered/display.do" access="permitAll"/>       
 
 	
 		<security:intercept-url pattern="/rendezvous/administrator/**" access="hasRole('ADMINISTRATOR')"/>

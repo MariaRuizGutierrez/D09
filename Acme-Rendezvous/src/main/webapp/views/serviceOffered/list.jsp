@@ -37,7 +37,7 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="serviceoffered" requestURI="${requestURI }" id="row">
 	
-	
+	<security:authorize access="hasRole('ADMINISTRATOR')">
 	<%!String estilo;%>
 	<jstl:choose>
 			<jstl:when test="${row.cancelled==false}">
@@ -50,6 +50,7 @@
 				<%=estilo = "p2"%>
 			</jstl:when>
 		</jstl:choose>
+	</security:authorize>
 		
 	<security:authorize access="hasRole('MANAGER')">
 		<spring:message code="serviceOffered.edit" var="Edit" />
@@ -69,6 +70,16 @@
 		</jstl:if>
 		</display:column>
 	</security:authorize>
+	
+		
+	<spring:message code="serviceOffered.display" var="Display" />
+	<display:column title="${Display}" sortable="true" class="<%= estilo %>">
+		<spring:url value="serviceOffered/display.do" var="displayURL">
+			<spring:param name="serviceOfferedId" value="${row.id}" />
+		</spring:url>
+		<a href="${displayURL}"><spring:message code="serviceOffered.display" /></a>
+
+	</display:column>
 		
 	<spring:message code="serviceoffered.name" var="titleHeader1" />
 	<display:column property="name" title="${titleHeader1}" sortable="true" class="<%= estilo %>"/>
