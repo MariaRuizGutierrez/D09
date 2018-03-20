@@ -109,7 +109,7 @@ public class RendezvouseService {
 
 		Assert.isTrue(rendezvouse.getOrganisedMoment().after(now), "future");
 		if (rendezvouse.isForAdult() == true)
-			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 17, "jaja");
+			Assert.isTrue(this.calculateYearsOld(user.getBirthDate()) > 17, "user younger");
 
 		result = this.rendezvousRepository.save(rendezvouse);
 		if (rendezvouse.getId() == 0)

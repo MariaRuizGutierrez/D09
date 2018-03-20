@@ -222,7 +222,7 @@ public class RendezvousesUserController extends AbstractController {
 			} catch (final Throwable oops) {
 				if (oops.getMessage().equals("future"))
 					result = this.createEditModelAndView(rendezvous, "rendezvous.future.error");
-				else if (oops.getMessage().equals("jaja"))
+				else if (oops.getMessage().equals("user younger"))
 					result = this.createEditModelAndView(rendezvous, "menor.error");
 				else
 					result = this.createEditModelAndView(rendezvous, "rendezvouse.commit.error");
