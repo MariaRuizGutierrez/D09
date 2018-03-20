@@ -53,7 +53,7 @@
 		<acme:textbox code="administrator.postalAddress"
 			path="administrator.postalAddress" /><br />
 		<acme:textbox code="administrator.phoneNumber"
-			path="administrator.phoneNumber" placeHolder="+CC(AC)PN,+CC PN,PN" /><br />
+			path="administrator.phoneNumber"/><br />
 
 		<jstl:if test="${administratorForm.administrator.id == 0}">
 			<form:label path="conditions">

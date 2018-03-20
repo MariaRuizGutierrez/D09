@@ -63,7 +63,7 @@
 	<br />
 	<acme:textbox code="user.postalAddress" path="user.postalAddress"/>
 	<br />
-	<acme:textbox code="user.phoneNumber" path="user.phoneNumber" placeHolder="+CC(AC)PN,+CC PN,PN" />
+	<acme:textbox code="user.phoneNumber" path="user.phoneNumber" />
 	<br />
 	<acme:textbox code="user.emailAddress" path="user.emailAddress"/>
 	<br />
