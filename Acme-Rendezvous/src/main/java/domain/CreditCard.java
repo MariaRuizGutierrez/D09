@@ -50,7 +50,7 @@ public class CreditCard {
 	public void setNumber(final String number) {
 		this.number = number;
 	}
-	@NotBlank
+	
 	@Pattern(regexp = "^[0]{1}\\d{1}|[1]{1}[0-2]{1}$")
 	public String getExpirationMonth() {
 		return this.expirationMonth;
@@ -59,7 +59,7 @@ public class CreditCard {
 	public void setExpirationMonth(final String expirationMonth) {
 		this.expirationMonth = expirationMonth;
 	}
-	@NotBlank
+	
 	@Pattern(regexp = "^\\d{2}$")
 	public String getExpirationYear() {
 		return this.expirationYear;
