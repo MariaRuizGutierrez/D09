@@ -573,6 +573,41 @@ public class RendezvouseServiceTest extends AbstractTest {
 		}
 
 		this.checkExceptions(expected, caught);
+	}
+
+	// Test listSimilar -----------------------------------------------------
+	// Caso de uso 15.2
+	@Test
+	public void driverListSimilar() {
+		final Object testingData[][] = {
+			{
+				//La rendezvouse 5 Tiene como similar a la Rendezvous 1
+				"rendezvouse5", "rendezvouse1", null
+			}, {
+				//La rendezvouse 5 NO tiene como similar a la Rendezvous 2
+				"rendezvouse5", "rendezvouse2", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListSimilar((super.getEntityId((String) testingData[i][0])), (super.getEntityId((String) testingData[i][1])), (Class<?>) testingData[i][2]);
+	}
+	private void templateListSimilar(final int rendezvouseId, final int similarRendezvouseId, final Class<?> expected) {
+		final Rendezvouse rendezvouse;
+		final Rendezvouse similarRendezvouse;
+		Collection<Rendezvouse> similarRendezvouses;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			similarRendezvouse = this.rendezvouseService.findOne(similarRendezvouseId);
+			similarRendezvouses = rendezvouse.getSimilarRendezvouses();
+			Assert.isTrue(similarRendezvouses.contains(similarRendezvouse));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
 
 	}
 
