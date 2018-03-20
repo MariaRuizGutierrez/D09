@@ -24,15 +24,12 @@ public class UserServiceTest extends AbstractTest {
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private UserService			userService;
+	private UserService		userService;
 	@Autowired
-	private QuestionService		questionService;
-
-	@Autowired
-	private RendezvouseService	rendezvouseService;
+	private QuestionService	questionService;
 
 	@PersistenceContext
-	EntityManager				entityManager;
+	EntityManager			entityManager;
 
 
 	@Test
@@ -103,7 +100,7 @@ public class UserServiceTest extends AbstractTest {
 		for (int i = 0; i < testingData.length; i++)
 			this.templateEditUser((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (Class<?>) testingData[i][5]);
 	}
-	private void templateEditUser(final String username, String name, String surname, String phone, String mail, final Class<?> expected) {
+	private void templateEditUser(final String username, final String name, final String surname, final String phone, final String mail, final Class<?> expected) {
 		Class<?> caught;
 		User user;
 		user = this.userService.findOne(this.getEntityId("user1"));

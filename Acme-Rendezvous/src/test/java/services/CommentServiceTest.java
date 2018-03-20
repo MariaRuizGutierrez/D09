@@ -36,6 +36,7 @@ public class CommentServiceTest extends AbstractTest {
 
 
 	// Requisito funcional: User comment on the rendezvouses that he or she has RSVPd.
+	//Caso de uso 5.6
 	@SuppressWarnings("unchecked")
 	@Test
 	public void driverCreateAndSaveComment() {
@@ -104,6 +105,7 @@ public class CommentServiceTest extends AbstractTest {
 	}
 
 	// Requisito funcional: Admin Remove a comment that he or she thinks is inappropriate.
+	// Caso de uso 6.1
 	@Test
 	public void driverAdminDeleteComment() {
 
@@ -121,7 +123,7 @@ public class CommentServiceTest extends AbstractTest {
 			this.templateDelete((String) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	private void templateDelete(String actor, String comment, final Class<?> expected) {
+	private void templateDelete(final String actor, final String comment, final Class<?> expected) {
 		Comment comment1;
 
 		Class<?> caught;

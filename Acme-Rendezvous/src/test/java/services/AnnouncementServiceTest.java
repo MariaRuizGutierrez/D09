@@ -41,7 +41,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 
 	// Test CreateAndSave ----------------------------------------------------------------------------------
-
+	// Caso de uso 16.3
 	@Test
 	public void driverCreateAndSave() {
 		final Object testingData[][] = {
@@ -134,6 +134,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	// Test Delete ----------------------------------------------------------------------------------
 	// Se comprueba que solo el Admin es el unico que puede eliminar un Announcement
+	// Caso de uso 17.1
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -172,6 +173,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	// Test findAnnouncementByUserIdForRendezvousesAssits
 	// Se comprueba el list que devuelve todos los announcements de las rendezvouses a la que un user ha asistido en orden descendiente cronologicamente
+	// Caso de uso 16.5
 	@Test
 	public void driverFindAnnouncementByUserIdForRendezvousesAssits() {
 		final Object testingData[][] = {
