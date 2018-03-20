@@ -54,7 +54,7 @@
 	<br />
 	<acme:textbox code="manager.postalAddress" path="manager.postalAddress"/>
 	<br />
-	<acme:textbox code="manager.phoneNumber" path="manager.phoneNumber"/>
+	<acme:textbox code="manager.phoneNumber" path="manager.phoneNumber" placeHolder="+CC(AC)PN,+CC PN,PN" />
 	<br />
 	<acme:textbox code="manager.emailAddress" path="manager.emailAddress"/>
 	<br />
