@@ -88,11 +88,9 @@ public class RendezvousController extends AbstractController {
 	public ModelAndView listSimilar(@RequestParam int rendezvousId) {
 
 		ModelAndView result;
-		Rendezvouse rendezvous;
 		Collection<Rendezvouse> rendezvouses;
 
-		rendezvous = this.rendezvouseService.findOne(rendezvousId);
-		rendezvouses = rendezvous.getSimilarRendezvouses();
+		rendezvouses = this.rendezvouseService.findAllSimilarForNoAuthenticathed(rendezvousId);
 
 		result = new ModelAndView("rendezvous/list");
 		result.addObject("rendezvous", rendezvouses);
@@ -108,7 +106,7 @@ public class RendezvousController extends AbstractController {
 		ModelAndView result;
 		Collection<Rendezvouse> rendezvous;
 
-		rendezvous = this.rendezvouseService.findAllMinusAdult();
+		rendezvous = this.rendezvouseService.findAllMinusAdultAndFinalMode();
 
 		result = new ModelAndView("rendezvous/list");
 		result.addObject("rendezvous", rendezvous);
@@ -174,6 +172,7 @@ public class RendezvousController extends AbstractController {
 		Collection<Announcement> announcements;
 		Collection<ServiceOffered> services;
 		Collection<Question> questions;
+		Collection<Rendezvouse> similarRendezvouses;
 
 		Rendezvouse ren;
 
@@ -184,10 +183,13 @@ public class RendezvousController extends AbstractController {
 		ren = this.rendezvouseService.findOne(rendezvousId);
 		Assert.isTrue(ren.isForAdult() == false);
 
+		similarRendezvouses = this.rendezvouseService.findAllSimilarForNoAuthenticathed(rendezvousId);
+
 		result = new ModelAndView("rendezvous/display");
 		result.addObject("rendezvous", ren);
 		result.addObject("announcements", announcements);
 		result.addObject("services", services);
+		result.addObject("similarRendezvouses", similarRendezvouses);
 		result.addObject("questions", questions);
 
 		result.addObject("requestURI", "rendezvous/user/display.do");

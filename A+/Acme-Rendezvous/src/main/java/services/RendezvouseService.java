@@ -285,6 +285,12 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findAllMinusAdultAndFinalMode() {
+		Collection<Rendezvouse> result;
+		result = this.rendezvousRepository.findAllMinusAdultAndFinalMode();
+		return result;
+	}
+
 	public Collection<Announcement> AnnoucemntofRendezvouse(final Rendezvouse rendezvouse) {
 		Collection<Announcement> res;
 		res = this.rendezvousRepository.AnnoucemntofRendezvouse(rendezvouse.getId());
@@ -381,6 +387,14 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findAllRendezvousesNotDeletedForMinorExceptRendezvousId(int rendezvousId) {
+		Collection<Rendezvouse> result;
+
+		result = this.rendezvousRepository.findAllRendezvousesNotDeletedForMinorExceptRendezvousId(rendezvousId);
+
+		return result;
+	}
+
 	public Rendezvouse reconstruct(final Rendezvouse rendezvous, final BindingResult bindingResult) {
 		Rendezvouse result;
 		Rendezvouse rendezvousBD;
@@ -430,6 +444,14 @@ public class RendezvouseService {
 
 		return result;
 
+	}
+
+	public Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(int rendezvousId) {
+		Collection<Rendezvouse> similars;
+
+		similars = this.rendezvousRepository.findAllSimilarForNoAuthenticathed(rendezvousId);
+
+		return similars;
 	}
 
 }

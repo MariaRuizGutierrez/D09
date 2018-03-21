@@ -60,9 +60,16 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select r from Rendezvouse r where r.forAdult=false")
 	Collection<Rendezvouse> findAllMinusAdult();
 
+	@Query("select r from Rendezvouse r where r.forAdult=false and r.draftMode=false")
+	Collection<Rendezvouse> findAllMinusAdultAndFinalMode();
+
 	//lista las rendezvous no canceladas menos la pasada por parametro
-	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false")
+	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false and r.draftMode=false")
 	Collection<Rendezvouse> findAllRendezvousesNotDeletedExceptRendezvousId(int rendezvousId);
+
+	//lista las rendezvous no canceladas menos la pasada por parametro para menores
+	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false and r.draftMode=false and r.forAdult=false")
+	Collection<Rendezvouse> findAllRendezvousesNotDeletedForMinorExceptRendezvousId(int rendezvousId);
 
 	@Query("select r.servicesOffered from Rendezvouse r where r.id=?1")
 	Collection<ServiceOffered> findAllServicesByRendezvous(int rendezvousId);
@@ -76,6 +83,10 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	Collection<Rendezvouse> findAllRendezvousesForQuestions(int userId);
 
 	//Lista de rendezvous a las que va a asistir un usuario
-	@Query("select r from User u join u.rendezvousesAssisted r where u.id=?1 and r.deleted=false")
+	@Query("select r from User u join u.rendezvousesAssisted r where u.id=?1 and r.deleted=false and r.draftMode=false and r.forAdult=false")
 	Collection<Rendezvouse> ListOfRendezvousAssistantUserId(int userId);
+
+	@Query("select a from Rendezvouse r join r.similarRendezvouses a where a.draftMode=false and a.forAdult=false and a.deleted= false and r.id=?1")
+	Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(int rendezvousId);
+
 }

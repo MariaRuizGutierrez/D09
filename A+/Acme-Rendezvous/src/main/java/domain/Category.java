@@ -86,14 +86,25 @@ public class Category extends DomainEntity {
 	public String getConcat() {
 		Category cat;
 		Category cat2;
+		Category cat3;
+		Category cat4;
 		if (this.getFatherCategory() != null) {
 			cat = this.getFatherCategory();
 			this.concat = this.getFatherCategory().getName() + " || " + this.getName();
 			if (cat.getFatherCategory() != null) {
 				cat2 = cat.getFatherCategory();
 				this.concat = cat.getFatherCategory().getName() + " || " + this.getFatherCategory().getName() + " || " + this.getName();
-				if (cat2.getFatherCategory() != null)
+				if (cat2.getFatherCategory() != null) {
+					cat3 = cat2.getFatherCategory();
 					this.concat = cat2.getFatherCategory().getName() + " || " + cat.getFatherCategory().getName() + " || " + this.getFatherCategory().getName() + " || " + this.getName();
+					if (cat3.getFatherCategory() != null) {
+						cat4 = cat3.getFatherCategory();
+						this.concat = cat3.getFatherCategory().getName() + " || " + cat2.getFatherCategory().getName() + " || " + cat.getFatherCategory().getName() + " || " + this.getFatherCategory().getName() + " || " + this.getName();
+						if (cat4.getFatherCategory() != null)
+							this.concat = cat4.getFatherCategory().getName() + " || " + cat3.getFatherCategory().getName() + " || " + cat2.getFatherCategory().getName() + " || " + cat.getFatherCategory().getName() + " || "
+								+ this.getFatherCategory().getName() + " || " + this.getName();
+					}
+				}
 			}
 		} else
 			this.concat = this.getName();
