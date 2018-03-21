@@ -178,16 +178,15 @@ public class ServiceOfferedService {
 
 	}
 
-	public ServiceOffered reconstruct(final ServiceOffered serviceOffered, final BindingResult binding) {
+	public ServiceOffered reconstruct(final ServiceOffered serviceOffered, final BindingResult bindingResult) {
 		ServiceOffered result;
 		ServiceOffered serviceOfferedBD;
 
 		if (serviceOffered.getId() == 0) {
-			result = serviceOffered;
 			Collection<Rendezvouse> rendezvous;
 
+			result = serviceOffered;
 			rendezvous = new ArrayList<Rendezvouse>();
-			result = new ServiceOffered();
 			result.setRendezvouses(rendezvous);
 			result.setCancelled(false);
 
@@ -198,7 +197,7 @@ public class ServiceOfferedService {
 			serviceOffered.setRendezvouses(serviceOfferedBD.getRendezvouses());
 			result = serviceOffered;
 		}
-		this.validator.validate(result, binding);
+		this.validator.validate(result, bindingResult);
 		return result;
 	}
 

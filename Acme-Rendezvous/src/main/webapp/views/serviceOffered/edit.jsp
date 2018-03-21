@@ -25,7 +25,7 @@
 
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="rendezvouses"/>
+	<%-- <form:hidden path="rendezvouses"/> --%>
 	
 	<acme:textbox code="serviceoffered.name" path="name"/>
 	<br />

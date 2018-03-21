@@ -3,8 +3,6 @@ package controllers.manager;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -116,11 +114,11 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	// Save -----------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final ServiceOffered serviceOffered, final BindingResult binding) {
+	public ModelAndView save(ServiceOffered serviceOffered, final BindingResult bindingResult) {
 		ModelAndView result;
 
-		//serviceOffered = this.serviceOfferedService.reconstruct(serviceOffered, binding);
-		if (binding.hasErrors())
+		serviceOffered = this.serviceOfferedService.reconstruct(serviceOffered, bindingResult);
+		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(serviceOffered);
 		else
 			try {
@@ -134,9 +132,10 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	//Delete---------------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(@ModelAttribute final ServiceOffered serviceOffered, final BindingResult bindingResult) {
+	public ModelAndView delete(@ModelAttribute ServiceOffered serviceOffered, final BindingResult bindingResult) {
 		ModelAndView result;
 
+		serviceOffered = this.serviceOfferedService.reconstruct(serviceOffered, bindingResult);
 		try {
 			this.serviceOfferedService.delete(serviceOffered);
 			result = new ModelAndView("redirect:listAll.do");
