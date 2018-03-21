@@ -24,7 +24,7 @@
 <form:form action="manager/edit.do" modelAttribute="managerForm">
 
 	<form:hidden path="manager.id" />
-	<form:hidden path="manager.servicesOffered"/>
+	<%-- <form:hidden path="manager.servicesOffered"/> --%>
 	
 	
 	<jstl:choose>

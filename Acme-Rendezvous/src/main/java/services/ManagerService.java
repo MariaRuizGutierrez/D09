@@ -161,12 +161,15 @@ public class ManagerService {
 		if (manager.getId() == 0) {
 			UserAccount userAccount;
 			Authority authority;
+			Collection<ServiceOffered> servicesOffered;
 
 			userAccount = managerForm.getManager().getUserAccount();
 			authority = new Authority();
 			authority.setAuthority(Authority.MANAGER);
 			userAccount.addAuthority(authority);
 			managerForm.getManager().setUserAccount(userAccount);
+			servicesOffered = new ArrayList<>();
+			managerForm.getManager().setServicesOffered(servicesOffered);
 			result = managerForm;
 
 		} else {
@@ -175,6 +178,7 @@ public class ManagerService {
 			managerForm.getManager().setId(manager.getId());
 			managerForm.getManager().setVersion(manager.getVersion());
 			managerForm.getManager().setUserAccount(manager.getUserAccount());
+			managerForm.getManager().setServicesOffered(manager.getServicesOffered());
 
 			result = managerForm;
 
