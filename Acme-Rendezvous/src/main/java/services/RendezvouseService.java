@@ -438,4 +438,12 @@ public class RendezvouseService {
 
 	}
 
+	public Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(int rendezvousId) {
+		Collection<Rendezvouse> similars;
+
+		similars = this.rendezvousRepository.findAllSimilarForNoAuthenticathed(rendezvousId);
+
+		return similars;
+	}
+
 }

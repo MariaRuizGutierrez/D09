@@ -88,11 +88,9 @@ public class RendezvousController extends AbstractController {
 	public ModelAndView listSimilar(@RequestParam int rendezvousId) {
 
 		ModelAndView result;
-		Rendezvouse rendezvous;
 		Collection<Rendezvouse> rendezvouses;
 
-		rendezvous = this.rendezvouseService.findOne(rendezvousId);
-		rendezvouses = rendezvous.getSimilarRendezvouses();
+		rendezvouses = this.rendezvouseService.findAllSimilarForNoAuthenticathed(rendezvousId);
 
 		result = new ModelAndView("rendezvous/list");
 		result.addObject("rendezvous", rendezvouses);
