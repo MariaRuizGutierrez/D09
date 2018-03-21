@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.CategoryRepository;
 import domain.Category;
@@ -26,6 +28,9 @@ public class CategoryService {
 	private AdministratorService	administratorService;
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
+	//Importar la que pertenece a Spring
+	@Autowired
+	private Validator				validator;
 
 
 	// Constructors------------------------------------------------------------
@@ -106,16 +111,43 @@ public class CategoryService {
 		Assert.notNull(result);
 		return result;
 	}
-	
+
 	public Category findOneToEdit(final int categoryId) {
 		Category result;
 		result = this.categoryRepository.findOne(categoryId);
 		Assert.notNull(result);
-		Assert.isTrue(this.serviceOfferedService.ServiceByCategoryId(categoryId).size()==0);
+		Assert.isTrue(this.serviceOfferedService.ServiceByCategoryId(categoryId).size() == 0);
 		return result;
 	}
 
 	public void flush() {
 		this.categoryRepository.flush();
+	}
+
+	public Category reconstruct(final Category category, final BindingResult bindingResult) {
+		Category result;
+		Category categoryBD;
+
+		if (category.getId() == 0) {
+			Collection<Category> subCategories;
+			Collection<ServiceOffered> servicesOffered;
+
+			Assert.notNull(this.administratorService.findByPrincipal());
+			result = category;
+			subCategories = new ArrayList<Category>();
+			servicesOffered = new ArrayList<ServiceOffered>();
+			result.setSubCategories(subCategories);
+			result.setServicesOffered(servicesOffered);
+
+		} else {
+			categoryBD = this.categoryRepository.findOne(category.getId());
+			category.setId(categoryBD.getId());
+			category.setVersion(categoryBD.getVersion());
+			category.setSubCategories(categoryBD.getSubCategories());
+			category.setServicesOffered(categoryBD.getServicesOffered());
+			result = category;
+		}
+		this.validator.validate(result, bindingResult);
+		return result;
 	}
 }
