@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ServiceOfferedRepository;
 import domain.Manager;
@@ -31,6 +33,10 @@ public class ServiceOfferedService {
 
 	@Autowired
 	private RequestService				requestService;
+
+	//Importar la que pertenece a Spring
+	@Autowired
+	private Validator					validator;
 
 
 	// Constructors------------------------------------------------------------
@@ -69,7 +75,7 @@ public class ServiceOfferedService {
 	}
 
 	//Delete
-	public void delete(ServiceOffered serviceOffered) {
+	public void delete(final ServiceOffered serviceOffered) {
 
 		Assert.notNull(serviceOffered);
 		Assert.isTrue(serviceOffered.getId() != 0);
@@ -84,10 +90,10 @@ public class ServiceOfferedService {
 
 		manager.getServicesOffered().remove(serviceOffered);
 
-		for (Request r : requests)
+		for (final Request r : requests)
 			this.requestService.delete(r);
 
-		for (Rendezvouse re : rendezvouses)
+		for (final Rendezvouse re : rendezvouses)
 			re.getServicesOffered().remove(serviceOffered);
 
 		Assert.isTrue(serviceOffered.getRendezvouses().isEmpty());
@@ -154,7 +160,7 @@ public class ServiceOfferedService {
 
 	}
 
-	public Collection<ServiceOffered> ServiceByCategoryId(int categoryId) {
+	public Collection<ServiceOffered> ServiceByCategoryId(final int categoryId) {
 
 		Collection<ServiceOffered> result;
 
@@ -163,13 +169,37 @@ public class ServiceOfferedService {
 		return result;
 	}
 
-	public Collection<ServiceOffered> findAllServicesAvailableByRendezvous(int rendezvousId) {
+	public Collection<ServiceOffered> findAllServicesAvailableByRendezvous(final int rendezvousId) {
 		Collection<ServiceOffered> services;
 
 		services = this.serviceOfferedRepository.findAllServicesAvailableByRendezvous(rendezvousId);
 
 		return services;
 
+	}
+
+	public ServiceOffered reconstruct(final ServiceOffered serviceOffered, final BindingResult binding) {
+		ServiceOffered result;
+		ServiceOffered serviceOfferedBD;
+
+		if (serviceOffered.getId() == 0) {
+			result = serviceOffered;
+			Collection<Rendezvouse> rendezvous;
+
+			rendezvous = new ArrayList<Rendezvouse>();
+			result = new ServiceOffered();
+			result.setRendezvouses(rendezvous);
+			result.setCancelled(false);
+
+		} else {
+			serviceOfferedBD = this.serviceOfferedRepository.findOne(serviceOffered.getId());
+			serviceOffered.setId(serviceOfferedBD.getId());
+			serviceOffered.setVersion(serviceOfferedBD.getVersion());
+			serviceOffered.setRendezvouses(serviceOfferedBD.getRendezvouses());
+			result = serviceOffered;
+		}
+		this.validator.validate(result, binding);
+		return result;
 	}
 
 }

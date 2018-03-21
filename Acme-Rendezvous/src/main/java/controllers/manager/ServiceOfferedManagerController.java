@@ -31,10 +31,10 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 	@Autowired
 	private ServiceOfferedService	serviceOfferedService;
-	
+
 	@Autowired
 	private ManagerService			managerService;
-	
+
 	@Autowired
 	private CategoryService			categoryService;
 
@@ -48,12 +48,12 @@ public class ServiceOfferedManagerController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView result;
-		Manager manager; 
-		
+		Manager manager;
+
 		manager = this.managerService.findByPrincipal();
 		Collection<ServiceOffered> serviceoffered;
 		serviceoffered = this.serviceOfferedService.AllServiceNotCancelled();
-		
+
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", serviceoffered);
 		result.addObject("managerPrincipal", manager);
@@ -61,20 +61,18 @@ public class ServiceOfferedManagerController extends AbstractController {
 		return result;
 
 	}
-	
+
 	//Listing all ------------------------------------------------------------
-	
+
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public ModelAndView listAll() {
 		ModelAndView result;
 		Collection<ServiceOffered> servicesOffered;
-		Manager manager; 
-		
-		
+		Manager manager;
+
 		manager = this.managerService.findByPrincipal();
 		servicesOffered = manager.getServicesOffered();
-		
-		
+
 		result = new ModelAndView("serviceoffered/list");
 		result.addObject("serviceoffered", servicesOffered);
 		result.addObject("managerPrincipal", manager);
@@ -95,7 +93,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		result = this.createEditModelAndView(serviceOffered);
 		return result;
 	}
-	
+
 	//Edition--------------------------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int serviceOfferedId) {
@@ -107,7 +105,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		serviceOffered = this.serviceOfferedService.findOne(serviceOfferedId);
 		managerPrincipal = this.managerService.findByPrincipal();
 		manager = this.managerService.findManagerByServiceOffered(serviceOfferedId);
-		
+
 		Assert.isTrue(manager.equals(managerPrincipal));
 		Assert.isTrue(serviceOffered.getRendezvouses().isEmpty());
 		Assert.isTrue(!serviceOffered.isCancelled());
@@ -115,25 +113,25 @@ public class ServiceOfferedManagerController extends AbstractController {
 		result = this.createEditModelAndView(serviceOffered);
 		return result;
 	}
-	
-	
+
 	// Save -----------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid ServiceOffered serviceOffered, BindingResult binding) {
+	public ModelAndView save(@Valid final ServiceOffered serviceOffered, final BindingResult binding) {
 		ModelAndView result;
 
+		//serviceOffered = this.serviceOfferedService.reconstruct(serviceOffered, binding);
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(serviceOffered);
 		else
 			try {
 				this.serviceOfferedService.save(serviceOffered);
 				result = new ModelAndView("redirect:listAll.do");
-			} catch (Throwable oops) {
+			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 			}
 		return result;
 	}
-	
+
 	//Delete---------------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@ModelAttribute final ServiceOffered serviceOffered, final BindingResult bindingResult) {
@@ -148,10 +146,10 @@ public class ServiceOfferedManagerController extends AbstractController {
 
 		return result;
 	}
-	
+
 	//Auxiliary-----------------------
 
-	protected ModelAndView createEditModelAndView(ServiceOffered serviceOffered) {
+	protected ModelAndView createEditModelAndView(final ServiceOffered serviceOffered) {
 
 		Assert.notNull(serviceOffered);
 		ModelAndView result;
@@ -159,12 +157,12 @@ public class ServiceOfferedManagerController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(ServiceOffered serviceOffered, String messageCode) {
+	protected ModelAndView createEditModelAndView(final ServiceOffered serviceOffered, final String messageCode) {
 		assert serviceOffered != null;
 
 		ModelAndView result;
 		Collection<Category> categories;
-			
+
 		categories = this.categoryService.findAll();
 
 		result = new ModelAndView("serviceOffered/edit");
@@ -175,10 +173,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		return result;
 
 	}
-	
 
-	
-	
 	//ancially methods---------------------------------------------------------------------------
 
 	//	protected ModelAndView createEditModelAndView(final Rendezvouse rendezvouse) {
