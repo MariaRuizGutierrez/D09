@@ -120,6 +120,12 @@ Además a través del sitio web del PROPIETARIO se ponen a disposición del usuario
 
 </p>
 
+<p>
+
+<strong>2.4.-</strong> EL ADMINISTRADOR se reserva el derecho a cancelar en cualquier momento cualquier servicio existente en su sitio web que considere inapropiada sin previo aviso a los responsables de su creación o asistentes; no viéndose en la obligación de avisar a los asistentes y/o creadores de dichas citas antes de su cancelación.</p>
+<p>Cualquier servicio que hagan referencia a temas relacionados con sexo, odio, racismo, machismo, insultos; conteniendo palabras como: "sexo", "porno", "que te den", "puta" etc, el administrador estará en su derecho de cancelar dicho servicio.
+Así como aquellos servicios que incluyan imágenes referentes a los temas expuestos anteriormente también podrán ser cancelados por el administrador.
+</p>
         
 
 </blockquote>
