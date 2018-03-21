@@ -707,7 +707,7 @@
 	<bean id="serviceOffered1" class="domain.ServiceOffered">
 		<property name="name" value="title serviceOffered1" />
 		<property name="description" value="description serviceOffered 1" />
-		<property name="picture" value="http://www.serviceOffered1.com" />
+		<property name="picture" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8OmghHWPzECax6pKBGbJ7gOVu6nrKY_Cy35852apZaYh3tuo" />
 		<property name="cancelled" value="true" />
 		<property name="category" ref="category1" />
 		<property name="rendezvouses">
@@ -720,7 +720,7 @@
 	<bean id="serviceOffered2" class="domain.ServiceOffered">
 		<property name="name" value="title serviceOffered2" />
 		<property name="description" value="description serviceOffered 2" />
-		<property name="picture" value="http://www.serviceOffered2.com" />
+		<property name="picture" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8OmghHWPzECax6pKBGbJ7gOVu6nrKY_Cy35852apZaYh3tuo" />
 		<property name="cancelled" value="false" />
 		<property name="category" ref="category1-1" />
 		<property name="rendezvouses">
@@ -734,7 +734,7 @@
 	<bean id="serviceOffered3" class="domain.ServiceOffered">
 		<property name="name" value="title serviceOffered3" />
 		<property name="description" value="description serviceOffered 3" />
-		<property name="picture" value="http://www.serviceOffered3.com" />
+		<property name="picture" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8OmghHWPzECax6pKBGbJ7gOVu6nrKY_Cy35852apZaYh3tuo" />
 		<property name="cancelled" value="false" />
 		<property name="category" ref="category1-1" />
 		<property name="rendezvouses">
@@ -750,7 +750,7 @@
 	<bean id="serviceOffered4" class="domain.ServiceOffered">
 		<property name="name" value="title serviceOffered4" />
 		<property name="description" value="description serviceOffered 4" />
-		<property name="picture" value="http://www.serviceOffered4.com" />
+		<property name="picture" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8OmghHWPzECax6pKBGbJ7gOVu6nrKY_Cy35852apZaYh3tuo" />
 		<property name="cancelled" value="true" />
 		<property name="category" ref="category1-1-1" />
 		<property name="rendezvouses">
@@ -766,7 +766,7 @@
 	<bean id="serviceOffered5" class="domain.ServiceOffered">
 		<property name="name" value="title serviceOffered5" />
 		<property name="description" value="description serviceOffered 5" />
-		<property name="picture" value="http://www.serviceOffered2.com" />
+		<property name="picture" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8OmghHWPzECax6pKBGbJ7gOVu6nrKY_Cy35852apZaYh3tuo" />
 		<property name="cancelled" value="false" />
 		<property name="category" ref="category1-1-2" />
 		<property name="rendezvouses">
