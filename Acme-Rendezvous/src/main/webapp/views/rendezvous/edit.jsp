@@ -47,8 +47,6 @@
 	<br/>
 	<acme:booleanselect code="rendezvouse.forAdult" path="forAdult"/>
 	<br/>
-	<acme:select items="${similarRendezvouses}" itemLabel="name" code="rendezvous.similarRendezvouses" path="similarRendezvouses"/>
-	<br />
 	
 
 	

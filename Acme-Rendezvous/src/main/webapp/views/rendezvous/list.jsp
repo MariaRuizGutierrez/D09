@@ -247,6 +247,19 @@
 			</jstl:if>
 		</display:column>
 	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMINISTRATOR')">
+		<spring:message code="forAdult" var="forAdult" />
+		<display:column title="${forAdult}" class="<%= estilo %>">
+			<jstl:if test="${row.forAdult==true}">
+				<div
+					style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+					<img src="images/18.png" width="30" height="30">
+				</div>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
 
 
 	<security:authorize access="hasRole('USER')">
