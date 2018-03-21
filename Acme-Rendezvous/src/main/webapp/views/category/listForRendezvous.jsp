@@ -47,7 +47,7 @@
 	</display:column>
 	<spring:message code="category.rendezvous" var="nameHeader" />
 			<display:column  title="${nameHeader}" sortable="true" >
-		<spring:url value="rendezvous/category/list.do" var="tripListURL">
+		<spring:url value="rendezvous/category/list.do?d-16544-p=1" var="tripListURL">
 		 <spring:param name="categoryId" value="${row.id}"/>
 		 </spring:url>
 		 <a href="${tripListURL}"><spring:message code="category.rendezvous"/></a>
