@@ -113,16 +113,18 @@
 <!-- Boton de delete para el administrador ya que puede borrar los anuncios que quiera pero no editarlos -->
 	
 	<spring:message code="serviceOffered.delete" var="deleteHeader" />
+	<jstl:if test="${row.cancelled==false}">
 		<display:column title="${deleteHeader}" sortable="true" class="<%= estilo %>">
-		<jstl:if test="${row.cancelled==false}">
+		
 		<div 
 		style="margin-top:8px; ">
 			<input type="button" name="delete"
 				value="<spring:message code="serviceOffered.delete" />"
 				onclick="confirmDelete(${row.id});" />
 				</div>
-		</jstl:if>
+		
 		</display:column>
+		</jstl:if>
 		
 	</security:authorize>
 	
