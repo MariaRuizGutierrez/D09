@@ -63,6 +63,6 @@
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="request.cancel" />"
-		onclick="javascript:  window.location.replace('rendezvous/user/list.do');" />
+		onclick="javascript:  window.location.replace('rendezvous/user/list.do?d-16544-p=1');" />
 	<br />
 </form:form>
