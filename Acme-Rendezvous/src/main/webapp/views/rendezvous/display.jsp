@@ -78,7 +78,7 @@
 			<jstl:out value="${row.forAdult}"></jstl:out>
 		<p>
 		
-			<security:authorize access="!hasRole('USER')">
+			<security:authorize access="isAnonymous()">
 			<jstl:if test="${similarRendezvouses.size()>0 }">
 			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
 			<jstl:forEach items="${similarRendezvouses}" var="item">
@@ -98,6 +98,36 @@
 			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
 			<jstl:forEach items="${similarRendezvouses}" var="item">
 				<spring:url value="rendezvous/user/display.do"
+					var="displayRendezvousSimilarURL">
+					<spring:param name="rendezvousId" value="${item.id}" />
+
+				</spring:url>
+				<a href="${displayRendezvousSimilarURL}"><jstl:out
+						value="${item.name }" /></a>
+				<br>
+			</jstl:forEach>
+			</security:authorize>
+			
+			<security:authorize access="hasRole('MANAGER')">
+			<jstl:if test="${similarRendezvouses.size()>0 }">
+			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
+			<jstl:forEach items="${similarRendezvouses}" var="item">
+				<spring:url value="rendezvous/display.do"
+					var="displayRendezvousSimilarURL">
+					<spring:param name="rendezvousId" value="${item.id}" />
+
+				</spring:url>
+				<a href="${displayRendezvousSimilarURL}"><jstl:out
+						value="${item.name }" /></a>
+				<br>
+			</jstl:forEach>
+			</security:authorize>
+			
+			<security:authorize access="hasRole('ADMINISTRATOR')">
+			<jstl:if test="${similarRendezvouses.size()>0 }">
+			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
+			<jstl:forEach items="${similarRendezvouses}" var="item">
+				<spring:url value="rendezvous/administrator/display.do"
 					var="displayRendezvousSimilarURL">
 					<spring:param name="rendezvousId" value="${item.id}" />
 
@@ -148,6 +178,7 @@
 				code="serviceoffered.picture" /></a>
 	</display:column>
 	
+	<security:authorize access="hasRole('USER')">
 	<spring:message code="cancelled" var="Delete" />
 		<display:column title="${Delete}" class="<%= estilo %>">
 		<jstl:if test="${row1.cancelled==true}">
@@ -156,6 +187,7 @@
 			</FONT><br>
 		</jstl:if>
 		</display:column>
+		</security:authorize>
 		</display:table>
 	</jstl:if>
 	
