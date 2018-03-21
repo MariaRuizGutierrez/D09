@@ -20,6 +20,7 @@ public class Manager extends Actor {
 
 
 	@Pattern(regexp = "^[\\w-]+$")
+	@NotNull
 	public String getVat() {
 		return this.vat;
 	}
