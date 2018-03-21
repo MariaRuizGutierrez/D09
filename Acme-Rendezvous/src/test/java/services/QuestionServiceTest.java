@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -8,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Question;
@@ -146,5 +149,38 @@ public class QuestionServiceTest extends AbstractTest {
 
 		this.checkExceptions(expected, caught);
 
+	}
+
+	// Requisito funcional: manage question.
+	// Se comprueba el list de todas las question de la cita
+	@Test
+	public void driverQuestionNotDeleted() {
+		final Object testingData[][] = {
+			{
+				// Se comprueba que la pregunta1 pertenece a la cita 1
+				"question1", "rendezvouse1", null
+			}, {
+				// Se comprueba que la question1 no pertenece a la cita4
+				"question1", "rendezvouse4", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateServicesAvailable(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateServicesAvailable(final int questionId, final int rendezvousId, final Class<?> expected) {
+		final Collection<Question> questions;
+		Question question;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			question = this.questionService.findOne(questionId);
+			questions = this.questionService.findAllQuestionsByRendezvous(rendezvousId);
+			Assert.isTrue(questions.contains(question));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
 	}
 }
