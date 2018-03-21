@@ -285,6 +285,12 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findAllMinusAdultAndFinalMode() {
+		Collection<Rendezvouse> result;
+		result = this.rendezvousRepository.findAllMinusAdultAndFinalMode();
+		return result;
+	}
+
 	public Collection<Announcement> AnnoucemntofRendezvouse(final Rendezvouse rendezvouse) {
 		Collection<Announcement> res;
 		res = this.rendezvousRepository.AnnoucemntofRendezvouse(rendezvouse.getId());

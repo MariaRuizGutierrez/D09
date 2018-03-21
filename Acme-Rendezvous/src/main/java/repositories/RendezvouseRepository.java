@@ -60,6 +60,9 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select r from Rendezvouse r where r.forAdult=false")
 	Collection<Rendezvouse> findAllMinusAdult();
 
+	@Query("select r from Rendezvouse r where r.forAdult=false and r.draftMode=false")
+	Collection<Rendezvouse> findAllMinusAdultAndFinalMode();
+
 	//lista las rendezvous no canceladas menos la pasada por parametro
 	@Query("select r from Rendezvouse r where r.id!=?1 and r.deleted=false")
 	Collection<Rendezvouse> findAllRendezvousesNotDeletedExceptRendezvousId(int rendezvousId);
