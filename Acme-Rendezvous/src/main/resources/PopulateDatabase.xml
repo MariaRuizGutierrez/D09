@@ -244,7 +244,6 @@
 		<property name="rendezvousesAssisted">
 			<list>
 				<ref bean="rendezvouse1"></ref>
-				<ref bean="rendezvouse4"></ref>
 			</list>
 		</property>
 	</bean>
@@ -464,7 +463,6 @@
 		<property name="assistants">
 			<list>
 				<ref bean="user1"></ref>
-				<ref bean="user4"></ref>
 			</list>
 		</property>
 		<property name="similarRendezvouses">
