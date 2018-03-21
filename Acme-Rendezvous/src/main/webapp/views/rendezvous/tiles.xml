@@ -56,6 +56,11 @@
 		<put-attribute name="title" value="Unlink a similar rendezvous" />
 		<put-attribute name="body" value="/views/rendezvous/editNotSimilar.jsp" />
 	</definition>
+	
+	<definition name="rendezvous/list2" extends="master.page">
+		<put-attribute name="title" value="List rendezvouses" />
+		<put-attribute name="body" value="/views/rendezvous/list2.jsp" />
+	</definition>
 
 
 </tiles-definitions>

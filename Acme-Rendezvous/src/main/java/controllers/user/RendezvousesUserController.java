@@ -78,7 +78,7 @@ public class RendezvousesUserController extends AbstractController {
 		return result;
 
 	}
-	
+
 	@RequestMapping(value = "/listAsistProfile", method = RequestMethod.GET)
 	public ModelAndView listasisProfile(@RequestParam int userId) {
 		final ModelAndView result;
@@ -87,7 +87,7 @@ public class RendezvousesUserController extends AbstractController {
 		User principal;
 		principal = this.userService.findOne(userId);
 		rendezvous = this.rendezvouseService.FindRendezvousThatUserAssist(principal.getId());
-		result = new ModelAndView("rendezvous/listasis");
+		result = new ModelAndView("rendezvous/list2");
 		result.addObject("rendezvous", rendezvous);
 		result.addObject("assist", true);
 		result.addObject("requestURI", "rendezvous/user/listnotasis.do");
