@@ -387,6 +387,14 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Collection<Rendezvouse> findAllRendezvousesNotDeletedForMinorExceptRendezvousId(int rendezvousId) {
+		Collection<Rendezvouse> result;
+
+		result = this.rendezvousRepository.findAllRendezvousesNotDeletedForMinorExceptRendezvousId(rendezvousId);
+
+		return result;
+	}
+
 	public Rendezvouse reconstruct(final Rendezvouse rendezvous, final BindingResult bindingResult) {
 		Rendezvouse result;
 		Rendezvouse rendezvousBD;

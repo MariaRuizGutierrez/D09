@@ -161,12 +161,18 @@ public class RendezvousesUserController extends AbstractController {
 		Collection<Announcement> announcements;
 		Collection<ServiceOffered> services;
 		Collection<Question> questions;
+		Collection<Rendezvouse> similarRendezvouses;
 
 		userConnected = this.userService.findByPrincipal();
 		ren = this.rendezvouseService.findOne(rendezvousId);
 		questions = this.questionService.findAllQuestionsByRendezvous(rendezvousId);
 		services = this.rendezvouseService.findAllServicesByRendezvous(rendezvousId);
 		announcements = this.announcementService.findAnnouncementByRendezvousId(rendezvousId);
+		if (this.rendezvouseService.calculateYearsOld(userConnected.getBirthDate()) < 18)
+			similarRendezvouses = this.rendezvouseService.findAllSimilarForNoAuthenticathed(rendezvousId);
+		else
+			similarRendezvouses = ren.getSimilarRendezvouses();
+
 		if (ren.isForAdult() == true)
 			Assert.isTrue(this.rendezvouseService.calculateYearsOld(userConnected.getBirthDate()) > 18);
 		result = new ModelAndView("rendezvous/display");
@@ -174,6 +180,7 @@ public class RendezvousesUserController extends AbstractController {
 		result.addObject("announcements", announcements);
 		result.addObject("services", services);
 		result.addObject("questions", questions);
+		result.addObject("similarRendezvouses", similarRendezvouses);
 		result.addObject("requestURI", "rendezvous/user/display.do");
 
 		return result;
@@ -348,9 +355,16 @@ public class RendezvousesUserController extends AbstractController {
 		Assert.notNull(rendezvouse);
 		Collection<Rendezvouse> similarRendezvouses;
 		ModelAndView result;
-		result = new ModelAndView("rendezvous/edit");
-		similarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
 
+		User user;
+
+		user = this.userService.findByPrincipal();
+		result = new ModelAndView("rendezvous/edit");
+
+		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
+			similarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedForMinorExceptRendezvousId(rendezvouse.getId());
+		else
+			similarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
 		result.addObject("rendezvouse", rendezvouse);
 		result.addObject("similarRendezvouses", similarRendezvouses);
 		result.addObject("message", message);
@@ -370,12 +384,18 @@ public class RendezvousesUserController extends AbstractController {
 		Assert.notNull(rendezvouse);
 		Collection<Rendezvouse> notSimilarRendezvouses;
 		Collection<Rendezvouse> similarRendezvouses;
+		User user;
 		ModelAndView result;
 
+		user = this.userService.findByPrincipal();
 		result = new ModelAndView("rendezvous/editNotSimilar");
 		notSimilarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
 		notSimilarRendezvouses.removeAll(rendezvouse.getSimilarRendezvouses());
 		similarRendezvouses = rendezvouse.getSimilarRendezvouses();
+		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
+			for (Rendezvouse r : similarRendezvouses)
+				if (r.isDeleted() == true || r.isDraftMode() == true || r.isForAdult() == true)
+					similarRendezvouses.remove(r);
 
 		result.addObject("rendezvouse", rendezvouse);
 		result.addObject("similarRendezvouses", similarRendezvouses);
