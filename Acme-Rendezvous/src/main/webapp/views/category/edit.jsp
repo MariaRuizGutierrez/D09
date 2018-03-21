@@ -72,7 +72,7 @@
 
 	<input type="button" name="cancel"
 		value="<spring:message code="category.cancel"/>"
-		onclick="javascript: window.location.replace('category/administrator/list.do')" />
+		onclick="javascript: window.location.replace('category/administrator/list.do?d-16544-p=1')" />
 	<br />
 
 </form:form>
