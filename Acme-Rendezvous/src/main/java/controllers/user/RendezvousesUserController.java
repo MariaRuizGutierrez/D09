@@ -393,7 +393,7 @@ public class RendezvousesUserController extends AbstractController {
 		notSimilarRendezvouses.removeAll(rendezvouse.getSimilarRendezvouses());
 		similarRendezvouses = rendezvouse.getSimilarRendezvouses();
 		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
-			for (Rendezvouse r : similarRendezvouses)
+			for (final Rendezvouse r : similarRendezvouses)
 				if (r.isDeleted() == true || r.isDraftMode() == true || r.isForAdult() == true)
 					similarRendezvouses.remove(r);
 
@@ -416,11 +416,17 @@ public class RendezvousesUserController extends AbstractController {
 	protected ModelAndView createEditNotSimilarModelAndView(final Rendezvouse rendezvouse, final String message) {
 		Assert.notNull(rendezvouse);
 		Collection<Rendezvouse> notSimilarRendezvouses;
+		User user;
 		ModelAndView result;
 
+		user = this.userService.findByPrincipal();
 		result = new ModelAndView("rendezvous/editSimilar");
 		notSimilarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
 		notSimilarRendezvouses.removeAll(rendezvouse.getSimilarRendezvouses());
+		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
+			for (final Rendezvouse r : notSimilarRendezvouses)
+				if (r.isDeleted() == true || r.isDraftMode() == true || r.isForAdult() == true)
+					notSimilarRendezvouses.remove(r);
 
 		result.addObject("rendezvouse", rendezvouse);
 		result.addObject("notSimilarRendezvouses", notSimilarRendezvouses);
