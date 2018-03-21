@@ -78,6 +78,22 @@ public class RendezvousesUserController extends AbstractController {
 		return result;
 
 	}
+	
+	@RequestMapping(value = "/listAsistProfile", method = RequestMethod.GET)
+	public ModelAndView listasisProfile(@RequestParam int userId) {
+		final ModelAndView result;
+		this.userService.checkPrincipal();
+		Collection<Rendezvouse> rendezvous;
+		User principal;
+		principal = this.userService.findOne(userId);
+		rendezvous = this.rendezvouseService.FindRendezvousThatUserAssist(principal.getId());
+		result = new ModelAndView("rendezvous/listasis");
+		result.addObject("rendezvous", rendezvous);
+		result.addObject("assist", true);
+		result.addObject("requestURI", "rendezvous/user/listnotasis.do");
+		return result;
+
+	}
 
 	@RequestMapping(value = "/listasis", method = RequestMethod.GET)
 	public ModelAndView listnotasis() {

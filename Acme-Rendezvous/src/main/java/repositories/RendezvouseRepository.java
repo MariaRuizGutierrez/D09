@@ -89,4 +89,6 @@ public interface RendezvouseRepository extends JpaRepository<Rendezvouse, Intege
 	@Query("select a from Rendezvouse r join r.similarRendezvouses a where a.draftMode=false and a.forAdult=false and a.deleted= false and r.id=?1")
 	Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(int rendezvousId);
 
+	@Query("select r from Rendezvouse r where ?1 member of assistants and r.deleted=false and r.draftMode=false")
+	Collection<Rendezvouse> FindRendezvousThatUserAssist(int usuarioId);
 }

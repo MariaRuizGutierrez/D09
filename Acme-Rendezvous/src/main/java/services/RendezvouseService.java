@@ -453,5 +453,14 @@ public class RendezvouseService {
 
 		return similars;
 	}
+	
+	public Collection<Rendezvouse> FindRendezvousThatUserAssist(int usuarioId){
+		
+		Collection<Rendezvouse> result;
+		
+		result = this.rendezvousRepository.FindRendezvousThatUserAssist(usuarioId);
+		
+		return result;
+	}
 
 }
