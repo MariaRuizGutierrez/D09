@@ -148,6 +148,7 @@
 				code="serviceoffered.picture" /></a>
 	</display:column>
 	
+	<security:authorize access="hasRole('USER')">
 	<spring:message code="cancelled" var="Delete" />
 		<display:column title="${Delete}" class="<%= estilo %>">
 		<jstl:if test="${row1.cancelled==true}">
@@ -156,8 +157,12 @@
 			</FONT><br>
 		</jstl:if>
 		</display:column>
+			</security:authorize>
 		</display:table>
+
 	</jstl:if>
+	
+	
 	
 	<h2><spring:message code="rendezvous.questions" /></h2>	
 	<display:table name="questions" id="row" class="displaytag">
