@@ -1,6 +1,7 @@
 
 package controllers.user;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -393,7 +394,7 @@ public class RendezvousesUserController extends AbstractController {
 		notSimilarRendezvouses.removeAll(rendezvouse.getSimilarRendezvouses());
 		similarRendezvouses = rendezvouse.getSimilarRendezvouses();
 		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
-			for (final Rendezvouse r : similarRendezvouses)
+			for (final Rendezvouse r : new ArrayList<Rendezvouse>(similarRendezvouses))
 				if (r.isDeleted() == true || r.isDraftMode() == true || r.isForAdult() == true)
 					similarRendezvouses.remove(r);
 
@@ -424,7 +425,7 @@ public class RendezvousesUserController extends AbstractController {
 		notSimilarRendezvouses = this.rendezvouseService.findAllRendezvousesNotDeletedExceptRendezvousId(rendezvouse.getId());
 		notSimilarRendezvouses.removeAll(rendezvouse.getSimilarRendezvouses());
 		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
-			for (final Rendezvouse r : notSimilarRendezvouses)
+			for (final Rendezvouse r : new ArrayList<Rendezvouse>(notSimilarRendezvouses))
 				if (r.isDeleted() == true || r.isDraftMode() == true || r.isForAdult() == true)
 					notSimilarRendezvouses.remove(r);
 
