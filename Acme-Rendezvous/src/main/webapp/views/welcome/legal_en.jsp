@@ -122,7 +122,7 @@ In addition, through the OWNER's website, free and paid services offered by thir
 
 </p>
 
-<strong>2.4.-</strong> THE ADMINISTRATOR reserves the right to cancel at any time any existing service on its website that it considers inappropriate without prior notice to those responsible for its creation or attendees; not seeing itself in the obligation to warn the assistants and / or creators of said appointments before its cancellation.</p>
+<strong>2.4.-</strong> THE ADMINISTRATOR reserves the right to cancel at any time any existing service on its website that it considers inappropriate without prior notice to those responsible for its creation or attendees; not seeing itself in the obligation to warn the assistants and / or creators of said appointments before its cancellation.
 <p>Any service that refers to issues related to sex, hate, racism, machismo, insults; containing words like: "sex", "porn", "fuck you", "motherfucker" etc, the administrator will be rigth to cancel said service.
 As well as those services that include images referring to the topics previously exposed may also be canceled by the administrator.
 </p>
