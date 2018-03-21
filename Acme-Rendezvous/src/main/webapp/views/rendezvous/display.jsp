@@ -28,7 +28,6 @@
 	<!-- Attributes -->
 
 
-
 <jstl:if test="${row.picture==''}">
 	<spring:message code="nothing.found.to.display" />
 	</jstl:if> 
@@ -79,6 +78,7 @@
 			<jstl:out value="${row.forAdult}"></jstl:out>
 		<p>
 		
+			<security:authorize access="!hasRole('USER')">
 			<jstl:if test="${similarRendezvouses.size()>0 }">
 			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
 			<jstl:forEach items="${similarRendezvouses}" var="item">
@@ -91,9 +91,25 @@
 						value="${item.name }" /></a>
 				<br>
 			</jstl:forEach>
+			</security:authorize>
+			
+			<security:authorize access="hasRole('USER')">
+			<jstl:if test="${similarRendezvouses.size()>0 }">
+			<B><spring:message code="rendezvouse.similarRendezvouses" />:</B></jstl:if>
+			<jstl:forEach items="${similarRendezvouses}" var="item">
+				<spring:url value="rendezvous/user/display.do"
+					var="displayRendezvousSimilarURL">
+					<spring:param name="rendezvousId" value="${item.id}" />
+
+				</spring:url>
+				<a href="${displayRendezvousSimilarURL}"><jstl:out
+						value="${item.name }" /></a>
+				<br>
+			</jstl:forEach>
+			</security:authorize>
+			
 	</display:column>
 	<p>
-	
 	
 </display:table>
 <h2><spring:message code="rendezvouse.service.request" /></h2>
