@@ -82,8 +82,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Collection<Manager> managersWhohaveMoreServicesCancelled2(Long maxNumber);
 
 	//B/1	The average number of categories per rendezvous.
-	@Query("select avg(r.servicesOffered.size) from Rendezvouse r")
-	Double findAvgNumOfCategoriesPerRendezvous();
+	//@Query("select avg(r.servicesOffered.size) from Rendezvouse r")
+	//Double findAvgNumOfCategoriesPerRendezvous();
 
 	//B/2	The average ratio of services in each category.
 	@Query("select avg(c.servicesOffered.size) from Category c")

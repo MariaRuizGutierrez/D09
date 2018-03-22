@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -20,6 +21,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Administrator;
+import domain.Category;
 import domain.Manager;
 import domain.Rendezvouse;
 import domain.ServiceOffered;
@@ -36,6 +38,8 @@ public class AdministratorService {
 	//Importar la que pertenece a Spring
 	@Autowired
 	private Validator				validator;
+	@Autowired
+	private RendezvouseService		rendezvouseService;
 
 
 	// Simple CRUD methods------------------------------------------------
@@ -333,11 +337,28 @@ public class AdministratorService {
 
 	//	B1	      
 	public Double findAvgNumOfCategoriesPerRendezvous() {
-		Double result;
+		final Double result;
+		final Integer denominador;
+		Integer enumerador;
+		Collection<Category> vacia;
+		Collection<Rendezvouse> allRendezvouses;
+		Collection<ServiceOffered> servicesByRendezvouse;
 
-		this.checkPrincipal();
+		enumerador = 0;
+		vacia = new ArrayList<>();
+		allRendezvouses = new ArrayList<>(this.rendezvouseService.findAll());
+		denominador = allRendezvouses.size();
 
-		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
+		for (final Rendezvouse r : allRendezvouses) {
+			servicesByRendezvouse = new ArrayList<>(r.getServicesOffered());
+			for (final ServiceOffered s : servicesByRendezvouse)
+				if (!vacia.contains(s.getCategory()))
+					vacia.add(s.getCategory());
+			enumerador = enumerador + vacia.size();
+			vacia = new ArrayList<Category>();
+		}
+
+		result = enumerador * 1.0 / denominador;
 		return result;
 	}
 
