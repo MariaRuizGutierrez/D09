@@ -13,7 +13,7 @@ Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proye
 
 6. No se especifico en la entrega pasado en el README que: Cuando un user crea una rendezvous en modo borrador, hasta que no la ponga a modo final no asistira a ella ya que cuando es modo borrador no es "oficial". 
 
-7. Cuando la rendezvous ha pasado ya no se pueden crear Announcements, questions, solicitar servicios, ni clicar similares... Ademas sale la columna de la fecha en roja para que se vea que esta en pasado.
+7. Cuando la rendezvous ha pasado ya no se pueden crear Announcements, questions, solicitar servicios, ni clicar similares... Ademas sale la columna de la fecha en roja para que se vea que esta en pasado, en la D08 salia la fila entera, esta vez hemos mejorado esta parte creyendo que es mas intuitivo colorear solo la columna de la fecha.
 
 9. Solo cuando la rendezvous está en modo borrador se podran solicitar servicios(dicho por nuestro profesor de seguimiento)
 
@@ -23,9 +23,17 @@ Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proye
 
 12. En la query cuando "Top Selling services" hemos elegido que sean 5.
 
+13. Actualmente, no podemos borrar ni editar una question que ya tiene respuestas, ya que nos parecía que es la mejor decisión.
+
+14. Para la realización del A+ se hizo primeramente sobre el controlador de comment y luego vimos que rendezvous daba mas juego y se realizo de rendezvous, por tanto en el proyecto A+ existen dos tests para los controladores. Gracias a esto se detectaron fallos en ambos controladores.
+
+15. Para los no autenticados solo se les mostrarán las rendezvouses que están en modo final, que no son para adultos, y que no han sido borradas o canceladas.
+
 
 Todas estas decisiones se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, y nos ha dado el visto bueno.
 
 PD: Los mockups en la D08, se nos olvidaron entregarlos(hemos realizado esta misma entrega 3 veces dado que hubo problemas con EV y se nos olvidó ponerlo en la última aunque estaban hechos) y los entregamos en la D09.
 
 Además estamos muy orgullosos del test "driverListEdit" de la clase RendezvousServiceTest que es donde aparecen los 10 tests como se piden en los Statements, tambien estamos orgullosos del "driverCreateAndSave" de la clase RequestServiceTest.
+
+También escribimos este correo al profesor Carlos Muller, el cual nos ha aconsejado que lo pongamos también en este readme: "Hemos detectado el problema al realizar los tests de que al fallar un objeto y ejecutar el metodo flush(), sigue guardado en cache y falla en los siguientes tests. Mandamos un correo a Carlos Muller con CC a todos los profesores explicando el problema y su solución la cual la tenemos implementada en nuestros tests (Con la clase EntityManager)". También nos sentimos orgullosos de esto.
