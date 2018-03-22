@@ -166,7 +166,7 @@
 
 	<spring:message code="rendezvouse.assistans" var="ASS" />
 	<display:column title="${ASS}" sortable="true" >
-		<spring:url value="rendezvous/listAssistants.do" var="editURL">
+		<spring:url value="rendezvous/listAssistants.do?d-16544-p=1" var="editURL">
 			<spring:param name="rendezvousId" value="${row.id}" />
 		</spring:url>
 		<a href="${editURL}"><spring:message code="rendezvouse.assistans" /></a>
