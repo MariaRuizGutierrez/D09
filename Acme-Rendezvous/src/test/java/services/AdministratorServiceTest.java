@@ -263,23 +263,23 @@ public class AdministratorServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	public void drivefindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator() {
+	public void driveFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.0, 0.6325, null
+				"admin", 2, 1.2, 0.9798, null
 			}, {
-				"user1", 2, 1.0, 0.6325, IllegalArgumentException.class
+				"user1", 2, 1.2, 0.9798, IllegalArgumentException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templatefindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+			this.templateFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
 	
-	public void templatefindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+	public void templateFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] objetos;
@@ -306,7 +306,7 @@ public class AdministratorServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	public void drivefindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator() {
+	public void driveFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
@@ -318,11 +318,11 @@ public class AdministratorServiceTest extends AbstractTest {
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templatefindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+			this.templateFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
 	
-	public void templatefindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator(final String username, double num, final Class<?> expected) {
+	public void templateFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator(final String username, double num, final Class<?> expected) {
 
 		Class<?> caught;
 		Double result;
@@ -347,23 +347,23 @@ public class AdministratorServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	public void drivefindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator() {
+	public void driveFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.6, 1.2, null
+				"admin", 2, 2.2727, 1.7628, null
 			}, {
-				"user1", 2, 1.6, 1.2, IllegalArgumentException.class
+				"user1", 2, 2.2727, 1.7628, IllegalArgumentException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templatefindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+			this.templateFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
 	
-	public void templatefindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+	public void templateFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
@@ -390,23 +390,23 @@ public class AdministratorServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	public void drivefindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator() {
+	public void driveFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.6, 0.4899, null
+				"admin", 2, 5.0, 1.4142, null
 			}, {
-				"user1", 2, 1.6, 0.4899, IllegalArgumentException.class
+				"user1", 2, 5.0, 1.4142, IllegalArgumentException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templatefindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+			this.templateFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
 	
-	public void templatefindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+	public void templateFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
@@ -438,9 +438,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 5, null
+				"admin", 10, null
 			}, {
-				"user1", 5, IllegalArgumentException.class
+				"user1", 10, IllegalArgumentException.class
 			}
 		};
 
@@ -479,9 +479,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.0, 0.6325, null
+				"admin", 2, 0.4545, 0.6556, null
 			}, {
-				"user1", 2, 1.0, 0.6325, IllegalArgumentException.class
+				"user1", 2, 0.4545, 0.6556, IllegalArgumentException.class
 			}
 		};
 
@@ -600,23 +600,23 @@ public class AdministratorServiceTest extends AbstractTest {
 	
 	
 	@Test
-	public void drivefindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator() {
+	public void driveFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.0, 0.8944271909999159, null
+				"admin", 2, 0.45454545454545453, 0.7820295697311479, null
 			}, {
-				"user1", 2, 1.0, 0.8944271909999159, IllegalArgumentException.class
+				"user1", 2, 0.45454545454545453, 0.7820295697311479, IllegalArgumentException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templatefindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+			this.templateFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
 	
-	public void templatefindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+	public void templateFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
@@ -648,9 +648,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.0, 1.2649110640673518, null
+				"admin", 2, 0.45454545454545453, 0.9875254992000193, null
 			}, {
-				"user1", 2, 1.0, 1.2649110640673518, IllegalArgumentException.class
+				"user1", 2, 0.45454545454545453, 0.9875254992000193, IllegalArgumentException.class
 			}
 		};
 
@@ -857,9 +857,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2.0, null
+				"admin", 2.4545, null
 			}, {
-				"user1", 2.0, IllegalArgumentException.class
+				"user1", 2.4545, IllegalArgumentException.class
 			}
 		};
 
@@ -940,9 +940,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 4, 2.0, 0.0, 4.0, 1.4142, null
+				"admin", 4, 2.4545, 0.0, 5.0, 1.5588, null
 			}, {
-				"user1", 4, 2.0, 0.0, 4.0, 1.4142, IllegalArgumentException.class
+				"user1", 4, 2.4545, 0.0, 5.0, 1.5588, IllegalArgumentException.class
 			}
 		};
 
@@ -987,9 +987,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 4, null
+				"admin", 5, null
 			}, {
-				"user1", 4, IllegalArgumentException.class
+				"user1", 5, IllegalArgumentException.class
 			}
 		};
 
