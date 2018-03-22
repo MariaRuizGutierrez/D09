@@ -43,7 +43,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test listEdit ----------------------------------------------------------------------------------
 	// Se listan las rendezvouses creadas por el user logueado y de ellas se coge la pasada por parametro para cambiarles los valores
-	//Caso de uso 5.2
+	//Caso de uso 5.2:Create a rendezvous, which he's implicitly assumed to attend. Note that a user may edit his or her rendezvouses as long as they aren’t saved them in final mode. Once a rendezvous is saved in final mode, it cannot be edited or deleted by the creator. (parte 1)
 	@Test
 	public void driverListEdit() {
 		final Collection<GPS> listGPS = this.createAllGPSForTesting();
@@ -139,7 +139,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test Create ----------------------------------------------------------------------------------
 	// Se comprueba el metodo create de Rendezvouse
-	//Caso de uso 5.2
+	//Caso de uso 5.2: Create a rendezvous, which he's implicitly assumed to attend. Note that a user may edit his or her rendezvouses as long as they aren’t saved them in final mode. Once a rendezvous is saved in final mode, it cannot be edited or deleted by the creator.(parte 2)
 	@Test
 	public void driverCreate() {
 		final Collection<GPS> listGPS = this.createAllGPSForTesting();
@@ -203,7 +203,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 	// Se comprueba el metodo del delete virtual el cual solo puede realizar el user de sus rendezvouses y consiste en poner a 1 el atributo deleted
 	// El hecho de no poder editar una Rendezvouse que esta borrada se contempla en el controlador debido a que se pueden "editar" cambiando solo las
 	// rendezvouses que tiene similares, por tanto no lo ponemos en el metodo save la restriccion
-	//Caso de uso 5.3
+	//Caso de uso 5.3:Update or delete the rendezvouses that he or she's created. Deletion is virtual, that is: the information is not removed from the database, but the rendezvous cannot be updated.
 	@Test
 	public void driverDeleteVirtual() {
 		final Object testingData[][] = {
@@ -244,7 +244,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test Delete ----------------------------------------------------------------------------------
 	//Se comprueba el delete y que solo el admin puede eliminar las rendezvouses del sistema
-	//Caso de uso 6.2
+	//Caso de uso 6.2: Remove a rendezvous that he or she thinks is inappropriate
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -282,7 +282,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test listAssist ------------------------------------------------------
 	// Se comprueba el listar las Rendezvouses para poder asistir
-	//Caso de uso 5.5
+	//Caso de uso 5.5: List the rendezvouses that he or she’s RSVPd. (parte 1)
 	@Test
 	public void driverListAssist() {
 		final Object testingData[][] = {
@@ -321,7 +321,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test listNotAssist ------------------------------------------------------
 	// Se comprueba el listar las Rendezvouses para poder asistir
-	//Caso de uso 5.5
+	//Caso de uso 5.5: List the rendezvouses that he or she’s RSVPd. (parte 2)
 	@Test
 	public void driverListNotAssist() {
 		final Object testingData[][] = {
@@ -360,7 +360,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test Assist ----------------------------------------------------------------------------------
 	// Se comprueba la asistencia (RSPV) a una rendezvous
-	//Caso de uso 5.4
+	//Caso de uso 5.4: RSVP a rendezvous or cancel it. (parte 1)
 	@Test
 	public void driverAssist() {
 		final Object testingData[][] = {
@@ -406,7 +406,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test Not-Assist ----------------------------------------------------------------------------------
 	// Se comprueba la no asistencia (RSPV) a una rendezvous
-	//Caso de uso 5.4
+	//Caso de uso 5.4: RSVP a rendezvous or cancel it. (parte 2)
 	@Test
 	public void driverNotAssist() {
 		final Object testingData[][] = {
@@ -451,7 +451,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 	}
 
 	// Test LinkSimilar ----------------------------------------------------------------------------------
-	// Caso de uso 16.4
+	// Caso de uso 16.4: Link one of the rendezvouses that he or she’s created to other similar rendezvouses. (Parte 1)
 	@SuppressWarnings("unchecked")
 	@Test
 	public void driverLinkSimilar() {
@@ -498,7 +498,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 	}
 
 	// Test UnLinkSimilar ----------------------------------------------------------------------------------
-	// Caso de uso 16.4
+	// Caso de uso 16.4: Link one of the rendezvouses that he or she’s created to other similar rendezvouses. (Parte 2)
 	@SuppressWarnings("unchecked")
 	@Test
 	public void driverUnLinkSimilar() {
@@ -543,7 +543,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	// Test listNonAutenticated
 	// Se comprueba el metodo list para los usuarios no autentificados
-	// Caso de uso 4.3
+	// Caso de uso 4.3: List the users of the system and navigate to their profiles, which include personal data and the list of rendezvouses that they’ve attended or are going to attend.
 	@Test
 	public void driverlistNonAutenticated() {
 		final Object testingData[][] = {
@@ -576,7 +576,7 @@ public class RendezvouseServiceTest extends AbstractTest {
 	}
 
 	// Test listSimilar -----------------------------------------------------
-	// Caso de uso 15.2
+	// Caso de uso 15.2: Navigate from a rendezvous to the rendezvouses that are similar to it.
 	@Test
 	public void driverListSimilar() {
 		final Object testingData[][] = {

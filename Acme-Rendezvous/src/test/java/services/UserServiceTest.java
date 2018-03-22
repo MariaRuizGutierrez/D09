@@ -76,7 +76,7 @@ public class UserServiceTest extends AbstractTest {
 
 	}
 	//Test Create-------------------------------------------------
-	// Caso de uso 4.1
+	// Caso de uso 4.1:Register to the system as a user
 	@Test
 	public void driverCreateAndSave() {
 
@@ -180,7 +180,9 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	//caso uso 4.2
+
+	// Test listServiceAvaible
+	//caso uso 4.2: List the users of the system and navigate to their profiles, which include personal data and the list of rendezvouses that they've attended or are going to attend.
 	@Test
 	public void driverListServiceAvaible() {
 
@@ -198,7 +200,7 @@ public class UserServiceTest extends AbstractTest {
 		for (int i = 0; i < testingData.length; i++)
 			this.templateListServiceAvaible((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
 	}
-	private void templateListServiceAvaible(final String username, int Idserviceoffered, final Class<?> expected) {
+	private void templateListServiceAvaible(final String username, final int Idserviceoffered, final Class<?> expected) {
 		Class<?> caught;
 		Collection<ServiceOffered> services;
 		caught = null;

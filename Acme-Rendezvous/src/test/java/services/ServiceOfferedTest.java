@@ -38,7 +38,7 @@ public class ServiceOfferedTest extends AbstractTest {
 
 
 	//TEST CREATE--------------------------------------------------------------
-	// Caso de uso 5.2
+	// Caso de uso 5.2: Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses.
 	@Test
 	public void driverCreate() {
 
@@ -91,7 +91,7 @@ public class ServiceOfferedTest extends AbstractTest {
 	}
 
 	//TEST DELETE-----------------------------------------------------------
-	//Caso de uso 5.2
+	//Caso de uso 5.2: Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses.
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -134,7 +134,7 @@ public class ServiceOfferedTest extends AbstractTest {
 	}
 
 	//TEST CANCEL-----------------------------------------------------------
-	//Caso de uso 6.1
+	//Caso de uso 6.1: Cancel a service that he or she finds inappropriate. Such services cannot be re-quested for any rendezvous.
 	@Test
 	public void driverCancel() {
 		final Object testingData[][] = {
@@ -175,7 +175,7 @@ public class ServiceOfferedTest extends AbstractTest {
 
 	// Test listEdit ----------------------------------------------------------------------------------
 	// Se listan todos los servicios creados por el manager logueado y de ellos se coge la pasada por parametro para cambiarles los valores
-	//Caso de uso 5.2
+	//Caso de uso 5.2: Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses.
 	@Test
 	public void driverListEdit() {
 		final Object testingData[][] = {
@@ -234,7 +234,7 @@ public class ServiceOfferedTest extends AbstractTest {
 
 	// Test List
 	// Se comprueba el list de todas los servicios available
-	// Caso de uso 4.2
+	// Caso de uso 4.2 y 5.1: List the services that are available in the system
 	@Test
 	public void driverServicesAvailable() {
 		final Object testingData[][] = {

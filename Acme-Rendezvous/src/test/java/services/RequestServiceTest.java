@@ -54,7 +54,7 @@ public class RequestServiceTest extends AbstractTest {
 	//final CreditCard		creditCardExpirationYearInvalid;
 	//final CreditCard		creditCardCvvInvalid;
 
-	// Caso de uso 4.3
+	// Caso de uso 4.3: Request a service for one of the rendezvouses that he or she's created. He or she must specify a valid credit card in every request for a service. Optionally, he or she can provide some comments in the request.
 	@Test
 	public void driverCreateAndSave() {
 		final Collection<CreditCard> listCreditCards = this.createAllCreditCardsForTesting();

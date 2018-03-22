@@ -34,7 +34,7 @@ public class CategoryServiceTest extends AbstractTest {
 
 
 	// Test CreateAndSave ----------------------------------------------------------------------------------
-	// Caso de uso 11.1
+	// Caso de uso 11.1: Manage the categories of services, which includes listing, creating, updating, delet-ing, and re-organising them in the category hierarchies. (parte 1)
 	@Test
 	public void driverCreateAndSave() {
 		final Object testingData[][] = {
@@ -84,7 +84,7 @@ public class CategoryServiceTest extends AbstractTest {
 
 	}
 	// Test Edit ----------------------------------------------------------------------------------
-	// Caso de uso 11.1
+	// Caso de uso 11.1: Manage the categories of services, which includes listing, creating, updating, delet-ing, and re-organising them in the category hierarchies. (parte 2)
 	@Test
 	public void driverEdit() {
 		final Object testingData[][] = {
@@ -120,7 +120,7 @@ public class CategoryServiceTest extends AbstractTest {
 	}
 
 	// Test Delete ----------------------------------------------------------------------------------
-	// Caso de uso 11.1
+	// Caso de uso 11.1: Manage the categories of services, which includes listing, creating, updating, delet-ing, and re-organising them in the category hierarchies. (parte 3)
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -156,7 +156,7 @@ public class CategoryServiceTest extends AbstractTest {
 
 	// Test List
 	// Se comprueba el list de todas las categorias
-	// Caso de uso 11.1
+	// Caso de uso 11.1: Manage the categories of services, which includes listing, creating, updating, delet-ing, and re-organising them in the category hierarchies. (parte 4)
 	@Test
 	public void driverFindAll() {
 		final Object testingData[][] = {
@@ -187,6 +187,44 @@ public class CategoryServiceTest extends AbstractTest {
 		}
 
 		this.checkExceptions(expected, caught);
+	}
+
+	// Test Re-organising ----------------------------------------------------------------------------------
+	// Caso de uso 11.1: Manage the categories of services, which includes listing, creating, updating, delet-ing, and re-organising them in the category hierarchies. (parte 5)
+	@Test
+	public void driverReorganising() {
+		final Object testingData[][] = {
+			{
+				//Se cambia el padre de category1-1-1 por el admin
+				"admin", "category1-1-1", "category1", null
+			}, {
+				//Se cambia el padre de category1-1-1 por el user (ningun user puede editarla)
+				"user", "category1-1-1", "category1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateReorganising((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), super.getEntityId((String) testingData[i][2]), (Class<?>) testingData[i][3]);
+	}
+	private void templateReorganising(final String username, final int categoryId, final int fatherCategoryId, final Class<?> expected) {
+		Category category;
+		Category fatherCategory;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			category = this.categoryService.findOne(categoryId);
+			fatherCategory = this.categoryService.findOne(fatherCategoryId);
+			category.setFatherCategory(fatherCategory);
+			category = this.categoryService.save(category);
+			this.unauthenticate();
+			this.categoryService.flush();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+
 	}
 
 }

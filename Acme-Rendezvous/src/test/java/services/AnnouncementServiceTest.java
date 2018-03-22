@@ -41,7 +41,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 
 	// Test CreateAndSave ----------------------------------------------------------------------------------
-	// Caso de uso 16.3
+	// Caso de uso 16.3: Create an announcement regarding one of the rendezvouses that he or she's created previously.
 	@Test
 	public void driverCreateAndSave() {
 		final Object testingData[][] = {
@@ -134,7 +134,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	// Test Delete ----------------------------------------------------------------------------------
 	// Se comprueba que solo el Admin es el unico que puede eliminar un Announcement
-	// Caso de uso 17.1
+	// Caso de uso 17.1: Remove an announcement that he or she thinks is inappropriate.
 	@Test
 	public void driverDelete() {
 		final Object testingData[][] = {
@@ -173,7 +173,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 
 	// Test findAnnouncementByUserIdForRendezvousesAssits
 	// Se comprueba el list que devuelve todos los announcements de las rendezvouses a la que un user ha asistido en orden descendiente cronologicamente
-	// Caso de uso 16.5
+	// Caso de uso 16.5: Display a stream of announcements that have been posted to the rendezvouses that he or she's RSVPd. The announcements must be listed chronologically in descending order.
 	@Test
 	public void driverFindAnnouncementByUserIdForRendezvousesAssits() {
 		final Object testingData[][] = {
@@ -208,7 +208,7 @@ public class AnnouncementServiceTest extends AbstractTest {
 	}
 
 	// Test findAnnouncementByRendezvousId -------------------------------
-	//Caso de uso 15.1
+	//Caso de uso 15.1: List the announcements that are associated with each rendezvous.
 	@Test
 	public void driverFindAnnouncementByRendezvousId() {
 		final Object testingData[][] = {

@@ -32,6 +32,7 @@ public class QuestionServiceTest extends AbstractTest {
 
 
 	// Requisito funcional: Crear y guardar una question.
+	// Caso de uso 21.1: Manage the questions that are associated with a rendezvous that he or she's created previously.
 	@Test
 	public void driverCreateAndSaveQuestion() {
 
@@ -73,6 +74,7 @@ public class QuestionServiceTest extends AbstractTest {
 	}
 
 	// Requisito funcional: Eliminar una pregunta.
+	// Caso de uso 21.1: Manage the questions that are associated with a rendezvous that he or she's created previously.
 	@Test
 	public void driverDeleteQuestion() {
 
@@ -114,6 +116,7 @@ public class QuestionServiceTest extends AbstractTest {
 	}
 
 	// Requisito funcional: Editar una pregunta.
+	// Caso de uso 21.1: Manage the questions that are associated with a rendezvous that he or she's created previously.
 	@Test
 	public void driverUpdateQuestion() {
 
@@ -151,8 +154,8 @@ public class QuestionServiceTest extends AbstractTest {
 
 	}
 
-	// Requisito funcional: manage question.
 	// Se comprueba el list de todas las question de la cita
+	// Caso de uso 21.1: Manage the questions that are associated with a rendezvous that he or she's created previously.
 	@Test
 	public void driverQuestionNotDeleted() {
 		final Object testingData[][] = {

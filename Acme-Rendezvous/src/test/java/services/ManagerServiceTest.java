@@ -69,7 +69,7 @@ public class ManagerServiceTest extends AbstractTest {
 
 	}
 	//Test Create-------------------------------------------------
-	// Caso de uso 3.1
+	// Caso de uso 3.1: Register to the system as a manager.
 	@Test
 	public void driverCreateAndSave() {
 

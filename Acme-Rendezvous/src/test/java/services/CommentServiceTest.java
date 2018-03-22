@@ -36,7 +36,7 @@ public class CommentServiceTest extends AbstractTest {
 
 
 	// Requisito funcional: User comment on the rendezvouses that he or she has RSVPd.
-	//Caso de uso 5.6
+	//Caso de uso 5.6: Comment on the rendezvouses that he or she has RSVPd.
 	@SuppressWarnings("unchecked")
 	@Test
 	public void driverCreateAndSaveComment() {
@@ -105,7 +105,7 @@ public class CommentServiceTest extends AbstractTest {
 	}
 
 	// Requisito funcional: Admin Remove a comment that he or she thinks is inappropriate.
-	// Caso de uso 6.1
+	// Caso de uso 6.1: Remove a comment that he or she thinks is inappropriate.
 	@Test
 	public void driverAdminDeleteComment() {
 
