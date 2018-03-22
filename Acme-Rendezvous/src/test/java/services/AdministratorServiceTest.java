@@ -268,9 +268,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 1.2, 0.9798, null
+				"admin", 2, 2.2, 1.6, null
 			}, {
-				"user1", 2, 1.2, 0.9798, IllegalArgumentException.class
+				"user1", 2, 2.2, 1.6, IllegalArgumentException.class
 			}
 		};
 
@@ -311,9 +311,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 4.0, null
+				"admin", 0.0, null
 			}, {
-				"user1", 4.0, IllegalArgumentException.class
+				"user1", 0.0, IllegalArgumentException.class
 			}
 		};
 
@@ -857,9 +857,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2.4545, null
+				"admin", 2.3636, null
 			}, {
-				"user1", 2.4545, IllegalArgumentException.class
+				"user1", 2.3636, IllegalArgumentException.class
 			}
 		};
 
@@ -940,9 +940,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 4, 2.4545, 0.0, 5.0, 1.5588, null
+				"admin", 4, 2.3636, 0.0, 4.0, 1.4316, null
 			}, {
-				"user1", 4, 2.4545, 0.0, 5.0, 1.5588, IllegalArgumentException.class
+				"user1", 4, 2.3636, 0.0, 4.0, 1.4316, IllegalArgumentException.class
 			}
 		};
 
@@ -987,9 +987,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 5, null
+				"admin", 4, null
 			}, {
-				"user1", 5, IllegalArgumentException.class
+				"user1", 4, IllegalArgumentException.class
 			}
 		};
 
