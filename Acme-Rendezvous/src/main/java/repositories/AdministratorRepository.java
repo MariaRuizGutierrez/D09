@@ -96,5 +96,5 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//B/4	The top-selling services.
 	@Query("select s from ServiceOffered s where s.rendezvouses.size!=0 order by s.rendezvouses.size desc")
-	Page<Rendezvouse> findTop5Services(Pageable pageable);
+	Page<ServiceOffered> findTop5Services(Pageable pageable);
 }

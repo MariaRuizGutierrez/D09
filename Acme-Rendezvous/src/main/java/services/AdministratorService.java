@@ -362,9 +362,9 @@ public class AdministratorService {
 	}
 
 	//	B4
-	public Collection<Rendezvouse> findTop5Services() {
-		Collection<Rendezvouse> result;
-		final Page<Rendezvouse> resPage;
+	public Collection<ServiceOffered> findTop5Services() {
+		Collection<ServiceOffered> result;
+		final Page<ServiceOffered> resPage;
 		final Pageable pageable;
 
 		this.checkPrincipal();

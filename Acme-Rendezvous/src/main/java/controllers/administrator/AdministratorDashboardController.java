@@ -50,7 +50,7 @@ public class AdministratorDashboardController extends AbstractController {
 		Double findAvgNumOfCategoriesPerRendezvous;
 		Double findAvgNumOfServicesPerCategories;
 		Double findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse[];
-		Collection<Rendezvouse> findTop5Services;
+		Collection<ServiceOffered> findTop5Services;
 
 		findAvgStddevOfTheNumOfRendezvouseCreatedPerUser = this.administratorService.findAvgStddevOfTheNumOfRendezvouseCreatedPerUser();
 		findRatioUsersWithRendezvousesAndNotRendezvouses = this.administratorService.findRatioUsersWithRendezvousesAndNotRendezvouses();
