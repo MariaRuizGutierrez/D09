@@ -175,12 +175,18 @@ public class UserService {
 		if (user.getId() == 0) {
 			UserAccount userAccount;
 			Authority authority;
+			Collection<Rendezvouse> rendezvousesCreated;
+			Collection<Rendezvouse> rendezvousesAssisted;
 
 			userAccount = userForm.getUser().getUserAccount();
 			authority = new Authority();
 			authority.setAuthority(Authority.USER);
 			userAccount.addAuthority(authority);
 			userForm.getUser().setUserAccount(userAccount);
+			rendezvousesCreated = new ArrayList<>();
+			rendezvousesAssisted = new ArrayList<>();
+			userForm.getUser().setRendezvousesCreated(rendezvousesCreated);
+			userForm.getUser().setRendezvousesAssisted(rendezvousesAssisted);
 			result = userForm;
 
 		} else {
@@ -189,6 +195,8 @@ public class UserService {
 			userForm.getUser().setId(user.getId());
 			userForm.getUser().setVersion(user.getVersion());
 			userForm.getUser().setUserAccount(user.getUserAccount());
+			userForm.getUser().setRendezvousesCreated(user.getRendezvousesCreated());
+			userForm.getUser().setRendezvousesAssisted(user.getRendezvousesAssisted());
 
 			result = userForm;
 

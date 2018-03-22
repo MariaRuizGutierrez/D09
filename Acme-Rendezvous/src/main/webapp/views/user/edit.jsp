@@ -24,8 +24,8 @@
 <form:form action="user/edit.do" modelAttribute="userForm">
 
 	<form:hidden path="user.id" />
-	<form:hidden path="user.rendezvousesCreated"/>
-	<form:hidden path="user.rendezvousesAssisted"/>
+<%-- 	<form:hidden path="user.rendezvousesCreated"/>
+	<form:hidden path="user.rendezvousesAssisted"/> --%>
 	
 <%--  	<jstl:if test="${userFormuser.id == 0}">
 	

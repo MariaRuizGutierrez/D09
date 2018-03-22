@@ -23,6 +23,8 @@
 
 <form:form action="serviceoffered/manager/edit.do" modelAttribute="serviceOffered">
 
+<!-- Los atributos comentados se encuentran en el reconstruct para evitar el hacking post -->
+
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<%-- <form:hidden path="rendezvouses"/> --%>
