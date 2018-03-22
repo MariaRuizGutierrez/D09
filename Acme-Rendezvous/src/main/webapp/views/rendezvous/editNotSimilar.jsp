@@ -26,9 +26,11 @@
 <form:form action="rendezvous/user/editSimilar.do"
 	modelAttribute="rendezvouse">
 
+<!-- Los atributos comentados se encuentran en el reconstruct para evitar el hacking post -->
+
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="assistants" />
+	<%-- <form:hidden path="assistants" />
 	<form:hidden path="announcements" />
 	<form:hidden path="name" />
 	<form:hidden path="description" />
@@ -37,7 +39,7 @@
 	<form:hidden path="draftMode" />
 	<form:hidden path="forAdult" />
 	<form:hidden path="gps.longitude" />
-	<form:hidden path="gps.latitude" />
+	<form:hidden path="gps.latitude" /> --%>
 
 
 

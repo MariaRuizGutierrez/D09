@@ -80,7 +80,7 @@ public class RendezvousesUserController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/listAsistProfile", method = RequestMethod.GET)
-	public ModelAndView listasisProfile(@RequestParam int userId) {
+	public ModelAndView listasisProfile(@RequestParam final int userId) {
 		final ModelAndView result;
 		this.userService.checkPrincipal();
 		Collection<Rendezvouse> rendezvous;
@@ -326,7 +326,7 @@ public class RendezvousesUserController extends AbstractController {
 	public ModelAndView editSimilarLink(Rendezvouse rendezvous, final BindingResult bindingResult) {
 		ModelAndView result;
 
-		rendezvous = this.rendezvouseService.reconstruct(rendezvous, bindingResult);
+		rendezvous = this.rendezvouseService.reconstructLinkUnlinkSimilar(rendezvous, bindingResult);
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(rendezvous);
 		else
@@ -344,7 +344,7 @@ public class RendezvousesUserController extends AbstractController {
 	public ModelAndView editSimilarUnlink(Rendezvouse rendezvous, final BindingResult bindingResult) {
 		ModelAndView result;
 
-		rendezvous = this.rendezvouseService.reconstruct(rendezvous, bindingResult);
+		rendezvous = this.rendezvouseService.reconstructLinkUnlinkSimilar(rendezvous, bindingResult);
 		if (bindingResult.hasErrors())
 			result = this.createEditModelAndView(rendezvous);
 		else

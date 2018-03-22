@@ -16,6 +16,7 @@ import org.springframework.validation.Validator;
 import repositories.RendezvouseRepository;
 import domain.Announcement;
 import domain.Comment;
+import domain.GPS;
 import domain.Question;
 import domain.Rendezvouse;
 import domain.ServiceOffered;
@@ -387,7 +388,7 @@ public class RendezvouseService {
 		return result;
 	}
 
-	public Collection<Rendezvouse> findAllRendezvousesNotDeletedForMinorExceptRendezvousId(int rendezvousId) {
+	public Collection<Rendezvouse> findAllRendezvousesNotDeletedForMinorExceptRendezvousId(final int rendezvousId) {
 		Collection<Rendezvouse> result;
 
 		result = this.rendezvousRepository.findAllRendezvousesNotDeletedForMinorExceptRendezvousId(rendezvousId);
@@ -430,6 +431,35 @@ public class RendezvouseService {
 		return result;
 	}
 
+	public Rendezvouse reconstructLinkUnlinkSimilar(final Rendezvouse rendezvous, final BindingResult bindingResult) {
+		Rendezvouse result;
+		Rendezvouse rendezvousBD;
+		GPS gpsBD;
+
+		rendezvousBD = this.rendezvousRepository.findOne(rendezvous.getId());
+		rendezvous.setId(rendezvousBD.getId());
+		rendezvous.setVersion(rendezvousBD.getVersion());
+		rendezvous.setAssistants(rendezvousBD.getAssistants());
+		rendezvous.setAnnouncements(rendezvousBD.getAnnouncements());
+		rendezvous.setServicesOffered(rendezvousBD.getServicesOffered());
+		if (rendezvous.getSimilarRendezvouses() == null)
+			rendezvous.setSimilarRendezvouses(new ArrayList<Rendezvouse>());
+		rendezvous.setAnnouncements(rendezvousBD.getAnnouncements());
+		rendezvous.setName(rendezvousBD.getName());
+		rendezvous.setDescription(rendezvousBD.getDescription());
+		rendezvous.setPicture(rendezvousBD.getPicture());
+		rendezvous.setOrganisedMoment(rendezvousBD.getOrganisedMoment());
+		rendezvous.setDraftMode(rendezvousBD.isDraftMode());
+		rendezvous.setForAdult(rendezvousBD.isForAdult());
+		gpsBD = new GPS();
+		gpsBD.setLatitude(rendezvousBD.getGps().getLatitude());
+		gpsBD.setLongitude(rendezvousBD.getGps().getLongitude());
+		rendezvous.setGps(gpsBD);
+		result = rendezvous;
+		this.validator.validate(result, bindingResult);
+		return result;
+	}
+
 	public Collection<Rendezvouse> findRendezvousByCategory(final int categoryId) {
 		Collection<Rendezvouse> res;
 		res = this.rendezvousRepository.findRendezvousByCategory(categoryId);
@@ -446,20 +476,20 @@ public class RendezvouseService {
 
 	}
 
-	public Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(int rendezvousId) {
+	public Collection<Rendezvouse> findAllSimilarForNoAuthenticathed(final int rendezvousId) {
 		Collection<Rendezvouse> similars;
 
 		similars = this.rendezvousRepository.findAllSimilarForNoAuthenticathed(rendezvousId);
 
 		return similars;
 	}
-	
-	public Collection<Rendezvouse> FindRendezvousThatUserAssist(int usuarioId){
-		
+
+	public Collection<Rendezvouse> FindRendezvousThatUserAssist(final int usuarioId) {
+
 		Collection<Rendezvouse> result;
-		
+
 		result = this.rendezvousRepository.FindRendezvousThatUserAssist(usuarioId);
-		
+
 		return result;
 	}
 
