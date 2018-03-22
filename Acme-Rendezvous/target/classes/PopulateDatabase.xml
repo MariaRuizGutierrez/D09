@@ -178,12 +178,18 @@
 			<list>
 				<ref bean="rendezvouse1"></ref>
 				<ref bean="rendezvouse4"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 		<property name="rendezvousesAssisted">
 			<list>
 				<ref bean="rendezvouse1"></ref>
 				<ref bean="rendezvouse4"></ref>
+				<ref bean="rendezvouse6"></ref>
+				<ref bean="rendezvouse7"></ref>
+				<ref bean="rendezvouse8"></ref>
+				<ref bean="rendezvouse10"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 	</bean>
@@ -205,6 +211,10 @@
 			<list>
 				<ref bean="rendezvouse1"></ref>
 				<ref bean="rendezvouse2"></ref>
+				<ref bean="rendezvouse6"></ref>
+				<ref bean="rendezvouse8"></ref>
+				<ref bean="rendezvouse10"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 	</bean>
@@ -225,6 +235,8 @@
 		<property name="rendezvousesAssisted">
 			<list>
 				<ref bean="rendezvouse3"></ref>
+				<ref bean="rendezvouse10"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 	</bean>
@@ -244,6 +256,9 @@
 		<property name="rendezvousesAssisted">
 			<list>
 				<ref bean="rendezvouse1"></ref>
+				<ref bean="rendezvouse8"></ref>
+				<ref bean="rendezvouse10"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 	</bean>
@@ -265,6 +280,9 @@
 			<list>
 				<ref bean="rendezvouse1"></ref>
 				<ref bean="rendezvouse5"></ref>
+				<ref bean="rendezvouse8"></ref>
+				<ref bean="rendezvouse10"></ref>
+				<ref bean="rendezvouse11"></ref>
 			</list>
 		</property>
 	</bean>
@@ -508,10 +526,219 @@
 		</property>
 		<property name="servicesOffered">
 			<list>
+				<ref bean="serviceOffered1" />
+				<ref bean="serviceOffered2" />
+				<ref bean="serviceOffered3" />
+				<ref bean="serviceOffered4" />
+				<ref bean="serviceOffered5" />
 			</list>
 		</property>
 	</bean>
 
+	<bean id="rendezvouse6" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse6" />
+		<property name="description" value="description 6" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps2" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+				<ref bean="user1"></ref>
+				<ref bean="user2"></ref>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+				<ref bean="announcement1"></ref>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="rendezvouse7" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse7" />
+		<property name="description" value="description 7" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps1" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+				<ref bean="user1"></ref>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered3" />
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="rendezvouse9" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse9" />
+		<property name="description" value="description 9" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps1" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered4" />
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="rendezvouse8" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse8" />
+		<property name="description" value="description 8" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps1" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+				<ref bean="user1"></ref>
+				<ref bean="user2"></ref>
+				<ref bean="user4"></ref>
+				<ref bean="user5"></ref>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+				<ref bean="announcement1"></ref>
+				<ref bean="announcement2"></ref>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered1" />
+				<ref bean="serviceOffered2" />
+				<ref bean="serviceOffered3" />
+				<ref bean="serviceOffered4" />
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="rendezvouse10" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse10" />
+		<property name="description" value="description 10" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps1" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+				<ref bean="user1"></ref>
+				<ref bean="user2"></ref>
+				<ref bean="user3"></ref>
+				<ref bean="user4"></ref>
+				<ref bean="user5"></ref>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+				<ref bean="announcement1"></ref>
+				<ref bean="announcement2"></ref>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered3" />
+				<ref bean="serviceOffered4" />
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="rendezvouse11" class="domain.Rendezvouse">
+		<property name="name" value="rendezvouse11" />
+		<property name="description" value="description 11" />
+		<property name="organisedMoment" value="2018/09/21" />
+		<property name="picture"
+			value="http://wikifaunia.com/wp-content/uploads/2014/12/un-gato-bebe-hermoso-10370.jpg" />
+		<property name="gps" ref="gps1" />
+		<property name="draftMode" value="0" />
+		<property name="deleted" value="0" />
+		<property name="forAdult" value="0" />
+		<property name="assistants">
+			<list>
+				<ref bean="user1"></ref>
+				<ref bean="user2"></ref>
+				<ref bean="user3"></ref>
+				<ref bean="user4"></ref>
+				<ref bean="user5"></ref>
+			</list>
+		</property>
+		<property name="similarRendezvouses">
+			<list>
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+				<ref bean="announcement1"></ref>
+				<ref bean="announcement2"></ref>
+			</list>
+		</property>
+		<property name="servicesOffered">
+			<list>
+				<ref bean="serviceOffered1" />
+				<ref bean="serviceOffered2" />
+				<ref bean="serviceOffered3" />
+				<ref bean="serviceOffered4" />
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Announcements -->
 	<bean id="announcement1" class="domain.Announcement">
 		<property name="title" value="announcement1" />

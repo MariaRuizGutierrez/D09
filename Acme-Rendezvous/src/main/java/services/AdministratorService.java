@@ -128,7 +128,7 @@ public class AdministratorService {
 
 	public Double[] findAvgStddevOfTheNumOfRendezvouseCreatedPerUser() {
 		Double[] result;
-		
+
 		this.checkPrincipal();
 		result = this.administratorRepository.findAvgStddevOfTheNumOfRendezvouseCreatedPerUser();
 		if (result[0] == null && result[1] == null) {
@@ -138,7 +138,7 @@ public class AdministratorService {
 			result[0] = 0.;
 		else if (result[1] == null)
 			result[1] = 0.;
-		
+
 		return result;
 	}
 
@@ -183,10 +183,10 @@ public class AdministratorService {
 		Collection<Rendezvouse> result;
 		final Page<Rendezvouse> resPage;
 		final Pageable pageable;
-		
+
 		this.checkPrincipal();
 
-		pageable = new PageRequest(0, 11);
+		pageable = new PageRequest(0, 10);
 		resPage = this.administratorRepository.findTop10RendezvouseWithRSVPd(pageable);
 		result = resPage.getContent();
 		return result;
@@ -195,9 +195,9 @@ public class AdministratorService {
 	public Double[] findAvgStddevOfTheNumOfAnnouncementsPerRendezvous() {
 		Double[] result;
 		result = this.administratorRepository.findAvgStddevOfTheNumOfAnnouncementsPerRendezvous();
-		
+
 		this.checkPrincipal();
-		
+
 		if (result[0] == null && result[1] == null) {
 			result[1] = 0.;
 			result[0] = 0.;
@@ -210,7 +210,7 @@ public class AdministratorService {
 	public Collection<Rendezvouse> findRendezvousesWithMore75PerCent() {
 		Collection<Rendezvouse> result;
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findRendezvousesWithMore75PerCent();
 		Assert.notNull(result);
 		return result;
@@ -218,9 +218,9 @@ public class AdministratorService {
 
 	public Collection<Rendezvouse> findRendezvousesWithAreLinked() {
 		Collection<Rendezvouse> result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findRendezvousesWithAreLinked();
 		Assert.notNull(result);
 		return result;
@@ -233,7 +233,7 @@ public class AdministratorService {
 		final Double stdev;
 
 		this.checkPrincipal();
-		
+
 		resultQuery = this.administratorRepository.findAvgStddevOfTheNumOfQuestionsPerRendezvous();
 		Assert.notNull(resultQuery);
 		avg = AdministratorService.calculateAvg(resultQuery);
@@ -249,7 +249,7 @@ public class AdministratorService {
 		final Double[] result;
 		Double avg;
 		Double stdev;
-		
+
 		this.checkPrincipal();
 
 		resultQuery = this.administratorRepository.findAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvous();
@@ -266,9 +266,9 @@ public class AdministratorService {
 
 	public Double[] findAvgStddevOfTheNumOfRepliesPerComment() {
 		Double[] result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findAvgStddevOfTheNumOfRepliesPerComment();
 		if (result[0] == null && result[1] == null) {
 			result[1] = 0.;
@@ -299,9 +299,9 @@ public class AdministratorService {
 	//	C1
 	public Collection<ServiceOffered> bestSellingServices() {
 		Collection<ServiceOffered> result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.bestSellingServices();
 		return result;
 	}
@@ -309,9 +309,9 @@ public class AdministratorService {
 	//	C2
 	public Collection<Manager> managerProvidesMoreServicesThanAverage() {
 		Collection<Manager> result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.managerProvidesMoreServicesThanAverage();
 		return result;
 	}
@@ -321,7 +321,7 @@ public class AdministratorService {
 		Collection<Manager> resultQuery2;
 		Collection<Long> resultQuery1;
 		Long maxNumber;
-		
+
 		this.checkPrincipal();
 
 		resultQuery1 = this.administratorRepository.managersWhohaveMoreServicesCancelled1();
@@ -334,9 +334,9 @@ public class AdministratorService {
 	//	B1	      
 	public Double findAvgNumOfCategoriesPerRendezvous() {
 		Double result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findAvgNumOfCategoriesPerRendezvous();
 		return result;
 	}
@@ -344,9 +344,9 @@ public class AdministratorService {
 	//	B2
 	public Double findAvgNumOfServicesPerCategories() {
 		Double result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findAvgNumOfServicesPerCategories();
 		return result;
 	}
@@ -354,9 +354,9 @@ public class AdministratorService {
 	// B3
 	public Double[] findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse() {
 		Double[] result;
-		
+
 		this.checkPrincipal();
-		
+
 		result = this.administratorRepository.findAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouse();
 		return result;
 	}
@@ -368,8 +368,8 @@ public class AdministratorService {
 		final Pageable pageable;
 
 		this.checkPrincipal();
-		
-		pageable = new PageRequest(0, 6);
+
+		pageable = new PageRequest(0, 5);
 		resPage = this.administratorRepository.findTop5Services(pageable);
 		result = resPage.getContent();
 		return result;
