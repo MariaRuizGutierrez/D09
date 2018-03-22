@@ -215,6 +215,7 @@
 				<ref bean="rendezvouse8"></ref>
 				<ref bean="rendezvouse10"></ref>
 				<ref bean="rendezvouse11"></ref>
+				<ref bean ="rendezvouse9"/>
 			</list>
 		</property>
 	</bean>
@@ -237,6 +238,7 @@
 				<ref bean="rendezvouse3"></ref>
 				<ref bean="rendezvouse10"></ref>
 				<ref bean="rendezvouse11"></ref>
+				<ref bean ="rendezvouse7"/>
 			</list>
 		</property>
 	</bean>
@@ -251,6 +253,11 @@
 		<property name="birthDate" value="1992/02/24 12:00" />
 		<property name="rendezvousesCreated">
 			<list>
+				<ref bean="rendezvouse6"></ref>
+				<ref bean="rendezvouse7"></ref>
+				<ref bean="rendezvouse8"></ref>
+				<ref bean="rendezvouse9"/>
+				<ref bean="rendezvouse10"/>
 			</list>
 		</property>
 		<property name="rendezvousesAssisted">
