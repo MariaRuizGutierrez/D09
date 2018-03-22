@@ -37,6 +37,11 @@
 		<put-attribute name="body" value="/views/serviceOffered/list.jsp" />
 	</definition>
 	
+	<definition name="serviceoffered/listb" extends="master.page">	
+		<put-attribute name="title" value="Lista de servicios" />
+		<put-attribute name="body" value="/views/serviceOffered/listb.jsp" />
+	</definition>
+	
 	<definition name="serviceOffered/edit" extends="master.page">	
 		<put-attribute name="title" value="Editar servicio" />
 		<put-attribute name="body" value="/views/serviceOffered/edit.jsp" />

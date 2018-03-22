@@ -185,9 +185,9 @@
 						code="master.page.serviceoffered" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="serviceoffered/manager/list.do?d-16544-p=1"><spring:message
+					<li><a href="serviceoffered/manager/listb.do?d-16544-p=1"><spring:message
 								code="master.page.serviceoffered.list" /></a></li>
-					<li><a href="serviceoffered/manager/listAll.do?d-16544-p=1"><spring:message
+					<li><a href="serviceoffered/manager/listAllb.do?d-16544-p=1"><spring:message
 								code="master.page.serviceoffered.listAll" /></a></li>
 
 				</ul></li>

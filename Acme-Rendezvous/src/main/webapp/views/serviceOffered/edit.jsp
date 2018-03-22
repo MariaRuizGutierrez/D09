@@ -51,7 +51,13 @@
 			<acme:submit_with_on_click name="delete" code="rendezvous.delete" code2="serviceOffered.confirm.delete"/>
 </jstl:if>
 
+	<security:authorize access="hasRole('ADMINISTRATOR')">
 	<acme:cancel url="serviceoffered/manager/listAll.do?d-16544-p=1" code="serviceoffered.cancel"/>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('MANAGER')">
+	<acme:cancel url="serviceoffered/manager/listAllb.do?d-16544-p=1" code="serviceoffered.cancel"/>
+	</security:authorize>
 	<br />
 	
 

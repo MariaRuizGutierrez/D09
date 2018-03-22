@@ -37,24 +37,12 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="serviceoffered" requestURI="${requestURI }" id="row">
 	
-	<%!String estilo;%>
-	<jstl:choose>
-			<jstl:when test="${row.cancelled==false}">
-				<%=estilo = "p1"%>
-
-			</jstl:when>
-
-			<jstl:when test="${row.cancelled==true}">
-
-				<%=estilo = "p2"%>
-			</jstl:when>
-		</jstl:choose>
 	
 		
 	<security:authorize access="hasRole('MANAGER')">
 		<spring:message code="serviceOffered.edit" var="Edit" />
 		
-		<display:column title="${Edit}" sortable="true" class="<%= estilo %>">
+		<display:column title="${Edit}" sortable="true">
 		
 		
 		<jstl:if test="${fn:contains(managerPrincipal.servicesOffered, row)}">
@@ -73,7 +61,7 @@
 	
 		
 	<spring:message code="serviceOffered.display" var="Display" />
-	<display:column title="${Display}" sortable="true" class="<%= estilo %>">
+	<display:column title="${Display}" sortable="true">
 		<spring:url value="serviceOffered/display.do" var="displayURL">
 			<spring:param name="serviceOfferedId" value="${row.id}" />
 		</spring:url>
@@ -82,13 +70,13 @@
 	</display:column>
 		
 	<spring:message code="serviceoffered.name" var="titleHeader1" />
-	<display:column property="name" title="${titleHeader1}" sortable="true" class="<%= estilo %>"/>
+	<display:column property="name" title="${titleHeader1}" sortable="true"/>
 	
 	<spring:message code="serviceoffered.description" var="titleHeader2" />
-	<display:column property="description" title="${titleHeader2}" sortable="true" class="<%= estilo %>"/>
+	<display:column property="description" title="${titleHeader2}" sortable="true" />
 	
 	<spring:message code="serviceoffered.picture" var="titleHeader" />
-	<display:column title="${titleHeader}" class="<%= estilo %>">
+	<display:column title="${titleHeader}">
 	<jstl:if test="${!(row.picture=='')}">
 		<a href="${row.picture}"><spring:message
 				code="serviceoffered.picture" /></a>
@@ -97,7 +85,7 @@
 
 	
 	<spring:message code="serviceoffered.category" var="titleHeader3" />
-	<display:column property="category.name" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+	<display:column property="category.name" title="${titleHeader3}" sortable="true"/>
 	
 	
 	
@@ -114,7 +102,7 @@
 	
 	<spring:message code="serviceOffered.delete" var="deleteHeader" />
 	<jstl:if test="${row.cancelled==false}">
-		<display:column title="${deleteHeader}" sortable="true" class="<%= estilo %>">
+		<display:column title="${deleteHeader}" sortable="true">
 		
 		<div 
 		style="margin-top:8px; ">
@@ -131,7 +119,7 @@
 	<spring:message code="serviceoffered.cancelled" var="titleHeader3" />
 	<spring:message code="serviceoffered.cancelled.message" var="messageCancelled"></spring:message>
 	<jstl:if test="${row.cancelled ==true}"> 
-	<display:column value="${messageCancelled}" title="${titleHeader3}" sortable="true" class="<%= estilo %>"/>
+		<display:column value="${messageCancelled}" title="${titleHeader3}" sortable="true"/>
 	</jstl:if>
 </display:table>
 

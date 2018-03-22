@@ -43,7 +43,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 	}
 	//Listing-----------------------------------------------------------------
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView result;
 		Manager manager;
@@ -52,17 +52,17 @@ public class ServiceOfferedManagerController extends AbstractController {
 		Collection<ServiceOffered> serviceoffered;
 		serviceoffered = this.serviceOfferedService.AllServiceNotCancelled();
 
-		result = new ModelAndView("serviceoffered/list");
+		result = new ModelAndView("serviceoffered/listb");
 		result.addObject("serviceoffered", serviceoffered);
 		result.addObject("managerPrincipal", manager);
-		result.addObject("requestURI", "serviceoffered/manager/list.do");
+		result.addObject("requestURI", "serviceoffered/manager/listb.do");
 		return result;
 
 	}
 
 	//Listing all ------------------------------------------------------------
 
-	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/listAllb", method = RequestMethod.GET)
 	public ModelAndView listAll() {
 		ModelAndView result;
 		Collection<ServiceOffered> servicesOffered;
@@ -71,10 +71,10 @@ public class ServiceOfferedManagerController extends AbstractController {
 		manager = this.managerService.findByPrincipal();
 		servicesOffered = manager.getServicesOffered();
 
-		result = new ModelAndView("serviceoffered/list");
+		result = new ModelAndView("serviceoffered/listb");
 		result.addObject("serviceoffered", servicesOffered);
 		result.addObject("managerPrincipal", manager);
-		result.addObject("requestURI", "serviceoffered/manager/listAll.do");
+		result.addObject("requestURI", "serviceoffered/manager/listAllb.do");
 		return result;
 
 	}
@@ -123,7 +123,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		else
 			try {
 				this.serviceOfferedService.save(serviceOffered);
-				result = new ModelAndView("redirect:listAll.do");
+				result = new ModelAndView("redirect:listAllb.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 			}
@@ -138,7 +138,7 @@ public class ServiceOfferedManagerController extends AbstractController {
 		serviceOffered = this.serviceOfferedService.reconstruct(serviceOffered, bindingResult);
 		try {
 			this.serviceOfferedService.delete(serviceOffered);
-			result = new ModelAndView("redirect:listAll.do");
+			result = new ModelAndView("redirect:listAllb.do");
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(serviceOffered, "serviceOffered.commit.error");
 		}
