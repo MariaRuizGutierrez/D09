@@ -60,10 +60,16 @@
 		<spring:message
 			code="dashboard.findAvgStddevOfTheNumOfAssistansPerRendezvouse" />
 	</caption>
+	<tr>
+		<th><spring:message code="dashboard.AVG" /></th>
+		<th><spring:message code="dashboard.STDDEV" /></th>
+	</tr>
 
 	<tr>
-		<td><jstl:out
-				value="${ findAvgStddevOfTheNumOfAssistansPerRendezvouse}"></jstl:out></td>
+		<jstl:forEach var="medidas"
+			items="${findAvgStddevOfTheNumOfAssistansPerRendezvouse }">
+			<td><jstl:out value="${ medidas}"></jstl:out></td>
+		</jstl:forEach>
 	</tr>
 </table>
 

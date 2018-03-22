@@ -34,7 +34,7 @@ public class AdministratorDashboardController extends AbstractController {
 
 		Double findAvgStddevOfTheNumOfRendezvouseCreatedPerUser[];
 		Double findRatioUsersWithRendezvousesAndNotRendezvouses;
-		Double findAvgStddevOfTheNumOfAssistansPerRendezvouse;
+		Double findAvgStddevOfTheNumOfAssistansPerRendezvouse[];
 		Double findAvgStddevOfTheNumOfRendezvouseAssitedPerUser[];
 		Collection<Rendezvouse> findTop10RendezvouseWithRSVPd;
 		Double findAvgStddevOfTheNumOfAnnouncementsPerRendezvous[];

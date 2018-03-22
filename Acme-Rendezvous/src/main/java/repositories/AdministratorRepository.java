@@ -30,7 +30,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//C/3 The average and the standard deviation of users per rendezvous.
 	@Query("select avg(r.assistants.size), stddev(r.assistants.size) from Rendezvouse r")
-	Double findAvgStddevOfTheNumOfAssistansPerRendezvouse();
+	Double[] findAvgStddevOfTheNumOfAssistansPerRendezvouse();
 
 	//C/4 The average and the standard deviation of rendezvouses that are RSVPd per user.
 	@Query("select avg(u.rendezvousesAssisted.size), stddev(u.rendezvousesAssisted.size) from User u")
