@@ -478,11 +478,19 @@ public class RendezvouseService {
 		return similars;
 	}
 
-	public Collection<Rendezvouse> FindRendezvousThatUserAssist(final int usuarioId) {
+	public Collection<Rendezvouse> FindRendezvousThatUserAssist(User user) {
 
 		Collection<Rendezvouse> result;
 
-		result = this.rendezvousRepository.FindRendezvousThatUserAssist(usuarioId);
+		result = this.rendezvousRepository.FindRendezvousThatUserAssist(user.getId());
+
+		return result;
+	}
+
+	public Collection<Rendezvouse> FindRendezvousThatUserAssistMinor(User user) {
+		Collection<Rendezvouse> result;
+
+		result = this.rendezvousRepository.FindRendezvousThatUserAssistMinor(user.getId());
 
 		return result;
 	}

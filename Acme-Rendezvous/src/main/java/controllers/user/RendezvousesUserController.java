@@ -80,13 +80,21 @@ public class RendezvousesUserController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/listAsistProfile", method = RequestMethod.GET)
-	public ModelAndView listasisProfile(@RequestParam final int userId) {
+	public ModelAndView listasisProfile(@RequestParam int userId) {
 		final ModelAndView result;
 		this.userService.checkPrincipal();
 		Collection<Rendezvouse> rendezvous;
-		User principal;
-		principal = this.userService.findOne(userId);
-		rendezvous = this.rendezvouseService.FindRendezvousThatUserAssist(principal.getId());
+		User findOne;
+		findOne = this.userService.findOne(userId);
+		User user;
+
+		user = this.userService.findByPrincipal();
+
+		if (this.rendezvouseService.calculateYearsOld(user.getBirthDate()) < 18)
+			rendezvous = this.rendezvouseService.FindRendezvousThatUserAssistMinor(findOne);
+		else
+			rendezvous = this.rendezvouseService.FindRendezvousThatUserAssist(findOne);
+
 		result = new ModelAndView("rendezvous/list2");
 		result.addObject("rendezvous", rendezvous);
 		result.addObject("assist", true);
@@ -94,7 +102,6 @@ public class RendezvousesUserController extends AbstractController {
 		return result;
 
 	}
-
 	@RequestMapping(value = "/listasis", method = RequestMethod.GET)
 	public ModelAndView listnotasis() {
 		this.userService.checkPrincipal();
