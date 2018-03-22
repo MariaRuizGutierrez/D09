@@ -1001,7 +1001,7 @@ public class AdministratorServiceTest extends AbstractTest {
 	public void templateFindTop5ServicesAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
-		Collection<Rendezvouse> result;
+		Collection<ServiceOffered> result;
 		
 		caught = null;
 		
