@@ -142,6 +142,7 @@
 	<p>
 	
 </display:table>
+
 <h2><spring:message code="rendezvouse.service.request" /></h2>
 <jstl:if test="${row.servicesOffered.size()==0}">
 	<spring:message code="nothing.found.to.display" />
@@ -166,17 +167,24 @@
 		
 		<spring:message code="announcement.format.madeMoment" var="pattern" ></spring:message>
 		<display:column property="name" title="${nameHeader}" sortable="false" format="${pattern}" class="<%= estilo %>">
-			<jstl:out value="${row.name}"></jstl:out>
+			<jstl:out value="${row1.name}"></jstl:out>
 		</display:column>
 		<spring:message code="rendezvous.announcements.description" var="titleHeader2" />
 		<display:column property="description" title="${titleHeader2}" sortable="false" class="<%= estilo %>">
-			<jstl:out value="${row.description}"></jstl:out>
+			<jstl:out value="${row1.description}"></jstl:out>
 		</display:column>
+		
 		<spring:message code="serviceoffered.picture" var="titleHeader" />
 	<display:column title="${titleHeader}" class="<%= estilo %>">
-		<a href="${row.picture}"><spring:message
+		<a href="${row1.picture}"><spring:message
 				code="serviceoffered.picture" /></a>
 	</display:column>
+	
+	<spring:message code="serviceoffered.category" var="category" />
+		<display:column property="category.name" title="${category}" sortable="false" class="<%= estilo %>">
+			<jstl:out value="${row1.category.name}"></jstl:out>
+		</display:column>
+	
 	
 	<security:authorize access="hasRole('USER')">
 	<spring:message code="cancelled" var="Delete" />
