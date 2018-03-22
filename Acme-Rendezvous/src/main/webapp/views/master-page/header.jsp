@@ -175,7 +175,7 @@
 						
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="manager/edit.do"><spring:message
+					<li><a href="manager_/edit.do"><spring:message
 						code="master.page.manager.edit" /></a></li>
 				
 				</ul>
@@ -207,7 +207,7 @@
 					<li class="arrow"></li>
 					<li><a href="user/create.do"><spring:message
 						code="master.page.user.register" /></a></li>
-					<li><a href="manager/create.do"><spring:message
+					<li><a href="manager_/create.do"><spring:message
 						code="master.page.manager.register" /></a></li>
 
 				</ul></li>

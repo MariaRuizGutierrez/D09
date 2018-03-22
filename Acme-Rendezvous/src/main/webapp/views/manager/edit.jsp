@@ -21,7 +21,7 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="manager/edit.do" modelAttribute="managerForm">
+<form:form action="manager_/edit.do" modelAttribute="managerForm">
 
 	<form:hidden path="manager.id" />
 	<%-- <form:hidden path="manager.servicesOffered"/> --%>

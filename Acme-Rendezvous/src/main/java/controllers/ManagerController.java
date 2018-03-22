@@ -16,7 +16,7 @@ import domain.Manager;
 import forms.ManagerForm;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/manager_")
 public class ManagerController extends AbstractController {
 
 	// Services---------------------------------------------------------
@@ -60,7 +60,7 @@ public class ManagerController extends AbstractController {
 
 		result = new ModelAndView("manager/display");
 		result.addObject("manager", manager);
-		result.addObject("requestURI", "manager/display.do");
+		result.addObject("requestURI", "manager_/display.do");
 
 		return result;
 	}
@@ -127,7 +127,7 @@ public class ManagerController extends AbstractController {
 		result = new ModelAndView("manager/edit");
 		result.addObject("manager", managerForm);
 		result.addObject("message", message);
-		result.addObject("RequestURI", "manager/edit.do");
+		result.addObject("RequestURI", "manager_/edit.do");
 
 		return result;
 
