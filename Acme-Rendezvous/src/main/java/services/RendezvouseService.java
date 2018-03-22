@@ -16,7 +16,6 @@ import org.springframework.validation.Validator;
 import repositories.RendezvouseRepository;
 import domain.Announcement;
 import domain.Comment;
-import domain.GPS;
 import domain.Question;
 import domain.Rendezvouse;
 import domain.ServiceOffered;
@@ -434,7 +433,6 @@ public class RendezvouseService {
 	public Rendezvouse reconstructLinkUnlinkSimilar(final Rendezvouse rendezvous, final BindingResult bindingResult) {
 		Rendezvouse result;
 		Rendezvouse rendezvousBD;
-		GPS gpsBD;
 
 		rendezvousBD = this.rendezvousRepository.findOne(rendezvous.getId());
 		rendezvous.setId(rendezvousBD.getId());
@@ -451,10 +449,6 @@ public class RendezvouseService {
 		rendezvous.setOrganisedMoment(rendezvousBD.getOrganisedMoment());
 		rendezvous.setDraftMode(rendezvousBD.isDraftMode());
 		rendezvous.setForAdult(rendezvousBD.isForAdult());
-		gpsBD = new GPS();
-		gpsBD.setLatitude(rendezvousBD.getGps().getLatitude());
-		gpsBD.setLongitude(rendezvousBD.getGps().getLongitude());
-		rendezvous.setGps(gpsBD);
 		result = rendezvous;
 		this.validator.validate(result, bindingResult);
 		return result;

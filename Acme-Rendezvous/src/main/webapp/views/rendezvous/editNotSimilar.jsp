@@ -30,6 +30,8 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="gps.longitude" />
+	<form:hidden path="gps.latitude" /> 
 	<%-- <form:hidden path="assistants" />
 	<form:hidden path="announcements" />
 	<form:hidden path="name" />
@@ -37,9 +39,7 @@
 	<form:hidden path="picture" />
 	<form:hidden path="organisedMoment" />
 	<form:hidden path="draftMode" />
-	<form:hidden path="forAdult" />
-	<form:hidden path="gps.longitude" />
-	<form:hidden path="gps.latitude" /> --%>
+	<form:hidden path="forAdult" />--%>
 
 
 
