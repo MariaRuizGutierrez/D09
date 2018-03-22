@@ -611,6 +611,42 @@ public class RendezvouseServiceTest extends AbstractTest {
 
 	}
 
+	// Test listFindRendezvousByCategory ----------------------------------------------------
+	// Caso de uso 10.1: List the rendezvouses in the system grouped by category
+	@Test
+	public void driverlistFindRendezvousByCategory() {
+		final Object testingData[][] = {
+			{
+				//La rendezvouse1 solicita un servicio con la category1
+				"rendezvouse1", "category1", null
+			}, {
+				//La rendezvouse1 solicita un servicio con la category2
+				"rendezvouse1", "category1-1", null
+			}, {
+				//La rendezvouse2 NO solicita un servicio con la category1
+				"rendezvouse2", "category1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templatelistFindRendezvousByCategory((super.getEntityId((String) testingData[i][0])), (super.getEntityId((String) testingData[i][1])), (Class<?>) testingData[i][2]);
+	}
+	private void templatelistFindRendezvousByCategory(final int rendezvouseId, final int categoryId, final Class<?> expected) {
+		final Rendezvouse rendezvouse;
+		Collection<Rendezvouse> listRendezvousesByCategoryId;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			listRendezvousesByCategoryId = this.rendezvouseService.findRendezvousByCategory(categoryId);
+			rendezvouse = this.rendezvouseService.findOne(rendezvouseId);
+			Assert.isTrue(listRendezvousesByCategoryId.contains(rendezvouse));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
 	//	//Other Methods additionals---------------------------------------------------------------------------------------
 
 	private Collection<GPS> createAllGPSForTesting() {
