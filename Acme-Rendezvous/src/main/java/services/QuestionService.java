@@ -76,14 +76,13 @@ public class QuestionService {
 		userConnected = this.userService.findByPrincipal();
 		answers = this.answerService.findAllAnswerByQuestionId(question.getId());
 
-		Assert.isTrue(userConnected.getRendezvousesCreated().contains(question.getRendezvouse()));
+		Assert.isTrue(userConnected.getRendezvousesCreated().contains(question.getRendezvouse()), "you need a rendezvous");
 		Assert.isTrue(answers.size() == 0, "Cannot commit this operation because this question already contains an answer");
 
 		Question result;
 		result = this.questionRepository.save(question);
 		return result;
 	}
-
 	public void delete(final Question question) {
 
 		assert question != null;

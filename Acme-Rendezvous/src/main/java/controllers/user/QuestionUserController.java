@@ -143,7 +143,7 @@ public class QuestionUserController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (final Throwable oops) {
-				if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
+				if (oops.getMessage().equals("you need a rendezvous"))
 					result = this.createEditModelAndView(question, "question.rendezvouses");
 				else
 					result = this.createEditModelAndView(question, "question.commit.error");

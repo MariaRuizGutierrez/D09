@@ -99,10 +99,12 @@
 
 	<spring:message code="comment.picture" var="pictureHeader" />
 	<display:column title="${pictureHeader}">
+	<jstl:if test="${!(row.picture=='')}">
 		<div
 			style="position: relative; width: 200px; height: 100px; margin-left: auto; margin-right: auto;">
 			<img src="${row.picture}" width="200" height="100">
 		</div>
+		</jstl:if>
 	</display:column>
 
 	<security:authorize access="hasRole('USER')">
