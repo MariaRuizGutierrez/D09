@@ -857,9 +857,9 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2.3636, null
+				"admin", 1.9090909090909092, null
 			}, {
-				"user1", 2.3636, IllegalArgumentException.class
+				"user1", 1.9090909090909092, IllegalArgumentException.class
 			}
 		};
 

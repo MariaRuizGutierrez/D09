@@ -344,6 +344,7 @@ public class AdministratorService {
 		Collection<Rendezvouse> allRendezvouses;
 		Collection<ServiceOffered> servicesByRendezvouse;
 
+		this.checkPrincipal();
 		enumerador = 0;
 		vacia = new ArrayList<>();
 		allRendezvouses = new ArrayList<>(this.rendezvouseService.findAll());
