@@ -207,15 +207,16 @@
 </display:column>
 
 <security:authorize access="hasRole('USER')">
+<jstl:if test="${row.deleted==true}">
 		<spring:message code="delete" var="Delete" />
 		<display:column title="${Delete}">
-		<jstl:if test="${row.deleted==true}">
+		
 			<FONT COLOR="grey">
 			<spring:message code="delete.delete"/>
 			</FONT><br>
-		</jstl:if>
+
 		</display:column>
-			
+		</jstl:if>	
 	</security:authorize>
 
 	
