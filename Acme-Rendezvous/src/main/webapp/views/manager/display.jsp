@@ -22,7 +22,7 @@
   <p> <B><spring:message code="manager.surname" />: </B> <jstl:out value="${row.surname}"></jstl:out></p>
   <p> <B><spring:message code="manager.postalAddress" />: </B> <jstl:out value="${row.postalAddress}"></jstl:out></p>
   <p> <B><spring:message code="manager.phoneNumber" />: </B> <jstl:out value="${row.phoneNumber}"></jstl:out></p>
-   <p> <B><spring:message code="manager.emailAddress" />: </B> <jstl:out value="${row.phoneNumber}"></jstl:out></p>
+   <p> <B><spring:message code="manager.emailAddress" />: </B> <jstl:out value="${row.emailAddress}"></jstl:out></p>
   
   <p> 
   </display:column>
