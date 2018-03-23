@@ -25,7 +25,7 @@ Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proye
 
 13. Actualmente, no podemos borrar ni editar una question que ya tiene respuestas, ya que nos parecía que es la mejor decisión.
 
-14. Para la realización del A+ se hizo primeramente sobre el controlador de comment y luego vimos que rendezvous daba mas juego y se realizo de rendezvous, por tanto en el proyecto A+ existen dos tests para los controladores. Gracias a esto se detectaron fallos en ambos controladores.
+14. Para la realización del A+ se ha realizado sobre el controlador de rendezvous ya que daba mas juego. 
 
 15. Para los no autenticados solo se les mostrarán las rendezvouses que están en modo final, que no son para adultos, y que no han sido borradas o canceladas.
 
