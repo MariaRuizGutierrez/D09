@@ -554,6 +554,7 @@
 		<property name="assistants">
 			<list>
 				<ref bean="user1"></ref>
+				<ref bean="user4"></ref>
 				<ref bean="user2"></ref>
 			</list>
 		</property>
@@ -585,6 +586,7 @@
 		<property name="assistants">
 			<list>
 				<ref bean="user1"></ref>
+				<ref bean="user4"></ref>
 			</list>
 		</property>
 		<property name="similarRendezvouses">
@@ -614,6 +616,7 @@
 		<property name="forAdult" value="0" />
 		<property name="assistants">
 			<list>
+			<ref bean="user4"></ref>
 			</list>
 		</property>
 		<property name="similarRendezvouses">
