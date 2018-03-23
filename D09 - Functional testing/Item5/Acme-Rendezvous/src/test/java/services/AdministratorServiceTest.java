@@ -261,7 +261,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator() {
 
@@ -278,23 +278,22 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templateFindAvgStddevOfTheNumOfRendezvouseCreatedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] objetos;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			objetos = this.administratorService.findAvgStddevOfTheNumOfRendezvouseCreatedPerUser();
 			Assert.isTrue(objetos.length == num);
-			Assert.isTrue(objetos[0]==num1);
-			Assert.isTrue(objetos[1]==num2);
+			Assert.isTrue(objetos[0] == num1);
+			Assert.isTrue(objetos[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -304,7 +303,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator() {
 
@@ -321,21 +320,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templateFindRatioUsersWithRendezvousesAndNotRendezvousesAdministrator(final String username, double num, final Class<?> expected) {
 
 		Class<?> caught;
 		Double result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findRatioUsersWithRendezvousesAndNotRendezvouses();
 			Assert.isTrue(result == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -345,14 +343,14 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 2.2727, 1.7628, null
+				"admin", 2, 2.5455, 1.616, null
 			}, {
 				"user1", 2, 2.2727, 1.7628, IllegalArgumentException.class
 			}
@@ -362,14 +360,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templateFindAvgStddevOfTheNumOfAssistansPerRendezvouseAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -378,7 +375,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -388,14 +385,14 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator() {
 
 		final Object testingData[][] = {
 			//admin está registrado
 			{
-				"admin", 2, 5.0, 1.4142, null
+				"admin", 2, 5.6, 1.4967, null
 			}, {
 				"user1", 2, 5.0, 1.4142, IllegalArgumentException.class
 			}
@@ -405,14 +402,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templateFindAvgStddevOfTheNumOfRendezvouseAssitedPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -421,7 +417,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -431,7 +427,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindTop10RendezvouseWithRSVPdAdministrator() {
 
@@ -448,21 +444,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindTop10RendezvouseWithRSVPdAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templatefindTop10RendezvouseWithRSVPdAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<Rendezvouse> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findTop10RendezvouseWithRSVPd();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -472,7 +467,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindAvgStddevOfTheNumOfAnnouncementsPerRendezvousAdministrator() {
 
@@ -489,14 +484,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindAvgStddevOfTheNumOfAnnouncementsPerRendezvousAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templatefindAvgStddevOfTheNumOfAnnouncementsPerRendezvousAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -505,7 +499,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -515,7 +509,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindRendezvousesWithMore75PerCentAdministrator() {
 
@@ -532,21 +526,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindRendezvousesWithMore75PerCentAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templatefindRendezvousesWithMore75PerCentAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<Rendezvouse> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findRendezvousesWithMore75PerCent();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -556,7 +549,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindRendezvousesWithAreLinkedAdministrator() {
 
@@ -573,21 +566,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindRendezvousesWithAreLinkedAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templatefindRendezvousesWithAreLinkedAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<Rendezvouse> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findRendezvousesWithAreLinked();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -597,8 +589,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
-	
+
 	@Test
 	public void driveFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator() {
 
@@ -615,14 +606,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templateFindAvgStddevOfTheNumOfQuestionsPerRendezvousAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -631,7 +621,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -641,7 +631,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvousAdministrator() {
 
@@ -658,14 +648,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvousAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templatefindAvgStddevOfTheNumOfAnswerToQuestionsPerRendezvousAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -674,7 +663,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -684,7 +673,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindAvgStddevOfTheNumOfRepliesPerCommentAdministrator() {
 
@@ -701,14 +690,13 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatefindAvgStddevOfTheNumOfRepliesPerCommentAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
 
 	}
-	
+
 	public void templatefindAvgStddevOfTheNumOfRepliesPerCommentAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -717,7 +705,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[0] == num1);
 			Assert.isTrue(result[1] == num2);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -727,7 +715,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivebestSellingServicesAdministrator() {
 
@@ -744,21 +732,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatebestSellingServicesAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templatebestSellingServicesAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<ServiceOffered> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.bestSellingServices();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -768,7 +755,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivemanagerProvidesMoreServicesThanAverageAdministrator() {
 
@@ -785,21 +772,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templatemanagerProvidesMoreServicesThanAverageAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templatemanagerProvidesMoreServicesThanAverageAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<Manager> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.managerProvidesMoreServicesThanAverage();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -809,7 +795,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivemanagersWhohaveMoreServicesCancelledAdministrator() {
 
@@ -826,21 +812,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateManagersWhohaveMoreServicesCancelledAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templateManagersWhohaveMoreServicesCancelledAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<Manager> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.managersWhohaveMoreServicesCancelled();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -850,7 +835,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void drivefindAvgNumOfCategoriesPerRendezvousAdministrator() {
 
@@ -867,21 +852,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgNumOfCategoriesPerRendezvousAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templateFindAvgNumOfCategoriesPerRendezvousAdministrator(final String username, double num, final Class<?> expected) {
 
 		Class<?> caught;
 		Double result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findAvgNumOfCategoriesPerRendezvous();
 			Assert.isTrue(result == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -891,8 +875,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
-	
+
 	@Test
 	public void driveFindAvgNumOfServicesPerCategoriesAdministrator() {
 
@@ -909,21 +892,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindAvgNumOfServicesPerCategoriesAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templateFindAvgNumOfServicesPerCategoriesAdministrator(final String username, double num, final Class<?> expected) {
 
 		Class<?> caught;
 		Double result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findAvgNumOfServicesPerCategories();
 			Assert.isTrue(result == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -933,7 +915,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouseAdministrator() {
 
@@ -947,19 +929,17 @@ public class AdministratorServiceTest extends AbstractTest {
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateFindAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouseAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], 
-				 (double) testingData[i][3], (double) testingData[i][4], (double) testingData[i][5], (Class<?>) testingData[i][6]);
+			this.templateFindAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouseAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (double) testingData[i][4], (double) testingData[i][5],
+				(Class<?>) testingData[i][6]);
 
 	}
-	
-	public void templateFindAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouseAdministrator(final String username, int num, double num1, double num2, 
-		double num3, double num4, final Class<?> expected) {
+
+	public void templateFindAvgMinMaxStddevOfTheNumOfRequestedPerRendezvouseAdministrator(final String username, int num, double num1, double num2, double num3, double num4, final Class<?> expected) {
 
 		Class<?> caught;
 		Double[] result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
@@ -970,7 +950,7 @@ public class AdministratorServiceTest extends AbstractTest {
 			Assert.isTrue(result[2] == num3);
 			Assert.isTrue(result[3] == num4);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -980,7 +960,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	
+
 	@Test
 	public void driveFindTop5ServicesAdministrator() {
 
@@ -997,21 +977,20 @@ public class AdministratorServiceTest extends AbstractTest {
 			this.templateFindTop5ServicesAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
 
 	}
-	
+
 	public void templateFindTop5ServicesAdministrator(final String username, int num, final Class<?> expected) {
 
 		Class<?> caught;
 		Collection<ServiceOffered> result;
-		
+
 		caught = null;
-		
 
 		try {
 			super.authenticate(username);
 			result = this.administratorService.findTop5Services();
 			Assert.isTrue(result.size() == num);
 			this.administratorService.flush();
-			
+
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
@@ -1022,6 +1001,4 @@ public class AdministratorServiceTest extends AbstractTest {
 
 	}
 
-	
-	
 }

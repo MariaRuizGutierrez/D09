@@ -33,12 +33,12 @@
 <tiles-definitions>
 
 	<definition name="manager/edit" extends="master.page">	
-		<put-attribute name="title" value="Editar gerente" />
+		<put-attribute name="title" value="Editar manager" />
 		<put-attribute name="body" value="/views/manager/edit.jsp" />
 	</definition>
  
  	<definition name="manager/display" extends="master.page">	
-		<put-attribute name="title" value="Display manager" />
+		<put-attribute name="title" value="Mostrar un manager" />
 		<put-attribute name="body" value="/views/manager/display.jsp" />
 	</definition>
 </tiles-definitions>
