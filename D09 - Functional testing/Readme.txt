@@ -29,6 +29,8 @@ Con este fichero queremos aclarar las decisiones que hemos tomado sobre el proye
 
 15. Para los no autenticados solo se les mostrarán las rendezvouses que están en modo final, que no son para adultos, y que no han sido borradas o canceladas.
 
+16. Un user cuando crea una rendezvous asiste a ella siempre que la rendezvous esté en modo final en modo borrador no ya que se asume que no es oficial, además el usuario podrá deja de asistir a la misma si así lo desea.
+
 
 Todas estas decisiones se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, y nos ha dado el visto bueno.
 
