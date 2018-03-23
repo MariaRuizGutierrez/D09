@@ -235,7 +235,7 @@
 	class="displaytag">
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="manager/display.do" var="idURL">
+		<spring:url value="manager_/display.do" var="idURL">
 			<spring:param name="managerId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>
@@ -249,7 +249,7 @@
 	class="displaytag">
 	<spring:message code="rendezvouse.name" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="manager/display.do" var="idURL">
+		<spring:url value="manager_/display.do" var="idURL">
 			<spring:param name="managerId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.name}" /></a>

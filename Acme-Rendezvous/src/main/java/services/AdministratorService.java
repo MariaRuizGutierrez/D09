@@ -324,13 +324,18 @@ public class AdministratorService {
 	public Collection<Manager> managersWhohaveMoreServicesCancelled() {
 		Collection<Manager> resultQuery2;
 		Collection<Long> resultQuery1;
-		Long maxNumber;
+		Long maxNumber = 0L;
 
 		this.checkPrincipal();
+		
+		resultQuery1 = new ArrayList<>();
+		resultQuery2 = new ArrayList<>();
 
 		resultQuery1 = this.administratorRepository.managersWhohaveMoreServicesCancelled1();
-		maxNumber = Collections.max(resultQuery1);
-		resultQuery2 = this.administratorRepository.managersWhohaveMoreServicesCancelled2(maxNumber);
+		if(!resultQuery1.isEmpty())
+			maxNumber = Collections.max(resultQuery1);
+			if(maxNumber != 0L)
+				resultQuery2 = this.administratorRepository.managersWhohaveMoreServicesCancelled2(maxNumber);
 
 		return resultQuery2;
 	}
