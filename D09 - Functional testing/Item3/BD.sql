@@ -1,10 +1,10 @@
-drop database if exists `acme-rendezvous`;
-create database `acme-rendezvous`;
+drop database if exists `acme-rendezvous2.0`;
+create database `acme-rendezvous2.0`;
 
 grant select, insert, update, delete 
-	on `acme-rendezvous`.* to 'acme-user'@'%';
+	on `acme-rendezvous2.0`.* to 'acme-user'@'%';
 
 grant select, insert, update, delete, create, drop, references, index, alter, 
         create temporary tables, lock tables, create view, create routine, 
         alter routine, execute, trigger, show view
-    on `acme-rendezvous`.* to 'acme-manager'@'%';
+    on `acme-rendezvous2.0`.* to 'acme-manager'@'%';
